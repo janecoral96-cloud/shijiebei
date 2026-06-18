@@ -1,418 +1,177 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>2026世界杯投注分析报告 · 6月19日</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background: #f0ede8;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            color: #1a1a1a;
-            padding: 16px 12px;
-        }
-        .container {
-            max-width: 820px;
-            margin: 0 auto;
-        }
-        h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #1a5fa8;
-            letter-spacing: -0.3px;
-            margin-bottom: 4px;
-        }
-        .subtitle {
-            color: #555;
-            font-size: 0.95rem;
-            margin-bottom: 18px;
-            border-left: 4px solid #1a5fa8;
-            padding-left: 12px;
-            background: rgba(26,95,168,0.04);
-            border-radius: 0 8px 8px 0;
-            line-height: 1.4;
-        }
-        .schedule-box {
-            background: white;
-            border-radius: 16px;
-            padding: 14px 18px;
-            margin-bottom: 18px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            border: 1px solid #e6e1da;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: baseline;
-            gap: 6px 14px;
-        }
-        .schedule-box .label { font-weight: 600; color: #1a5fa8; font-size: 0.85rem; }
-        .schedule-box .value { font-size: 0.95rem; }
-        .tabs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 18px;
-        }
-        .tab-btn {
-            background: white;
-            border: 1px solid #d6d0c8;
-            border-radius: 40px;
-            padding: 8px 18px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: #333;
-            cursor: pointer;
-            transition: all 0.15s ease;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
-        }
-        .tab-btn.active {
-            background: #1a5fa8;
-            border-color: #1a5fa8;
-            color: white;
-            box-shadow: 0 2px 6px rgba(26,95,168,0.25);
-        }
-        .tab-btn:hover { background: #e6e1da; }
-        .tab-btn.active:hover { background: #154d8a; }
-        .card {
-            background: white;
-            border-radius: 24px;
-            padding: 18px 16px 20px;
-            margin-bottom: 22px;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.04);
-            border: 1px solid #e6e1da;
-            display: none;
-        }
-        .card.active { display: block; }
-        .card h2 {
-            font-size: 1.3rem;
-            color: #1a5fa8;
-            margin-bottom: 12px;
-            border-bottom: 2px solid #f0ede8;
-            padding-bottom: 8px;
-        }
-        .card h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin: 16px 0 8px;
-            color: #2a2a2a;
-        }
-        .section-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-        .two-col { display: flex; flex-wrap: wrap; gap: 12px; }
-        .two-col > div { flex: 1 1 180px; background: #f8f6f2; border-radius: 12px; padding: 10px 12px; }
-        .badge {
-            display: inline-block;
-            background: #eef3f9;
-            color: #1a5fa8;
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 2px 8px;
-            border-radius: 30px;
-            margin-right: 4px;
-        }
-        .odds-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-            margin: 8px 0;
-        }
-        .odds-table th {
-            background: #1a5fa8;
-            color: white;
-            padding: 6px 8px;
-            text-align: center;
-        }
-        .odds-table td {
-            padding: 6px 8px;
-            border-bottom: 1px solid #e6e1da;
-            text-align: center;
-        }
-        .odds-table tr:last-child td { border-bottom: none; }
-        .prediction-box {
-            background: #f0f4fa;
-            border-radius: 16px;
-            padding: 14px;
-            margin: 12px 0;
-        }
-        .prediction-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .pred-item {
-            background: white;
-            border-radius: 14px;
-            padding: 8px 12px;
-            flex: 1 1 90px;
-            text-align: center;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-        }
-        .pred-item .score { font-size: 1.2rem; font-weight: 700; color: #1a5fa8; }
-        .pred-item .prob { font-size: 0.75rem; color: #555; }
-        .confidence-bar {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin: 6px 0;
-        }
-        .confidence-dots {
-            display: flex;
-            gap: 4px;
-        }
-        .dot { width: 14px; height: 14px; border-radius: 50%; background: #ddd; }
-        .dot.filled { background: #1a5fa8; }
-        .bet-cards {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin: 12px 0;
-        }
-        .bet-card {
-            flex: 1 1 150px;
-            background: white;
-            border-radius: 16px;
-            padding: 12px;
-            border-left: 6px solid #1a5fa8;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-        }
-        .bet-card.border-orange { border-left-color: #e67e22; }
-        .bet-card.border-red { border-left-color: #c0392b; }
-        .bet-type {
-            font-size: 0.65rem;
-            background: #eee;
-            padding: 2px 8px;
-            border-radius: 30px;
-            display: inline-block;
-            margin-bottom: 6px;
-        }
-        .bet-card .rec { font-weight: 600; font-size: 0.95rem; }
-        .bet-card .odds { color: #1a5fa8; font-weight: 600; }
-        .bet-card .reason { font-size: 0.78rem; color: #555; margin-top: 4px; }
-        .special-card {
-            background: linear-gradient(145deg, #f8f6f2, #fff);
-            border-radius: 20px;
-            padding: 16px;
-            margin: 12px 0;
-        }
-        .fund-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            justify-content: center;
-        }
-        .fund-item {
-            background: white;
-            border-radius: 16px;
-            padding: 12px 10px;
-            flex: 1 1 100px;
-            text-align: center;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-            border: 1px solid #e6e1da;
-        }
-        .fund-item .units { font-size: 1.3rem; font-weight: 700; color: #1a5fa8; }
-        .fund-item .desc { font-size: 0.75rem; color: #555; }
-        .highlight-value {
-            background: #fef9e7;
-            border: 1px solid #f1c40f;
-            border-radius: 12px;
-            padding: 8px 14px;
-            margin: 10px 0;
-        }
-        .footer-risk {
-            margin-top: 28px;
-            padding: 12px;
-            background: #f8f6f2;
-            border-radius: 16px;
-            font-size: 0.75rem;
-            color: #777;
-            text-align: center;
-            border: 1px solid #e6e1da;
-        }
-        .emoji-warn { font-size: 1.1rem; margin-right: 4px; }
-        @media (max-width: 480px) {
-            .bet-cards { flex-direction: column; }
-            .two-col > div { flex: 1 1 100%; }
-            .prediction-grid { gap: 6px; }
-            .pred-item { flex: 1 1 70px; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界杯预测报告 · 6月19日</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;background:#f0ede8;color:#1a1a1a;padding:20px;line-height:1.6}
+.container{max-width:960px;margin:0 auto}
+h1{font-size:24px;margin-bottom:4px}
+.subtitle,.meta{color:#666;font-size:13px}
+.schedule-box,.card{background:#fff;border:1px solid #ddd;border-radius:10px;padding:18px;margin:16px 0}
+.sched-row{display:grid;grid-template-columns:72px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid #f0ede8;font-size:13px}
+.sched-row:last-child{border-bottom:0}
+.sched-time{color:#1a5fa8;font-weight:800}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}
+.tab{border:1px solid #ccc;background:transparent;border-radius:999px;padding:7px 12px;cursor:pointer;font:inherit;font-size:12px;color:#555}
+.tab.active{background:#1a5fa8;color:#fff;border-color:#1a5fa8}
+.card{display:none}
+.card.active{display:block}
+.mh{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #eee;padding-bottom:12px;margin-bottom:14px}
+.tag{height:max-content;background:#fff4e6;color:#8a4d00;border-radius:999px;padding:3px 8px;font-size:11px;font-weight:700}
+.grid.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.block{background:#f8f7f4;border-radius:8px;padding:12px}
+.sec-title{font-size:11px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.06em;margin:12px 0 8px}
+.big{font-size:24px;font-weight:800;color:#1a5fa8}
+ul{padding-left:18px;font-size:13px;color:#444}
+.scores{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.score{background:#e8f2fc;border-radius:8px;padding:10px;text-align:center}
+.score strong{display:block;font-size:20px;color:#0d4e9e}
+.score span{font-size:12px;color:#555}
+.bets,.alloc{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.bet,.alloc div{background:#f8f7f4;border-radius:8px;padding:10px;border-left:3px solid #1a5fa8}
+.bet.risk{border-left-color:#c07800}.bet.cool{border-left-color:#aa2222}
+.bet span,.alloc span{display:block;font-size:12px;color:#555;margin-top:4px}
+.status{background:#fff8e6;border-left:3px solid #c07800;padding:10px;margin:10px 0;color:#5c3a00}
+.empty{padding:12px;color:#666}
+.sources{font-size:12px;color:#666;margin:18px 0 30px}
+@media(max-width:720px){.grid.two,.scores,.bets,.alloc{grid-template-columns:1fr}.mh{display:block}}
+</style>
 </head>
 <body>
-<div class="container">
-    <h1>⚽ 世界杯投注分析报告</h1>
-    <div class="subtitle">2026年6月19日 · 周五 · 常规赛 · 圣地亚哥国家体育场</div>
-    <div class="schedule-box">
-        <span class="label">📅 开球</span><span class="value">2026-06-19 00:00 UTC</span>
-        <span class="label">🏟️ 场地</span><span class="value">Estadio Nacional, 圣地亚哥</span>
-        <span class="label">⚔️ 对阵</span><span class="value">待定 vs 待定</span>
-    </div>
-
-    <div class="tabs">
-        <button class="tab-btn active" onclick="show(0)">🇨🇱 比赛 #1</button>
-        <button class="tab-btn" onclick="show(1)">⭐ 精选方案</button>
-    </div>
-
-    <!-- 比赛卡片 id=m0 -->
-    <div class="card active" id="m0">
-        <h2>🇨🇱 待定 vs 待定 <span style="font-size:0.7rem;background:#eef3f9;padding:2px 10px;border-radius:30px;margin-left:8px;">常规赛</span></h2>
-
-        <!-- 1. 最近5场战绩 -->
-        <h3>📊 最近5场战绩</h3>
-        <div class="two-col">
-            <div><strong>主队 (待定)</strong><br>2026-06-14 胜 2-1<br>2026-06-09 平 1-1<br>2026-06-04 负 0-2<br>2026-05-30 胜 3-0<br>2026-05-25 胜 1-0</div>
-            <div><strong>客队 (待定)</strong><br>2026-06-15 负 0-1<br>2026-06-10 胜 2-0<br>2026-06-05 平 2-2<br>2026-05-31 胜 1-0<br>2026-05-26 负 0-3</div>
+<main class="container">
+  <h1>世界杯预测报告 · 6月19日</h1>
+  <div class="subtitle">2026-06-19 · 北京时间 · 自动生成</div>
+  <section class="schedule-box">
+    <h2>赛程总览</h2>
+    <div class="sched-row"><div class="sched-time">01:00</div><div>Czechia vs South Africa · Group A · Atlanta Stadium</div></div><div class="sched-row"><div class="sched-time">04:00</div><div>Switzerland vs Bosnia and Herzegovina · Group B · Los Angeles Stadium</div></div><div class="sched-row"><div class="sched-time">07:00</div><div>Canada vs Qatar · Group B · BC Place Vancouver</div></div><div class="sched-row"><div class="sched-time">10:00</div><div>Mexico vs Korea Republic · Group A · Guadalajara Stadium</div></div>
+  </section>
+  <nav class="tabs"><button class="tab active" onclick="show(0)">Czechia vs South Africa</button><button class="tab" onclick="show(1)">Switzerland vs Bosnia and Herzegovina</button><button class="tab" onclick="show(2)">Canada vs Qatar</button><button class="tab" onclick="show(3)">Mexico vs Korea Republic</button><button class="tab" onclick="show(4)">精选方案</button></nav>
+  <section class="card active">
+      <div class="mh">
+        <div>
+          <h2>Czechia vs South Africa</h2>
+          <div class="meta">北京时间 01:00 · Group A · Atlanta Stadium</div>
         </div>
-
-        <!-- 2. 世界排名变化 -->
-        <h3>🌍 世界排名 & 胜率</h3>
-        <div class="two-col">
-            <div><strong>主队</strong> FIFA 18 (↑2) · Kalshi胜率 —</div>
-            <div><strong>客队</strong> FIFA 22 (↓1) · Kalshi胜率 —</div>
+        <div class="tag">自动兜底</div>
+      </div>
+      <div class="grid two">
+        <div class="block">
+          <div class="sec-title">1X2 倾向</div>
+          <div class="big">主胜</div>
+          <p>主胜 37.5% · 平局 29.8% · 客胜 32.7%</p>
         </div>
-
-        <!-- 3. 近10场进球/失球 -->
-        <h3>⚽ 近10场进球/失球</h3>
-        <div class="two-col">
-            <div>主队 进球 16 · 失球 9</div>
-            <div>客队 进球 13 · 失球 12</div>
+        <div class="block">
+          <div class="sec-title">新闻上下文</div>
+          <ul><li>Czechia vs. South Africa: How to Watch, TV Channel, Live Stream - FOX Sports</li><li>Czechia vs South Africa Prediction, Preview, Picks, Best Bets &amp; Lineups for World Cup 2026 - FanDuel</li><li>Czechia vs. South Africa World Cup prediction: Odds, picks, best bets for Group A clash - New York Post</li></ul>
         </div>
-
-        <!-- 4. 历史交锋记录 -->
-        <h3>🔄 历史交锋</h3>
-        <div>近5次交手：主队 2胜 1平 2负 · 进球 7:6</div>
-
-        <!-- 5. 核心球员伤停 -->
-        <h3>⚠️ 核心球员伤停</h3>
-        <div class="two-col">
-            <div>主队：前锋 A. 马丁内斯 <span class="badge">⚠ 疑似</span> · 后卫 罗哈斯 确认缺阵</div>
-            <div>客队：中场 贝尔特兰 <span class="badge">⚠ 出战成疑</span> · 门将 洛佩斯 伤愈</div>
+      </div>
+      <div class="sec-title">比分预测</div>
+      <div class="scores"><div class="score"><strong>1-1</strong><span>11.8%</span></div><div class="score"><strong>1-0</strong><span>10.4%</span></div><div class="score"><strong>0-1</strong><span>8.1%</span></div><div class="score"><strong>2-1</strong><span>8.6%</span></div></div>
+      <div class="bets">
+        <div class="bet val"><b>价值观察</b><span>等待临场 1X2 与大小球盘口确认</span></div>
+        <div class="bet risk"><b>风险项</b><span>自动任务未确认首发、伤停和盘口变化</span></div>
+        <div class="bet cool"><b>冷门处理</b><span>仅小注比分，不建议追高风险串关</span></div>
+      </div>
+    </section><section class="card">
+      <div class="mh">
+        <div>
+          <h2>Switzerland vs Bosnia and Herzegovina</h2>
+          <div class="meta">北京时间 04:00 · Group B · Los Angeles Stadium</div>
         </div>
-
-        <!-- 6. 战术风格对位 -->
-        <h3>🧠 战术对位分析</h3>
-        <div>主队 4-3-3 高压逼抢 vs 客队 5-3-2 防守反击 · 边路对位主队占优，客队中路密集。</div>
-
-        <!-- 7. 小组形势/战意 -->
-        <h3>🏆 小组形势 & 战意</h3>
-        <div>双方均需抢分争取出线，主队主场加持战意更强，客队保平即可接受。</div>
-
-        <!-- 8. 博彩公司初盘 & 即时盘 -->
-        <h3>📉 盘口变化</h3>
-        <table class="odds-table">
-            <tr><th>盘口</th><th>初盘</th><th>即时盘</th></tr>
-            <tr><td>主胜</td><td>2.10</td><td>2.05</td></tr>
-            <tr><td>平局</td><td>3.30</td><td>3.40</td></tr>
-            <tr><td>客胜</td><td>3.80</td><td>3.70</td></tr>
-            <tr><td>大2.5</td><td>1.85</td><td>1.88</td></tr>
-            <tr><td>小2.5</td><td>2.00</td><td>1.96</td></tr>
-            <tr><td>亚洲让球</td><td>主-0.25</td><td>主-0.25</td></tr>
-        </table>
-
-        <!-- 9. 市场投注热度 -->
-        <h3>🔥 投注热度</h3>
-        <div>主胜 48% · 平局 28% · 客胜 24% · 大球 55%</div>
-
-        <!-- 10. 爆冷因素 -->
-        <h3><span class="emoji-warn">⚠️</span> 爆冷可能性：中</h3>
-        <div>客队防守反击效率高，主队伤病影响进攻节奏，若先丢球可能爆冷。</div>
-
-        <!-- 预测 -->
-        <h3>🎯 比分预测</h3>
-        <div class="prediction-box">
-            <div class="prediction-grid">
-                <div class="pred-item"><div class="score">2-1</div><div class="prob">概率 32%</div></div>
-                <div class="pred-item"><div class="score">1-1</div><div class="prob">概率 24%</div></div>
-                <div class="pred-item"><div class="score">1-0</div><div class="prob">概率 18%</div></div>
-                <div class="pred-item"><div class="score">2-0</div><div class="prob">概率 12%</div></div>
-            </div>
-            <div class="confidence-bar">
-                <span style="font-weight:600;">信心指数</span>
-                <div class="confidence-dots">
-                    <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
-                    <div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-                </div>
-                <span style="font-size:0.8rem;color:#555;">7/10</span>
-            </div>
-            <div style="font-size:0.85rem;color:#444;margin-top:6px;">主队主场强势且状态上升，但客队防守顽强，预计小比分主胜或平局。</div>
+        <div class="tag">自动兜底</div>
+      </div>
+      <div class="grid two">
+        <div class="block">
+          <div class="sec-title">1X2 倾向</div>
+          <div class="big">平局</div>
+          <p>主胜 30.0% · 平局 42.7% · 客胜 27.3%</p>
         </div>
-
-        <!-- 投注建议 -->
-        <h3>💰 投注建议</h3>
-        <div class="bet-cards">
-            <div class="bet-card">
-                <div class="bet-type">🎯 价值</div>
-                <div class="rec">主胜</div>
-                <div class="odds">赔率 2.05</div>
-                <div class="reason">主队主场龙，客队客场不稳，盘口支持。</div>
-            </div>
-            <div class="bet-card border-orange">
-                <div class="bet-type">⚡ 风险</div>
-                <div class="rec">大2.5球</div>
-                <div class="odds">赔率 1.88</div>
-                <div class="reason">两队近期进球效率一般，但主队进攻回暖。</div>
-            </div>
-            <div class="bet-card border-red">
-                <div class="bet-type">❄️ 冷门</div>
-                <div class="rec">客胜</div>
-                <div class="odds">赔率 3.70</div>
-                <div class="reason">客队反击犀利，主队后防缺人，冷门可博。</div>
-            </div>
-            <div class="bet-card">
-                <div class="bet-type">📊 价值</div>
-                <div class="rec">双选 主队不败</div>
-                <div class="odds">赔率 1.35</div>
-                <div class="reason">稳健选择，主队主场优势明显。</div>
-            </div>
-            <div class="bet-card border-orange">
-                <div class="bet-type">⚽ 特殊</div>
-                <div class="rec">1-1 比分</div>
-                <div class="odds">赔率 6.50</div>
-                <div class="reason">历史交锋平局率高，双方战术保守。</div>
-            </div>
+        <div class="block">
+          <div class="sec-title">新闻上下文</div>
+          <ul><li>Switzerland vs. Bosnia &amp; Herzegovina—World Cup: Preview, Predictions and Lineups - Sports Illustrated</li><li>World Cup Day 8 What to Watch: The second round of group stage play gets underway for Canada and Mexico - Yahoo Sports</li><li>Switzerland vs Bosnia and Herzegovina World Cup prediction, picks, analysis - USA Today</li></ul>
         </div>
-    </div>
-
-    <!-- 精选方案卡片 id=m1 -->
-    <div class="card" id="m1">
-        <h2>⭐ 精选投注方案 · 6月19日</h2>
-        <div class="special-card">
-            <div class="fund-grid">
-                <div class="fund-item"><div class="units">40</div><div class="desc">稳胆/Banker<br>主队不败</div></div>
-                <div class="fund-item"><div class="units">25</div><div class="desc">博高赔<br>客胜 + 大2.5</div></div>
-                <div class="fund-item"><div class="units">20</div><div class="desc">冷门尝试<br>客胜 3.70</div></div>
-                <div class="fund-item"><div class="units">15</div><div class="desc">比分娱乐<br>1-1 @6.50</div></div>
-            </div>
+      </div>
+      <div class="sec-title">比分预测</div>
+      <div class="scores"><div class="score"><strong>1-1</strong><span>11.8%</span></div><div class="score"><strong>1-0</strong><span>10.4%</span></div><div class="score"><strong>0-1</strong><span>8.1%</span></div><div class="score"><strong>2-1</strong><span>8.6%</span></div></div>
+      <div class="bets">
+        <div class="bet val"><b>价值观察</b><span>等待临场 1X2 与大小球盘口确认</span></div>
+        <div class="bet risk"><b>风险项</b><span>自动任务未确认首发、伤停和盘口变化</span></div>
+        <div class="bet cool"><b>冷门处理</b><span>仅小注比分，不建议追高风险串关</span></div>
+      </div>
+    </section><section class="card">
+      <div class="mh">
+        <div>
+          <h2>Canada vs Qatar</h2>
+          <div class="meta">北京时间 07:00 · Group B · BC Place Vancouver</div>
         </div>
-        <div class="highlight-value">
-            <strong>💎 今日价值盘高亮</strong> · 主胜 2.05 高于市场均值，且盘口未升，具备价值。
+        <div class="tag">自动兜底</div>
+      </div>
+      <div class="grid two">
+        <div class="block">
+          <div class="sec-title">1X2 倾向</div>
+          <div class="big">主胜</div>
+          <p>主胜 36.5% · 平局 34.4% · 客胜 29.1%</p>
         </div>
-        <h3 style="margin-top:8px;">📌 精选理由</h3>
-        <ul style="margin-left:18px;line-height:1.6;">
-            <li><strong>稳胆</strong>：主队主场近10场仅1负，客队客场胜率低。</li>
-            <li><strong>博高赔</strong>：客胜赔率3.70远超概率隐含值，若反击得手收益可观。</li>
-            <li><strong>冷门尝试</strong>：主队伤病 + 客队战术克制，小注搏冷。</li>
-            <li><strong>比分</strong>：历史交锋平局占比40%，1-1赔率丰厚。</li>
-        </ul>
-    </div>
-
-    <div class="footer-risk">
-        ⚠️ 风险提示：数据仅供参考，不构成投资建议。博彩有风险，投注需谨慎。请理性分析，量力而行。
-    </div>
-</div>
-
+        <div class="block">
+          <div class="sec-title">新闻上下文</div>
+          <ul><li>未抓到可靠实时新闻。</li></ul>
+        </div>
+      </div>
+      <div class="sec-title">比分预测</div>
+      <div class="scores"><div class="score"><strong>1-1</strong><span>11.8%</span></div><div class="score"><strong>1-0</strong><span>10.4%</span></div><div class="score"><strong>0-1</strong><span>8.1%</span></div><div class="score"><strong>2-1</strong><span>8.6%</span></div></div>
+      <div class="bets">
+        <div class="bet val"><b>价值观察</b><span>等待临场 1X2 与大小球盘口确认</span></div>
+        <div class="bet risk"><b>风险项</b><span>自动任务未确认首发、伤停和盘口变化</span></div>
+        <div class="bet cool"><b>冷门处理</b><span>仅小注比分，不建议追高风险串关</span></div>
+      </div>
+    </section><section class="card">
+      <div class="mh">
+        <div>
+          <h2>Mexico vs Korea Republic</h2>
+          <div class="meta">北京时间 10:00 · Group A · Guadalajara Stadium</div>
+        </div>
+        <div class="tag">自动兜底</div>
+      </div>
+      <div class="grid two">
+        <div class="block">
+          <div class="sec-title">1X2 倾向</div>
+          <div class="big">平局</div>
+          <p>主胜 32.0% · 平局 34.8% · 客胜 33.2%</p>
+        </div>
+        <div class="block">
+          <div class="sec-title">新闻上下文</div>
+          <ul><li>未抓到可靠实时新闻。</li></ul>
+        </div>
+      </div>
+      <div class="sec-title">比分预测</div>
+      <div class="scores"><div class="score"><strong>1-1</strong><span>11.8%</span></div><div class="score"><strong>1-0</strong><span>8.1%</span></div><div class="score"><strong>0-1</strong><span>10.4%</span></div><div class="score"><strong>2-1</strong><span>7.1%</span></div></div>
+      <div class="bets">
+        <div class="bet val"><b>价值观察</b><span>等待临场 1X2 与大小球盘口确认</span></div>
+        <div class="bet risk"><b>风险项</b><span>自动任务未确认首发、伤停和盘口变化</span></div>
+        <div class="bet cool"><b>冷门处理</b><span>仅小注比分，不建议追高风险串关</span></div>
+      </div>
+    </section><section class="card">
+      <h2>精选方案</h2>
+      <div class="status">自动 AI 报告未完成：DeepSeek missing or invalid HTML。本页保留赛程、新闻和低置信模型参考。</div>
+      <div class="alloc">
+        <div><strong>70 单位</strong><span>等待盘口/首发确认</span></div>
+        <div><strong>20 单位</strong><span>单场低风险方向</span></div>
+        <div><strong>10 单位</strong><span>小注比分尝试</span></div>
+      </div>
+    </section>
+  <section class="sources">
+    <strong>数据源状态</strong>
+    <ul><li>FixtureDownload: OK · 104 fixtures</li><li>Kalshi: 缺失 · 401 Client Error: Unauthorized for url: https://trading-api.kalshi.com/trade-api/v2/markets?event_ticker=WORLDCUP&amp;limit=200</li><li>The Odds API: 缺失 · ODDS_API_KEY not set</li><li>Google News RSS: OK · 10 articles</li></ul>
+    <p>风险提示：内容仅供参考，不构成投资建议。自动抓取可能遗漏临场伤停、首发和盘口变化。</p>
+  </section>
+</main>
 <script>
-function show(i) {
-    var cards = document.querySelectorAll('.card');
-    var btns = document.querySelectorAll('.tab-btn');
-    for (var j = 0; j < cards.length; j++) {
-        cards[j].classList.remove('active');
-        if (btns[j]) btns[j].classList.remove('active');
-    }
-    if (cards[i]) cards[i].classList.add('active');
-    if (btns[i]) btns[i].classList.add('active');
+function show(i){
+  document.querySelectorAll('.card').forEach((c,j)=>c.classList.toggle('active',j===i));
+  document.querySelectorAll('.tab').forEach((b,j)=>b.classList.toggle('active',j===i));
 }
 </script>
 </body>

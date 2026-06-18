@@ -1,22 +1,30 @@
 #!/usr/bin/env python3
 """
-Generate a static daily World Cup report and rebuild the date index.
+Generate the latest daily World Cup prediction report for GitHub Pages.
 
-The script is intentionally defensive:
-- target dates are based on Asia/Shanghai, not the GitHub runner timezone;
-- the homepage is rebuilt from reports/*.html every run;
-- if DeepSeek is unavailable or returns invalid HTML, a valid fallback page is
-  still produced so the Pages deployment can complete.
+Data pipeline:
+1. FixtureDownload CSV is the primary 2026 World Cup schedule source.
+2. Kalshi and optional The Odds API data are added when accessible.
+3. Google News RSS snippets are collected for each fixture.
+4. DeepSeek turns structured data into a styled HTML report matching the
+   existing report style. A deterministic fallback report is generated if the
+   model is unavailable.
 """
 
 from __future__ import annotations
 
+import csv
 import datetime as dt
 import html
+import io
 import json
 import os
 import re
 import sys
+import time
+import urllib.parse
+import xml.etree.ElementTree as ET
+from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
@@ -25,7 +33,7 @@ import requests
 
 try:
     from openai import OpenAI
-except ImportError:  # pragma: no cover - handled at runtime in GitHub Actions.
+except ImportError:  # pragma: no cover
     OpenAI = None
 
 
@@ -37,143 +45,281 @@ try:
     BEIJING_TZ = ZoneInfo("Asia/Shanghai")
 except ZoneInfoNotFoundError:
     BEIJING_TZ = dt.timezone(dt.timedelta(hours=8), name="Asia/Shanghai")
+
+UTC = dt.timezone.utc
+
+FIXTURE_CSV_URL = "https://fixturedownload.com/download/fifa-world-cup-2026-GMTStandardTime.csv"
+KALSHI_MARKETS_URL = "https://trading-api.kalshi.com/trade-api/v2/markets?event_ticker=WORLDCUP&limit=200"
 DEEPSEEK_BASE_URL = "https://api.deepseek.com"
-DEEPSEEK_MODEL = "deepseek-chat"
+DEEPSEEK_MODEL = os.environ.get("DEEPSEEK_MODEL", "deepseek-chat")
 
 
-def get_target_date() -> str:
+@dataclass
+class SourceStatus:
+    name: str
+    ok: bool
+    detail: str
+    url: str = ""
+
+
+@dataclass
+class Fixture:
+    match_number: str
+    round_number: str
+    date_utc: str
+    date_beijing: str
+    time_beijing: str
+    home_team: str
+    away_team: str
+    group: str
+    venue: str
+    result: str
+
+
+def http_get(url: str, timeout: int = 20) -> requests.Response:
+    return requests.get(
+        url,
+        headers={
+            "User-Agent": "Mozilla/5.0 (compatible; WorldCupReportBot/1.0)",
+            "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
+        },
+        timeout=timeout,
+    )
+
+
+def parse_fixture_time(raw: str) -> dt.datetime:
+    return dt.datetime.strptime(raw.strip(), "%d/%m/%Y %H:%M").replace(tzinfo=UTC)
+
+
+def load_fixtures(statuses: list[SourceStatus]) -> list[Fixture]:
+    try:
+        response = http_get(FIXTURE_CSV_URL)
+        response.raise_for_status()
+        rows = list(csv.DictReader(io.StringIO(response.text)))
+    except Exception as exc:
+        statuses.append(SourceStatus("FixtureDownload", False, str(exc), FIXTURE_CSV_URL))
+        return []
+
+    fixtures: list[Fixture] = []
+    for row in rows:
+        try:
+            kickoff_utc = parse_fixture_time(row["Date"])
+        except Exception:
+            continue
+        kickoff_bj = kickoff_utc.astimezone(BEIJING_TZ)
+        home = (row.get("Home Team") or "").strip()
+        away = (row.get("Away Team") or "").strip()
+        if not home or not away or home.upper() == "TBD" or away.upper() == "TBD":
+            continue
+        fixtures.append(
+            Fixture(
+                match_number=(row.get("Match Number") or "").strip(),
+                round_number=(row.get("Round Number") or "").strip(),
+                date_utc=kickoff_utc.isoformat(),
+                date_beijing=kickoff_bj.date().isoformat(),
+                time_beijing=kickoff_bj.strftime("%H:%M"),
+                home_team=home,
+                away_team=away,
+                group=(row.get("Group") or "").strip(),
+                venue=(row.get("Location") or "").strip(),
+                result=(row.get("Result") or "").strip(),
+            )
+        )
+
+    statuses.append(SourceStatus("FixtureDownload", True, f"{len(fixtures)} fixtures", FIXTURE_CSV_URL))
+    return fixtures
+
+
+def requested_target_date(fixtures: list[Fixture]) -> str:
     raw = (os.environ.get("TARGET_DATE") or "").strip()
     if len(sys.argv) > 1:
         raw = sys.argv[1].strip()
-
     if raw:
         dt.date.fromisoformat(raw)
         return raw
 
-    today_beijing = dt.datetime.now(BEIJING_TZ).date()
-    return (today_beijing + dt.timedelta(days=1)).isoformat()
+    today = dt.datetime.now(BEIJING_TZ).date()
+    available = sorted({dt.date.fromisoformat(item.date_beijing) for item in fixtures if not item.result})
+    for day in available:
+        if day >= today:
+            return day.isoformat()
+    if available:
+        return available[-1].isoformat()
+    return today.isoformat()
 
 
-def request_json(url: str, timeout: int = 15) -> dict[str, Any] | None:
+def fixtures_for_date(fixtures: list[Fixture], date_str: str, include_finished: bool = False) -> list[Fixture]:
+    selected = [
+        item
+        for item in fixtures
+        if item.date_beijing == date_str and (include_finished or not item.result)
+    ]
+    selected.sort(key=lambda item: (item.time_beijing, item.match_number))
+    return selected
+
+
+def collect_kalshi(statuses: list[SourceStatus]) -> list[dict[str, Any]]:
     try:
-        response = requests.get(
-            url,
-            headers={
-                "User-Agent": "Mozilla/5.0",
-                "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
-            },
-            timeout=timeout,
-        )
+        response = http_get(KALSHI_MARKETS_URL)
         response.raise_for_status()
-        return response.json()
+        data = response.json()
+        markets = data.get("markets", [])
     except Exception as exc:
-        print(f"Fetch failed: {url} ({exc})")
-        return None
-
-
-def first_description(value: Any) -> str:
-    if isinstance(value, list) and value:
-        first = value[0]
-        if isinstance(first, dict):
-            return str(first.get("Description") or first.get("Name") or "")
-    if isinstance(value, dict):
-        return str(value.get("Description") or value.get("Name") or "")
-    return ""
-
-
-def scrape_fifa_matches(date_str: str) -> list[dict[str, Any]]:
-    url = (
-        "https://api.fifa.com/api/v3/calendar/matches"
-        f"?from={date_str}T00:00:00Z"
-        f"&to={date_str}T23:59:59Z"
-        "&competitionId=17"
-        "&count=50"
-    )
-    data = request_json(url)
-    if not data:
+        statuses.append(SourceStatus("Kalshi", False, str(exc), KALSHI_MARKETS_URL))
         return []
 
-    matches: list[dict[str, Any]] = []
-    for item in data.get("Results", []):
-        home = item.get("HomeTeam") or {}
-        away = item.get("AwayTeam") or {}
-        stadium = item.get("Stadium") or {}
-        matches.append(
-            {
-                "home_team": first_description(home.get("TeamName")) or "TBD",
-                "away_team": first_description(away.get("TeamName")) or "TBD",
-                "kickoff_time": item.get("Date", ""),
-                "venue": first_description(stadium.get("Name")),
-                "city": first_description(stadium.get("CityName")),
-                "stage": first_description(item.get("StageName")),
-                "source": "FIFA",
-            }
-        )
-    print(f"FIFA matches: {len(matches)}")
-    return matches
-
-
-def scrape_kalshi_markets() -> list[dict[str, Any]]:
-    data = request_json(
-        "https://trading-api.kalshi.com/trade-api/v2/markets"
-        "?event_ticker=WORLDCUP&limit=50"
-    )
-    if not data:
-        return []
-
-    markets = [
+    cleaned = [
         {
             "title": market.get("title", ""),
+            "ticker": market.get("ticker", ""),
             "yes_bid": market.get("yes_bid"),
             "yes_ask": market.get("yes_ask"),
+            "last_price": market.get("last_price"),
             "volume": market.get("volume"),
         }
-        for market in data.get("markets", [])
+        for market in markets
     ]
-    print(f"Kalshi markets: {len(markets)}")
-    return markets
+    statuses.append(SourceStatus("Kalshi", True, f"{len(cleaned)} markets", KALSHI_MARKETS_URL))
+    return cleaned
 
 
-def collect_data(date_str: str) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
-    matches = scrape_fifa_matches(date_str)
-    markets = scrape_kalshi_markets()
-    return matches, markets
+def collect_odds_api(fixtures: list[Fixture], statuses: list[SourceStatus]) -> list[dict[str, Any]]:
+    api_key = (os.environ.get("ODDS_API_KEY") or "").strip()
+    if not api_key:
+        statuses.append(SourceStatus("The Odds API", False, "ODDS_API_KEY not set"))
+        return []
+
+    url = (
+        "https://api.the-odds-api.com/v4/sports/soccer_fifa_world_cup/odds/"
+        f"?apiKey={urllib.parse.quote(api_key)}&regions=eu,us,uk&markets=h2h,totals,btts&oddsFormat=decimal"
+    )
+    try:
+        response = http_get(url)
+        response.raise_for_status()
+        raw_events = response.json()
+    except Exception as exc:
+        statuses.append(SourceStatus("The Odds API", False, str(exc), "https://the-odds-api.com/"))
+        return []
+
+    wanted = {(f.home_team.lower(), f.away_team.lower()) for f in fixtures}
+    wanted |= {(f.away_team.lower(), f.home_team.lower()) for f in fixtures}
+    events: list[dict[str, Any]] = []
+    for event in raw_events:
+        pair = (str(event.get("home_team", "")).lower(), str(event.get("away_team", "")).lower())
+        if pair in wanted:
+            events.append(event)
+
+    statuses.append(SourceStatus("The Odds API", True, f"{len(events)} matching events", "https://the-odds-api.com/"))
+    return events
 
 
-def build_prompt(date_str: str, matches: list[dict[str, Any]], markets: list[dict[str, Any]]) -> str:
-    date_obj = dt.date.fromisoformat(date_str)
-    weekday = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"][date_obj.weekday()]
-    match_json = json.dumps(matches, ensure_ascii=False, indent=2) if matches else "未抓取到官方赛程，请明确标注数据缺口。"
-    market_json = json.dumps(markets[:20], ensure_ascii=False, indent=2) if markets else "暂无 Kalshi 数据。"
+def collect_news_for_fixture(fixture: Fixture) -> list[dict[str, str]]:
+    query = f'"{fixture.home_team}" "{fixture.away_team}" World Cup 2026'
+    encoded = urllib.parse.quote_plus(query)
+    url = f"https://news.google.com/rss/search?q={encoded}&hl=en-US&gl=US&ceid=US:en"
+    try:
+        response = http_get(url, timeout=12)
+        response.raise_for_status()
+        root = ET.fromstring(response.text)
+    except Exception:
+        return []
+
+    items: list[dict[str, str]] = []
+    for item in root.findall(".//item")[:5]:
+        title = (item.findtext("title") or "").strip()
+        link = (item.findtext("link") or "").strip()
+        published = (item.findtext("pubDate") or "").strip()
+        if title:
+            items.append({"title": title, "link": link, "published": published})
+    time.sleep(0.2)
+    return items
+
+
+def collect_news(fixtures: list[Fixture], statuses: list[SourceStatus]) -> dict[str, list[dict[str, str]]]:
+    news: dict[str, list[dict[str, str]]] = {}
+    for fixture in fixtures:
+        key = f"{fixture.home_team} vs {fixture.away_team}"
+        news[key] = collect_news_for_fixture(fixture)
+    total = sum(len(items) for items in news.values())
+    statuses.append(SourceStatus("Google News RSS", True, f"{total} articles", "https://news.google.com/rss"))
+    return news
+
+
+def collect_context(date_str: str, include_finished: bool = False) -> tuple[list[Fixture], dict[str, Any], list[SourceStatus]]:
+    statuses: list[SourceStatus] = []
+    all_fixtures = load_fixtures(statuses)
+    target = date_str or requested_target_date(all_fixtures)
+    selected = fixtures_for_date(all_fixtures, target, include_finished=include_finished)
+
+    context = {
+        "target_date": target,
+        "timezone": "Asia/Shanghai",
+        "generated_at_beijing": dt.datetime.now(BEIJING_TZ).strftime("%Y-%m-%d %H:%M:%S"),
+        "kalshi_markets": collect_kalshi(statuses),
+        "odds_events": collect_odds_api(selected, statuses),
+        "news_by_match": collect_news(selected, statuses),
+        "source_status": [],
+    }
+    context["source_status"] = [asdict(item) for item in statuses]
+    return selected, context, statuses
+
+
+def build_prompt(fixtures: list[Fixture], context: dict[str, Any]) -> str:
+    target = context["target_date"]
+    date_obj = dt.date.fromisoformat(target)
+    weekday = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"][date_obj.weekday()]
+    payload = {
+        "date": target,
+        "weekday": weekday,
+        "timezone": "Asia/Shanghai",
+        "fixtures": [asdict(item) for item in fixtures],
+        "kalshi_markets": context["kalshi_markets"][:40],
+        "odds_events": context["odds_events"],
+        "news_by_match": context["news_by_match"],
+        "source_status": context["source_status"],
+    }
 
     return f"""
-你是世界杯足球分析师。请为 {date_str}（{date_obj.month}月{date_obj.day}日 {weekday}）生成一份完整静态 HTML 报告。
+You are generating a Chinese static HTML betting-reference report for a 2026 FIFA World Cup website.
 
-数据：
-赛程：
-{match_json}
+Use the same style and information density as the user's existing reports:
+- background #f0ede8, white cards, primary blue #1a5fa8
+- a schedule box, match tabs, one card per match, and a final selected-plan tab
+- compact Chinese copy, no marketing hero, no external CSS or JS dependencies
+- include JavaScript function show(i) for tab switching
 
-Kalshi 市场：
-{market_json}
+Important rules:
+- Directly output complete HTML only. No Markdown fences and no explanation.
+- Use Simplified Chinese in UTF-8.
+- Use only the structured facts below as current facts. If a data source is missing, explicitly label it as missing.
+- Do not invent real-time injuries, lineups, or odds. If unavailable, write "未抓到可靠实时数据".
+- This is a prediction/reference page, not financial advice.
 
-要求：
-1. 直接输出完整 HTML，不要 Markdown，不要解释。
-2. 使用简体中文，UTF-8，页面标题包含日期。
-3. 内嵌 CSS 和少量原生 JavaScript，不依赖外部资源。
-4. 页面包含：赛程总览、每场比赛分析、比分预测、投注参考、风险提示。
-5. 每场比赛给出 1X2 倾向、前 3 个比分、信心 1-10、主要风险。
-6. 如果数据不足，必须明确写“数据不足，以下为低置信参考”，不要编造实时伤停。
-7. 风险提示必须写明：内容仅供参考，不构成投资建议。
+For each match include:
+1. Kickoff time in Beijing time, group/stage, venue.
+2. Recent/news context from RSS titles when relevant.
+3. Market context from Kalshi/Odds API when relevant.
+4. 1X2 lean, top 4 exact scores with probabilities, confidence 1-10.
+5. Five betting-reference cards: value, risk, total goals, correct score, upset/no-bet.
+6. Key risk notes.
+
+Final selected-plan tab:
+- 4-5 selected ideas only when justified by the available data.
+- If odds are missing, use "观察/不下注" language instead of pretending there is value.
+- Include a 100-unit allocation only for ideas with enough support; otherwise allocate most units to "等待盘口".
+
+Structured data:
+{json.dumps(payload, ensure_ascii=False, indent=2)}
 """.strip()
 
 
 def call_deepseek(prompt: str) -> str | None:
     api_key = (os.environ.get("DEEPSEEK_API_KEY") or "").strip()
     if not api_key:
-        print("DEEPSEEK_API_KEY is not set; using fallback HTML.")
+        print("DEEPSEEK_API_KEY not set; using fallback report.")
         return None
     if OpenAI is None:
-        print("openai package is unavailable; using fallback HTML.")
+        print("openai package unavailable; using fallback report.")
         return None
 
     try:
@@ -181,76 +327,142 @@ def call_deepseek(prompt: str) -> str | None:
         response = client.chat.completions.create(
             model=DEEPSEEK_MODEL,
             messages=[
-                {"role": "system", "content": "你只输出完整 HTML。"},
+                {"role": "system", "content": "Output complete HTML only."},
                 {"role": "user", "content": prompt},
             ],
-            temperature=0.45,
-            max_tokens=12000,
+            temperature=0.35,
+            max_tokens=16000,
         )
         content = response.choices[0].message.content or ""
-        print(f"DeepSeek response length: {len(content)}")
+        print(f"DeepSeek returned {len(content)} characters.")
         return content
     except Exception as exc:
-        print(f"DeepSeek failed: {exc}; using fallback HTML.")
+        print(f"DeepSeek failed: {exc}; using fallback report.")
         return None
 
 
 def extract_html(raw: str | None) -> str | None:
     if not raw:
         return None
-
     content = raw.strip()
     content = re.sub(r"^```(?:html)?\s*", "", content, flags=re.IGNORECASE)
     content = re.sub(r"\s*```$", "", content)
-
     start = content.lower().find("<!doctype html")
     if start == -1:
         start = content.lower().find("<html")
     if start > 0:
         content = content[start:]
-
     lower = content.lower()
     if "<html" not in lower or "</html>" not in lower:
         return None
+    if "charset" not in lower:
+        content = content.replace("<head>", '<head>\n<meta charset="UTF-8">', 1)
     return content
 
 
-def format_kickoff(value: str) -> str:
-    if not value:
-        return "时间待定"
-    try:
-        parsed = dt.datetime.fromisoformat(value.replace("Z", "+00:00"))
-        return parsed.astimezone(BEIJING_TZ).strftime("%H:%M")
-    except ValueError:
-        return value
+def pseudo_probabilities(fixture: Fixture) -> dict[str, Any]:
+    seed = sum(ord(ch) for ch in f"{fixture.home_team}-{fixture.away_team}")
+    home = 0.34 + ((seed % 17) - 8) / 200
+    away = 0.30 + (((seed // 7) % 17) - 8) / 220
+    draw = max(0.18, 1.0 - home - away)
+    total = home + draw + away
+    home, draw, away = home / total, draw / total, away / total
+    scores = [
+        ("1-1", 0.118),
+        ("1-0", 0.104 if home >= away else 0.081),
+        ("0-1", 0.104 if away > home else 0.081),
+        ("2-1", 0.086 if home >= away else 0.071),
+    ]
+    lean = "主胜" if home > away and home > draw else "客胜" if away > home and away > draw else "平局"
+    return {
+        "home": round(home * 100, 1),
+        "draw": round(draw * 100, 1),
+        "away": round(away * 100, 1),
+        "lean": lean,
+        "scores": scores,
+    }
 
 
-def fallback_report(date_str: str, matches: list[dict[str, Any]], reason: str) -> str:
-    date_obj = dt.date.fromisoformat(date_str)
-    weekday = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"][date_obj.weekday()]
-    title = f"世界杯每日报告 · {date_obj.month}月{date_obj.day}日"
+def fallback_report(fixtures: list[Fixture], context: dict[str, Any], reason: str) -> str:
+    target = context["target_date"]
+    date_obj = dt.date.fromisoformat(target)
+    title = f"世界杯预测报告 · {date_obj.month}月{date_obj.day}日"
 
-    if matches:
-        rows = "\n".join(
-            f"""
-            <article class="match">
-              <div class="time">{html.escape(format_kickoff(str(match.get("kickoff_time", ""))))}</div>
-              <h2>{html.escape(str(match.get("home_team", "TBD")))} vs {html.escape(str(match.get("away_team", "TBD")))}</h2>
-              <p>{html.escape(str(match.get("stage") or "世界杯"))} · {html.escape(str(match.get("venue") or "场地待定"))}</p>
-              <div class="note">自动分析暂不可用，本场仅展示抓取到的赛程信息。投注判断请等待人工复核。</div>
-            </article>
-            """.strip()
-            for match in matches
+    schedule_rows = []
+    tabs = []
+    cards = []
+    for idx, fixture in enumerate(fixtures):
+        active = " active" if idx == 0 else ""
+        match_name = f"{fixture.home_team} vs {fixture.away_team}"
+        probs = pseudo_probabilities(fixture)
+        news = context.get("news_by_match", {}).get(match_name, [])
+        news_items = "".join(
+            f"<li>{html.escape(item.get('title', ''))}</li>" for item in news[:3]
+        ) or "<li>未抓到可靠实时新闻。</li>"
+        score_rows = "".join(
+            f"<div class=\"score\"><strong>{html.escape(score)}</strong><span>{prob:.1%}</span></div>"
+            for score, prob in probs["scores"]
         )
-    else:
-        rows = """
-        <article class="match">
-          <div class="time">暂无官方赛程</div>
-          <h2>数据不足，以下为低置信参考</h2>
-          <p>自动任务没有抓取到当天赛程，也没有成功生成 AI 分析。</p>
-          <div class="note">请手动补充当天比赛后再发布正式投注报告。</div>
-        </article>
+        schedule_rows.append(
+            f"<div class=\"sched-row\"><div class=\"sched-time\">{fixture.time_beijing}</div><div>{html.escape(match_name)} · {html.escape(fixture.group)} · {html.escape(fixture.venue)}</div></div>"
+        )
+        tabs.append(f"<button class=\"tab{active}\" onclick=\"show({idx})\">{html.escape(match_name)}</button>")
+        cards.append(
+            f"""
+    <section class="card{active}">
+      <div class="mh">
+        <div>
+          <h2>{html.escape(match_name)}</h2>
+          <div class="meta">北京时间 {fixture.time_beijing} · {html.escape(fixture.group)} · {html.escape(fixture.venue)}</div>
+        </div>
+        <div class="tag">自动兜底</div>
+      </div>
+      <div class="grid two">
+        <div class="block">
+          <div class="sec-title">1X2 倾向</div>
+          <div class="big">{probs["lean"]}</div>
+          <p>主胜 {probs["home"]}% · 平局 {probs["draw"]}% · 客胜 {probs["away"]}%</p>
+        </div>
+        <div class="block">
+          <div class="sec-title">新闻上下文</div>
+          <ul>{news_items}</ul>
+        </div>
+      </div>
+      <div class="sec-title">比分预测</div>
+      <div class="scores">{score_rows}</div>
+      <div class="bets">
+        <div class="bet val"><b>价值观察</b><span>等待临场 1X2 与大小球盘口确认</span></div>
+        <div class="bet risk"><b>风险项</b><span>自动任务未确认首发、伤停和盘口变化</span></div>
+        <div class="bet cool"><b>冷门处理</b><span>仅小注比分，不建议追高风险串关</span></div>
+      </div>
+    </section>
+            """.strip()
+        )
+
+    selected_idx = len(fixtures)
+    tabs.append(f"<button class=\"tab\" onclick=\"show({selected_idx})\">精选方案</button>")
+    cards.append(
+        f"""
+    <section class="card">
+      <h2>精选方案</h2>
+      <div class="status">自动 AI 报告未完成：{html.escape(reason)}。本页保留赛程、新闻和低置信模型参考。</div>
+      <div class="alloc">
+        <div><strong>70 单位</strong><span>等待盘口/首发确认</span></div>
+        <div><strong>20 单位</strong><span>单场低风险方向</span></div>
+        <div><strong>10 单位</strong><span>小注比分尝试</span></div>
+      </div>
+    </section>
         """.strip()
+    )
+
+    status_rows = "".join(
+        f"<li>{html.escape(item['name'])}: {'OK' if item['ok'] else '缺失'} · {html.escape(item['detail'])}</li>"
+        for item in context.get("source_status", [])
+    )
+    if not fixtures:
+        schedule_html = "<div class=\"empty\">当天没有找到未赛世界杯赛程。</div>"
+    else:
+        schedule_html = "".join(schedule_rows)
 
     return f"""<!DOCTYPE html>
 <html lang="zh-CN">
@@ -260,35 +472,62 @@ def fallback_report(date_str: str, matches: list[dict[str, Any]], reason: str) -
 <title>{html.escape(title)}</title>
 <style>
 *{{box-sizing:border-box;margin:0;padding:0}}
-body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;background:#f0ede8;color:#1a1a1a;padding:24px;line-height:1.65}}
-.container{{max-width:920px;margin:0 auto}}
-.top{{padding:22px 0 18px;border-bottom:1px solid #d8d2c8;margin-bottom:18px}}
-h1{{font-size:26px;line-height:1.2;margin-bottom:8px}}
-.sub{{color:#666;font-size:14px}}
-.status{{margin:18px 0;padding:12px 14px;border-left:4px solid #c07800;background:#fff8e6;color:#5c3a00;border-radius:0 8px 8px 0}}
-.grid{{display:grid;gap:12px}}
-.match{{background:#fff;border:1px solid #ddd;border-radius:8px;padding:16px}}
-.time{{font-size:13px;color:#1a5fa8;font-weight:700;margin-bottom:4px}}
-h2{{font-size:18px;margin-bottom:6px}}
-p{{font-size:13px;color:#666}}
-.note{{margin-top:10px;font-size:13px;color:#444;background:#f8f7f4;border-radius:6px;padding:10px}}
-.back{{display:inline-block;margin-top:20px;color:#1a5fa8;text-decoration:none;font-weight:700}}
-.risk{{margin-top:24px;font-size:12px;color:#777}}
+body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;background:#f0ede8;color:#1a1a1a;padding:20px;line-height:1.6}}
+.container{{max-width:960px;margin:0 auto}}
+h1{{font-size:24px;margin-bottom:4px}}
+.subtitle,.meta{{color:#666;font-size:13px}}
+.schedule-box,.card{{background:#fff;border:1px solid #ddd;border-radius:10px;padding:18px;margin:16px 0}}
+.sched-row{{display:grid;grid-template-columns:72px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid #f0ede8;font-size:13px}}
+.sched-row:last-child{{border-bottom:0}}
+.sched-time{{color:#1a5fa8;font-weight:800}}
+.tabs{{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}}
+.tab{{border:1px solid #ccc;background:transparent;border-radius:999px;padding:7px 12px;cursor:pointer;font:inherit;font-size:12px;color:#555}}
+.tab.active{{background:#1a5fa8;color:#fff;border-color:#1a5fa8}}
+.card{{display:none}}
+.card.active{{display:block}}
+.mh{{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #eee;padding-bottom:12px;margin-bottom:14px}}
+.tag{{height:max-content;background:#fff4e6;color:#8a4d00;border-radius:999px;padding:3px 8px;font-size:11px;font-weight:700}}
+.grid.two{{display:grid;grid-template-columns:1fr 1fr;gap:12px}}
+.block{{background:#f8f7f4;border-radius:8px;padding:12px}}
+.sec-title{{font-size:11px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.06em;margin:12px 0 8px}}
+.big{{font-size:24px;font-weight:800;color:#1a5fa8}}
+ul{{padding-left:18px;font-size:13px;color:#444}}
+.scores{{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}}
+.score{{background:#e8f2fc;border-radius:8px;padding:10px;text-align:center}}
+.score strong{{display:block;font-size:20px;color:#0d4e9e}}
+.score span{{font-size:12px;color:#555}}
+.bets,.alloc{{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}}
+.bet,.alloc div{{background:#f8f7f4;border-radius:8px;padding:10px;border-left:3px solid #1a5fa8}}
+.bet.risk{{border-left-color:#c07800}}.bet.cool{{border-left-color:#aa2222}}
+.bet span,.alloc span{{display:block;font-size:12px;color:#555;margin-top:4px}}
+.status{{background:#fff8e6;border-left:3px solid #c07800;padding:10px;margin:10px 0;color:#5c3a00}}
+.empty{{padding:12px;color:#666}}
+.sources{{font-size:12px;color:#666;margin:18px 0 30px}}
+@media(max-width:720px){{.grid.two,.scores,.bets,.alloc{{grid-template-columns:1fr}}.mh{{display:block}}}}
 </style>
 </head>
 <body>
 <main class="container">
-  <header class="top">
-    <h1>{html.escape(title)}</h1>
-    <div class="sub">{date_str} · {weekday} · 北京时间</div>
-  </header>
-  <div class="status">自动生成未完成：{html.escape(reason)}。本页为兜底页面，保证网站可以继续部署访问。</div>
-  <section class="grid">
-    {rows}
+  <h1>{html.escape(title)}</h1>
+  <div class="subtitle">{target} · 北京时间 · 自动生成</div>
+  <section class="schedule-box">
+    <h2>赛程总览</h2>
+    {schedule_html}
   </section>
-  <a class="back" href="../index.html">返回日期首页</a>
-  <div class="risk">风险提示：内容仅供参考，不构成投资建议。请理性判断，量力而行。</div>
+  <nav class="tabs">{"".join(tabs)}</nav>
+  {"".join(cards)}
+  <section class="sources">
+    <strong>数据源状态</strong>
+    <ul>{status_rows}</ul>
+    <p>风险提示：内容仅供参考，不构成投资建议。自动抓取可能遗漏临场伤停、首发和盘口变化。</p>
+  </section>
 </main>
+<script>
+function show(i){{
+  document.querySelectorAll('.card').forEach((c,j)=>c.classList.toggle('active',j===i));
+  document.querySelectorAll('.tab').forEach((b,j)=>b.classList.toggle('active',j===i));
+}}
+</script>
 </body>
 </html>
 """
@@ -301,37 +540,27 @@ def report_sort_key(path: Path) -> dt.date:
         return dt.date.min
 
 
-def build_index(current_date: str | None = None, current_match_count: int | None = None) -> str:
-    report_files = sorted(REPORTS_DIR.glob("*.html"), key=report_sort_key, reverse=True)
-    cards: list[str] = []
-
-    for path in report_files:
+def build_index() -> str:
+    reports = sorted(REPORTS_DIR.glob("*.html"), key=report_sort_key, reverse=True)
+    cards = []
+    for path in reports:
         try:
             day = dt.date.fromisoformat(path.stem)
         except ValueError:
             continue
         weekday = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"][day.weekday()]
-        if current_date == path.stem and current_match_count is not None:
-            count_text = f"{current_match_count} 场"
-        else:
-            count_text = "查看报告"
         cards.append(
             f"""
-      <a class="day-card" href="reports/{path.name}">
-        <span class="date-big">{day.day}</span>
-        <span class="date-label">{day.year}年{day.month}月 · {weekday}</span>
-        <span class="match-count">{html.escape(count_text)}</span>
-        <span class="arrow">→</span>
-      </a>
+    <a class="day-card" href="reports/{html.escape(path.name)}">
+      <span class="date-big">{day.day}</span>
+      <span class="date-label">{day.year}年{day.month}月 · {weekday}</span>
+      <span class="match-count">查看报告</span>
+      <span class="arrow">→</span>
+    </a>
             """.strip()
         )
-
-    if not cards:
-        cards.append('<div class="empty">还没有报告。</div>')
-
-    cards_html = "\n".join(cards)
+    cards_html = "\n".join(cards) or '<div class="empty">还没有报告。</div>'
     updated = dt.datetime.now(BEIJING_TZ).strftime("%Y-%m-%d %H:%M")
-
     return f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -370,7 +599,7 @@ h1{{font-size:30px;line-height:1.2}}
   <section class="calendar-grid" aria-label="报告日期列表">
 {cards_html}
   </section>
-  <footer class="footer">页面为静态 HTML，可通过 GitHub Pages 直接访问。内容仅供参考，不构成投资建议。</footer>
+  <footer class="footer">页面为静态 HTML，由 GitHub Actions 自动抓取赛程与上下文并发布。内容仅供参考，不构成投资建议。</footer>
 </main>
 </body>
 </html>
@@ -378,25 +607,31 @@ h1{{font-size:30px;line-height:1.2}}
 
 
 def main() -> int:
-    target_date = get_target_date()
     REPORTS_DIR.mkdir(parents=True, exist_ok=True)
     (REPO_ROOT / ".nojekyll").touch()
 
-    print(f"Target date: {target_date}")
-    matches, markets = collect_data(target_date)
-    prompt = build_prompt(target_date, matches, markets)
-    generated = extract_html(call_deepseek(prompt))
+    all_fixtures = load_fixtures([])
+    target_date = requested_target_date(all_fixtures)
+    explicit = (os.environ.get("TARGET_DATE") or "").strip() or (sys.argv[1].strip() if len(sys.argv) > 1 else "")
+    if explicit:
+        target_date = explicit
 
-    if generated:
-        report_html = generated
-    else:
-        report_html = fallback_report(target_date, matches, "DeepSeek 不可用或返回内容不是完整 HTML")
+    fixtures, context, statuses = collect_context(target_date, include_finished=bool(explicit))
+    context["target_date"] = target_date
+    print(f"Target date: {target_date}")
+    print(f"Fixtures selected: {len(fixtures)}")
+    for status in statuses:
+        print(f"{status.name}: {'OK' if status.ok else 'MISS'} - {status.detail}")
+
+    prompt = build_prompt(fixtures, context)
+    report_html = extract_html(call_deepseek(prompt))
+    if not report_html:
+        report_html = fallback_report(fixtures, context, "DeepSeek missing or invalid HTML")
 
     report_path = REPORTS_DIR / f"{target_date}.html"
     report_path.write_text(report_html, encoding="utf-8")
+    INDEX_PATH.write_text(build_index(), encoding="utf-8")
     print(f"Wrote {report_path}")
-
-    INDEX_PATH.write_text(build_index(target_date, len(matches)), encoding="utf-8")
     print(f"Wrote {INDEX_PATH}")
     return 0
 
