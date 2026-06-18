@@ -1,300 +1,421 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 世界杯 预测报告 · 6月19日</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #f0ede8; font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; color: #1e1e1e; padding: 20px; }
-        .container { max-width: 1280px; margin: 0 auto; }
-        .header { margin-bottom: 24px; }
-        .header h1 { font-size: 26px; font-weight: 700; color: #1a5fa8; letter-spacing: 1px; }
-        .header .sub { font-size: 14px; color: #666; margin-top: 4px; display: flex; justify-content: space-between; flex-wrap: wrap; }
-        .header .sub span { background: #fff; padding: 4px 12px; border-radius: 20px; font-size: 13px; }
-        .schedule-box { background: #fff; border-radius: 16px; padding: 16px 20px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
-        .schedule-box .label { font-weight: 600; color: #1a5fa8; font-size: 15px; }
-        .schedule-box .match-tab { background: #f0ede8; border-radius: 30px; padding: 6px 16px; font-size: 14px; cursor: pointer; transition: 0.2s; white-space: nowrap; }
-        .schedule-box .match-tab.active { background: #1a5fa8; color: #fff; }
-        .schedule-box .match-tab:hover { background: #d9d5ce; }
-        .cards-grid { display: none; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
-        .cards-grid.active { display: grid; }
-        @media (max-width: 900px) { .cards-grid.active { grid-template-columns: 1fr; } }
-        .card { background: #fff; border-radius: 16px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-        .card .match-title { font-size: 18px; font-weight: 700; color: #1a5fa8; margin-bottom: 6px; }
-        .card .match-meta { font-size: 13px; color: #888; margin-bottom: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
-        .card .match-meta span { background: #f0ede8; padding: 2px 10px; border-radius: 12px; }
-        .card .section { margin-bottom: 14px; }
-        .card .section-title { font-weight: 600; font-size: 14px; color: #1a5fa8; border-left: 3px solid #1a5fa8; padding-left: 8px; margin-bottom: 6px; }
-        .card .section p, .card .section li { font-size: 14px; line-height: 1.6; color: #333; }
-        .card .section ul { padding-left: 18px; }
-        .card .tag { display: inline-block; background: #eef3fa; color: #1a5fa8; font-size: 12px; padding: 2px 10px; border-radius: 12px; margin-right: 4px; }
-        .card .score-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
-        .card .score-item { background: #f0ede8; padding: 4px 12px; border-radius: 20px; font-size: 13px; }
-        .card .score-item strong { color: #1a5fa8; }
-        .card .bet-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
-        .card .bet-card { background: #f8f7f4; border-radius: 10px; padding: 10px; font-size: 13px; }
-        .card .bet-card .label { font-weight: 600; color: #1a5fa8; }
-        .card .risk-note { background: #fff5e6; border-left: 3px solid #e67e22; padding: 8px 12px; border-radius: 6px; font-size: 13px; margin-top: 10px; }
-        .card .missing-warn { background: #fce4e4; border-left: 3px solid #c0392b; padding: 6px 12px; border-radius: 6px; font-size: 12px; margin-top: 8px; color: #a00; }
-        .plan-tab { background: #fff; border-radius: 16px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-top: 10px; }
-        .plan-tab h2 { font-size: 20px; color: #1a5fa8; margin-bottom: 14px; border-bottom: 2px solid #1a5fa8; padding-bottom: 6px; display: inline-block; }
-        .plan-tab .plan-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; font-size: 14px; }
-        .plan-tab .plan-item:last-child { border-bottom: none; }
-        .plan-tab .plan-item .units { background: #1a5fa8; color: #fff; padding: 2px 12px; border-radius: 20px; font-weight: 600; font-size: 13px; }
-        .plan-tab .plan-item .desc { flex: 1; padding-right: 16px; }
-        .plan-tab .plan-item .desc .small { font-size: 12px; color: #888; }
-        .footer-note { font-size: 12px; color: #999; text-align: center; margin-top: 30px; border-top: 1px solid #ddd; padding-top: 16px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界杯2026预测报告 · 6月19日四场分析</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;background:#f0ede8;color:#1a1a1a;padding:20px;font-size:14px;line-height:1.6}
+.container{max-width:920px;margin:0 auto}
+h1{font-size:22px;font-weight:700;margin-bottom:4px}
+.subtitle{font-size:13px;color:#666;margin-bottom:18px}
+.schedule-box{background:#fff;border-radius:10px;border:1px solid #ddd;padding:16px;margin-bottom:18px}
+.schedule-box h2{font-size:14px;font-weight:700;color:#444;margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em}
+.sched-row{display:grid;grid-template-columns:80px 1fr;gap:8px;padding:7px 0;border-bottom:1px solid #f0ede8;font-size:13px}
+.sched-row:last-child{border-bottom:none}
+.sched-time{color:#1a5fa8;font-weight:700}
+.sched-match{color:#1a1a1a}
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:7px 14px;border-radius:20px;border:1px solid #ccc;background:transparent;color:#555;cursor:pointer;font-size:12px;font-family:inherit;transition:all .15s}
+.tab.active{background:#1a5fa8;color:#fff;border-color:#1a5fa8}
+.card{display:none;background:#fff;border-radius:12px;border:1px solid #ddd;padding:22px;margin-bottom:12px}
+.card.active{display:block}
+.mh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid #ece9e3}
+.mh-left .teams{font-size:18px;font-weight:700}
+.mh-left .grp{font-size:11px;color:#666;background:#f0ede8;padding:2px 9px;border-radius:10px;display:inline-block;margin-top:4px;margin-right:6px}
+.mh-left .status{font-size:11px;color:#c04000;background:#fff4ee;padding:2px 9px;border-radius:10px;display:inline-block;margin-top:4px}
+.mh-right{font-size:12px;color:#666;text-align:right}
+.sec{margin-bottom:20px}
+.sec-title{font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #f0ede8}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat-block{background:#f8f7f4;border-radius:8px;padding:10px 12px}
+.stat-block .lbl{font-size:11px;color:#888;margin-bottom:5px}
+.stat-block .val{font-size:14px;font-weight:700}
+.stat-block .sub{font-size:12px;color:#666;margin-top:4px;line-height:1.55}
+.alist{list-style:none;display:flex;flex-direction:column;gap:7px}
+.alist li{font-size:13px;line-height:1.65;padding-left:16px;position:relative}
+.alist li::before{content:"";width:6px;height:6px;border-radius:50%;background:#1a5fa8;position:absolute;left:0;top:9px}
+.weight-box{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.witem{background:#f8f7f4;border-radius:8px;padding:9px 10px;text-align:center}
+.witem .num{font-size:18px;font-weight:800;color:#1a5fa8}
+.witem .txt{font-size:11px;color:#666}
+.odds-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.ob{background:#f8f7f4;border-radius:8px;padding:9px 10px;text-align:center}
+.ob .ol{font-size:11px;color:#888;margin-bottom:3px}
+.ob .ov{font-size:17px;font-weight:700;color:#1a5fa8}
+.ob .ov.hot{color:#b54000}
+.pred-panel{background:linear-gradient(135deg,#e8f2fc,#f5f3ea);border-radius:12px;padding:18px;margin-bottom:16px;border:1px solid #c8d8f0}
+.pred-score{font-size:26px;font-weight:800;color:#0d4e9e;margin-bottom:5px}
+.pred-meta{font-size:12px;color:#2a5fb0;margin-bottom:10px}
+.conf-row{display:flex;gap:3px;margin:6px 0}
+.cdot{width:11px;height:11px;border-radius:2px;background:#1a5fa8}
+.cdot.off{background:#c5d8f0}
+.pred-body{font-size:12px;color:#1a3a7a;line-height:1.75}
+.score-list{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}
+.score-card{background:#e8f2fc;border-radius:8px;padding:9px 10px;text-align:center}
+.score-card .s{font-size:20px;font-weight:800;color:#0d4e9e}
+.score-card .p{font-size:11px;color:#555}
+.bets-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bet-card{background:#f8f7f4;border-radius:8px;padding:10px 12px}
+.bet-card.val{border-left:3px solid #1a5fa8;border-radius:0 8px 8px 0}
+.bet-card.risk{border-left:3px solid #c07800;border-radius:0 8px 8px 0}
+.bet-card.cool{border-left:3px solid #aa2222;border-radius:0 8px 8px 0}
+.bc-type{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.bc-rec{font-size:13px;font-weight:700;margin-bottom:3px}
+.bc-reason{font-size:11px;color:#555;line-height:1.55}
+.risk-box{background:#fff8e6;border-radius:8px;padding:10px 13px;margin-top:8px;border-left:3px solid #e0a800}
+.risk-box .rtitle{font-size:11px;font-weight:700;color:#7a4800;margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em}
+.risk-box p{font-size:12px;color:#5c3a00;line-height:1.6}
+.divider{height:1px;background:#ece9e3;margin:16px 0}
+.final-card{background:#fff;border-radius:12px;border:1px solid #ddd;padding:22px}
+.final-title{font-size:16px;font-weight:700;margin-bottom:16px;color:#111;border-bottom:2px solid #1a5fa8;padding-bottom:8px}
+.pick-row{display:flex;flex-direction:column;gap:10px}
+.pick-item{background:#f8f7f4;border-radius:10px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start}
+.stars{font-size:15px;color:#c07800;min-width:82px}
+.stars .off{color:#ccc}
+.pick-right .plbl{font-size:11px;color:#888;margin-bottom:2px}
+.pick-right .pmain{font-size:14px;font-weight:700;margin-bottom:3px}
+.pick-right .pdet{font-size:12px;color:#555;line-height:1.55}
+.alloc-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.abox{background:#f8f7f4;border-radius:8px;padding:10px;text-align:center}
+.abox .al{font-size:11px;color:#666;line-height:1.4}
+.abox .av{font-size:18px;font-weight:800;margin-top:4px}
+.note{font-size:12px;color:#777;line-height:1.7;background:#f8f7f4;border-radius:8px;padding:12px;margin-top:16px}
+@media(max-width:760px){.two-col,.bets-grid,.weight-box,.score-list,.alloc-row{grid-template-columns:1fr}.mh{display:block}.mh-right{text-align:left;margin-top:8px}.pick-item{display:block}.stars{margin-bottom:6px}}
+</style>
 </head>
 <body>
 <div class="container">
-    <div class="header">
-        <h1>⚽ 2026 世界杯 · 预测参考</h1>
-        <div class="sub">
-            <span>📅 2026年6月19日 星期五</span>
-            <span>⏱ 北京时间 01:00 / 04:00 / 07:00 / 10:00</span>
-            <span>⚠ 非投资建议 · 数据仅供参考</span>
+  <h1>世界杯2026预测报告 · 6月19日四场分析</h1>
+  <div class="subtitle">北京时间 2026-06-19 · 以阵容伤停、预计首发、同级别战绩和战术战意为主；赔率仅作市场辅助参考</div>
+
+  <div class="schedule-box">
+    <h2>赛程总览</h2>
+    <div class="sched-row"><div class="sched-time">01:00</div><div class="sched-match">捷克 vs 南非 · Group A · Atlanta Stadium</div></div>
+    <div class="sched-row"><div class="sched-time">04:00</div><div class="sched-match">瑞士 vs 波黑 · Group B · Los Angeles Stadium</div></div>
+    <div class="sched-row"><div class="sched-time">07:00</div><div class="sched-match">加拿大 vs 卡塔尔 · Group B · BC Place Vancouver</div></div>
+    <div class="sched-row"><div class="sched-time">10:00</div><div class="sched-match">墨西哥 vs 韩国 · Group A · Guadalajara Stadium</div></div>
+  </div>
+
+  <div class="weight-box">
+    <div class="witem"><div class="num">40%</div><div class="txt">阵容/伤停/停赛</div></div>
+    <div class="witem"><div class="num">25%</div><div class="txt">同级别战绩</div></div>
+    <div class="witem"><div class="num">20%</div><div class="txt">战术/战意</div></div>
+    <div class="witem"><div class="num">15%</div><div class="txt">市场赔率辅助</div></div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="show(0)">捷克 vs 南非</button>
+    <button class="tab" onclick="show(1)">瑞士 vs 波黑</button>
+    <button class="tab" onclick="show(2)">加拿大 vs 卡塔尔</button>
+    <button class="tab" onclick="show(3)">墨西哥 vs 韩国</button>
+    <button class="tab" onclick="show(4)">精选方案</button>
+  </div>
+
+  <div class="card active">
+    <div class="mh">
+      <div class="mh-left">
+        <div class="teams">捷克 vs 南非</div>
+        <span class="grp">Group A</span><span class="status">两队首战均败 · 抢分压力高</span>
+      </div>
+      <div class="mh-right">01:00 北京时间<br>Atlanta Stadium</div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">阵容伤停 / 预计首发</div>
+      <div class="two-col">
+        <div class="stat-block">
+          <div class="lbl">捷克</div>
+          <div class="val">主力骨架相对稳定</div>
+          <div class="sub">预计继续围绕绍切克、希克、切尔尼构建进攻。首战 1-2 负韩国但创造力仍在，主要问题是后场横移和被速度冲击。</div>
         </div>
-    </div>
-
-    <!-- 赛程导航 -->
-    <div class="schedule-box">
-        <span class="label">🗓 选择比赛</span>
-        <span class="match-tab active" onclick="show(0)">🇨🇿 捷克 vs 南非 01:00</span>
-        <span class="match-tab" onclick="show(1)">🇨🇭 瑞士 vs 波黑 04:00</span>
-        <span class="match-tab" onclick="show(2)">🇨🇦 加拿大 vs 卡塔尔 07:00</span>
-        <span class="match-tab" onclick="show(3)">🇲🇽 墨西哥 vs 韩国 10:00</span>
-        <span class="match-tab" onclick="show(4)">📋 精选方案</span>
-    </div>
-
-    <!-- 比赛卡片组 0: 捷克 vs 南非 -->
-    <div class="cards-grid active" id="group0">
-        <div class="card">
-            <div class="match-title">🇨🇿 捷克 vs 南非 🇿🇦</div>
-            <div class="match-meta"><span>Group A</span><span>亚特兰大体育场</span><span>01:00</span></div>
-            <div class="section">
-                <div class="section-title">阵容可用性 (权重40%)</div>
-                <p>捷克：主力阵容基本完整，无重大伤停。预计沿用4-2-3-1，希克（Schick）领衔锋线，绍切克（Souček）中场核心。轮换风险低。<br>
-                南非：首战0-2负墨西哥，主帅布罗斯（Broos）确认将调整首发，可能变阵5-4-1加强防守。中场核心莫科纳（Mokoena）轻伤出战成疑。未抓到可靠实时伤病名单。</p>
-                <div class="missing-warn">⚠ 未抓到可靠实时伤病/停赛数据，部分信息来自赛前发布会摘要。</div>
-            </div>
-            <div class="section">
-                <div class="section-title">同阶级战绩 & H2H (权重25%)</div>
-                <p>捷克近10场对阵同档次球队（世界排名30-50）4胜3平3负，包括热身赛击败挪威、战平塞尔维亚。南非近10场对阵同档次球队2胜4平4负，世界杯首战0-2完败墨西哥。双方无正式比赛交手记录。</p>
-            </div>
-            <div class="section">
-                <div class="section-title">战术/战意 (权重20%)</div>
-                <p>捷克首轮1-1平韩国，控球占优但转化率低；此役必须取胜才能掌握出线主动。南非首战失利，若再败基本出局，预计收缩反击。捷克休息多一天，无旅行疲劳。主帅表示会保持高压。</p>
-            </div>
-            <div class="section">
-                <div class="section-title">市场参考 (权重15%)</div>
-                <p>Kalshi/Odds API: 401未授权 & 密钥未设置 → 未抓到可靠实时数据。多家媒体预测捷克胜赔在1.50-1.60区间，但本报告不以赔率为主要依据。</p>
-                <div class="missing-warn">⚠ 赔率数据源缺失(Kalshi 401, Odds API无密钥)，以下预测基于足球证据。</div>
-            </div>
-            <div class="section">
-                <div class="section-title">1X2 倾向 & 比分预测</div>
-                <p><strong>倾向：主胜（捷克）</strong> 信心指数: 7/10</p>
-                <div class="score-grid">
-                    <span class="score-item"><strong>2-0</strong> 28%</span>
-                    <span class="score-item"><strong>1-0</strong> 22%</span>
-                    <span class="score-item"><strong>2-1</strong> 18%</span>
-                    <span class="score-item"><strong>3-0</strong> 12%</span>
-                </div>
-            </div>
-            <div class="bet-cards">
-                <div class="bet-card"><span class="label">阵容优势</span> 捷克完整度更高，南非被迫变阵</div>
-                <div class="bet-card"><span class="label">状态优势</span> 捷克近5场3胜，南非近5场1胜</div>
-                <div class="bet-card"><span class="label">战术风险</span> 南非五后卫可能限制空间，捷克破密集能力存疑</div>
-                <div class="bet-card"><span class="label">正确比分</span> 2-0 / 1-0 优先</div>
-                <div class="bet-card"><span class="label">冷门/不下注</span> 若南非死守+反击，1-1平局可能，建议等待首发确认</div>
-            </div>
-            <div class="risk-note">🔑 关键风险：捷克首轮终结效率低；南非换阵后未知；赔率数据缺失，市场情绪无法验证。</div>
+        <div class="stat-block">
+          <div class="lbl">南非</div>
+          <div class="val">可能保守调整</div>
+          <div class="sub">首战 0-2 负墨西哥后防线失误多，预计布鲁斯会加强双后腰保护。福斯特、阿波利斯反击威胁存在，但阵地战持续输出不足。</div>
         </div>
+      </div>
     </div>
 
-    <!-- 1: 瑞士 vs 波黑 -->
-    <div class="cards-grid" id="group1">
-        <div class="card">
-            <div class="match-title">🇨🇭 瑞士 vs 波黑 🇧🇦</div>
-            <div class="match-meta"><span>Group B</span><span>洛杉矶体育场</span><span>04:00</span></div>
-            <div class="section">
-                <div class="section-title">阵容可用性 (权重40%)</div>
-                <p>瑞士：主力阵容齐整，扎卡（Xhaka）、阿坎吉（Akanji）领衔，预计3-4-2-1。无重要伤停。轮换可能性低。<br>
-                波黑：哲科（Džeko）和科拉希纳茨（Kolašinac）预计首发，但中场皮亚尼奇（Pjanić）已退出国家队。防线经验不足。未抓到可靠实时伤病。</p>
-                <div class="missing-warn">⚠ 未抓到可靠实时伤病数据，部分阵容来自赛前预测。</div>
-            </div>
-            <div class="section">
-                <div class="section-title">同阶级战绩 & H2H (权重25%)</div>
-                <p>瑞士近10场对阵欧洲中游球队（排名20-40）5胜3平2负，包括欧国联击败丹麦、战平奥地利。波黑近10场对阵同档次球队2胜3平5负，但世预赛附加赛爆冷击败意大利。双方近5年无交手。</p>
-            </div>
-            <div class="section">
-                <div class="section-title">战术/战意 (权重20%)</div>
-                <p>瑞士首轮1-1平加拿大，场面略占优；此役面对小组最弱对手，目标3分。波黑首轮0-0平卡塔尔，防守顽强但进攻乏力。瑞士休息充足，无旅行问题。更衣室传闻有紧张，但主帅否认。</p>
-            </div>
-            <div class="section">
-                <div class="section-title">市场参考 (权重15%)</div>
-                <p>Kalshi/Odds API: 数据缺失。主流媒体预测瑞士胜赔约1.55，但本报告不依赖赔率。</p>
-                <div class="missing-warn">⚠ 赔率数据源缺失。</div>
-            </div>
-            <div class="section">
-                <div class="section-title">1X2 倾向 & 比分预测</div>
-                <p><strong>倾向：主胜（瑞士）</strong> 信心指数: 8/10</p>
-                <div class="score-grid">
-                    <span class="score-item"><strong>2-0</strong> 30%</span>
-                    <span class="score-item"><strong>1-0</strong> 24%</span>
-                    <span class="score-item"><strong>3-0</strong> 14%</span>
-                    <span class="score-item"><strong>2-1</strong> 12%</span>
-                </div>
-            </div>
-            <div class="bet-cards">
-                <div class="bet-card"><span class="label">阵容优势</span> 瑞士经验+深度明显占优</div>
-                <div class="bet-card"><span class="label">状态优势</span> 瑞士近6场3胜3平，波黑近6场1胜</div>
-                <div class="bet-card"><span class="label">战术风险</span> 波黑可能摆大巴，瑞士需耐心</div>
-                <div class="bet-card"><span class="label">正确比分</span> 2-0 / 1-0</div>
-                <div class="bet-card"><span class="label">冷门/不下注</span> 波黑刚平意大利晋级，士气高；若瑞士久攻不下，0-0可能</div>
-            </div>
-            <div class="risk-note">🔑 关键风险：瑞士更衣室传闻；波黑反击有哲科高点；赔率数据缺失。</div>
+    <div class="sec">
+      <div class="sec-title">同级别战绩 / 战术推演</div>
+      <ul class="alist">
+        <li>两队都是首轮输球方，本场输球基本会让出线主动权消失，比赛心态会先谨慎后提速。</li>
+        <li>捷克面对亚洲强队韩国仍能打出进球，说明定位球和高点仍有稳定价值；南非面对墨西哥时进攻端威胁偏少。</li>
+        <li>同级别对抗里，捷克更适合压迫和定位球攻坚；南非更依赖边路速度和反击第一脚质量。</li>
+        <li>本场关键不是赔率，而是南非能否避免开局丢球；一旦捷克先进球，南非被迫前压后会给出第二球空间。</li>
+      </ul>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">市场辅助参考</div>
+      <div class="odds-row">
+        <div class="ob"><div class="ol">市场方向</div><div class="ov">捷克偏热</div></div>
+        <div class="ob"><div class="ol">进球脚本</div><div class="ov hot">小球倾向</div></div>
+        <div class="ob"><div class="ol">可信度</div><div class="ov">中等</div></div>
+      </div>
+    </div>
+
+    <div class="pred-panel">
+      <div class="pred-score">捷克 1-0 南非（主选）</div>
+      <div class="pred-meta">1X2：捷克胜 · 信心指数 6/10 · 阵容稳定性优于南非</div>
+      <div class="conf-row"><span class="cdot"></span><span class="cdot"></span><span class="cdot"></span><span class="cdot"></span><span class="cdot"></span><span class="cdot"></span><span class="cdot off"></span><span class="cdot off"></span><span class="cdot off"></span><span class="cdot off"></span></div>
+      <div class="pred-body">为什么是 1-0：捷克更可能掌握球权和定位球机会，但首战被韩国反击打穿，说明它不适合过度压上。南非首战进攻质量偏低，本场会更重视防守秩序。捷克小胜比大胜更符合双方当前压力。</div>
+      <div class="score-list">
+        <div class="score-card"><div class="s">1-0</div><div class="p">主选 18%</div></div>
+        <div class="score-card"><div class="s">1-1</div><div class="p">次选 14%</div></div>
+        <div class="score-card"><div class="s">2-0</div><div class="p">第三 12%</div></div>
+        <div class="score-card"><div class="s">2-1</div><div class="p">第四 10%</div></div>
+      </div>
+    </div>
+
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">LINEUP EDGE</div><div class="bc-rec">捷克不败 / 捷克胜</div><div class="bc-reason">阵容稳定性、定位球质量、南非首战防线失误，是捷克方向的主要依据。</div></div>
+      <div class="bet-card risk"><div class="bc-type">TOTAL</div><div class="bc-rec">小 2.5 球更合理</div><div class="bc-reason">两队都输不起，南非更可能先稳住低位，捷克也不会无脑提速。</div></div>
+      <div class="bet-card cool"><div class="bc-type">CORRECT SCORE</div><div class="bc-rec">1-0 / 1-1 小注</div><div class="bc-reason">如果南非反击质量高于预期，1-1 是首要保护比分。</div></div>
+      <div class="bet-card risk"><div class="bc-type">NO BET RISK</div><div class="bc-rec">临场看南非首发</div><div class="bc-reason">若南非上三速度点并放弃保守，BTTS 风险上升。</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="mh">
+      <div class="mh-left">
+        <div class="teams">瑞士 vs 波黑</div>
+        <span class="grp">Group B</span><span class="status">两队首战均 1-1 · 低比分倾向</span>
+      </div>
+      <div class="mh-right">04:00 北京时间<br>Los Angeles Stadium</div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">阵容伤停 / 预计首发</div>
+      <div class="two-col">
+        <div class="stat-block">
+          <div class="lbl">瑞士</div>
+          <div class="val">中后场质量优势</div>
+          <div class="sub">科贝尔、阿坎吉、扎卡、弗罗伊勒等核心框架稳定。首战对卡塔尔射门优势明显但终结效率不够，本场重点是把优势转成进球。</div>
         </div>
-    </div>
-
-    <!-- 2: 加拿大 vs 卡塔尔 -->
-    <div class="cards-grid" id="group2">
-        <div class="card">
-            <div class="match-title">🇨🇦 加拿大 vs 卡塔尔 🇶🇦</div>
-            <div class="match-meta"><span>Group B</span><span>BC Place 温哥华</span><span>07:00</span></div>
-            <div class="section">
-                <div class="section-title">阵容可用性 (权重40%)</div>
-                <p>加拿大：阿方索·戴维斯（Alphonso Davies）确认可出战，首战因伤缺席。预计4-4-2菱形中场，戴维斯左翼，戴维（David）突前。无其他重要伤停。<br>
-                卡塔尔：首战0-0平波黑，阵容完整，预计延续5-3-2防守阵型。未抓到可靠实时伤病。</p>
-                <div class="missing-warn">⚠ 未抓到可靠实时伤病数据。</div>
-            </div>
-            <div class="section">
-                <div class="section-title">同阶级战绩 & H2H (权重25%)</div>
-                <p>加拿大近10场对阵中北美及亚洲球队5胜3平2负，包括热身赛击败日本。卡塔尔近10场对阵非亚洲球队1胜4平5负，世界杯首战0-0平波黑是亮点。双方无交手记录。</p>
-            </div>
-            <div class="section">
-                <div class="section-title">战术/战意 (权重20%)</div>
-                <p>加拿大首轮1-1平瑞士，表现积极；此役主场作战（温哥华），必须赢球争取出线。卡塔尔首轮拿到历史第一分，士气提升，但实力仍有差距。加拿大休息充足，戴维斯回归是重大利好。</p>
-            </div>
-            <div class="section">
-                <div class="section-title">市场参考 (权重15%)</div>
-                <p>Kalshi/Odds API: 数据缺失。主流预测加拿大胜赔约1.65。</p>
-                <div class="missing-warn">⚠ 赔率数据源缺失。</div>
-            </div>
-            <div class="section">
-                <div class="section-title">1X2 倾向 & 比分预测</div>
-                <p><strong>倾向：主胜（加拿大）</strong> 信心指数: 7/10</p>
-                <div class="score-grid">
-                    <span class="score-item"><strong>2-0</strong> 26%</span>
-                    <span class="score-item"><strong>1-0</strong> 22%</span>
-                    <span class="score-item"><strong>2-1</strong> 18%</span>
-                    <span class="score-item"><strong>3-1</strong> 10%</span>
-                </div>
-            </div>
-            <div class="bet-cards">
-                <div class="bet-card"><span class="label">阵容优势</span> 戴维斯回归，加拿大边路爆点</div>
-                <div class="bet-card"><span class="label">状态优势</span> 加拿大主场+首战平瑞士，信心足</div>
-                <div class="bet-card"><span class="label">战术风险</span> 卡塔尔五后卫密集，加拿大破密防效率待考</div>
-                <div class="bet-card"><span class="label">正确比分</span> 2-0 / 1-0</div>
-                <div class="bet-card"><span class="label">冷门/不下注</span> 卡塔尔首战零封，若再守平可能</div>
-            </div>
-            <div class="risk-note">🔑 关键风险：加拿大首轮进球难；卡塔尔防守有组织；赔率数据缺失。</div>
+        <div class="stat-block">
+          <div class="lbl">波黑</div>
+          <div class="val">老将轴心 + 防守压缩</div>
+          <div class="sub">哲科仍是进攻支点，波黑会降低节奏保护禁区。面对加拿大时能守住 1 分，但被压制时间长，体能和边路回防是隐患。</div>
         </div>
+      </div>
     </div>
 
-    <!-- 3: 墨西哥 vs 韩国 -->
-    <div class="cards-grid" id="group3">
-        <div class="card">
-            <div class="match-title">🇲🇽 墨西哥 vs 韩国 🇰🇷</div>
-            <div class="match-meta"><span>Group A</span><span>瓜达拉哈拉体育场</span><span>10:00</span></div>
-            <div class="section">
-                <div class="section-title">阵容可用性 (权重40%)</div>
-                <p>墨西哥：首战2-0胜南非，埃德松·阿尔瓦雷斯（Edson Álvarez）预计轮换进入首发，希门尼斯（Jiménez）可能替补。无伤停。预计4-3-3。<br>
-                韩国：首战1-1平捷克，孙兴慜（Son Heung-min）状态一般，但预计继续首发。中场黄仁范（Hwang In-beom）轻伤无碍。未抓到可靠实时伤病。</p>
-                <div class="missing-warn">⚠ 未抓到可靠实时伤病数据。</div>
-            </div>
-            <div class="section">
-                <div class="section-title">同阶级战绩 & H2H (权重25%)</div>
-                <p>墨西哥近10场对阵亚洲/中北美球队7胜2平1负，包括击败日本、哥斯达黎加。韩国近10场对阵非亚洲球队3胜3平4负，世界杯首战平捷克。H2H：2018世界杯墨西哥2-1胜韩国。</p>
-            </div>
-            <div class="section">
-                <div class="section-title">战术/战意 (权重20%)</div>
-                <p>墨西哥首战轻松取胜，此役赢球即可基本锁定小组头名。韩国首战平捷克，此役必须拿分。墨西哥主场作战（瓜达拉哈拉），球迷支持强烈。韩国教练赛前批评训练场无人机事件，心态或有波动。</p>
-            </div>
-            <div class="section">
-                <div class="section-title">市场参考 (权重15%)</div>
-                <p>Kalshi/Odds API: 数据缺失。主流预测墨西哥胜赔约1.70。</p>
-                <div class="missing-warn">⚠ 赔率数据源缺失。</div>
-            </div>
-            <div class="section">
-                <div class="section-title">1X2 倾向 & 比分预测</div>
-                <p><strong>倾向：主胜（墨西哥）</strong> 信心指数: 7/10</p>
-                <div class="score-grid">
-                    <span class="score-item"><strong>2-1</strong> 24%</span>
-                    <span class="score-item"><strong>1-0</strong> 22%</span>
-                    <span class="score-item"><strong>2-0</strong> 18%</span>
-                    <span class="score-item"><strong>1-1</strong> 14%</span>
-                </div>
-            </div>
-            <div class="bet-cards">
-                <div class="bet-card"><span class="label">阵容优势</span> 墨西哥轮换深度好，韩国依赖孙兴慜</div>
-                <div class="bet-card"><span class="label">状态优势</span> 墨西哥首战完胜，韩国进攻乏力</div>
-                <div class="bet-card"><span class="label">战术风险</span> 韩国可能反击偷分，墨西哥防线压上需谨慎</div>
-                <div class="bet-card"><span class="label">正确比分</span> 2-1 / 1-0</div>
-                <div class="bet-card"><span class="label">冷门/不下注</span> 韩国若死守+孙兴慜灵光一现，平局可能</div>
-            </div>
-            <div class="risk-note">🔑 关键风险：韩国心态波动；墨西哥轮换后默契度；赔率数据缺失。</div>
+    <div class="sec">
+      <div class="sec-title">同级别战绩 / 战术推演</div>
+      <ul class="alist">
+        <li>瑞士常年面对欧洲中上游球队经验更好，中场控制和防线个人能力优于波黑。</li>
+        <li>波黑不怕低节奏肉搏，但如果被瑞士边后卫和中场连续转移拉开，禁区前沿会暴露二点球。</li>
+        <li>两队首战均平，本场输球代价较高，波黑会接受平局，瑞士更有主动争胜动机。</li>
+        <li>瑞士最大问题是终结效率；如果迟迟不进球，比赛会滑向 0-0 / 1-1。</li>
+      </ul>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">市场辅助参考</div>
+      <div class="odds-row">
+        <div class="ob"><div class="ol">市场方向</div><div class="ov">瑞士优势</div></div>
+        <div class="ob"><div class="ol">进球脚本</div><div class="ov hot">小球</div></div>
+        <div class="ob"><div class="ol">波黑爆点</div><div class="ov">定位球</div></div>
+      </div>
+    </div>
+
+    <div class="pred-panel">
+      <div class="pred-score">瑞士 1-0 波黑（主选）</div>
+      <div class="pred-meta">1X2：瑞士胜 · 信心指数 6/10 · 低比分胜出</div>
+      <div class="conf-row"><span class="cdot"></span><span class="cdot"></span><span class="cdot"></span><span class="cdot"></span><span class="cdot"></span><span class="cdot"></span><span class="cdot off"></span><span class="cdot off"></span><span class="cdot off"></span><span class="cdot off"></span></div>
+      <div class="pred-body">为什么是 1-0：瑞士中后场和控球质量更高，但波黑的低位防守和哲科支点会把比赛压成低节奏。瑞士更可能靠一次边路传中、二点球或定位球解决比赛。</div>
+      <div class="score-list">
+        <div class="score-card"><div class="s">1-0</div><div class="p">主选 17%</div></div>
+        <div class="score-card"><div class="s">1-1</div><div class="p">次选 15%</div></div>
+        <div class="score-card"><div class="s">2-0</div><div class="p">第三 11%</div></div>
+        <div class="score-card"><div class="s">0-0</div><div class="p">第四 9%</div></div>
+      </div>
+    </div>
+
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">LINEUP EDGE</div><div class="bc-rec">瑞士胜 / 瑞士不败</div><div class="bc-reason">瑞士中后场个人质量更稳，波黑主要靠压缩空间和老将支点。</div></div>
+      <div class="bet-card risk"><div class="bc-type">TOTAL</div><div class="bc-rec">小 2.5 球</div><div class="bc-reason">双方首战都是 1-1，本场更像一球胜负或平局。</div></div>
+      <div class="bet-card cool"><div class="bc-type">CORRECT SCORE</div><div class="bc-rec">1-0 / 1-1</div><div class="bc-reason">瑞士进球效率不稳定，1-1 需要覆盖。</div></div>
+      <div class="bet-card risk"><div class="bc-type">RISK</div><div class="bc-rec">防哲科定位球</div><div class="bc-reason">波黑最现实的得分方式是定位球、二点球和禁区内身体对抗。</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="mh">
+      <div class="mh-left">
+        <div class="teams">加拿大 vs 卡塔尔</div>
+        <span class="grp">Group B</span><span class="status">加拿大主场 · 卡塔尔进攻受限</span>
+      </div>
+      <div class="mh-right">07:00 北京时间<br>BC Place Vancouver</div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">阵容伤停 / 预计首发</div>
+      <div class="two-col">
+        <div class="stat-block">
+          <div class="lbl">加拿大</div>
+          <div class="val">拉林可能提升首发权重</div>
+          <div class="sub">首战替补进球的拉林有望获得更多时间，乔纳森·戴维仍是禁区核心。阿方索·戴维斯状态需临场确认，但主场推进和边路速度仍是核心优势。</div>
         </div>
-    </div>
-
-    <!-- 精选方案 -->
-    <div class="cards-grid" id="group4">
-        <div class="plan-tab" style="grid-column: 1 / -1;">
-            <h2>📋 精选方案 · 6月19日</h2>
-            <p style="font-size:13px; color:#888; margin-bottom:12px;">基于阵容/状态/战术证据，赔率数据缺失时使用"观察/不下注"语言。100单位分配。</p>
-            <div class="plan-item">
-                <div class="desc"><strong>🇨🇭 瑞士 vs 波黑 · 主胜</strong><br><span class="small">瑞士阵容完整，波黑进攻乏力；信心8/10，但赔率数据缺失，建议等待首发确认后小注。</span></div>
-                <span class="units">30 单位</span>
-            </div>
-            <div class="plan-item">
-                <div class="desc"><strong>🇨🇦 加拿大 vs 卡塔尔 · 主胜</strong><br><span class="small">戴维斯回归，主场优势；卡塔尔防守顽强但实力差距。赔率缺失，观察首发后决定。</span></div>
-                <span class="units">25 单位</span>
-            </div>
-            <div class="plan-item">
-                <div class="desc"><strong>🇲🇽 墨西哥 vs 韩国 · 主胜</strong><br><span class="small">墨西哥状态+主场+历史H2H占优；韩国心态存疑。赔率缺失，谨慎看好。</span></div>
-                <span class="units">20 单位</span>
-            </div>
-            <div class="plan-item">
-                <div class="desc"><strong>🇨🇿 捷克 vs 南非 · 主胜</strong><br><span class="small">捷克必须赢，南非变阵未知；但捷克终结效率低，赔率缺失，建议观察。</span></div>
-                <span class="units">15 单位</span>
-            </div>
-            <div class="plan-item">
-                <div class="desc"><strong>⏳ 等待阵容/首发确认</strong><br><span class="small">所有比赛赔率数据缺失，Kalshi/Odds API均不可用。保留单位等待赛前1小时首发确认后再决策。</span></div>
-                <span class="units">10 单位</span>
-            </div>
-            <div style="margin-top:14px; font-size:13px; background:#f8f7f4; padding:10px; border-radius:8px;">
-                <strong>📌 说明：</strong> 由于Kalshi (401错误) 和 Odds API (密钥未设置) 均无法获取市场赔率，以上方案主要基于足球基本面。所有"主胜"建议均为观察/不下注级别，待赔率数据恢复后再做最终决定。切勿重注。
-            </div>
+        <div class="stat-block">
+          <div class="lbl">卡塔尔</div>
+          <div class="val">被动防守压力大</div>
+          <div class="sub">首战靠瑞士乌龙拿到 1 分，但射门和推进质量偏低。阿菲夫是主要创造点，若被加拿大边路压制，卡塔尔很难持续输出。</div>
         </div>
+      </div>
     </div>
 
-    <div class="footer-note">
-        ⚠ 本页面为预测参考，不构成任何投注建议。数据来源：FixtureDownload, Google News RSS。赔率数据缺失(Kalshi 401, Odds API无密钥)。<br>
-        分析权重：阵容/伤停40% · 同阶级战绩/H2H 25% · 战术/战意20% · 市场参考15%。更新时间：2026-06-19。
+    <div class="sec">
+      <div class="sec-title">同级别战绩 / 战术推演</div>
+      <ul class="alist">
+        <li>加拿大首战对波黑控球和射门质量更好，只是终结不够干脆；卡塔尔对瑞士长期被压制。</li>
+        <li>BC Place 主场环境对加拿大是实际加成，节奏和冲刺强度会明显高于卡塔尔习惯区间。</li>
+        <li>卡塔尔若继续低位，能拖慢比赛，但反击需要阿菲夫单点解决，稳定性不高。</li>
+        <li>本场推演主轴是加拿大能否早进球；若 30 分钟内破门，2-0/3-0 概率上升。</li>
+      </ul>
     </div>
+
+    <div class="sec">
+      <div class="sec-title">市场辅助参考</div>
+      <div class="odds-row">
+        <div class="ob"><div class="ol">市场方向</div><div class="ov hot">加拿大热</div></div>
+        <div class="ob"><div class="ol">进球脚本</div><div class="ov">2-3球</div></div>
+        <div class="ob"><div class="ol">风险点</div><div class="ov">戴维斯状态</div></div>
+      </div>
+    </div>
+
+    <div class="pred-panel">
+      <div class="pred-score">加拿大 2-0 卡塔尔（主选）</div>
+      <div class="pred-meta">1X2：加拿大胜 · 信心指数 7/10 · 全日最清晰方向</div>
+      <div class="conf-row"><span class="cdot"></span><span class="cdot"></span><span class="cdot"></span><span class="cdot"></span><span class="cdot"></span><span class="cdot"></span><span class="cdot"></span><span class="cdot off"></span><span class="cdot off"></span><span class="cdot off"></span></div>
+      <div class="pred-body">为什么是 2-0：加拿大主场、速度、射门质量都优于卡塔尔。卡塔尔首战拿分带有偶然性，持续进攻能力不足。若加拿大首发增加拉林或更早使用双前锋，第二球更容易出现。</div>
+      <div class="score-list">
+        <div class="score-card"><div class="s">2-0</div><div class="p">主选 19%</div></div>
+        <div class="score-card"><div class="s">1-0</div><div class="p">次选 15%</div></div>
+        <div class="score-card"><div class="s">2-1</div><div class="p">第三 11%</div></div>
+        <div class="score-card"><div class="s">3-0</div><div class="p">第四 9%</div></div>
+      </div>
+    </div>
+
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">BANKER</div><div class="bc-rec">加拿大胜</div><div class="bc-reason">主场、速度、锋线深度、卡塔尔进攻质量，四项都偏加拿大。</div></div>
+      <div class="bet-card risk"><div class="bc-type">TOTAL</div><div class="bc-rec">加拿大胜 + 小 3.5</div><div class="bc-reason">卡塔尔低位会压低总进球，但加拿大仍有两球能力。</div></div>
+      <div class="bet-card cool"><div class="bc-type">CORRECT SCORE</div><div class="bc-rec">2-0 主打，1-0 防守</div><div class="bc-reason">如果戴维斯状态一般或加拿大终结效率低，1-0 是保护比分。</div></div>
+      <div class="bet-card risk"><div class="bc-type">RISK</div><div class="bc-rec">阿菲夫单点反击</div><div class="bc-reason">卡塔尔唯一破局点是阿菲夫转换进攻，BTTS 风险不能归零。</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="mh">
+      <div class="mh-left">
+        <div class="teams">墨西哥 vs 韩国</div>
+        <span class="grp">Group A</span><span class="status">小组头名战 · 最难预测</span>
+      </div>
+      <div class="mh-right">10:00 北京时间<br>Guadalajara Stadium</div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">阵容伤停 / 预计首发</div>
+      <div class="two-col">
+        <div class="stat-block">
+          <div class="lbl">墨西哥</div>
+          <div class="val">蒙特斯停赛是关键减分</div>
+          <div class="sub">首战 2-0 南非表现稳定，但中卫蒙特斯停赛削弱中路防守。希门尼斯、基尼奥内斯状态好，主场优势明显。</div>
+        </div>
+        <div class="stat-block">
+          <div class="lbl">韩国</div>
+          <div class="val">中前场创造力强</div>
+          <div class="sub">首战逆转捷克，黄仁范、李刚仁和替补吴贤揆提供创造力。孙兴慜若状态回升，韩国反击上限会明显提高。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">同级别战绩 / 战术推演</div>
+      <ul class="alist">
+        <li>两队首战都赢球，本场平局对双方都能接受，比赛动机不像生死战那么激进。</li>
+        <li>墨西哥主场和高压逼抢更强，但中卫停赛会给韩国反击和肋部穿插机会。</li>
+        <li>韩国面对捷克能在逆境中完成反超，说明中场创造力和替补冲击力足够对墨西哥制造麻烦。</li>
+        <li>本场最像 1-1：墨西哥主场至少一球，韩国也具备利用中卫调整期偷一球的条件。</li>
+      </ul>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">市场辅助参考</div>
+      <div class="odds-row">
+        <div class="ob"><div class="ol">市场方向</div><div class="ov">墨西哥小热</div></div>
+        <div class="ob"><div class="ol">进球脚本</div><div class="ov hot">BTTS</div></div>
+        <div class="ob"><div class="ol">风险点</div><div class="ov">平局动机</div></div>
+      </div>
+    </div>
+
+    <div class="pred-panel">
+      <div class="pred-score">墨西哥 1-1 韩国（主选）</div>
+      <div class="pred-meta">1X2：平局 · 信心指数 5/10 · 全日最难场</div>
+      <div class="conf-row"><span class="cdot"></span><span class="cdot"></span><span class="cdot"></span><span class="cdot"></span><span class="cdot"></span><span class="cdot off"></span><span class="cdot off"></span><span class="cdot off"></span><span class="cdot off"></span><span class="cdot off"></span></div>
+      <div class="pred-body">为什么是 1-1：墨西哥主场和锋线状态支持进球，但蒙特斯停赛让中路保护下降；韩国首战展示了追分和替补改变比赛的能力。本场双方同积 3 分，平局可接受，末段未必会冒险互捅。</div>
+      <div class="score-list">
+        <div class="score-card"><div class="s">1-1</div><div class="p">主选 16%</div></div>
+        <div class="score-card"><div class="s">2-1</div><div class="p">次选 13%</div></div>
+        <div class="score-card"><div class="s">1-2</div><div class="p">第三 10%</div></div>
+        <div class="score-card"><div class="s">2-2</div><div class="p">第四 8%</div></div>
+      </div>
+    </div>
+
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">MAIN</div><div class="bc-rec">双方进球 / 平局方向</div><div class="bc-reason">墨西哥中卫停赛 + 韩国中前场创造力，是 BTTS 的主要依据。</div></div>
+      <div class="bet-card risk"><div class="bc-type">1X2</div><div class="bc-rec">平局优先，墨西哥不败保护</div><div class="bc-reason">墨西哥主场不宜强反，但韩国有足够能力守住一分。</div></div>
+      <div class="bet-card cool"><div class="bc-type">CORRECT SCORE</div><div class="bc-rec">1-1 小注</div><div class="bc-reason">这是全日最难预测场，比分投注只适合小仓位。</div></div>
+      <div class="bet-card risk"><div class="bc-type">RISK</div><div class="bc-rec">若韩国早丢球，2-1</div><div class="bc-reason">墨西哥主场若早早领先，韩国压出后会让 2-1 成为次选。</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="final-card">
+      <div class="final-title">6月19日精选方案 · 阵容伤停优先版</div>
+      <div class="pick-row">
+        <div class="pick-item">
+          <div class="stars">★★★★<span class="off">★</span></div>
+          <div class="pick-right"><div class="plbl">稳健方向</div><div class="pmain">加拿大胜，主比分 2-0 / 防 1-0</div><div class="pdet">依据：主场、速度、锋线深度、卡塔尔进攻质量不足。赔率不是主因，阵容和比赛脚本更清晰。</div></div>
+        </div>
+        <div class="pick-item">
+          <div class="stars">★★★<span class="off">★★</span></div>
+          <div class="pick-right"><div class="plbl">低比分方向</div><div class="pmain">瑞士 1-0 波黑，搭配小 2.5</div><div class="pdet">依据：瑞士中后场质量更高，波黑低位压缩强，最像一球胜负。</div></div>
+        </div>
+        <div class="pick-item">
+          <div class="stars">★★★<span class="off">★★</span></div>
+          <div class="pick-right"><div class="plbl">谨慎方向</div><div class="pmain">捷克 1-0 南非，防 1-1</div><div class="pdet">依据：捷克定位球和主力骨架优于南非，但两队首败后都会先求稳。</div></div>
+        </div>
+        <div class="pick-item">
+          <div class="stars">★★<span class="off">★★★</span></div>
+          <div class="pick-right"><div class="plbl">高风险比分</div><div class="pmain">墨西哥 1-1 韩国</div><div class="pdet">依据：蒙特斯停赛削弱墨西哥中路，韩国中前场有反击和追分能力；但主场因素让结果波动大。</div></div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div style="font-size:13px;font-weight:700;margin-bottom:10px">100单位观察分配</div>
+      <div class="alloc-row">
+        <div class="abox"><div class="al">加拿大胜<br>主方向</div><div class="av" style="color:#1a5fa8">35单位</div></div>
+        <div class="abox"><div class="al">瑞士小胜<br>小球方向</div><div class="av" style="color:#1a5fa8">25单位</div></div>
+        <div class="abox"><div class="al">捷克不败<br>低比分</div><div class="av" style="color:#2a7a2a">20单位</div></div>
+        <div class="abox"><div class="al">墨韩平局<br>小注比分</div><div class="av" style="color:#c07800">10单位</div></div>
+      </div>
+      <div style="font-size:12px;color:#888;margin-top:6px">预留10单位等待临场首发。若阿方索·戴维斯缺席、墨西哥中卫替补质量不佳或韩国前场轮换明显，需重新调整。</div>
+
+      <div class="note">
+        <strong>风险提示：</strong>本报告为预测和复盘记录用途，内容仅供参考，不构成任何投资建议。判断优先级为阵容伤停、预计首发、同级别战绩和战术战意；赔率只作为市场情绪参考。世界杯小组赛第二轮动机复杂，任何比分预测均存在较大不确定性。
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-function show(i) {
-    var groups = document.querySelectorAll('.cards-grid');
-    var tabs = document.querySelectorAll('.match-tab');
-    for (var j = 0; j < groups.length; j++) {
-        groups[j].classList.remove('active');
-        if (tabs[j]) tabs[j].classList.remove('active');
-    }
-    if (groups[i]) groups[i].classList.add('active');
-    if (tabs[i]) tabs[i].classList.add('active');
+function show(i){
+  document.querySelectorAll('.card').forEach((c,j)=>c.classList.toggle('active',j===i));
+  document.querySelectorAll('.tab').forEach((b,j)=>b.classList.toggle('active',j===i));
 }
 </script>
 </body>

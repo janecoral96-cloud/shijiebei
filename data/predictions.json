@@ -11,10 +11,10 @@
       "venue": "Atlanta Stadium",
       "report": "reports/2026-06-19.html",
       "pick_1x2": "home",
-      "primary_score": "2-1",
-      "score_candidates": ["2-1", "1-1", "1-0", "2-0"],
+      "primary_score": "1-0",
+      "score_candidates": ["1-0", "1-1", "2-0", "2-1"],
       "confidence": 6,
-      "notes": "Sample report prediction: Czechia edge, South Africa defensive suspension risk."
+      "notes": "阵容稳定性和定位球优势偏捷克，南非首战防线失误后预计更保守。"
     },
     {
       "date_beijing": "2026-06-19",
@@ -26,9 +26,9 @@
       "report": "reports/2026-06-19.html",
       "pick_1x2": "home",
       "primary_score": "1-0",
-      "score_candidates": ["1-0", "1-1", "2-0", "2-1"],
+      "score_candidates": ["1-0", "1-1", "2-0", "0-0"],
       "confidence": 6,
-      "notes": "Sample report prediction: Swiss midfield control, low-scoring script."
+      "notes": "瑞士中后场质量和控球优势更明显，波黑低位防守使低比分概率较高。"
     },
     {
       "date_beijing": "2026-06-19",
@@ -42,7 +42,7 @@
       "primary_score": "2-0",
       "score_candidates": ["2-0", "1-0", "2-1", "3-0"],
       "confidence": 7,
-      "notes": "Sample report prediction: Canada home edge and Qatar scoring concern."
+      "notes": "加拿大主场、速度和锋线深度占优，卡塔尔持续进攻质量不足。"
     },
     {
       "date_beijing": "2026-06-19",
@@ -54,9 +54,9 @@
       "report": "reports/2026-06-19.html",
       "pick_1x2": "draw",
       "primary_score": "1-1",
-      "score_candidates": ["1-1", "2-2", "1-0", "0-1"],
+      "score_candidates": ["1-1", "2-1", "1-2", "2-2"],
       "confidence": 5,
-      "notes": "Sample report prediction: balanced match, Mexico defensive absence and Korea counter threat."
+      "notes": "墨西哥主场优势明显，但蒙特斯停赛给韩国反击和肋部穿插机会。"
     }
   ]
 }
