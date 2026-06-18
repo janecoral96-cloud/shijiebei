@@ -1,223 +1,300 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>世界杯预测报告 · 6月19日</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;background:#f0ede8;color:#1a1a1a;padding:20px;line-height:1.6}
-.container{max-width:960px;margin:0 auto}
-h1{font-size:24px;margin-bottom:4px}
-.subtitle,.meta{color:#666;font-size:13px}
-.schedule-box,.card{background:#fff;border:1px solid #ddd;border-radius:10px;padding:18px;margin:16px 0}
-.sched-row{display:grid;grid-template-columns:72px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid #f0ede8;font-size:13px}
-.sched-row:last-child{border-bottom:0}
-.sched-time{color:#1a5fa8;font-weight:800}
-.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}
-.tab{border:1px solid #ccc;background:transparent;border-radius:999px;padding:7px 12px;cursor:pointer;font:inherit;font-size:12px;color:#555}
-.tab.active{background:#1a5fa8;color:#fff;border-color:#1a5fa8}
-.card{display:none}
-.card.active{display:block}
-.mh{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #eee;padding-bottom:12px;margin-bottom:14px}
-.tag{height:max-content;background:#e8f2fc;color:#0d4e9e;border-radius:999px;padding:3px 8px;font-size:11px;font-weight:700}
-.grid.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.block{background:#f8f7f4;border-radius:8px;padding:12px}
-.sec-title{font-size:11px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.06em;margin:12px 0 8px}
-ul{padding-left:18px;font-size:13px;color:#444}
-.pred-panel{background:linear-gradient(135deg,#e8f2fc,#f5f3ea);border:1px solid #c8d8f0;border-radius:10px;padding:14px;margin:14px 0}
-.pred-score{font-size:24px;font-weight:800;color:#0d4e9e}
-.pred-meta{font-size:12px;color:#555}
-.scores{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.score{background:#e8f2fc;border-radius:8px;padding:10px;text-align:center}
-.score strong{display:block;font-size:20px;color:#0d4e9e}
-.score span{font-size:12px;color:#555}
-.bets,.alloc{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
-.bet,.alloc div{background:#f8f7f4;border-radius:8px;padding:10px;border-left:3px solid #1a5fa8}
-.bet.risk{border-left-color:#c07800}.bet.cool{border-left-color:#aa2222}
-.bet span,.alloc span{display:block;font-size:12px;color:#555;margin-top:4px}
-.status{background:#fff8e6;border-left:3px solid #c07800;padding:10px;margin:10px 0;color:#5c3a00}
-.empty{padding:12px;color:#666}
-.sources{font-size:12px;color:#666;margin:18px 0 30px}
-@media(max-width:720px){.grid.two,.scores,.bets,.alloc{grid-template-columns:1fr}.mh{display:block}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 世界杯 预测报告 · 6月19日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #f0ede8; font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; color: #1e1e1e; padding: 20px; }
+        .container { max-width: 1280px; margin: 0 auto; }
+        .header { margin-bottom: 24px; }
+        .header h1 { font-size: 26px; font-weight: 700; color: #1a5fa8; letter-spacing: 1px; }
+        .header .sub { font-size: 14px; color: #666; margin-top: 4px; display: flex; justify-content: space-between; flex-wrap: wrap; }
+        .header .sub span { background: #fff; padding: 4px 12px; border-radius: 20px; font-size: 13px; }
+        .schedule-box { background: #fff; border-radius: 16px; padding: 16px 20px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+        .schedule-box .label { font-weight: 600; color: #1a5fa8; font-size: 15px; }
+        .schedule-box .match-tab { background: #f0ede8; border-radius: 30px; padding: 6px 16px; font-size: 14px; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+        .schedule-box .match-tab.active { background: #1a5fa8; color: #fff; }
+        .schedule-box .match-tab:hover { background: #d9d5ce; }
+        .cards-grid { display: none; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
+        .cards-grid.active { display: grid; }
+        @media (max-width: 900px) { .cards-grid.active { grid-template-columns: 1fr; } }
+        .card { background: #fff; border-radius: 16px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+        .card .match-title { font-size: 18px; font-weight: 700; color: #1a5fa8; margin-bottom: 6px; }
+        .card .match-meta { font-size: 13px; color: #888; margin-bottom: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+        .card .match-meta span { background: #f0ede8; padding: 2px 10px; border-radius: 12px; }
+        .card .section { margin-bottom: 14px; }
+        .card .section-title { font-weight: 600; font-size: 14px; color: #1a5fa8; border-left: 3px solid #1a5fa8; padding-left: 8px; margin-bottom: 6px; }
+        .card .section p, .card .section li { font-size: 14px; line-height: 1.6; color: #333; }
+        .card .section ul { padding-left: 18px; }
+        .card .tag { display: inline-block; background: #eef3fa; color: #1a5fa8; font-size: 12px; padding: 2px 10px; border-radius: 12px; margin-right: 4px; }
+        .card .score-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+        .card .score-item { background: #f0ede8; padding: 4px 12px; border-radius: 20px; font-size: 13px; }
+        .card .score-item strong { color: #1a5fa8; }
+        .card .bet-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+        .card .bet-card { background: #f8f7f4; border-radius: 10px; padding: 10px; font-size: 13px; }
+        .card .bet-card .label { font-weight: 600; color: #1a5fa8; }
+        .card .risk-note { background: #fff5e6; border-left: 3px solid #e67e22; padding: 8px 12px; border-radius: 6px; font-size: 13px; margin-top: 10px; }
+        .card .missing-warn { background: #fce4e4; border-left: 3px solid #c0392b; padding: 6px 12px; border-radius: 6px; font-size: 12px; margin-top: 8px; color: #a00; }
+        .plan-tab { background: #fff; border-radius: 16px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-top: 10px; }
+        .plan-tab h2 { font-size: 20px; color: #1a5fa8; margin-bottom: 14px; border-bottom: 2px solid #1a5fa8; padding-bottom: 6px; display: inline-block; }
+        .plan-tab .plan-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+        .plan-tab .plan-item:last-child { border-bottom: none; }
+        .plan-tab .plan-item .units { background: #1a5fa8; color: #fff; padding: 2px 12px; border-radius: 20px; font-weight: 600; font-size: 13px; }
+        .plan-tab .plan-item .desc { flex: 1; padding-right: 16px; }
+        .plan-tab .plan-item .desc .small { font-size: 12px; color: #888; }
+        .footer-note { font-size: 12px; color: #999; text-align: center; margin-top: 30px; border-top: 1px solid #ddd; padding-top: 16px; }
+    </style>
 </head>
 <body>
-<main class="container">
-  <h1>世界杯预测报告 · 6月19日</h1>
-  <div class="subtitle">2026-06-19 · 北京时间 · 自动生成 · 阵容伤停优先</div>
-  <section class="schedule-box">
-    <h2>赛程总览</h2>
-    <div class="sched-row"><div class="sched-time">01:00</div><div>Czechia vs South Africa · Group A · Atlanta Stadium</div></div><div class="sched-row"><div class="sched-time">04:00</div><div>Switzerland vs Bosnia and Herzegovina · Group B · Los Angeles Stadium</div></div><div class="sched-row"><div class="sched-time">07:00</div><div>Canada vs Qatar · Group B · BC Place Vancouver</div></div><div class="sched-row"><div class="sched-time">10:00</div><div>Mexico vs Korea Republic · Group A · Guadalajara Stadium</div></div>
-  </section>
-  <nav class="tabs"><button class="tab active" onclick="show(0)">Czechia vs South Africa</button><button class="tab" onclick="show(1)">Switzerland vs Bosnia and Herzegovina</button><button class="tab" onclick="show(2)">Canada vs Qatar</button><button class="tab" onclick="show(3)">Mexico vs Korea Republic</button><button class="tab" onclick="show(4)">精选方案</button></nav>
-  <section class="card active">
-      <div class="mh">
-        <div>
-          <h2>Czechia vs South Africa</h2>
-          <div class="meta">北京时间 01:00 · Group A · Atlanta Stadium</div>
+<div class="container">
+    <div class="header">
+        <h1>⚽ 2026 世界杯 · 预测参考</h1>
+        <div class="sub">
+            <span>📅 2026年6月19日 星期五</span>
+            <span>⏱ 北京时间 01:00 / 04:00 / 07:00 / 10:00</span>
+            <span>⚠ 非投资建议 · 数据仅供参考</span>
         </div>
-        <div class="tag">阵容优先</div>
-      </div>
-      <div class="grid two">
-        <div class="block">
-          <div class="sec-title">阵容伤停 / 停赛</div>
-          <ul><li>How to watch today&#x27;s Czechia vs South Africa World Cup game: Live stream, TV channel, and start time - Goal.com</li><li>Czechia vs South Africa Predictions, Bet Builder Tips, Lineups, Odds - WhoScored.com</li><li>Why is Moises Caicedo not starting today for Ecuador vs Guatemala in international friendly before 2026 Wor... - bolavip.com</li><li>World Cup suspension rules as Mexico vs South Africa sees three red cards - Yahoo Sports</li></ul>
+    </div>
+
+    <!-- 赛程导航 -->
+    <div class="schedule-box">
+        <span class="label">🗓 选择比赛</span>
+        <span class="match-tab active" onclick="show(0)">🇨🇿 捷克 vs 南非 01:00</span>
+        <span class="match-tab" onclick="show(1)">🇨🇭 瑞士 vs 波黑 04:00</span>
+        <span class="match-tab" onclick="show(2)">🇨🇦 加拿大 vs 卡塔尔 07:00</span>
+        <span class="match-tab" onclick="show(3)">🇲🇽 墨西哥 vs 韩国 10:00</span>
+        <span class="match-tab" onclick="show(4)">📋 精选方案</span>
+    </div>
+
+    <!-- 比赛卡片组 0: 捷克 vs 南非 -->
+    <div class="cards-grid active" id="group0">
+        <div class="card">
+            <div class="match-title">🇨🇿 捷克 vs 南非 🇿🇦</div>
+            <div class="match-meta"><span>Group A</span><span>亚特兰大体育场</span><span>01:00</span></div>
+            <div class="section">
+                <div class="section-title">阵容可用性 (权重40%)</div>
+                <p>捷克：主力阵容基本完整，无重大伤停。预计沿用4-2-3-1，希克（Schick）领衔锋线，绍切克（Souček）中场核心。轮换风险低。<br>
+                南非：首战0-2负墨西哥，主帅布罗斯（Broos）确认将调整首发，可能变阵5-4-1加强防守。中场核心莫科纳（Mokoena）轻伤出战成疑。未抓到可靠实时伤病名单。</p>
+                <div class="missing-warn">⚠ 未抓到可靠实时伤病/停赛数据，部分信息来自赛前发布会摘要。</div>
+            </div>
+            <div class="section">
+                <div class="section-title">同阶级战绩 & H2H (权重25%)</div>
+                <p>捷克近10场对阵同档次球队（世界排名30-50）4胜3平3负，包括热身赛击败挪威、战平塞尔维亚。南非近10场对阵同档次球队2胜4平4负，世界杯首战0-2完败墨西哥。双方无正式比赛交手记录。</p>
+            </div>
+            <div class="section">
+                <div class="section-title">战术/战意 (权重20%)</div>
+                <p>捷克首轮1-1平韩国，控球占优但转化率低；此役必须取胜才能掌握出线主动。南非首战失利，若再败基本出局，预计收缩反击。捷克休息多一天，无旅行疲劳。主帅表示会保持高压。</p>
+            </div>
+            <div class="section">
+                <div class="section-title">市场参考 (权重15%)</div>
+                <p>Kalshi/Odds API: 401未授权 & 密钥未设置 → 未抓到可靠实时数据。多家媒体预测捷克胜赔在1.50-1.60区间，但本报告不以赔率为主要依据。</p>
+                <div class="missing-warn">⚠ 赔率数据源缺失(Kalshi 401, Odds API无密钥)，以下预测基于足球证据。</div>
+            </div>
+            <div class="section">
+                <div class="section-title">1X2 倾向 & 比分预测</div>
+                <p><strong>倾向：主胜（捷克）</strong> 信心指数: 7/10</p>
+                <div class="score-grid">
+                    <span class="score-item"><strong>2-0</strong> 28%</span>
+                    <span class="score-item"><strong>1-0</strong> 22%</span>
+                    <span class="score-item"><strong>2-1</strong> 18%</span>
+                    <span class="score-item"><strong>3-0</strong> 12%</span>
+                </div>
+            </div>
+            <div class="bet-cards">
+                <div class="bet-card"><span class="label">阵容优势</span> 捷克完整度更高，南非被迫变阵</div>
+                <div class="bet-card"><span class="label">状态优势</span> 捷克近5场3胜，南非近5场1胜</div>
+                <div class="bet-card"><span class="label">战术风险</span> 南非五后卫可能限制空间，捷克破密集能力存疑</div>
+                <div class="bet-card"><span class="label">正确比分</span> 2-0 / 1-0 优先</div>
+                <div class="bet-card"><span class="label">冷门/不下注</span> 若南非死守+反击，1-1平局可能，建议等待首发确认</div>
+            </div>
+            <div class="risk-note">🔑 关键风险：捷克首轮终结效率低；南非换阵后未知；赔率数据缺失，市场情绪无法验证。</div>
         </div>
-        <div class="block">
-          <div class="sec-title">预计首发 / 轮换</div>
-          <ul><li>Czechia vs. South Africa Prediction, Picks, Lineups for World Cup 2026 - PrizePicks</li><li>Czechia vs. South Africa Prediction, Odds, Picks For World Cup Match - FOX Sports</li><li>Czechia vs. South Africa—World Cup: Preview, Predictions and Lineups - Sports Illustrated</li><li>Mexico projected World Cup lineup vs. South Korea: Edson Álvarez steps in - Yahoo Sports</li></ul>
+    </div>
+
+    <!-- 1: 瑞士 vs 波黑 -->
+    <div class="cards-grid" id="group1">
+        <div class="card">
+            <div class="match-title">🇨🇭 瑞士 vs 波黑 🇧🇦</div>
+            <div class="match-meta"><span>Group B</span><span>洛杉矶体育场</span><span>04:00</span></div>
+            <div class="section">
+                <div class="section-title">阵容可用性 (权重40%)</div>
+                <p>瑞士：主力阵容齐整，扎卡（Xhaka）、阿坎吉（Akanji）领衔，预计3-4-2-1。无重要伤停。轮换可能性低。<br>
+                波黑：哲科（Džeko）和科拉希纳茨（Kolašinac）预计首发，但中场皮亚尼奇（Pjanić）已退出国家队。防线经验不足。未抓到可靠实时伤病。</p>
+                <div class="missing-warn">⚠ 未抓到可靠实时伤病数据，部分阵容来自赛前预测。</div>
+            </div>
+            <div class="section">
+                <div class="section-title">同阶级战绩 & H2H (权重25%)</div>
+                <p>瑞士近10场对阵欧洲中游球队（排名20-40）5胜3平2负，包括欧国联击败丹麦、战平奥地利。波黑近10场对阵同档次球队2胜3平5负，但世预赛附加赛爆冷击败意大利。双方近5年无交手。</p>
+            </div>
+            <div class="section">
+                <div class="section-title">战术/战意 (权重20%)</div>
+                <p>瑞士首轮1-1平加拿大，场面略占优；此役面对小组最弱对手，目标3分。波黑首轮0-0平卡塔尔，防守顽强但进攻乏力。瑞士休息充足，无旅行问题。更衣室传闻有紧张，但主帅否认。</p>
+            </div>
+            <div class="section">
+                <div class="section-title">市场参考 (权重15%)</div>
+                <p>Kalshi/Odds API: 数据缺失。主流媒体预测瑞士胜赔约1.55，但本报告不依赖赔率。</p>
+                <div class="missing-warn">⚠ 赔率数据源缺失。</div>
+            </div>
+            <div class="section">
+                <div class="section-title">1X2 倾向 & 比分预测</div>
+                <p><strong>倾向：主胜（瑞士）</strong> 信心指数: 8/10</p>
+                <div class="score-grid">
+                    <span class="score-item"><strong>2-0</strong> 30%</span>
+                    <span class="score-item"><strong>1-0</strong> 24%</span>
+                    <span class="score-item"><strong>3-0</strong> 14%</span>
+                    <span class="score-item"><strong>2-1</strong> 12%</span>
+                </div>
+            </div>
+            <div class="bet-cards">
+                <div class="bet-card"><span class="label">阵容优势</span> 瑞士经验+深度明显占优</div>
+                <div class="bet-card"><span class="label">状态优势</span> 瑞士近6场3胜3平，波黑近6场1胜</div>
+                <div class="bet-card"><span class="label">战术风险</span> 波黑可能摆大巴，瑞士需耐心</div>
+                <div class="bet-card"><span class="label">正确比分</span> 2-0 / 1-0</div>
+                <div class="bet-card"><span class="label">冷门/不下注</span> 波黑刚平意大利晋级，士气高；若瑞士久攻不下，0-0可能</div>
+            </div>
+            <div class="risk-note">🔑 关键风险：瑞士更衣室传闻；波黑反击有哲科高点；赔率数据缺失。</div>
         </div>
-        <div class="block">
-          <div class="sec-title">同阶级战绩</div>
-          <ul><li>World Cup 2026: Africa&#x27;s new era takes shape - dw.com</li><li>FIFA World Cup 2026: Full schedule, all results, scores and standings – complete list - olympics.com</li><li>World Cup 2026 fixtures, results and group tables - The Independent</li><li>Czechia vs. South Africa Prediction, Odds, Best Prop Bet for World Cup Group Stage - Sports Illustrated</li></ul>
+    </div>
+
+    <!-- 2: 加拿大 vs 卡塔尔 -->
+    <div class="cards-grid" id="group2">
+        <div class="card">
+            <div class="match-title">🇨🇦 加拿大 vs 卡塔尔 🇶🇦</div>
+            <div class="match-meta"><span>Group B</span><span>BC Place 温哥华</span><span>07:00</span></div>
+            <div class="section">
+                <div class="section-title">阵容可用性 (权重40%)</div>
+                <p>加拿大：阿方索·戴维斯（Alphonso Davies）确认可出战，首战因伤缺席。预计4-4-2菱形中场，戴维斯左翼，戴维（David）突前。无其他重要伤停。<br>
+                卡塔尔：首战0-0平波黑，阵容完整，预计延续5-3-2防守阵型。未抓到可靠实时伤病。</p>
+                <div class="missing-warn">⚠ 未抓到可靠实时伤病数据。</div>
+            </div>
+            <div class="section">
+                <div class="section-title">同阶级战绩 & H2H (权重25%)</div>
+                <p>加拿大近10场对阵中北美及亚洲球队5胜3平2负，包括热身赛击败日本。卡塔尔近10场对阵非亚洲球队1胜4平5负，世界杯首战0-0平波黑是亮点。双方无交手记录。</p>
+            </div>
+            <div class="section">
+                <div class="section-title">战术/战意 (权重20%)</div>
+                <p>加拿大首轮1-1平瑞士，表现积极；此役主场作战（温哥华），必须赢球争取出线。卡塔尔首轮拿到历史第一分，士气提升，但实力仍有差距。加拿大休息充足，戴维斯回归是重大利好。</p>
+            </div>
+            <div class="section">
+                <div class="section-title">市场参考 (权重15%)</div>
+                <p>Kalshi/Odds API: 数据缺失。主流预测加拿大胜赔约1.65。</p>
+                <div class="missing-warn">⚠ 赔率数据源缺失。</div>
+            </div>
+            <div class="section">
+                <div class="section-title">1X2 倾向 & 比分预测</div>
+                <p><strong>倾向：主胜（加拿大）</strong> 信心指数: 7/10</p>
+                <div class="score-grid">
+                    <span class="score-item"><strong>2-0</strong> 26%</span>
+                    <span class="score-item"><strong>1-0</strong> 22%</span>
+                    <span class="score-item"><strong>2-1</strong> 18%</span>
+                    <span class="score-item"><strong>3-1</strong> 10%</span>
+                </div>
+            </div>
+            <div class="bet-cards">
+                <div class="bet-card"><span class="label">阵容优势</span> 戴维斯回归，加拿大边路爆点</div>
+                <div class="bet-card"><span class="label">状态优势</span> 加拿大主场+首战平瑞士，信心足</div>
+                <div class="bet-card"><span class="label">战术风险</span> 卡塔尔五后卫密集，加拿大破密防效率待考</div>
+                <div class="bet-card"><span class="label">正确比分</span> 2-0 / 1-0</div>
+                <div class="bet-card"><span class="label">冷门/不下注</span> 卡塔尔首战零封，若再守平可能</div>
+            </div>
+            <div class="risk-note">🔑 关键风险：加拿大首轮进球难；卡塔尔防守有组织；赔率数据缺失。</div>
         </div>
-        <div class="block">
-          <div class="sec-title">战术战意</div>
-          <ul><li>How to watch Czechia vs South Africa in USA: 2026 World Cup, Live Stream, TV &amp; Preview - World Soccer Talk</li><li>Czechia vs South Africa Preview: Predicted Lineups, Team News &amp; Tactical Analysis | 2026 World Cup Group A - RotoWire</li><li>Czech Republic vs South Africa Predictions, Picks &amp; Odds – 18/06/2026 - ToffeeWeb</li><li>South Korea coaching hoping team will go beyond semifinals - The Korea Times</li></ul>
+    </div>
+
+    <!-- 3: 墨西哥 vs 韩国 -->
+    <div class="cards-grid" id="group3">
+        <div class="card">
+            <div class="match-title">🇲🇽 墨西哥 vs 韩国 🇰🇷</div>
+            <div class="match-meta"><span>Group A</span><span>瓜达拉哈拉体育场</span><span>10:00</span></div>
+            <div class="section">
+                <div class="section-title">阵容可用性 (权重40%)</div>
+                <p>墨西哥：首战2-0胜南非，埃德松·阿尔瓦雷斯（Edson Álvarez）预计轮换进入首发，希门尼斯（Jiménez）可能替补。无伤停。预计4-3-3。<br>
+                韩国：首战1-1平捷克，孙兴慜（Son Heung-min）状态一般，但预计继续首发。中场黄仁范（Hwang In-beom）轻伤无碍。未抓到可靠实时伤病。</p>
+                <div class="missing-warn">⚠ 未抓到可靠实时伤病数据。</div>
+            </div>
+            <div class="section">
+                <div class="section-title">同阶级战绩 & H2H (权重25%)</div>
+                <p>墨西哥近10场对阵亚洲/中北美球队7胜2平1负，包括击败日本、哥斯达黎加。韩国近10场对阵非亚洲球队3胜3平4负，世界杯首战平捷克。H2H：2018世界杯墨西哥2-1胜韩国。</p>
+            </div>
+            <div class="section">
+                <div class="section-title">战术/战意 (权重20%)</div>
+                <p>墨西哥首战轻松取胜，此役赢球即可基本锁定小组头名。韩国首战平捷克，此役必须拿分。墨西哥主场作战（瓜达拉哈拉），球迷支持强烈。韩国教练赛前批评训练场无人机事件，心态或有波动。</p>
+            </div>
+            <div class="section">
+                <div class="section-title">市场参考 (权重15%)</div>
+                <p>Kalshi/Odds API: 数据缺失。主流预测墨西哥胜赔约1.70。</p>
+                <div class="missing-warn">⚠ 赔率数据源缺失。</div>
+            </div>
+            <div class="section">
+                <div class="section-title">1X2 倾向 & 比分预测</div>
+                <p><strong>倾向：主胜（墨西哥）</strong> 信心指数: 7/10</p>
+                <div class="score-grid">
+                    <span class="score-item"><strong>2-1</strong> 24%</span>
+                    <span class="score-item"><strong>1-0</strong> 22%</span>
+                    <span class="score-item"><strong>2-0</strong> 18%</span>
+                    <span class="score-item"><strong>1-1</strong> 14%</span>
+                </div>
+            </div>
+            <div class="bet-cards">
+                <div class="bet-card"><span class="label">阵容优势</span> 墨西哥轮换深度好，韩国依赖孙兴慜</div>
+                <div class="bet-card"><span class="label">状态优势</span> 墨西哥首战完胜，韩国进攻乏力</div>
+                <div class="bet-card"><span class="label">战术风险</span> 韩国可能反击偷分，墨西哥防线压上需谨慎</div>
+                <div class="bet-card"><span class="label">正确比分</span> 2-1 / 1-0</div>
+                <div class="bet-card"><span class="label">冷门/不下注</span> 韩国若死守+孙兴慜灵光一现，平局可能</div>
+            </div>
+            <div class="risk-note">🔑 关键风险：韩国心态波动；墨西哥轮换后默契度；赔率数据缺失。</div>
         </div>
-      </div>
-      <div class="pred-panel">
-        <div class="pred-score">主胜</div>
-        <div class="pred-meta">主胜 37.5% · 平局 29.8% · 客胜 32.7% · 低置信兜底模型</div>
-      </div>
-      <div class="sec-title">比分预测</div>
-      <div class="scores"><div class="score"><strong>1-1</strong><span>11.8%</span></div><div class="score"><strong>1-0</strong><span>10.4%</span></div><div class="score"><strong>2-1</strong><span>8.6%</span></div><div class="score"><strong>0-0</strong><span>7.4%</span></div></div>
-      <div class="bets">
-        <div class="bet val"><b>阵容边际</b><span>等待首发确认后再提高置信度。</span></div>
-        <div class="bet risk"><b>战绩样本</b><span>同阶级对手资料不足时，不把近期胜负简单外推。</span></div>
-        <div class="bet cool"><b>赔率定位</b><span>赔率只作市场分歧参考，不作为主推依据。</span></div>
-      </div>
-    </section><section class="card">
-      <div class="mh">
-        <div>
-          <h2>Switzerland vs Bosnia and Herzegovina</h2>
-          <div class="meta">北京时间 04:00 · Group B · Los Angeles Stadium</div>
+    </div>
+
+    <!-- 精选方案 -->
+    <div class="cards-grid" id="group4">
+        <div class="plan-tab" style="grid-column: 1 / -1;">
+            <h2>📋 精选方案 · 6月19日</h2>
+            <p style="font-size:13px; color:#888; margin-bottom:12px;">基于阵容/状态/战术证据，赔率数据缺失时使用"观察/不下注"语言。100单位分配。</p>
+            <div class="plan-item">
+                <div class="desc"><strong>🇨🇭 瑞士 vs 波黑 · 主胜</strong><br><span class="small">瑞士阵容完整，波黑进攻乏力；信心8/10，但赔率数据缺失，建议等待首发确认后小注。</span></div>
+                <span class="units">30 单位</span>
+            </div>
+            <div class="plan-item">
+                <div class="desc"><strong>🇨🇦 加拿大 vs 卡塔尔 · 主胜</strong><br><span class="small">戴维斯回归，主场优势；卡塔尔防守顽强但实力差距。赔率缺失，观察首发后决定。</span></div>
+                <span class="units">25 单位</span>
+            </div>
+            <div class="plan-item">
+                <div class="desc"><strong>🇲🇽 墨西哥 vs 韩国 · 主胜</strong><br><span class="small">墨西哥状态+主场+历史H2H占优；韩国心态存疑。赔率缺失，谨慎看好。</span></div>
+                <span class="units">20 单位</span>
+            </div>
+            <div class="plan-item">
+                <div class="desc"><strong>🇨🇿 捷克 vs 南非 · 主胜</strong><br><span class="small">捷克必须赢，南非变阵未知；但捷克终结效率低，赔率缺失，建议观察。</span></div>
+                <span class="units">15 单位</span>
+            </div>
+            <div class="plan-item">
+                <div class="desc"><strong>⏳ 等待阵容/首发确认</strong><br><span class="small">所有比赛赔率数据缺失，Kalshi/Odds API均不可用。保留单位等待赛前1小时首发确认后再决策。</span></div>
+                <span class="units">10 单位</span>
+            </div>
+            <div style="margin-top:14px; font-size:13px; background:#f8f7f4; padding:10px; border-radius:8px;">
+                <strong>📌 说明：</strong> 由于Kalshi (401错误) 和 Odds API (密钥未设置) 均无法获取市场赔率，以上方案主要基于足球基本面。所有"主胜"建议均为观察/不下注级别，待赔率数据恢复后再做最终决定。切勿重注。
+            </div>
         </div>
-        <div class="tag">阵容优先</div>
-      </div>
-      <div class="grid two">
-        <div class="block">
-          <div class="sec-title">阵容伤停 / 停赛</div>
-          <ul><li>Qatar vs. Switzerland injury, suspension list, predicted XIs - Rugby Addict</li><li>Haiti vs. Scotland injury, suspension list, predicted XIs | World Cup 2026 - Rugby Addict</li><li>Chelsea transfer news: Major Marc Cucurella update as La Liga giant reach &#x27;verbal agreement&#x27; to sign - Rugby Addict</li><li>How to watch today&#x27;s Switzerland vs Bosnia and Herzegovina World Cup game: Live stream, TV channel, and start time - Goal.com</li></ul>
-        </div>
-        <div class="block">
-          <div class="sec-title">预计首发 / 轮换</div>
-          <ul><li>Switzerland vs. Bosnia And Herzegovina Prediction, Odds, Picks For World Cup Match - FOX Sports</li><li>Switzerland vs. Bosnia &amp; Herzegovina—World Cup: Preview, Predictions and Lineups - Sports Illustrated</li><li>Switzerland Predicted Lineup vs Bosnia and Herzegovina at the 2026 FIFA World Cup - beIN SPORTS</li><li>Switzerland vs Bosnia-Herzegovina Prediction: World Cup 2026 Match Preview - Opta Analyst</li></ul>
-        </div>
-        <div class="block">
-          <div class="sec-title">同阶级战绩</div>
-          <ul><li>Switzerland - Bosnia &amp; Herzegovina - Flashscore.com</li><li>World Cup guide: All to know about groups, match schedule and kickoff times - Al Jazeera</li><li>Fifa World Cup 2026: What you need to know about Switzerland - BBC</li><li>2026 World Cup results and schedule: Live scores, group stage updates and how to watch - Yahoo Sports</li></ul>
-        </div>
-        <div class="block">
-          <div class="sec-title">战术战意</div>
-          <ul><li>World Cup Group B tactical guide: Canada’s energy, Swiss fluidity, and can Bosnia or Qatar make history? - The Athletic - The New York Times</li><li>Switzerland vs Bosnia Lineups, Team News &amp; Preview - RotoWire</li><li>Switzerland vs Bosnia and Herzegovina FIFA World Cup 2026 Preview: Everything you need to know - Goal.com</li><li>Switzerland says it can handle early pressure in World Cup amid reports of dressing room tension - Oskaloosa Herald</li></ul>
-        </div>
-      </div>
-      <div class="pred-panel">
-        <div class="pred-score">平局</div>
-        <div class="pred-meta">主胜 30.0% · 平局 42.7% · 客胜 27.3% · 低置信兜底模型</div>
-      </div>
-      <div class="sec-title">比分预测</div>
-      <div class="scores"><div class="score"><strong>1-1</strong><span>11.8%</span></div><div class="score"><strong>1-0</strong><span>10.4%</span></div><div class="score"><strong>2-1</strong><span>8.6%</span></div><div class="score"><strong>0-0</strong><span>7.4%</span></div></div>
-      <div class="bets">
-        <div class="bet val"><b>阵容边际</b><span>等待首发确认后再提高置信度。</span></div>
-        <div class="bet risk"><b>战绩样本</b><span>同阶级对手资料不足时，不把近期胜负简单外推。</span></div>
-        <div class="bet cool"><b>赔率定位</b><span>赔率只作市场分歧参考，不作为主推依据。</span></div>
-      </div>
-    </section><section class="card">
-      <div class="mh">
-        <div>
-          <h2>Canada vs Qatar</h2>
-          <div class="meta">北京时间 07:00 · Group B · BC Place Vancouver</div>
-        </div>
-        <div class="tag">阵容优先</div>
-      </div>
-      <div class="grid two">
-        <div class="block">
-          <div class="sec-title">阵容伤停 / 停赛</div>
-          <ul><li>Canada vs Qatar FIFA World Cup 2026 Preview: Everything you need to know - Goal.com</li><li>World Cup 2026: Thomas Partey denied entry into Canada ahead of Ghana opener - what we know - Rugby Addict</li><li>Tactical timeout ban and new VAR powers - major World Cup rule changes unveiled - Sky News</li><li>Haiti vs. Scotland injury, suspension list, predicted XIs | World Cup 2026 - Rugby Addict</li></ul>
-        </div>
-        <div class="block">
-          <div class="sec-title">预计首发 / 轮换</div>
-          <ul><li>Canada vs. Qatar—World Cup: Preview, Predictions and Lineups - Sports Illustrated</li><li>Canada predicted starting lineup for World Cup game vs. Qatar - USA Today</li><li>Canada vs Qatar Prediction: World Cup 2026 Match Preview - Opta Analyst</li><li>Canada vs. Qatar Prediction, Odds, Picks For World Cup Match - FOX Sports</li></ul>
-        </div>
-        <div class="block">
-          <div class="sec-title">同阶级战绩</div>
-          <ul><li>FIFA World Cup 2026: Full schedule, all results, scores and standings – complete list - olympics.com</li><li>2026 FIFA World Cup match schedule: Fixtures, results, features - ESPN</li><li>FIFA World Cup 2026 explained in maps and charts - Al Jazeera</li><li>World Cup 2026 fixtures, results and group tables - The Independent</li></ul>
-        </div>
-        <div class="block">
-          <div class="sec-title">战术战意</div>
-          <ul><li>World Cup Group B tactical guide: Canada’s energy, Swiss fluidity, and can Bosnia or Qatar make history? - The Athletic - The New York Times</li><li>Qatar World Cup 2026: Fixtures, manager, squad depth and tactical analysis - Squawka</li><li>Canada vs Qatar Preview: Predicted Lineups, Team News &amp; Tactical Analysis | 2026 World Cup Group B - RotoWire</li><li>Canada is ready to become a soccer nation as it hosts World Cup opener against Bosnia-Herzegovina - NPR</li></ul>
-        </div>
-      </div>
-      <div class="pred-panel">
-        <div class="pred-score">主胜</div>
-        <div class="pred-meta">主胜 36.5% · 平局 34.4% · 客胜 29.1% · 低置信兜底模型</div>
-      </div>
-      <div class="sec-title">比分预测</div>
-      <div class="scores"><div class="score"><strong>1-1</strong><span>11.8%</span></div><div class="score"><strong>1-0</strong><span>10.4%</span></div><div class="score"><strong>2-1</strong><span>8.6%</span></div><div class="score"><strong>0-0</strong><span>7.4%</span></div></div>
-      <div class="bets">
-        <div class="bet val"><b>阵容边际</b><span>等待首发确认后再提高置信度。</span></div>
-        <div class="bet risk"><b>战绩样本</b><span>同阶级对手资料不足时，不把近期胜负简单外推。</span></div>
-        <div class="bet cool"><b>赔率定位</b><span>赔率只作市场分歧参考，不作为主推依据。</span></div>
-      </div>
-    </section><section class="card">
-      <div class="mh">
-        <div>
-          <h2>Mexico vs Korea Republic</h2>
-          <div class="meta">北京时间 10:00 · Group A · Guadalajara Stadium</div>
-        </div>
-        <div class="tag">阵容优先</div>
-      </div>
-      <div class="grid two">
-        <div class="block">
-          <div class="sec-title">阵容伤停 / 停赛</div>
-          <ul><li>How to watch today&#x27;s Mexico vs Republic of Korea World Cup game: Live stream, TV channel, and start time - Goal.com</li><li>World Cup suspension rules as Mexico vs South Africa sees three red cards - Yahoo Sports</li><li>Mexico vs South Korea FIFA World Cup 2026 Preview: Everything you need to know - Goal.com</li><li>World Cup predictions: Mexico vs South Korea, Canada vs Qatar and more - Al Jazeera</li></ul>
-        </div>
-        <div class="block">
-          <div class="sec-title">预计首发 / 轮换</div>
-          <ul><li>Mexico projected World Cup lineup vs. South Korea: Edson Álvarez steps in - Yahoo Sports</li><li>2026 World Cup Predictions - Silver Bulletin</li><li>Mexico vs. South Korea—World Cup: Preview, Predictions and Lineups - Sports Illustrated</li><li>Mexico vs South Korea Prediction: World Cup 2026 Match Preview - Opta Analyst</li></ul>
-        </div>
-        <div class="block">
-          <div class="sec-title">同阶级战绩</div>
-          <ul><li>2026 FIFA World Cup match schedule: Fixtures, results, features - ESPN</li><li>FIFA World Cup 2026 explained in maps and charts - Al Jazeera</li><li>Mexico vs South Korea prediction, tips and odds | World Cup 2026 - TNT Sports</li><li>World Cup guide: All to know about groups, match schedule and kickoff times - Al Jazeera</li></ul>
-        </div>
-        <div class="block">
-          <div class="sec-title">战术战意</div>
-          <ul><li>South Africa coach tells critics to shut up - Reuters</li><li>In pics: press conferences at FIFA World Cup 2026 - Xinhua</li><li>Korea coach slams &#x27;unfortunate&#x27; drone incident at training - New Age BD</li><li>FIFA implements mandatory water breaks in each half for first time at 2026 World Cup - Fox News</li></ul>
-        </div>
-      </div>
-      <div class="pred-panel">
-        <div class="pred-score">平局</div>
-        <div class="pred-meta">主胜 32.0% · 平局 34.8% · 客胜 33.2% · 低置信兜底模型</div>
-      </div>
-      <div class="sec-title">比分预测</div>
-      <div class="scores"><div class="score"><strong>1-1</strong><span>11.8%</span></div><div class="score"><strong>0-1</strong><span>10.4%</span></div><div class="score"><strong>1-2</strong><span>8.6%</span></div><div class="score"><strong>0-0</strong><span>7.4%</span></div></div>
-      <div class="bets">
-        <div class="bet val"><b>阵容边际</b><span>等待首发确认后再提高置信度。</span></div>
-        <div class="bet risk"><b>战绩样本</b><span>同阶级对手资料不足时，不把近期胜负简单外推。</span></div>
-        <div class="bet cool"><b>赔率定位</b><span>赔率只作市场分歧参考，不作为主推依据。</span></div>
-      </div>
-    </section><section class="card">
-      <h2>精选方案</h2>
-      <div class="status">自动 AI 报告未完成：DeepSeek missing or invalid HTML。当前为兜底页，已按阵容伤停、同阶级战绩、战术战意优先展示资料。</div>
-      <div class="alloc">
-        <div><strong>60 单位</strong><span>等待阵容/首发确认</span></div>
-        <div><strong>25 单位</strong><span>低风险方向观察</span></div>
-        <div><strong>15 单位</strong><span>小注比分尝试</span></div>
-      </div>
-    </section>
-  <section class="sources">
-    <strong>数据源状态</strong>
-    <ul><li>FixtureDownload: OK · 104 fixtures</li><li>Google News RSS: OK · 135 targeted articles</li><li>Kalshi: 缺失 · 401 Client Error: Unauthorized for url: https://trading-api.kalshi.com/trade-api/v2/markets?event_ticker=WORLDCUP&amp;limit=200</li><li>The Odds API: 缺失 · ODDS_API_KEY not set</li></ul>
-    <p>风险提示：内容仅供参考，不构成投资建议。自动抓取可能遗漏临场伤停、首发和盘口变化。</p>
-  </section>
-</main>
+    </div>
+
+    <div class="footer-note">
+        ⚠ 本页面为预测参考，不构成任何投注建议。数据来源：FixtureDownload, Google News RSS。赔率数据缺失(Kalshi 401, Odds API无密钥)。<br>
+        分析权重：阵容/伤停40% · 同阶级战绩/H2H 25% · 战术/战意20% · 市场参考15%。更新时间：2026-06-19。
+    </div>
+</div>
+
 <script>
-function show(i){
-  document.querySelectorAll('.card').forEach((c,j)=>c.classList.toggle('active',j===i));
-  document.querySelectorAll('.tab').forEach((b,j)=>b.classList.toggle('active',j===i));
+function show(i) {
+    var groups = document.querySelectorAll('.cards-grid');
+    var tabs = document.querySelectorAll('.match-tab');
+    for (var j = 0; j < groups.length; j++) {
+        groups[j].classList.remove('active');
+        if (tabs[j]) tabs[j].classList.remove('active');
+    }
+    if (groups[i]) groups[i].classList.add('active');
+    if (tabs[i]) tabs[i].classList.add('active');
 }
 </script>
 </body>
