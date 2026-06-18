@@ -2,47 +2,68 @@ name: Daily World Cup Report
 
 on:
   schedule:
-    - cron: '0 4 * * *'
+    # 12:05 Beijing time. The generator uses Asia/Shanghai and defaults to tomorrow.
+    - cron: "5 4 * * *"
   workflow_dispatch:
     inputs:
       date:
-        description: 'Target date (YYYY-MM-DD), leave empty for tomorrow'
+        description: "Target date, for example 2026-06-18. Leave empty for tomorrow Beijing time."
         required: false
-        default: ''
+        default: ""
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  generate:
+  generate-and-deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
-      - name: Setup Python
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install requests beautifulsoup4 openai
+        run: pip install -r requirements.txt
 
-      - name: Generate daily report
+      - name: Generate report and index
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           TARGET_DATE: ${{ github.event.inputs.date }}
         run: python scripts/generate_daily.py
 
-      - name: Commit and push
+      - name: Commit generated files
         run: |
           git config user.name "World Cup Bot"
           git config user.email "bot@worldcup.local"
-          git add -A
+          git add index.html reports .nojekyll
           if git diff --staged --quiet; then
-            echo "No changes to commit"
+            echo "No generated changes to commit"
           else
-            git commit -m "Auto: report for $(date +%Y-%m-%d)"
+            git commit -m "Auto: update daily report"
             git push
           fi
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
