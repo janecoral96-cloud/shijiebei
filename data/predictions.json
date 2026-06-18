@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-06-18",
+  "predictions": [
+    {
+      "date_beijing": "2026-06-19",
+      "time_beijing": "01:00",
+      "home_team": "Czechia",
+      "away_team": "South Africa",
+      "group": "Group A",
+      "venue": "Atlanta Stadium",
+      "report": "reports/2026-06-19.html",
+      "pick_1x2": "home",
+      "primary_score": "2-1",
+      "score_candidates": ["2-1", "1-1", "1-0", "2-0"],
+      "confidence": 6,
+      "notes": "Sample report prediction: Czechia edge, South Africa defensive suspension risk."
+    },
+    {
+      "date_beijing": "2026-06-19",
+      "time_beijing": "04:00",
+      "home_team": "Switzerland",
+      "away_team": "Bosnia and Herzegovina",
+      "group": "Group B",
+      "venue": "Los Angeles Stadium",
+      "report": "reports/2026-06-19.html",
+      "pick_1x2": "home",
+      "primary_score": "1-0",
+      "score_candidates": ["1-0", "1-1", "2-0", "2-1"],
+      "confidence": 6,
+      "notes": "Sample report prediction: Swiss midfield control, low-scoring script."
+    },
+    {
+      "date_beijing": "2026-06-19",
+      "time_beijing": "07:00",
+      "home_team": "Canada",
+      "away_team": "Qatar",
+      "group": "Group B",
+      "venue": "BC Place Vancouver",
+      "report": "reports/2026-06-19.html",
+      "pick_1x2": "home",
+      "primary_score": "2-0",
+      "score_candidates": ["2-0", "1-0", "2-1", "3-0"],
+      "confidence": 7,
+      "notes": "Sample report prediction: Canada home edge and Qatar scoring concern."
+    },
+    {
+      "date_beijing": "2026-06-19",
+      "time_beijing": "10:00",
+      "home_team": "Mexico",
+      "away_team": "Korea Republic",
+      "group": "Group A",
+      "venue": "Guadalajara Stadium",
+      "report": "reports/2026-06-19.html",
+      "pick_1x2": "draw",
+      "primary_score": "1-1",
+      "score_candidates": ["1-1", "2-2", "1-0", "0-1"],
+      "confidence": 5,
+      "notes": "Sample report prediction: balanced match, Mexico defensive absence and Korea counter threat."
+    }
+  ]
+}

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>世界杯每日投注报告</title>
+<title>世界杯预测报告</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;background:#f0ede8;color:#1a1a1a;min-height:100vh;padding:36px 18px}
@@ -12,6 +12,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",s
 h1{font-size:30px;line-height:1.2}
 .sub{margin-top:8px;color:#666;font-size:14px}
 .updated{color:#888;font-size:12px;white-space:nowrap}
+.section-title{font-size:13px;font-weight:800;color:#666;text-transform:uppercase;letter-spacing:.04em;margin:24px 0 10px}
 .calendar-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
 .day-card{position:relative;display:flex;flex-direction:column;gap:7px;min-height:132px;padding:18px;border:1px solid #ddd;border-radius:8px;background:#fff;color:inherit;text-decoration:none;transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease}
 .day-card:hover{transform:translateY(-2px);border-color:#1a5fa8;box-shadow:0 10px 24px rgba(0,0,0,.08)}
@@ -19,7 +20,8 @@ h1{font-size:30px;line-height:1.2}
 .date-label{font-size:13px;color:#666}
 .match-count{margin-top:auto;width:max-content;border-radius:999px;background:#e8f2fc;color:#0d4e9e;padding:3px 9px;font-size:12px;font-weight:700}
 .arrow{position:absolute;right:16px;top:18px;color:#aaa;font-size:20px}
-.empty{background:#fff;border:1px solid #ddd;border-radius:8px;padding:20px;color:#666}
+.tool-card{min-height:112px}
+.tool-card .date-big{font-size:24px}
 .footer{margin-top:28px;color:#777;font-size:12px;line-height:1.7}
 @media (max-width:640px){.header{display:block}.updated{margin-top:10px;white-space:normal}h1{font-size:25px}}
 </style>
@@ -28,26 +30,39 @@ h1{font-size:30px;line-height:1.2}
 <main class="page">
   <header class="header">
     <div>
-      <h1>世界杯每日投注报告</h1>
-      <div class="sub">按日期打开对应 HTML 报告。</div>
+      <h1>世界杯预测报告</h1>
+      <div class="sub">按日期查看预测报告，并在赛后查看准确率复盘。</div>
     </div>
     <div class="updated">北京时间 2026-06-18 22:15 更新</div>
   </header>
+
+  <div class="section-title">复盘看板</div>
+  <section class="calendar-grid" aria-label="复盘入口">
+    <a class="day-card tool-card" href="accuracy.html">
+      <span class="date-big">预测准确率</span>
+      <span class="date-label">1X2 / 主比分 / 候选比分</span>
+      <span class="match-count">查看复盘</span>
+      <span class="arrow">→</span>
+    </a>
+  </section>
+
+  <div class="section-title">每日报告</div>
   <section class="calendar-grid" aria-label="报告日期列表">
-<a class="day-card" href="reports/2026-06-19.html">
+    <a class="day-card" href="reports/2026-06-19.html">
       <span class="date-big">19</span>
       <span class="date-label">2026年6月 · 周五</span>
       <span class="match-count">查看报告</span>
       <span class="arrow">→</span>
     </a>
-<a class="day-card" href="reports/2026-06-18.html">
+    <a class="day-card" href="reports/2026-06-18.html">
       <span class="date-big">18</span>
       <span class="date-label">2026年6月 · 周四</span>
       <span class="match-count">查看报告</span>
       <span class="arrow">→</span>
     </a>
   </section>
-  <footer class="footer">页面为静态 HTML，由 GitHub Actions 自动抓取赛程、阵容伤停、同级别战绩和战术上下文并发布。内容仅供参考，不构成投资建议。</footer>
+
+  <footer class="footer">页面为静态 HTML。预测记录保存在 data/predictions.json，赛后运行 scripts/update_accuracy.py 生成准确率看板。</footer>
 </main>
 </body>
 </html>
