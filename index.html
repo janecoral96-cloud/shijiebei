@@ -3,156 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2026世界杯 · 每日投注报告</title>
+<title>世界杯每日投注报告</title>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-    background:#f0ede8;color:#1a1a1a;
-    min-height:100vh;
-    display:flex;flex-direction:column;align-items:center;
-    padding:40px 20px;
-  }
-  .header{
-    text-align:center;margin-bottom:40px;
-  }
-  .header h1{
-    font-size:28px;font-weight:800;
-    background:linear-gradient(135deg,#1a5fa8,#0d4e9e);
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    background-clip:text;
-  }
-  .header .sub{
-    font-size:14px;color:#888;margin-top:8px;
-  }
-  .calendar-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-    gap:16px;
-    max-width:920px;width:100%;
-  }
-  .day-card{
-    background:#fff;
-    border-radius:12px;
-    border:1px solid #ddd;
-    padding:20px;
-    text-decoration:none;
-    color:inherit;
-    transition:all .2s;
-    display:flex;flex-direction:column;gap:8px;
-    position:relative;overflow:hidden;
-  }
-  .day-card:hover{
-    transform:translateY(-3px);
-    box-shadow:0 8px 25px rgba(0,0,0,.1);
-    border-color:#1a5fa8;
-  }
-  .day-card .date-big{
-    font-size:32px;font-weight:800;color:#1a5fa8;
-    line-height:1;
-  }
-  .day-card .date-label{
-    font-size:12px;color:#888;
-  }
-  .day-card .match-count{
-    font-size:13px;color:#555;
-    margin-top:4px;
-    padding-top:10px;
-    border-top:1px solid #f0ede8;
-  }
-  .day-card .arrow{
-    position:absolute;right:16px;top:50%;transform:translateY(-50%);
-    font-size:20px;color:#ccc;transition:color .2s;
-  }
-  .day-card:hover .arrow{color:#1a5fa8;}
-  .day-card.disabled{
-    opacity:.45;pointer-events:none;
-    background:#f8f7f4;
-  }
-  .day-card.disabled .date-big{color:#aaa;}
-  .day-card .badge{
-    display:inline-block;font-size:10px;padding:2px 8px;border-radius:10px;
-    background:#e8f4ff;color:#0d4e9e;
-  }
-  .footer{
-    margin-top:40px;font-size:11px;color:#aaa;text-align:center;
-  }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;background:#f0ede8;color:#1a1a1a;min-height:100vh;padding:36px 18px}
+.page{width:min(960px,100%);margin:0 auto}
+.header{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;border-bottom:1px solid #d8d2c8;padding-bottom:22px;margin-bottom:22px}
+h1{font-size:30px;line-height:1.2}
+.sub{margin-top:8px;color:#666;font-size:14px}
+.updated{color:#888;font-size:12px;white-space:nowrap}
+.calendar-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.day-card{position:relative;display:flex;flex-direction:column;gap:7px;min-height:132px;padding:18px;border:1px solid #ddd;border-radius:8px;background:#fff;color:inherit;text-decoration:none;transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease}
+.day-card:hover{transform:translateY(-2px);border-color:#1a5fa8;box-shadow:0 10px 24px rgba(0,0,0,.08)}
+.date-big{font-size:34px;font-weight:800;line-height:1;color:#1a5fa8}
+.date-label{font-size:13px;color:#666}
+.match-count{margin-top:auto;width:max-content;border-radius:999px;background:#e8f2fc;color:#0d4e9e;padding:3px 9px;font-size:12px;font-weight:700}
+.arrow{position:absolute;right:16px;top:18px;color:#aaa;font-size:20px}
+.empty{background:#fff;border:1px solid #ddd;border-radius:8px;padding:20px;color:#666}
+.footer{margin-top:28px;color:#777;font-size:12px;line-height:1.7}
+@media (max-width:640px){.header{display:block}.updated{margin-top:10px;white-space:normal}h1{font-size:25px}}
 </style>
 </head>
 <body>
-
-<div class="header">
-  <h1>⚽ 2026世界杯 · 每日投注报告</h1>
-  <div class="sub">点击日期卡片查看当日详细分析报告</div>
-</div>
-
-<div class="calendar-grid">
-  <!-- 6月18日 — 已有报告 -->
-  <a href="reports/2026-06-18.html" class="day-card">
-    <div class="date-big">18</div>
-    <div class="date-label">2026年6月 · 周四</div>
-    <div class="match-count">
-      <span class="badge">4场</span> 已发布
+<main class="page">
+  <header class="header">
+    <div>
+      <h1>世界杯每日投注报告</h1>
+      <div class="sub">按日期打开对应 HTML 报告。</div>
     </div>
-    <div class="arrow">→</div>
-  </a>
-
-  <!-- 占位：6月19日 -->
-    <a href="reports/2026-06-19.html" class="day-card">
-    <div class="date-big">19</div>
-    <div class="date-label">2026年6月 · 周五</div>
-    <div class="match-count">
-      <span class="badge">1场</span> 已发布
-    </div>
-    <div class="arrow">→</div>
-  </a>
-
-  <!-- 占位：6月20日 -->
-  <div class="day-card disabled">
-    <div class="date-big">20</div>
-    <div class="date-label">2026年6月 · 周六</div>
-    <div class="match-count">即将更新</div>
-  </div>
-
-  <!-- 占位：6月21日 -->
-  <div class="day-card disabled">
-    <div class="date-big">21</div>
-    <div class="date-label">2026年6月 · 周日</div>
-    <div class="match-count">即将更新</div>
-  </div>
-
-  <!-- 占位：6月22日 -->
-  <div class="day-card disabled">
-    <div class="date-big">22</div>
-    <div class="date-label">2026年6月 · 周一</div>
-    <div class="match-count">即将更新</div>
-  </div>
-
-  <!-- 占位：6月23日 -->
-  <div class="day-card disabled">
-    <div class="date-big">23</div>
-    <div class="date-label">2026年6月 · 周二</div>
-    <div class="match-count">即将更新</div>
-  </div>
-
-  <!-- 占位：6月24日 -->
-  <div class="day-card disabled">
-    <div class="date-big">24</div>
-    <div class="date-label">2026年6月 · 周三</div>
-    <div class="match-count">即将更新</div>
-  </div>
-
-  <!-- 占位：6月25日 -->
-  <div class="day-card disabled">
-    <div class="date-big">25</div>
-    <div class="date-label">2026年6月 · 周四</div>
-    <div class="match-count">即将更新</div>
-  </div>
-</div>
-
-<div class="footer">
-  报告仅供参考，不构成任何投资建议 · 理性投注，量力而行
-</div>
-
+    <div class="updated">北京时间 2026-06-18 21:28 更新</div>
+  </header>
+  <section class="calendar-grid" aria-label="报告日期列表">
+<a class="day-card" href="reports/2026-06-19.html">
+        <span class="date-big">19</span>
+        <span class="date-label">2026年6月 · 周五</span>
+        <span class="match-count">查看报告</span>
+        <span class="arrow">→</span>
+      </a>
+<a class="day-card" href="reports/2026-06-18.html">
+        <span class="date-big">18</span>
+        <span class="date-label">2026年6月 · 周四</span>
+        <span class="match-count">查看报告</span>
+        <span class="arrow">→</span>
+      </a>
+  </section>
+  <footer class="footer">页面为静态 HTML，可通过 GitHub Pages 直接访问。内容仅供参考，不构成投资建议。</footer>
+</main>
 </body>
 </html>
