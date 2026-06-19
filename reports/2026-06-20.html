@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界杯明日投注参考 · 6月20日四场</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;background:#f0ede8;color:#1a1a1a;padding:20px;font-size:14px;line-height:1.62}
+.container{max-width:980px;margin:0 auto}
+h1{font-size:24px;font-weight:800;margin-bottom:4px;color:#111}
+.subtitle{font-size:13px;color:#666;margin-bottom:18px}
+.schedule-box,.card,.final-card{background:#fff;border-radius:10px;border:1px solid #ddd;padding:18px;margin-bottom:16px}
+.schedule-box h2,.sec-title{font-size:12px;font-weight:800;color:#777;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.sched-row{display:grid;grid-template-columns:90px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid #f0ede8;font-size:13px}
+.sched-row:last-child{border-bottom:none}
+.sched-time{color:#1a5fa8;font-weight:800}
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:7px 13px;border-radius:20px;border:1px solid #ccc;background:transparent;color:#555;cursor:pointer;font-size:12px;font-family:inherit}
+.tab.active{background:#1a5fa8;color:#fff;border-color:#1a5fa8}
+.card{display:none}
+.card.active{display:block}
+.mh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #ece9e3}
+.teams{font-size:19px;font-weight:800}
+.badge{font-size:11px;color:#666;background:#f0ede8;padding:2px 9px;border-radius:10px;display:inline-block;margin-top:5px;margin-right:5px}
+.badge.hot{background:#fff4ee;color:#b54000}
+.mh-right{font-size:12px;color:#666;text-align:right}
+.weights{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.w{background:#f8f7f4;border-radius:8px;padding:10px;text-align:center}
+.w strong{display:block;font-size:19px;color:#1a5fa8}
+.w span{font-size:11px;color:#666}
+.sec{margin-bottom:18px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:#f8f7f4;border-radius:8px;padding:11px 12px}
+.stat .lbl{font-size:11px;color:#888;margin-bottom:4px}
+.stat .val{font-size:14px;font-weight:800;margin-bottom:4px}
+.stat .sub{font-size:12px;color:#555}
+.alist{list-style:none;display:flex;flex-direction:column;gap:7px}
+.alist li{font-size:13px;line-height:1.65;padding-left:16px;position:relative}
+.alist li::before{content:"";width:6px;height:6px;border-radius:50%;background:#1a5fa8;position:absolute;left:0;top:9px}
+.market{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mitem{background:#f8f7f4;border-radius:8px;padding:10px;text-align:center}
+.mitem .k{font-size:11px;color:#888}
+.mitem .v{font-size:16px;font-weight:800;color:#1a5fa8}
+.pred{background:linear-gradient(135deg,#e8f2fc,#f5f3ea);border:1px solid #c8d8f0;border-radius:12px;padding:16px;margin-bottom:14px}
+.pred-main{font-size:25px;font-weight:900;color:#0d4e9e;margin-bottom:5px}
+.pred-meta{font-size:12px;color:#2a5fb0;margin-bottom:9px}
+.score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.score{background:#e8f2fc;border-radius:8px;padding:9px;text-align:center}
+.score strong{display:block;font-size:20px;color:#0d4e9e}
+.score span{font-size:11px;color:#555}
+.bets{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bet{background:#f8f7f4;border-radius:0 8px 8px 0;padding:10px 12px;border-left:3px solid #1a5fa8}
+.bet.risk{border-left-color:#c07800}
+.bet.cool{border-left-color:#aa2222}
+.bt{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.br{font-size:13px;font-weight:800;margin-bottom:3px}
+.why{font-size:12px;color:#555;line-height:1.55}
+.risk-box{background:#fff8e6;border-radius:8px;padding:10px 13px;border-left:3px solid #e0a800;margin-top:10px}
+.risk-box strong{color:#7a4800}
+.final-title{font-size:17px;font-weight:900;margin-bottom:14px;color:#111;border-bottom:2px solid #1a5fa8;padding-bottom:8px}
+.pick{background:#f8f7f4;border-radius:9px;padding:13px 15px;margin-bottom:10px;display:grid;grid-template-columns:88px 1fr;gap:12px}
+.stars{font-size:15px;color:#c07800}
+.stars .off{color:#ccc}
+.pick .label{font-size:11px;color:#888}
+.pick .main{font-size:14px;font-weight:800;margin:2px 0}
+.pick .detail{font-size:12px;color:#555}
+.alloc{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}
+.abox{background:#f8f7f4;border-radius:8px;padding:10px;text-align:center}
+.abox .a{font-size:11px;color:#666}
+.abox .n{font-size:18px;font-weight:900;color:#1a5fa8}
+.note{font-size:12px;color:#777;background:#f8f7f4;border-radius:8px;padding:12px;margin-top:14px}
+a{color:#1a5fa8;text-decoration:none}
+@media(max-width:760px){.weights,.two-col,.market,.score-grid,.bets,.alloc{grid-template-columns:1fr}.mh{display:block}.mh-right{text-align:left;margin-top:8px}.pick{display:block}.stars{margin-bottom:5px}}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>世界杯明日投注参考 · 6月20日四场</h1>
+  <div class="subtitle">发布时间：2026-06-19 北京时间 · 目标：长期正收益，不追低赔；阵容伤停、上场人员、同阶级战绩优先，赔率仅作辅助</div>
+
+  <div class="schedule-box">
+    <h2>明天全部比赛</h2>
+    <div class="sched-row"><div class="sched-time">04:00</div><div>Group D · 美国 vs 澳大利亚 · Seattle Stadium</div></div>
+    <div class="sched-row"><div class="sched-time">07:00</div><div>Group C · 苏格兰 vs 摩洛哥 · Boston Stadium</div></div>
+    <div class="sched-row"><div class="sched-time">10:00</div><div>Group C · 巴西 vs 海地 · Philadelphia Stadium</div></div>
+    <div class="sched-row"><div class="sched-time">13:00</div><div>Group D · 土耳其 vs 巴拉圭 · San Francisco Bay Area Stadium</div></div>
+  </div>
+
+  <div class="weights">
+    <div class="w"><strong>40%</strong><span>阵容/伤停/首发</span></div>
+    <div class="w"><strong>25%</strong><span>同阶级战绩</span></div>
+    <div class="w"><strong>20%</strong><span>战术/战意</span></div>
+    <div class="w"><strong>15%</strong><span>赔率/市场辅助</span></div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="show(0)">美国 vs 澳大利亚</button>
+    <button class="tab" onclick="show(1)">苏格兰 vs 摩洛哥</button>
+    <button class="tab" onclick="show(2)">巴西 vs 海地</button>
+    <button class="tab" onclick="show(3)">土耳其 vs 巴拉圭</button>
+    <button class="tab" onclick="show(4)">精选方案</button>
+  </div>
+
+  <section class="card active">
+    <div class="mh"><div><div class="teams">美国 vs 澳大利亚</div><span class="badge">Group D</span><span class="badge hot">两队首轮均胜</span></div><div class="mh-right">04:00 北京时间<br>Seattle Stadium</div></div>
+    <div class="sec"><div class="sec-title">十项核心分析</div>
+      <div class="two-col">
+        <div class="stat"><div class="lbl">最近5场 / 近10场</div><div class="val">美国进攻上限更高，澳大利亚防守更稳</div><div class="sub">美国首轮 4-1 巴拉圭；澳大利亚首轮 2-0 土耳其。模型 xG：美国 1.23，澳大利亚 1.01。</div></div>
+        <div class="stat"><div class="lbl">排名与交锋</div><div class="val">美国纸面略优</div><div class="sub">美国世界排名和主场优势更好；双方近期正式赛交锋样本有限，风格对位比交锋更重要。</div></div>
+        <div class="stat"><div class="lbl">伤停/首发</div><div class="val">普利西奇状态是分水岭</div><div class="sub">普利西奇此前有小腿/半场被换下风险；若不满状态，美国破密集能力下降。澳大利亚预计延续低位防守和伊兰昆达反击。</div></div>
+        <div class="stat"><div class="lbl">战意/爆冷</div><div class="val">平局可接受，冷门因素中等</div><div class="sub">两队首轮均胜，平局都能接受；澳大利亚定位球、身体对抗、反击能拖住美国。</div></div>
+      </div>
+    </div>
+    <div class="sec"><div class="sec-title">战术风格与盘口热度</div>
+      <ul class="alist">
+        <li>美国：主场高压、边路速度、巴洛贡纵深；但若核心状态不满，阵地战容易降速。</li>
+        <li>澳大利亚：5-4-1/低位密集，争二点球和反击第一脚，目标是把比赛压成低比分。</li>
+        <li>主流初盘/即时盘：美国约 -160 附近偏热，主胜被主场和首战大胜抬高；追美国 ML 的赔率价值一般。</li>
+        <li>投注热度：美国主场热度高，澳大利亚受注多集中在受让和平局方向。</li>
+      </ul>
+    </div>
+    <div class="market"><div class="mitem"><div class="k">模型1X2</div><div class="v">美41 / 平29 / 澳30</div></div><div class="mitem"><div class="k">大小球</div><div class="v">小2.5 61%</div></div><div class="mitem"><div class="k">BTTS</div><div class="v">No 55%</div></div></div>
+    <div class="pred"><div class="pred-main">主预测：1-1</div><div class="pred-meta">信心 6/10 · 主要依据：澳大利亚低位 + 美国核心状态不确定</div><p>为什么：美国主场和个人能力占优，但澳大利亚首轮证明低位防守有质量。双方首轮都赢，平局对小组形势都可接受。风险是美国早进球后变 2-0，或澳大利亚定位球偷成 0-1。</p><div class="score-grid"><div class="score"><strong>1-1</strong><span>13.2%</span></div><div class="score"><strong>1-0</strong><span>13.1%</span></div><div class="score"><strong>0-1</strong><span>10.7%</span></div><div class="score"><strong>0-0</strong><span>10.6%</span></div></div></div>
+    <div class="bets">
+      <div class="bet"><div class="bt">胜平负</div><div class="br">美国胜小注 / 平局防守</div><div class="why">依据：主场、锋线质量、模型主胜最高；但平局高达28.6%。</div></div>
+      <div class="bet risk"><div class="bt">亚洲让球</div><div class="br">美国 -0.25，不追 -0.75</div><div class="why">依据：澳大利亚防守结构强、低比分、美国热度偏高。</div></div>
+      <div class="bet"><div class="bt">大小球</div><div class="br">小 2.5</div><div class="why">依据：模型小球61.2%、澳大利亚低位、美国可能耐心控节奏。</div></div>
+      <div class="bet cool"><div class="bt">BTTS / 半全场</div><div class="br">BTTS No；半场平</div><div class="why">依据：澳大利亚进攻依赖反击；半场平概率高，适合找价格。</div></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="mh"><div><div class="teams">苏格兰 vs 摩洛哥</div><span class="badge">Group C</span><span class="badge hot">苏格兰3分，摩洛哥1分</span></div><div class="mh-right">07:00 北京时间<br>Boston Stadium</div></div>
+    <div class="sec"><div class="sec-title">十项核心分析</div>
+      <div class="two-col">
+        <div class="stat"><div class="lbl">最近5场 / 近10场</div><div class="val">摩洛哥防守质量更强</div><div class="sub">苏格兰首轮 1-0 海地；摩洛哥首轮 1-1 巴西。模型 xG：苏格兰 0.90，摩洛哥 1.15。</div></div>
+        <div class="stat"><div class="lbl">排名与交锋</div><div class="val">摩洛哥明显高一档</div><div class="sub">摩洛哥排名和大赛稳定性优于苏格兰；直接交锋样本少，参考同级别战绩更有意义。</div></div>
+        <div class="stat"><div class="lbl">伤停/首发</div><div class="val">苏格兰可能变三中卫</div><div class="sub">苏格兰有拿分动机，可能保守；摩洛哥预计延续边路速度和中场压迫。</div></div>
+        <div class="stat"><div class="lbl">战意/爆冷</div><div class="val">苏格兰有拖平能力</div><div class="sub">苏格兰3分在手，1分也可接受；定位球是最大冷门入口。</div></div>
+      </div>
+    </div>
+    <div class="sec"><div class="sec-title">战术风格与盘口热度</div><ul class="alist"><li>苏格兰：身体对抗、定位球、低位和二点球，优先降低摩洛哥速度空间。</li><li>摩洛哥：边路推进、技术优势、防守纪律强，对巴西仍能抗衡说明同阶级战绩含金量高。</li><li>盘口：市场偏摩洛哥，但平局概率不低；摩洛哥 -0.25 比 -0.5 更稳。</li><li>热度：摩洛哥因战平巴西吸热；苏格兰首胜会带来小球和受让热度。</li></ul></div>
+    <div class="market"><div class="mitem"><div class="k">模型1X2</div><div class="v">苏28 / 平30 / 摩41</div></div><div class="mitem"><div class="k">大小球</div><div class="v">小2.5 66.5%</div></div><div class="mitem"><div class="k">BTTS</div><div class="v">No 59.6%</div></div></div>
+    <div class="pred"><div class="pred-main">主预测：摩洛哥 1-0</div><div class="pred-meta">信心 6/10 · 主要依据：防守质量 + 同级别抗巴西表现</div><p>为什么：摩洛哥对巴西能打出强度，说明对强队不虚；苏格兰赢海地但运动战创造有限。风险是苏格兰定位球先进导致 1-1 或 1-0 冷门。</p><div class="score-grid"><div class="score"><strong>0-1</strong><span>14.9%</span></div><div class="score"><strong>1-1</strong><span>13.3%</span></div><div class="score"><strong>0-0</strong><span>13.0%</span></div><div class="score"><strong>1-0</strong><span>11.6%</span></div></div></div>
+    <div class="bets">
+      <div class="bet"><div class="bt">胜平负</div><div class="br">摩洛哥胜小注</div><div class="why">依据：排名、战平巴西质量、苏格兰创造力有限。</div></div>
+      <div class="bet risk"><div class="bt">亚洲让球</div><div class="br">摩洛哥 -0.25</div><div class="why">依据：平局30.1%，苏格兰拿1分动机强。</div></div>
+      <div class="bet"><div class="bt">大小球</div><div class="br">小 2.5</div><div class="why">依据：模型66.5%、苏格兰保守、摩洛哥防守稳定。</div></div>
+      <div class="bet cool"><div class="bt">BTTS / 半全场</div><div class="br">BTTS No；平/摩洛哥</div><div class="why">依据：苏格兰上半场会先稳，摩洛哥后程边路更有优势。</div></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="mh"><div><div class="teams">巴西 vs 海地</div><span class="badge">Group C</span><span class="badge hot">强弱差距最大</span></div><div class="mh-right">10:00 北京时间<br>Philadelphia Stadium</div></div>
+    <div class="sec"><div class="sec-title">十项核心分析</div>
+      <div class="two-col">
+        <div class="stat"><div class="lbl">最近5场 / 近10场</div><div class="val">巴西必须抢3分</div><div class="sub">巴西首轮 1-1 摩洛哥；海地首轮 0-1 苏格兰。模型 xG：巴西 1.63，海地 0.74。</div></div>
+        <div class="stat"><div class="lbl">排名与交锋</div><div class="val">排名和阵容差距明显</div><div class="sub">巴西世界前列，海地明显低一档；交锋样本不如层级差距重要。</div></div>
+        <div class="stat"><div class="lbl">伤停/首发</div><div class="val">巴西轮换深度充足</div><div class="sub">巴西边路和禁区前沿个人能力足够；海地核心任务是低位防守和减少禁区失误。</div></div>
+        <div class="stat"><div class="lbl">战意/爆冷</div><div class="val">爆冷低，风险是一球小胜</div><div class="sub">巴西首战只拿1分，本场有净胜球需求；海地进攻质量不足。</div></div>
+      </div>
+    </div>
+    <div class="sec"><div class="sec-title">战术风格与盘口热度</div><ul class="alist"><li>巴西：边路1v1、禁区前连续压迫，目标是早进球压垮海地低位。</li><li>海地：低位防守、少量反击，主要目标是把比分拖小。</li><li>盘口：巴西 ML 极热，低赔不适合单独重注；组合零封/小3.5更有性价比。</li><li>热度：巴西大众热度最高，追深让容易付出溢价。</li></ul></div>
+    <div class="market"><div class="mitem"><div class="k">模型1X2</div><div class="v">巴59 / 平25 / 海17</div></div><div class="mitem"><div class="k">大小球</div><div class="v">小2.5 57.8%</div></div><div class="mitem"><div class="k">BTTS</div><div class="v">No 58%</div></div></div>
+    <div class="pred"><div class="pred-main">主预测：巴西 2-0</div><div class="pred-meta">信心 7/10 · 主要依据：战意 + 阵容层级 + 海地火力不足</div><p>为什么：模型最高单比分是1-0，但巴西首轮平局后需要净胜球，2-0更贴合战意。风险是巴西轮换或早领先后降速，变成1-0；海地偷反击则2-1。</p><div class="score-grid"><div class="score"><strong>1-0</strong><span>15.3%</span></div><div class="score"><strong>2-0</strong><span>12.4%</span></div><div class="score"><strong>1-1</strong><span>11.3%</span></div><div class="score"><strong>0-0</strong><span>9.4%</span></div></div></div>
+    <div class="bets">
+      <div class="bet"><div class="bt">胜平负</div><div class="br">巴西胜，不追超低赔</div><div class="why">依据：排名差、阵容差、抢3分战意。</div></div>
+      <div class="bet risk"><div class="bt">亚洲让球</div><div class="br">巴西 -1.25 小注</div><div class="why">依据：巴西需净胜球，但模型不支持无脑大胜。</div></div>
+      <div class="bet"><div class="bt">大小球</div><div class="br">小 3.5 优于大 2.5</div><div class="why">依据：海地低位、巴西可能控场、模型小球仍偏高。</div></div>
+      <div class="bet cool"><div class="bt">BTTS / 半全场</div><div class="br">BTTS No；巴西/巴西</div><div class="why">依据：海地首轮0进球，巴西压制力强。</div></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="mh"><div><div class="teams">土耳其 vs 巴拉圭</div><span class="badge">Group D</span><span class="badge hot">两队0分生死战</span></div><div class="mh-right">13:00 北京时间<br>San Francisco Bay Area Stadium</div></div>
+    <div class="sec"><div class="sec-title">十项核心分析</div>
+      <div class="two-col">
+        <div class="stat"><div class="lbl">最近5场 / 近10场</div><div class="val">两队首轮防守都暴露</div><div class="sub">土耳其首轮 0-2 澳大利亚；巴拉圭首轮 1-4 美国。模型 xG：土耳其 1.16，巴拉圭 0.96。</div></div>
+        <div class="stat"><div class="lbl">排名与交锋</div><div class="val">两队接近</div><div class="sub">土耳其前场技术点更多；巴拉圭南美对抗经验和定位球硬度更强。</div></div>
+        <div class="stat"><div class="lbl">伤停/首发</div><div class="val">双方可能调整中后场</div><div class="sub">土耳其需要提高中场推进效率；巴拉圭首战防线被打穿，预计更保守。</div></div>
+        <div class="stat"><div class="lbl">战意/爆冷</div><div class="val">爆冷因素高</div><div class="sub">双方0分，输球基本出局；早球会完全改变脚本。</div></div>
+      </div>
+    </div>
+    <div class="sec"><div class="sec-title">战术风格与盘口热度</div><ul class="alist"><li>土耳其：更多控球、肋部推进、前场个人能力，但首战效率低。</li><li>巴拉圭：低位硬度、定位球、反击，首要任务是避免再次早崩。</li><li>盘口：土耳其约 +105 附近时有 value 观察价值；强让不合适。</li><li>热度：两队首败后市场信心都弱，适合找 DNB/小球，不适合重仓单边。</li></ul></div>
+    <div class="market"><div class="mitem"><div class="k">模型1X2</div><div class="v">土40 / 平30 / 巴30</div></div><div class="mitem"><div class="k">大小球</div><div class="v">小2.5 64.4%</div></div><div class="mitem"><div class="k">BTTS</div><div class="v">No 57.6%</div></div></div>
+    <div class="pred"><div class="pred-main">主预测：土耳其 1-0</div><div class="pred-meta">信心 6/10 · 主要依据：土耳其技术推进略优，巴拉圭会先保守</div><p>为什么：双方都输不起，开局不会放开；土耳其前场个人能力更容易在低节奏里制造一次决定性机会。风险是巴拉圭定位球先进，比赛变成1-1或0-1。</p><div class="score-grid"><div class="score"><strong>1-0</strong><span>13.9%</span></div><div class="score"><strong>1-1</strong><span>13.4%</span></div><div class="score"><strong>0-0</strong><span>12.0%</span></div><div class="score"><strong>0-1</strong><span>11.5%</span></div></div></div>
+    <div class="bets">
+      <div class="bet"><div class="bt">胜平负</div><div class="br">土耳其胜小注</div><div class="why">依据：模型40.2%、前场技术点、巴拉圭首战防线暴露。</div></div>
+      <div class="bet risk"><div class="bt">亚洲让球</div><div class="br">土耳其 0 / -0.25</div><div class="why">依据：平局29.6%，强让风险高。</div></div>
+      <div class="bet"><div class="bt">大小球</div><div class="br">小 2.5</div><div class="why">依据：模型64.4%、两队0分压力、先稳后搏。</div></div>
+      <div class="bet cool"><div class="bt">BTTS / 半全场</div><div class="br">BTTS No；平/土耳其</div><div class="why">依据：上半场谨慎，土耳其更可能后程破局。</div></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="final-card">
+      <div class="final-title">世界杯明日精选方案</div>
+      <div class="pick"><div class="stars">★★★★<span class="off">★</span></div><div><div class="label">稳胆</div><div class="main">巴西胜 + BTTS No / 巴西胜 + 小3.5</div><div class="detail">预计命中率约65%，赔率区间1.65-2.05。依据：巴西阵容层级、首轮平局后的战意、海地进攻质量不足。</div></div></div>
+      <div class="pick"><div class="stars">★★★<span class="off">★★</span></div><div><div class="label">博高赔</div><div class="main">土耳其 DNB / 土耳其胜小注</div><div class="detail">土耳其胜约40%，DNB约57%-60%，赔率区间1.50-2.15。依据：巴拉圭首战防线崩、土耳其技术点、市场可能低估反弹。</div></div></div>
+      <div class="pick"><div class="stars">★★★<span class="off">★★</span></div><div><div class="label">稳健小球</div><div class="main">苏格兰 vs 摩洛哥 小2.5</div><div class="detail">预计命中率64%-67%，赔率区间1.60-1.80。依据：苏格兰保守、摩洛哥防守、模型小球66.5%。</div></div></div>
+      <div class="pick"><div class="stars">★★<span class="off">★★★</span></div><div><div class="label">冷门尝试</div><div class="main">美国 vs 澳大利亚 半场平 / 全场平</div><div class="detail">半场平约45%，全场平约29%。依据：澳大利亚低位、美国核心状态风险、两队首轮都赢可接受平局。</div></div></div>
+
+      <div class="sec-title" style="margin-top:18px">100单位资金分配</div>
+      <div class="alloc">
+        <div class="abox"><div class="a">巴西方向</div><div class="n">35</div></div>
+        <div class="abox"><div class="a">土耳其DNB</div><div class="n">20</div></div>
+        <div class="abox"><div class="a">摩洛哥小球</div><div class="n">20</div></div>
+        <div class="abox"><div class="a">美澳半场平</div><div class="n">10</div></div>
+        <div class="abox"><div class="a">比分小注+备用</div><div class="n">15</div></div>
+      </div>
+      <div class="note"><strong>操作纪律：</strong>若临场首发显示普利西奇缺阵，美国方向降级；若巴西大幅轮换，巴西让球降级；若苏格兰不摆三中卫，小球信心略降；土耳其若低于2.00不追胜平负，改DNB。内容仅供参考，不构成投资建议。</div>
+      <div class="note"><strong>主要来源：</strong>FixtureDownload赛程CSV、FIFA男足排名页、RotoWire世界杯前瞻/盘口、CBS小组积分、The Guardian苏格兰前瞻、SB Nation/Stars and Stripes美国前瞻。本页把赔率作为辅助，不作为主推依据。</div>
+    </div>
+  </section>
+</div>
+<script>
+function show(i){
+  document.querySelectorAll('.card').forEach((c,j)=>c.classList.toggle('active',j===i));
+  document.querySelectorAll('.tab').forEach((b,j)=>b.classList.toggle('active',j===i));
+}
+</script>
+</body>
+</html>
