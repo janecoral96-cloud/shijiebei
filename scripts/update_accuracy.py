@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Build accuracy.html by comparing stored predictions with FixtureDownload results.
+Build accuracy.html by comparing stored predictions with online match results.
 
-The workflow is intentionally manual: keep predictions in data/predictions.json,
-run this script after match results are available, then commit accuracy.html.
+Keep predictions in data/predictions.json, run this script after match results
+are available, then commit the regenerated accuracy.html.
 """
 
 from __future__ import annotations
@@ -13,6 +13,7 @@ import datetime as dt
 import html
 import io
 import json
+import unicodedata
 from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
@@ -25,6 +26,16 @@ PREDICTIONS_PATH = ROOT / "data" / "predictions.json"
 ACCURACY_PATH = ROOT / "accuracy.html"
 FIXTURE_CSV_URL = "https://fixturedownload.com/download/fifa-world-cup-2026-GMTStandardTime.csv"
 
+TEAM_ALIASES = {
+    "usa": "unitedstates",
+    "us": "unitedstates",
+    "unitedstates": "unitedstates",
+    "unitedstatesofamerica": "unitedstates",
+    "turkey": "turkiye",
+    "turkiye": "turkiye",
+    "türkiye": "turkiye",
+}
+
 try:
     BEIJING_TZ = ZoneInfo("Asia/Shanghai")
 except ZoneInfoNotFoundError:
@@ -32,7 +43,13 @@ except ZoneInfoNotFoundError:
 
 
 def normalize(value: str) -> str:
-    return "".join(ch.lower() for ch in value if ch.isalnum())
+    ascii_value = (
+        unicodedata.normalize("NFKD", value)
+        .encode("ascii", "ignore")
+        .decode("ascii")
+    )
+    key = "".join(ch.lower() for ch in ascii_value if ch.isalnum())
+    return TEAM_ALIASES.get(key, key)
 
 
 def parse_result(raw: str) -> tuple[int, int] | None:
@@ -53,11 +70,26 @@ def side_from_score(home_goals: int, away_goals: int) -> str:
     return "draw"
 
 
-def load_results() -> dict[tuple[str, str, str], dict[str, Any]]:
+def team_pair(home: str, away: str) -> tuple[str, str]:
+    return normalize(home), normalize(away)
+
+
+def nearby_dates(date_value: str, days: int = 1) -> set[str]:
+    try:
+        base = dt.date.fromisoformat(date_value)
+    except ValueError:
+        return {date_value}
+    return {
+        (base + dt.timedelta(days=offset)).isoformat()
+        for offset in range(-days, days + 1)
+    }
+
+
+def load_results() -> dict[str, Any]:
     response = requests.get(FIXTURE_CSV_URL, timeout=30)
     response.raise_for_status()
     rows = csv.DictReader(io.StringIO(response.text))
-    results: dict[tuple[str, str, str], dict[str, Any]] = {}
+    fixtures: list[dict[str, Any]] = []
 
     for row in rows:
         raw_date = (row.get("Date") or "").strip()
@@ -65,29 +97,47 @@ def load_results() -> dict[tuple[str, str, str], dict[str, Any]]:
             kickoff_utc = dt.datetime.strptime(raw_date, "%d/%m/%Y %H:%M").replace(tzinfo=dt.timezone.utc)
         except ValueError:
             continue
+
         kickoff_bj = kickoff_utc.astimezone(BEIJING_TZ)
         home = (row.get("Home Team") or "").strip()
         away = (row.get("Away Team") or "").strip()
-        key = (kickoff_bj.date().isoformat(), normalize(home), normalize(away))
-        score = parse_result(row.get("Result", ""))
-        results[key] = {
-            "date_beijing": kickoff_bj.date().isoformat(),
-            "time_beijing": kickoff_bj.strftime("%H:%M"),
-            "home_team": home,
-            "away_team": away,
-            "result_raw": (row.get("Result") or "").strip(),
-            "score": score,
-        }
-    return results
+        fixtures.append(
+            {
+                "date_beijing": kickoff_bj.date().isoformat(),
+                "time_beijing": kickoff_bj.strftime("%H:%M"),
+                "source_date": raw_date,
+                "home_team": home,
+                "away_team": away,
+                "group": (row.get("Group") or "").strip(),
+                "location": (row.get("Location") or "").strip(),
+                "result_raw": (row.get("Result") or "").strip(),
+                "score": parse_result(row.get("Result", "")),
+                "pair": team_pair(home, away),
+            }
+        )
+
+    return {
+        "source_url": FIXTURE_CSV_URL,
+        "fetched_at": dt.datetime.now(BEIJING_TZ).strftime("%Y-%m-%d %H:%M"),
+        "fixtures": fixtures,
+    }
 
 
-def evaluate_prediction(prediction: dict[str, Any], results: dict[tuple[str, str, str], dict[str, Any]]) -> dict[str, Any]:
-    key = (
-        prediction["date_beijing"],
-        normalize(prediction["home_team"]),
-        normalize(prediction["away_team"]),
-    )
-    result = results.get(key)
+def find_fixture(prediction: dict[str, Any], fixtures: list[dict[str, Any]]) -> dict[str, Any] | None:
+    pred_pair = team_pair(prediction["home_team"], prediction["away_team"])
+    allowed_dates = nearby_dates(prediction["date_beijing"], days=1)
+    pair_matches = [item for item in fixtures if item["pair"] == pred_pair]
+
+    dated_matches = [item for item in pair_matches if item["date_beijing"] in allowed_dates]
+    if dated_matches:
+        return dated_matches[0]
+    if len(pair_matches) == 1:
+        return pair_matches[0]
+    return None
+
+
+def evaluate_prediction(prediction: dict[str, Any], fixtures: list[dict[str, Any]]) -> dict[str, Any]:
+    result = find_fixture(prediction, fixtures)
     row = dict(prediction)
     row["status"] = "pending"
     row["actual_score"] = ""
@@ -95,8 +145,20 @@ def evaluate_prediction(prediction: dict[str, Any], results: dict[tuple[str, str
     row["hit_1x2"] = None
     row["hit_primary_score"] = None
     row["hit_score_candidate"] = None
+    row["source_date"] = ""
+    row["source_time_beijing"] = ""
+    row["source_result_raw"] = ""
 
-    if not result or not result.get("score"):
+    if not result:
+        row["status_note"] = "赛果源暂未找到该场"
+        return row
+
+    row["source_date"] = str(result["date_beijing"])
+    row["source_time_beijing"] = str(result["time_beijing"])
+    row["source_result_raw"] = str(result["result_raw"])
+
+    if not result.get("score"):
+        row["status_note"] = "赛果源已找到赛程，但比分尚未更新"
         return row
 
     home_goals, away_goals = result["score"]
@@ -105,6 +167,7 @@ def evaluate_prediction(prediction: dict[str, Any], results: dict[tuple[str, str
     candidates = [str(item).strip() for item in prediction.get("score_candidates", [])]
 
     row["status"] = "finished"
+    row["status_note"] = "已结算"
     row["actual_score"] = actual_score
     row["actual_1x2"] = actual_1x2
     row["hit_1x2"] = prediction.get("pick_1x2") == actual_1x2
@@ -123,7 +186,19 @@ def label_1x2(value: str) -> str:
     return {"home": "主胜", "draw": "平局", "away": "客胜"}.get(value, value or "-")
 
 
-def build_html(rows: list[dict[str, Any]]) -> str:
+def hit_label(value: bool | None) -> str:
+    if value is None:
+        return "-"
+    return "命中" if value else "未中"
+
+
+def hit_class(value: bool | None) -> str:
+    if value is None:
+        return "muted"
+    return "hit" if value else "miss"
+
+
+def build_html(rows: list[dict[str, Any]], source_url: str, fetched_at: str) -> str:
     finished = [row for row in rows if row["status"] == "finished"]
     pending = [row for row in rows if row["status"] == "pending"]
     total = len(finished)
@@ -135,23 +210,31 @@ def build_html(rows: list[dict[str, Any]]) -> str:
     table_rows = []
     for row in rows:
         status_class = "pending" if row["status"] == "pending" else "done"
-        one_x_two_hit = "-" if row["hit_1x2"] is None else ("命中" if row["hit_1x2"] else "未中")
-        primary_hit = "-" if row["hit_primary_score"] is None else ("命中" if row["hit_primary_score"] else "未中")
-        candidate_hit = "-" if row["hit_score_candidate"] is None else ("命中" if row["hit_score_candidate"] else "未中")
+        actual_score = row["actual_score"] or "待赛果"
+        source_time = ""
+        if row.get("source_date"):
+            source_time = f'源时间：{html.escape(row["source_date"])} {html.escape(row.get("source_time_beijing", ""))}'
         report = row.get("report", "")
         report_link = f'<a href="{html.escape(report)}">报告</a>' if report else "-"
         table_rows.append(
             f"""
       <tr class="{status_class}">
         <td>{html.escape(row["date_beijing"])}<br><span>{html.escape(row.get("time_beijing", ""))}</span></td>
-        <td><strong>{html.escape(row["home_team"])} vs {html.escape(row["away_team"])}</strong><br><span>{html.escape(row.get("group", ""))}</span></td>
+        <td>
+          <strong>{html.escape(row["home_team"])} vs {html.escape(row["away_team"])}</strong>
+          <br><span>{html.escape(row.get("group", ""))}</span>
+        </td>
         <td>{label_1x2(str(row.get("pick_1x2", "")))}</td>
         <td>{html.escape(str(row.get("primary_score", "")))}</td>
         <td>{html.escape(", ".join(row.get("score_candidates", [])))}</td>
-        <td>{html.escape(row["actual_score"] or "待赛果")}</td>
-        <td>{one_x_two_hit}</td>
-        <td>{primary_hit}</td>
-        <td>{candidate_hit}</td>
+        <td>
+          <strong>{html.escape(actual_score)}</strong>
+          <br><span>{html.escape(row.get("status_note", ""))}</span>
+          <br><span>{source_time}</span>
+        </td>
+        <td class="{hit_class(row["hit_1x2"])}">{hit_label(row["hit_1x2"])}</td>
+        <td class="{hit_class(row["hit_primary_score"])}">{hit_label(row["hit_primary_score"])}</td>
+        <td class="{hit_class(row["hit_score_candidate"])}">{hit_label(row["hit_score_candidate"])}</td>
         <td>{report_link}</td>
       </tr>
             """.strip()
@@ -180,9 +263,12 @@ th,td{{padding:11px 10px;border-bottom:1px solid #eee;text-align:left;vertical-a
 th{{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#777;background:#f8f7f4}}
 tr.done td:nth-child(7),tr.done td:nth-child(8),tr.done td:nth-child(9){{font-weight:700}}
 tr.pending{{color:#666}}
+.hit{{color:#137333;font-weight:800}}
+.miss{{color:#b3261e;font-weight:800}}
+.muted{{color:#777}}
 a{{color:#1a5fa8;text-decoration:none;font-weight:700}}
 .note{{margin-top:14px;color:#666;font-size:12px}}
-@media(max-width:820px){{.top{{display:block}}.updated{{margin-top:8px}}.cards{{grid-template-columns:1fr 1fr}}.panel{{overflow:auto}}table{{min-width:900px}}}}
+@media(max-width:820px){{.top{{display:block}}.updated{{margin-top:8px}}.cards{{grid-template-columns:1fr 1fr}}.panel{{overflow:auto}}table{{min-width:980px}}}}
 </style>
 </head>
 <body>
@@ -190,7 +276,7 @@ a{{color:#1a5fa8;text-decoration:none;font-weight:700}}
   <header class="top">
     <div>
       <h1>世界杯预测准确率</h1>
-      <div class="sub">对比预测方向、主比分、比分候选池与赛后结果。</div>
+      <div class="sub">对比预测方向、主比分、候选比分池与赛后结果。</div>
     </div>
     <div class="updated">北京时间 {updated} 更新</div>
   </header>
@@ -204,7 +290,7 @@ a{{color:#1a5fa8;text-decoration:none;font-weight:700}}
     <table>
       <thead>
         <tr>
-          <th>日期</th>
+          <th>报告日期</th>
           <th>比赛</th>
           <th>预测方向</th>
           <th>主比分</th>
@@ -221,7 +307,10 @@ a{{color:#1a5fa8;text-decoration:none;font-weight:700}}
       </tbody>
     </table>
   </section>
-  <div class="note">待赛果比赛：{len(pending)} 场。赛果来自 FixtureDownload 赛程 CSV；若源数据暂未更新，该场保持待赛果。</div>
+  <div class="note">
+    待赛果比赛：{len(pending)} 场。赛果来自 <a href="{html.escape(source_url)}">FixtureDownload 2026 World Cup CSV</a>，
+    本页抓取时间：北京时间 {html.escape(fetched_at)}。如果源数据比分为空，本页会先显示“待赛果”，下次运行脚本后自动结算。
+  </div>
 </main>
 </body>
 </html>
@@ -231,9 +320,12 @@ a{{color:#1a5fa8;text-decoration:none;font-weight:700}}
 def main() -> int:
     data = json.loads(PREDICTIONS_PATH.read_text(encoding="utf-8"))
     predictions = data.get("predictions", [])
-    results = load_results()
-    rows = [evaluate_prediction(item, results) for item in predictions]
-    ACCURACY_PATH.write_text(build_html(rows), encoding="utf-8")
+    result_data = load_results()
+    rows = [evaluate_prediction(item, result_data["fixtures"]) for item in predictions]
+    ACCURACY_PATH.write_text(
+        build_html(rows, result_data["source_url"], result_data["fetched_at"]),
+        encoding="utf-8",
+    )
     print(f"Wrote {ACCURACY_PATH}")
     return 0
 
