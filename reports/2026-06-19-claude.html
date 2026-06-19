@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界杯2026明日精选 · 6月19日四场分析报告 · Claude生成</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0ede8;color:#1a1a1a;padding:20px;font-size:14px;line-height:1.6}
+.container{max-width:920px;margin:0 auto}
+h1{font-size:22px;font-weight:700;margin-bottom:4px}
+.subtitle{font-size:13px;color:#666;margin-bottom:18px}
+.schedule-box{background:#fff;border-radius:10px;border:1px solid #ddd;padding:16px;margin-bottom:18px}
+.schedule-box h2{font-size:14px;font-weight:700;color:#444;margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em}
+.sched-row{display:grid;grid-template-columns:80px 1fr;gap:8px;padding:7px 0;border-bottom:1px solid #f0ede8;font-size:13px}
+.sched-row:last-child{border-bottom:none}
+.sched-time{color:#1a5fa8;font-weight:700}
+.sched-match{color:#1a1a1a}
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:7px 14px;border-radius:20px;border:1px solid #ccc;background:transparent;color:#555;cursor:pointer;font-size:12px;font-family:inherit;transition:all .15s}
+.tab.active{background:#1a5fa8;color:#fff;border-color:#1a5fa8}
+.card{display:none;background:#fff;border-radius:12px;border:1px solid #ddd;padding:22px;margin-bottom:12px}
+.card.active{display:block}
+.mh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid #ece9e3}
+.mh-left .teams{font-size:18px;font-weight:700}
+.mh-left .grp{font-size:11px;color:#666;background:#f0ede8;padding:2px 9px;border-radius:10px;display:inline-block;margin-top:4px;margin-right:6px}
+.mh-left .status{font-size:11px;color:#c04000;background:#fff4ee;padding:2px 9px;border-radius:10px;display:inline-block;margin-top:4px}
+.mh-right{font-size:12px;color:#666;text-align:right}
+.sec{margin-bottom:20px}
+.sec-title{font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #f0ede8}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat-block{background:#f8f7f4;border-radius:8px;padding:10px 12px}
+.stat-block .lbl{font-size:11px;color:#888;margin-bottom:5px}
+.stat-block .val{font-size:14px;font-weight:700}
+.stat-block .sub{font-size:12px;color:#666;margin-top:4px;line-height:1.55}
+.form-row{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+.fw{width:22px;height:22px;border-radius:50%;background:#d4f0d4;color:#1a6b1a;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.fd{width:22px;height:22px;border-radius:50%;background:#fdf0c0;color:#7a5c00;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.fl{width:22px;height:22px;border-radius:50%;background:#fdd4d4;color:#8b1a1a;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.alist{list-style:none;display:flex;flex-direction:column;gap:7px}
+.alist li{font-size:13px;line-height:1.65;padding-left:16px;position:relative}
+.alist li::before{content:"▸";position:absolute;left:0;color:#1a5fa8;font-size:11px;top:2px}
+.odds-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.ob{background:#f8f7f4;border-radius:8px;padding:9px 10px;text-align:center}
+.ob .ol{font-size:11px;color:#888;margin-bottom:3px}
+.ob .ov{font-size:17px;font-weight:700;color:#1a5fa8}
+.ob .ov.hot{color:#b54000}
+.pred-panel{background:linear-gradient(135deg,#e8f2fc,#eee8fb);border-radius:12px;padding:18px;margin-bottom:16px;border:1px solid #c8d8f0}
+.pred-score{font-size:26px;font-weight:800;color:#0d4e9e;margin-bottom:5px}
+.pred-meta{font-size:12px;color:#2a5fb0;margin-bottom:10px}
+.conf-row{display:flex;gap:3px;margin:6px 0}
+.cdot{width:11px;height:11px;border-radius:2px;background:#1a5fa8}
+.cdot.off{background:#c5d8f0}
+.pred-body{font-size:12px;color:#1a3a7a;line-height:1.75}
+.bets-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bet-card{background:#f8f7f4;border-radius:8px;padding:10px 12px}
+.bet-card.val{border-left:3px solid #1a5fa8;border-radius:0 8px 8px 0}
+.bet-card.risk{border-left:3px solid #c07800;border-radius:0 8px 8px 0}
+.bet-card.cool{border-left:3px solid #aa2222;border-radius:0 8px 8px 0}
+.bc-type{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.bc-rec{font-size:13px;font-weight:700;margin-bottom:3px}
+.bc-reason{font-size:11px;color:#555;line-height:1.55}
+.tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:8px;margin-left:5px;vertical-align:middle}
+.tv{background:#dbeeff;color:#0d4e9e}
+.tr{background:#fce8c0;color:#7a4800}
+.th{background:#fdd4d4;color:#7a1a1a}
+.risk-box{background:#fff8e6;border-radius:8px;padding:10px 13px;margin-top:8px;border-left:3px solid #e0a800}
+.risk-box .rtitle{font-size:11px;font-weight:700;color:#7a4800;margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em}
+.risk-box p{font-size:12px;color:#5c3a00;line-height:1.6}
+.must-win-box{background:#fff0f0;border-radius:8px;padding:10px 13px;margin-top:8px;border-left:3px solid #cc2200}
+.must-win-box .rtitle{font-size:11px;font-weight:700;color:#8b1a1a;margin-bottom:5px}
+.must-win-box p{font-size:12px;color:#661a1a;line-height:1.6}
+.divider{height:1px;background:#ece9e3;margin:16px 0}
+.final-card{background:#fff;border-radius:12px;border:1px solid #ddd;padding:22px}
+.final-title{font-size:16px;font-weight:700;margin-bottom:16px;color:#111;border-bottom:2px solid #1a5fa8;padding-bottom:8px}
+.pick-row{display:flex;flex-direction:column;gap:10px}
+.pick-item{background:#f8f7f4;border-radius:10px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start}
+.stars{font-size:15px;color:#c07800;min-width:82px}
+.stars .off{color:#ccc}
+.pick-right .plbl{font-size:11px;color:#888;margin-bottom:2px}
+.pick-right .pmain{font-size:14px;font-weight:700;margin-bottom:4px}
+.pick-right .pdet{font-size:12px;color:#555;line-height:1.55}
+.alloc-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.abox{background:#f8f7f4;border-radius:8px;padding:10px 8px;text-align:center;border:1px solid #e8e5e0}
+.abox .al{font-size:10px;color:#888;margin-bottom:4px;line-height:1.4}
+.abox .av{font-size:18px;font-weight:800}
+.note{font-size:12px;color:#888;line-height:1.7;background:#f8f7f4;border-radius:8px;padding:11px 13px;margin-top:10px}
+.highlight{background:#e8f4ff;border-radius:8px;padding:10px 13px;margin-top:8px;font-size:12px;color:#0d4e9e;line-height:1.65;border-left:3px solid #1a5fa8}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>⚽ 2026世界杯 · 6月19日四场赛事投注参考方案</h1>
+<div class="subtitle">D组第2轮 ×2 + C组第2轮 ×2 · 第二轮小组赛 · 强弱分化加剧</div>
+
+<div class="schedule-box">
+  <h2>📅 明日赛程一览（当地时间，美国境内）</h2>
+  <div class="sched-row"><div class="sched-time">比赛①</div><div class="sched-match">美国 🆚 澳大利亚 · 西雅图Lumen Field · D组第2轮 · 当地15:00 ET</div></div>
+  <div class="sched-row"><div class="sched-time">比赛②</div><div class="sched-match">苏格兰 🆚 摩洛哥 · 波士顿Gillette体育场 · C组第2轮 · 当地18:00 ET</div></div>
+  <div class="sched-row"><div class="sched-time">比赛③</div><div class="sched-match">巴西 🆚 海地 · 费城Lincoln Financial Field · C组第2轮 · 当地20:30 ET</div></div>
+  <div class="sched-row"><div class="sched-time">比赛④</div><div class="sched-match">土耳其 🆚 巴拉圭 · 圣克拉拉Levi's体育场 · D组第2轮 · 当地20:00 PT</div></div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="show(0)">🇺🇸 美国 vs 澳大利亚</button>
+  <button class="tab" onclick="show(1)">🏴󠁧󠁢󠁳󠁣󠁴󠁿 苏格兰 vs 摩洛哥</button>
+  <button class="tab" onclick="show(2)">🇧🇷 巴西 vs 海地</button>
+  <button class="tab" onclick="show(3)">🇹🇷 土耳其 vs 巴拉圭</button>
+  <button class="tab" onclick="show(4)">★ 明日精选方案</button>
+</div>
+
+<!-- ========== MATCH 1 美国 vs 澳大利亚 ========== -->
+<div class="card active" id="m0">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇺🇸 美国 vs 澳大利亚 🇦🇺</div>
+      <span class="grp">D组 · 第2轮</span>
+      <span class="status">东道主榜首战</span>
+    </div>
+    <div class="mh-right">西雅图 Lumen Field<br>"第12人"主场氛围</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇺🇸 美国（近5场）</div>
+        <div class="form-row"><span class="fw">W</span><span class="fl">L</span><span class="fl">L</span><span class="fw">W</span><span class="fw">W</span></div>
+        <div class="sub">世界杯MD1：4-1大胜巴拉圭（三人破门）<br>近10场7场不败，但近5场3负<br>进攻火力凶猛：近8场6场大球（1.5+）<br>近5场失球也偏多（4场失1.5+球）</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇦🇺 澳大利亚（近5场）</div>
+        <div class="form-row"><span class="fw">W</span><span class="fw">W</span><span class="fd">D</span><span class="fw">W</span><span class="fw">W</span></div>
+        <div class="sub">世界杯MD1：2-0爆冷击败土耳其！<br>近5场3胜1平，近4场不败<br>门将帕特里克·比奇8次扑救封神<br>防守扎实但进攻效率有限</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">美国</div><div class="val">约第13位</div><div class="sub">D组榜首（净胜球+3）· 主场东道主优势<br>波切蒂诺执教，体系成型</div></div>
+      <div class="stat-block"><div class="lbl">澳大利亚</div><div class="val">约第26位</div><div class="sub">D组次席（净胜球+2）· 击败土耳其是本届最大冷门之一<br>有组织、自信，状态正佳</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">美国</div><div class="val">进~20球 / 失~14球</div><div class="sub">近8场6场大球1.5+ · 近5场4场失球1.5+<br>三点开花式进攻：巴洛贡+多点包抄</div></div>
+      <div class="stat-block"><div class="lbl">澳大利亚</div><div class="val">进~10球 / 失~5球</div><div class="sub">防守紧凑，门将比奇近期状态火热<br>进攻端依赖反击效率，非控球主导</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>近年交锋数据有限，两队近10年正式赛事交手次数稀少</li>
+      <li>两队均无世界杯历史交锋记录，本场为世界杯首次对决</li>
+      <li>历史交锋数据参考价值低，更应依赖当前阵容状态和近期对手质量对比</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>美国：</strong>全队基本无重大伤停。安托尼·罗宾逊（左后卫，富勒姆）、克里斯·理查兹（中卫）防守反应速度快，能更好限制反击；福拉林·巴洛贡（中锋）是本场最大威胁点，机动性远超土耳其门将面对的对手</li>
+      <li><strong>澳大利亚：</strong>无重大伤停报告。门将帕特里克·比奇近期状态是球队基石（首战8次扑救），后防体系紧凑完整</li>
+      <li><strong>关键变量：</strong>美国本场拥有比对阵土耳其时更具机动性的对手身份——分析师指出"比奇难以再次复制8次扑救的神迹"</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>美国4-3-3高压体系：</strong>波切蒂诺打造的压迫式进攻，赢球后由攻转守迅速，但不会全员压上，防守转换速度更快（罗宾逊+理查兹回防迅捷）</li>
+      <li><strong>澳大利亚防守反击体系：</strong>对阵土耳其时极度紧凑，靠门将比奇神奇发挥锁住战局；本场要面对机动性、跑动覆盖面更强的美国队，难以复制相同剧本</li>
+      <li><strong>关键对位：</strong>美国整体移动性（尤其巴洛贡跑位）vs 澳大利亚密集防线——若美国能制造多角度进攻，比奇很难再次扑出全部射门</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组赛形势 / 战意分析</div>
+    <ul class="alist">
+      <li><strong>纯粹的小组头名争夺战：</strong>两队均3分领跑D组，赢家几乎提前锁定出线名额并大概率拿下组头</li>
+      <li><strong>美国动机：</strong>赢球可提前出线，避免末轮被动；东道主身份+主场氛围加成明显</li>
+      <li><strong>澳大利亚动机：</strong>平局也能维持出线主动权（末轮再战巴拉圭/土耳其），故防守优先策略合理</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">美国独赢</div><div class="ov hot">1.62</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">3.80</div></div>
+      <div class="ob"><div class="ol">澳大利亚独赢</div><div class="ov">5.20</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov hot">1.85</div></div>
+      <div class="ob"><div class="ol">小球2.5</div><div class="ov">2.00</div></div>
+      <div class="ob"><div class="ol">半场平局</div><div class="ov">2.60</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">bet365：美国-160 · 早期资金大量押注"美国小赢+低分"组合 · 半场平局是专业资金推荐的价值点（澳大利亚开局谨慎，美国通常下半场才打开比分）</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>美国独赢-160资金集中，但分析师普遍建议规避三项盘直接投注，转向"巴洛贡首球"和"半场平局"等价值盘</li>
+      <li>大球1.85赔率吸引部分资金，但美国近5场4场失球较多（1.5+）说明防守也存在漏洞，双方进球需谨慎评估</li>
+      <li>美国近8场6场大球（1.5+）的进攻火力数据被市场充分定价，赔率已不便宜</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：中低（约20%）</div>
+      <p>澳大利亚已用一次爆冷（击败土耳其）证明实力不可小觑，门将比奇状态火热；但美国整体移动性和多点开花的进攻质量，理论上能突破澳大利亚低位防线。爆冷概率不算很高，但"平局"概率值得关注——澳大利亚明确以防守优先策略应战，1分对他们已是可接受结果。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">美国 2-1 澳大利亚（主选）</div>
+    <div class="pred-meta">概率约28% · 次选：2-0美国（约22%） · 1-0美国（约20%） · 1-1平（约15%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 6/10</div>
+    <div class="pred-body">
+      <strong>为什么预测2-1？</strong><br>
+      美国阵容完整、主场氛围+移动性优势能在90分钟内攻破澳大利亚防线至少2次；但澳大利亚门将比奇状态正佳，且球队此前已证明能在反击中制造威胁（2-0胜土耳其非偶然），可能利用美国压上空间打入1球。综合双方近期对手强度（澳大利亚此前面对的土耳其攻击力远强于美国本场的防守压力）和阵容健康程度，2-1反映美国略占优势但澳大利亚有顽抗能力的现实。<br><br>
+      <strong>数据支持：</strong>①美国近8场6场大球1.5+ ②澳大利亚近5场4场失球较少但本场对手更强 ③美国主场+东道主整体动机更强<br><br>
+      <strong>风险因素：</strong>①比奇可能再次神奇发挥 ②美国近5场3负说明状态有波动 ③澳大利亚防守优先策略下可能全场仅丢1球甚至零封
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">胜平负 <span class="tag tv">推荐</span></div><div class="bc-rec">美国独赢 @1.62</div><div class="bc-reason">三依据：①美国主场净胜球+3领跑 ②整体移动性优于澳大利亚此前对手 ③澳大利亚进攻效率有限难以单凭反击逆转</div></div>
+      <div class="bet-card risk"><div class="bc-type">半全场 <span class="tag tr">价值盘</span></div><div class="bc-rec">半场平局 @2.60</div><div class="bc-reason">三依据：①澳大利亚开局会收缩防守 ②美国惯于下半场体能优势打开比分 ③专业分析师明确推荐此盘</div></div>
+      <div class="bet-card"><div class="bc-type">大小球</div><div class="bc-rec">大球2.5 @1.85</div><div class="bc-reason">美国近8场6场大球1.5+，整体进攻火力旺盛，但赔率已不算便宜</div></div>
+      <div class="bet-card"><div class="bc-type">射手</div><div class="bc-rec">福拉林·巴洛贡首球 @约3.50</div><div class="bc-reason">美国中锋机动性强，对阵澳大利亚低位防线创造机会概率高</div></div>
+      <div class="bet-card cool"><div class="bc-type">双方进球 <span class="tag th">规避</span></div><div class="bc-rec">双方不进球（规避，非推荐）</div><div class="bc-reason">分析师建议规避此盘——美国近5场失球数据显示双方进球可能性反而较高</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 2 苏格兰 vs 摩洛哥 ========== -->
+<div class="card" id="m1">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🏴󠁧󠁢󠁳󠁣󠁴󠁿 苏格兰 vs 摩洛哥 🇲🇦</div>
+      <span class="grp">C组 · 第2轮</span>
+      <span class="status">无重大伤停 · 苏格兰历史首次冲击淘汰赛</span>
+    </div>
+    <div class="mh-right">波士顿（Foxborough）Gillette体育场</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🏴󠁧󠁢󠁳󠁣󠁴󠁿 苏格兰（近5场）</div>
+        <div class="form-row"><span class="fw">W</span><span class="fd">D</span><span class="fw">W</span><span class="fd">D</span><span class="fw">W</span></div>
+        <div class="sub">世界杯MD1：1-0小胜海地（麦金恩制胜球）<br>表现并不华丽，但拿下36年来首场世界杯胜利<br>C组暂时领跑（3分）<br>进攻深度有限：尚卡兰vs亚当斯竞争主力中锋位</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇲🇦 摩洛哥（近5场）</div>
+        <div class="form-row"><span class="fd">D</span><span class="fw">W</span><span class="fw">W</span><span class="fd">D</span><span class="fw">W</span></div>
+        <div class="sub">世界杯MD1：1-1平巴西！（萨伊巴里破门）<br>近期状态出色，逼平五星巴西展现真实力<br>哈基米+布拉欣·迪亚兹+马兹拉维领衔豪华阵容<br>整体攻击质量远超苏格兰</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">苏格兰</div><div class="val">约第30位</div><div class="sub">C组暂时第一（3分）<br>历史上从未晋级大赛淘汰赛阶段</div></div>
+      <div class="stat-block"><div class="lbl">摩洛哥</div><div class="val">FIFA第7位</div><div class="sub">非洲最强球队之一 · C组第二（1分）<br>2022世界杯四强成员核心仍在阵</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">苏格兰</div><div class="val">进~10球 / 失~6球</div><div class="sub">进攻火力有限，1-0胜海地体现效率而非压制<br>中锋位置竞争激烈，整体进攻深度不足</div></div>
+      <div class="stat-block"><div class="lbl">摩洛哥</div><div class="val">进~14球 / 失~5球</div><div class="sub">攻防两端均衡，逼平巴西证明高水平竞争力<br>哈基米助攻能力+迪亚兹创造力是核心引擎</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>历史唯一交锋：1998年世界杯（法国），摩洛哥3-0大胜苏格兰圣埃蒂安</li>
+      <li>这是苏格兰对摩洛哥的世界杯交锋历史，结果对苏格兰极为不利</li>
+      <li>但28年过去，双方阵容和战术都已天翻地覆，历史交锋参考价值有限，更应关注当前状态</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>苏格兰：</strong>无确认停赛球员。劳伦斯·尚卡兰vs切·亚当斯竞争中锋位置，进攻深度（个人能力）有限是苏格兰阵容的天花板</li>
+      <li><strong>摩洛哥：</strong>无新增伤病报告。萨伊巴里（即将加盟拜仁慕尼黑，对阵巴西破门）保持主力位置；布拉欣·迪亚兹（皇马）+努萨伊尔·马兹拉维（曼联）均为本场预期重要先发</li>
+      <li><strong>核心差距：</strong>摩洛哥阵容厚度和个人能力（哈基米、迪亚兹等多名欧洲顶级联赛球员）明显优于苏格兰</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>苏格兰4-2-3-1（防守反击+定位球）：</strong>麦金恩前场组织，整体打法依靠组织防守和定位球机会创造威胁，对阵海地已显示出"功能型"胜利模式</li>
+      <li><strong>摩洛哥控球主导型：</strong>哈基米右路助攻+迪亚兹左侧创造+萨伊巴里中路串联，技术流打法对阵巴西已证明能控制比赛节奏</li>
+      <li><strong>关键对位：</strong>苏格兰组织防守韧性vs摩洛哥技术流渗透——苏格兰若能保持紧凑阵型并利用定位球机会，仍有抗衡资本</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组赛形势 / 战意分析</div>
+    <ul class="alist">
+      <li><strong>苏格兰历史性时刻：</strong>赢球将几乎锁定36年来首次大赛淘汰赛资格，若巴西未能击败海地，苏格兰还能以小组头名身份出线</li>
+      <li><strong>摩洛哥的压力：</strong>逼平巴西后若再输苏格兰，末轮将面临巨大压力（对阵巴西），摩洛哥几乎必须赢下本场</li>
+      <li><strong>双方动机都极强烈：</strong>这是C组真正的"决定性战役"</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">苏格兰独赢</div><div class="ov">3.70</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov hot">3.72</div></div>
+      <div class="ob"><div class="ol">摩洛哥独赢</div><div class="ov hot">1.85</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov">2.20</div></div>
+      <div class="ob"><div class="ol">小球2.5</div><div class="ov hot">1.65</div></div>
+      <div class="ob"><div class="ol">摩洛哥赢到零封</div><div class="ov">2.70</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">摩洛哥-130（约1.77）/平+272（约3.72）· 小球1.65（4/6）反映双方均偏向稳健打法，防守记录支撑</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>摩洛哥独赢是资金主力方向，被普遍认为是"本场最可信选项"——阵容质量+逼平巴西的状态证明</li>
+      <li>小球2.5的1.65赔率获得大量关注，双方此前比赛均显示出谨慎、低事件特征</li>
+      <li>"摩洛哥赢到零封"@2.70是进阶价值盘——若苏格兰进攻深度不足的特点延续，摩洛哥控场后有机会零封获胜</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：中低（约20-25%，含平局概率）</div>
+      <p>苏格兰展现出强大的组织防守韧性和定位球得分能力（麦金恩制胜球），且历史性机遇激发斗志；但摩洛哥阵容质量（哈基米、迪亚兹等多名欧洲顶级球员）和近期对巴西级别的竞争力明显占优。多数专家预测倾向平局或摩洛哥小胜——苏格兰"防守+反击+定位球"的打法理论上可以制造一场势均力敌的较量，1-1平局是不可忽视的现实结果。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">摩洛哥 1-0 苏格兰（主选）</div>
+    <div class="pred-meta">概率约28% · 次选：1-1平（约25%） · 2-0摩洛哥（约20%） · 2-1摩洛哥（约15%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 6/10</div>
+    <div class="pred-body">
+      <strong>为什么预测1-0？</strong><br>
+      摩洛哥阵容质量（哈基米+迪亚兹+马兹拉维+萨伊巴里）和逼平巴西的现实表现，证明其整体实力明显在苏格兰之上；但苏格兰组织防守极为扎实（近5场仅失6球），且擅长依靠少量机会制造威胁。摩洛哥控场后通过个人能力制造1次决定性破门，是最符合双方实力差距且尊重苏格兰防守韧性的预测。<br><br>
+      <strong>数据支持：</strong>①摩洛哥阵容质量和欧洲球队战绩远超苏格兰 ②苏格兰近5场失球少（6球）说明防守紧密，限制大胜可能 ③历史交锋（1998年3-0）虽参考有限但反映长期实力差<br><br>
+      <strong>风险因素：</strong>①苏格兰定位球能力（麦金恩制胜球先例）可能制造1球甚至更多 ②摩洛哥末轮还要战巴西，可能在本场有所保留体能 ③苏格兰历史性出线动力可能激发超水平表现
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">胜平负 <span class="tag tv">推荐</span></div><div class="bc-rec">摩洛哥独赢 @1.85</div><div class="bc-reason">三依据：①阵容质量碾压（哈基米、迪亚兹等欧洲顶级球员） ②逼平巴西证明真实竞争力 ③苏格兰进攻深度有限难以持续施压</div></div>
+      <div class="bet-card val"><div class="bc-type">大小球 <span class="tag tv">价值</span></div><div class="bc-rec">小球2.5 @1.65</div><div class="bc-reason">三依据：①双方近期比赛均偏低分谨慎 ②苏格兰近5场失球少（6球） ③摩洛哥末轮还要战巴西可能有所保留</div></div>
+      <div class="bet-card risk"><div class="bc-type">亚洲让球 <span class="tag tr">进阶</span></div><div class="bc-rec">摩洛哥赢到零封 @2.70</div><div class="bc-reason">若苏格兰进攻端持续低效，摩洛哥控场优势可转化为零封获胜，赔率有一定价值</div></div>
+      <div class="bet-card"><div class="bc-type">双方进球</div><div class="bc-rec">双方不进球 @1.95</div><div class="bc-reason">摩洛哥防守稳健+苏格兰进攻有限，双方均有可能被压制进球数</div></div>
+      <div class="bet-card cool"><div class="bc-type">冷门尝试 <span class="tag th">高风险</span></div><div class="bc-rec">平局 @3.72</div><div class="bc-reason">苏格兰防守韧性+定位球威胁+历史性出线动力，1-1平局完全可能；仅小注尝试</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 3 巴西 vs 海地 ========== -->
+<div class="card" id="m2">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇧🇷 巴西 vs 海地 🇭🇹</div>
+      <span class="grp">C组 · 第2轮</span>
+      <span class="status">无伤停 · 本日实力差距最大场次</span>
+    </div>
+    <div class="mh-right">费城 Lincoln Financial Field</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇧🇷 巴西（近5场）</div>
+        <div class="form-row"><span class="fd">D</span><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span><span class="fd">D</span></div>
+        <div class="sub">世界杯MD1：1-1平摩洛哥（表现平淡，迫切需要反弹）<br>赛前热身：6-2大胜巴拿马（说明对弱旅有强大火力）<br>安切洛蒂执教下整体偏沉稳，未尽全力施压<br>维尼修斯+拉菲尼亚+伊戈尔·蒂亚戈攻击线豪华</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇭🇹 海地（近5场）</div>
+        <div class="form-row"><span class="fl">L</span><span class="fl">L</span><span class="fd">D</span><span class="fl">L</span><span class="fl">L</span></div>
+        <div class="sub">世界杯MD1：0-1负苏格兰（虽败犹荣，组织有度）<br>近5场3场未进球<br>历史仅第2次参加世界杯，毫无大赛经验<br>整体实力与巴西存在巨大鸿沟</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">巴西</div><div class="val">FIFA第3位</div><div class="sub">五星传统强队 · Kalshi 88%胜率<br>C组第二（1分），落后苏格兰，必须赢回主导权</div></div>
+      <div class="stat-block"><div class="lbl">海地</div><div class="val">约第85位</div><div class="sub">C组垫底（0分）· Kalshi仅5%胜率<br>历史性参赛但实力差距悬殊</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">巴西</div><div class="val">进~22球 / 失~6球</div><div class="sub">6-2胜巴拿马展现顶级火力<br>维尼修斯+拉菲尼亚+蒂亚戈+库尼亚多点输出</div></div>
+      <div class="stat-block"><div class="lbl">海地</div><div class="val">进~5球 / 失~16球</div><div class="sub">近5场3场未进球，进攻能力极弱<br>防守端也屡屡失球，整体处于明显劣势</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>历史交锋3次，巴西全部取胜，且全部大比分获胜</li>
+      <li>海地历史上从未从巴西身上获得过任何分数（0胜0平3负）</li>
+      <li>类似对手参照：巴拿马（与海地实力相近）赛前热身赛被巴西6-2横扫，说明巴西对此类对手的进攻效率极高</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>巴西：</strong>无伤停球员，主力阵容全员可用。预测首发（4-2-3-1）：阿利松；达尼洛、马尔基尼奥斯、马加良斯、桑德罗；拉菲尼亚、库尼亚、维尼修斯；伊戈尔·蒂亚戈</li>
+      <li><strong>海地：</strong>无伤停报告。预测首发：普拉西德；阿尔库斯、阿德、德尔克鲁瓦、拉克鲁瓦；迪德森、贝勒加德、雅克、普罗维登斯；纳松、伊西多尔</li>
+      <li><strong>核心差距：</strong>巴西阵容全部来自欧洲顶级联赛（皇马、巴萨、拜仁等），海地阵容来自15个不同国家的中下游联赛，质量差距悬殊</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>巴西4-2-3-1：</strong>安切洛蒂体系强调控球+边路突破+中路渗透，维尼修斯+拉菲尼亚两翼齐飞，伊戈尔·蒂亚戈中锋终结，整体进攻多点开花</li>
+      <li><strong>海地4-3-2-1（极度防守）：</strong>完全放弃控球，全队收缩至本方半场，依靠人数优势密集防守，伺机利用任何反击机会</li>
+      <li><strong>悬殊对位：</strong>这是本日实力差距最大的对阵，海地几乎没有技战术层面对抗巴西的能力，唯一希望是依靠门将发挥和密集防守拖延失球时间</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组赛形势 / 战意分析</div>
+    <ul class="alist">
+      <li><strong>巴西急需正名：</strong>平摩洛哥的表现令人失望，必须用大胜回应外界质疑，确保C组主导地位</li>
+      <li><strong>海地几乎无望：</strong>0分垫底，即使本场拿分也很难改变出线无望的现实，但仍会尽力争取历史性首分</li>
+      <li><strong>巴西动机充足：</strong>分析师普遍预测这将是"本轮最一边倒的比赛"</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">巴西独赢</div><div class="ov hot">1.13</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">13.00</div></div>
+      <div class="ob"><div class="ol">海地独赢</div><div class="ov">26.00</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球3.5</div><div class="ov hot">1.91</div></div>
+      <div class="ob"><div class="ol">巴西赢到零封</div><div class="ov">1.65</div></div>
+      <div class="ob"><div class="ol">大球4.5</div><div class="ov">3.13</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">BetOnline：巴西-800 / 平+1200 / 海地+2500 · Kalshi：巴西88%/平8%/海地5% · 大球3.5（-110）是市场认定的核心价值盘</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>巴西独赢-800赔率对精明投注者价值极低，资金集中转向大球和角球等进阶市场</li>
+      <li>大球3.5进球总数是本场公认的核心价值盘——巴西攻击线豪华+海地防守漏洞明显</li>
+      <li>巴西赢到零封@1.65吸引大量资金，海地近5场3场未进球的数据支撑这一判断</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：极低（&lt;5%）</div>
+      <p>这是本日实力差距最悬殊的对决。巴西历史交锋3战全胜，且类似实力的巴拿马赛前被横扫6-2；Kalshi给巴西88%胜率、海地仅5%。唯一的"意外"是巴西可能不会全力出击或进球数低于预期（类似首战平摩洛哥的疲软表现），但巴西失利的可能性几乎可以忽略不计。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">巴西 4-0 海地（主选）</div>
+    <div class="pred-meta">概率约22% · 次选：3-0巴西（约20%） · 5-0巴西（约15%） · 3-1巴西（约12%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 8/10（结果方向高度确定，具体比分有波动）</div>
+    <div class="pred-body">
+      <strong>为什么预测4-0？</strong><br>
+      巴西平摩洛哥后急需用大胜正名，安切洛蒂会要求球队全力施压；海地近5场3场未进球，防守体系在巴西多点攻击下大概率失守多次；类比赛前热身6-2横扫巴拿马，海地实力与巴拿马相近甚至更弱。4-0是兼顾"巴西大胜"和"海地顽强防守拖延部分失球时间"两种现实因素的合理预测。<br><br>
+      <strong>数据支持：</strong>①历史交锋3战全胜且大比分 ②热身赛6-2横扫同级别对手巴拿马 ③海地近5场3场未进球，攻防两端均极弱<br><br>
+      <strong>风险因素：</strong>①巴西可能轮换部分球员保留体能（末轮战苏格兰）导致进球数不及预期 ②安切洛蒂执教风格偏保守，可能不会大举压上 ③海地可能利用反击打入1球（类似对苏格兰的尊严球）
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">大小球 <span class="tag tv">首推</span></div><div class="bc-rec">大球3.5 @1.91</div><div class="bc-reason">三依据：①巴西平摩洛哥后急需正名大胜 ②历史交锋+热身赛6-2均体现高比分倾向 ③海地防守漏洞明显近5场3场未进球反映其防守端同样脆弱</div></div>
+      <div class="bet-card val"><div class="bc-type">亚洲让球 <span class="tag tv">推荐</span></div><div class="bc-rec">巴西赢到零封 @1.65</div><div class="bc-reason">三依据：①海地近5场3场未进球 ②巴西防线（马尔基尼奥斯领衔）质量远超海地进攻端 ③历史交锋海地从未染指巴西球门</div></div>
+      <div class="bet-card"><div class="bc-type">胜平负</div><div class="bc-rec">巴西独赢 @1.13（仅作组合腿使用）</div><div class="bc-reason">几乎确定的结果，但赔率太低，单独投注价值有限，建议仅作串关腿</div></div>
+      <div class="bet-card"><div class="bc-type">射手</div><div class="bc-rec">维尼修斯/伊戈尔·蒂亚戈首球 @约2.20</div><div class="bc-reason">巴西攻击线多点开花，两人均有较高首球概率</div></div>
+      <div class="bet-card risk"><div class="bc-type">半全场 <span class="tag tr">价值</span></div><div class="bc-rec">巴西/巴西 @1.25</div><div class="bc-reason">分析师预测巴西会在半场前打开局面，下半场加码扩大优势</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 4 土耳其 vs 巴拉圭 ========== -->
+<div class="card" id="m3">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇹🇷 土耳其 vs 巴拉圭 🇵🇾</div>
+      <span class="grp">D组 · 第2轮</span>
+      <span class="status">双方均0分 · 输者基本出局 · 无重大伤停</span>
+    </div>
+    <div class="mh-right">圣克拉拉 Levi's体育场（旧金山湾区）</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇹🇷 土耳其（近5场）</div>
+        <div class="form-row"><span class="fl">L</span><span class="fw">W</span><span class="fw">W</span><span class="fd">D</span><span class="fw">W</span></div>
+        <div class="sub">世界杯MD1：0-2爆冷负澳大利亚（意外失利）<br>赛前状态强劲：近5场4胜1负，含4-0大胜北马其顿<br>克南·伊尔迪兹（尤文图斯）首战因伤替补登场<br>主帅蒙特拉的球队近10场近5战4胜，整体上升期</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇵🇾 巴拉圭（近5场）</div>
+        <div class="form-row"><span class="fl">L</span><span class="fd">D</span><span class="fw">W</span><span class="fd">D</span><span class="fl">L</span></div>
+        <div class="sub">世界杯MD1：1-4惨败美国（半场已0-3落后）<br>防守脆弱性暴露，近期状态参差<br>恩西索（帕尔梅拉斯）是主要进攻发起点<br>整体打法依赖防守组织+反击效率</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">土耳其</div><div class="val">约第25位</div><div class="sub">D组第3（0分）· 阵容质量公认更强<br>本场是2002年季军后回归世界杯的关键一战</div></div>
+      <div class="stat-block"><div class="lbl">巴拉圭</div><div class="val">约第55位</div><div class="sub">D组第4（0分）· 南美区出线但整体实力偏弱<br>对阵欧洲球队历史战绩不佳（14场7负）</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">土耳其</div><div class="val">进~16球 / 失~8球</div><div class="sub">备战阶段攻击力强劲（4-0胜北马其顿）<br>阿克图尔科格鲁近期进球状态出色</div></div>
+      <div class="stat-block"><div class="lbl">巴拉圭</div><div class="val">进~9球 / 失~14球</div><div class="sub">防守稳定性是最大问题，1-4负美国半场即0-3<br>进攻端依靠恩西索个人能力创造</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>历史仅交锋1次：1995年友谊赛，0-0互交白卷</li>
+      <li>历史数据参考价值极低（30年前且仅为友谊赛）</li>
+      <li>更具参考价值的趋势：巴拉圭历史上对阵欧洲球队的世界杯战绩为7负/14场，明显处于劣势</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>土耳其✓利好：</strong>克南·伊尔迪兹（尤文图斯）首战带伤替补登场，本场预期伤愈复出且能够首发，这是重大利好。阿尔达·古勒（皇马）、哈坎·恰尔汗奥卢领衔中场，整体阵容齐整</li>
+      <li><strong>巴拉圭：</strong>无重大伤停报告，但首战防守体系崩溃（半场失3球）说明结构性问题而非个人状态</li>
+      <li><strong>关键变量：</strong>伊尔迪兹的伤愈复出大幅提升土耳其边路创造力和突破能力，是本场最大的战术利好</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>土耳其高压控制体系：</strong>蒙特拉要求球队高位逼抢+边路突破，古勒+伊尔迪兹+恰尔汗奥卢三人组若同时在场，创造力远超巴拉圭中场抵抗能力</li>
+      <li><strong>巴拉圭防守反击+组织防守：</strong>传统南美球队风格，依赖恩西索个人能力打反击，但本届对阵欧洲球队（美国）已暴露防守纪律性问题</li>
+      <li><strong>关键对位：</strong>土耳其整体压迫节奏vs巴拉圭防线纪律性——首战巴拉圭半场即丢3球，说明其防线在高压下极易崩溃，这对土耳其极为有利</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组赛形势 / 战意分析</div>
+    <ul class="alist">
+      <li><strong>生死战：</strong>双方均0分，输球基本宣告出局（末轮还要面对美国/澳大利亚强敌）</li>
+      <li><strong>土耳其压力更大：</strong>赛前被视为种子级别球队却意外负于澳大利亚，本场只能赢不能平，否则末轮战美国基本无望出线</li>
+      <li><strong>巴拉圭同样绝望：</strong>历史上对阵欧洲球队战绩不佳，但背水一战往往激发斗志</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">土耳其独赢</div><div class="ov hot">1.95</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">3.20</div></div>
+      <div class="ob"><div class="ol">巴拉圭独赢</div><div class="ov">4.20</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov hot">1.83</div></div>
+      <div class="ob"><div class="ol">小球2.5</div><div class="ov">2.05</div></div>
+      <div class="ob"><div class="ol">土耳其+0.5让球</div><div class="ov">1.55</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">土耳其+105（约2.05）· 大球+120的价值依据是两队首战合计6个进球（0-2、1-4）说明开放型打法延续概率高</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>土耳其独赢资金集中，1.95-2.05区间被认为是"价值之选"——分析师普遍认为其阵容质量优势被低估</li>
+      <li>大球2.5（+120约2.20）被多个分析渠道列为核心推荐，依据是两队首战均为攻防两端开放的高失球比赛</li>
+      <li>市场普遍认为本场会比首战更具进攻性——两支"背水一战"球队往往会采取更激进的战术</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：中等（约25-30%）</div>
+      <p>巴拉圭对阵欧洲球队历史战绩为7负/14场，明显处于劣势；但土耳其首战已爆冷负于澳大利亚，证明其状态并非无懈可击。若伊尔迪兹未能恢复到最佳状态，或土耳其再次表现出首战的"心理紧张"，巴拉圭凭借恩西索的个人能力完全可能制造另一场冷门。分析师Yahoo预测为平局，反映双方实力差距并不像表面排名差距那样悬殊。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">土耳其 2-1 巴拉圭（主选）</div>
+    <div class="pred-meta">概率约25% · 次选：2-0土耳其（约20%） · 1-1平（约20%） · 1-0土耳其（约18%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 5/10（双方均不稳定，难以高信心预测）</div>
+    <div class="pred-body">
+      <strong>为什么预测2-1？</strong><br>
+      土耳其阵容质量（伊尔迪兹伤愈复出+古勒+恰尔汗奥卢）理论上应能突破巴拉圭防线，且巴拉圭首战半场即丢3球说明其防守纪律性脆弱；但巴拉圭凭借恩西索的个人能力和背水一战的斗志可能制造1球。2-1反映了"土耳其阵容优势+背水一战动机"与"巴拉圭历史性对欧洲球队劣势但绝地反击能力"两种因素的平衡。<br><br>
+      <strong>数据支持：</strong>①伊尔迪兹伤愈复出大幅提升创造力 ②巴拉圭首战防线半场丢3球暴露结构问题 ③两队首战合计6球，进攻开放性延续概率高<br><br>
+      <strong>风险因素：</strong>①土耳其首战已爆冷负于澳大利亚，心理状态存疑 ②巴拉圭对欧洲球队胜率虽低但仍有14场7胜机会 ③双方都是"背水一战"，比赛节奏可能更加混乱难以预测
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">胜平负 <span class="tag tv">推荐</span></div><div class="bc-rec">土耳其独赢 @1.95</div><div class="bc-reason">三依据：①伊尔迪兹伤愈复出提升创造力 ②巴拉圭首战防线半场丢3球暴露结构问题 ③古勒+恰尔汗奥卢中场质量优势明显</div></div>
+      <div class="bet-card val"><div class="bc-type">大小球 <span class="tag tv">首推</span></div><div class="bc-rec">大球2.5 @1.83</div><div class="bc-reason">三依据：①两队首战合计6球进攻开放 ②巴拉圭防守纪律性问题延续概率高 ③双方背水一战更倾向主动进攻而非保守</div></div>
+      <div class="bet-card"><div class="bc-type">亚洲让球</div><div class="bc-rec">土耳其-0.5 @1.95</div><div class="bc-reason">等同独赢但提供让球价值，土耳其阵容质量优势支持小胜以上结果</div></div>
+      <div class="bet-card"><div class="bc-type">双方进球</div><div class="bc-rec">双方进球-是 @1.90</div><div class="bc-reason">巴拉圭恩西索个人能力突出+土耳其进攻火力强，双方都有较高进球概率</div></div>
+      <div class="bet-card cool"><div class="bc-type">冷门尝试 <span class="tag th">高风险</span></div><div class="bc-rec">平局 @3.20</div><div class="bc-reason">巴拉圭历史对欧洲球队胜率不高但反击能力不可忽视，分析师Yahoo也预测平局，仅小注尝试</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 精选方案 ========== -->
+<div class="card" id="m4">
+  <div class="final-card">
+    <div class="final-title">🏆 世界杯明日精选方案 · 6月19日</div>
+    <div style="font-size:12px;color:#666;margin-bottom:14px">核心逻辑：本日呈现"两极分化"格局——巴西vs海地是悬殊实力差（稳胆首选），美澳/苏摩是中等优势但有不确定性，土巴是双向开放的攻防战。价值点集中在大小球和让球/零封市场。</div>
+
+    <div class="pick-row">
+      <div class="pick-item">
+        <div class="stars">★★★★<span class="off">☆</span></div>
+        <div class="pick-right">
+          <div class="plbl">稳胆（Banker）</div>
+          <div class="pmain">巴西赢到零封 @1.65 + 大球3.5 @1.91</div>
+          <div class="pdet">双串一赔率约3.15 · 三依据：①历史交锋3战全胜 ②热身赛6-2横扫同级别对手巴拿马 ③海地近5场3场未进球，攻防两端均极弱。风险：巴西可能轮换保留体能。建议35单位</div>
+        </div>
+      </div>
+      <div class="pick-item">
+        <div class="stars">★★★★<span class="off">☆</span></div>
+        <div class="pick-right">
+          <div class="plbl">稳胆（Banker）</div>
+          <div class="pmain">美国独赢 @1.62</div>
+          <div class="pdet">三依据：①美国主场净胜球+3领跑 ②整体移动性优于澳大利亚此前对手 ③澳大利亚进攻效率有限难以单凭反击逆转。风险：比奇可能再次神奇发挥。建议25单位</div>
+        </div>
+      </div>
+      <div class="pick-item">
+        <div class="stars">★★★<span class="off">☆☆</span></div>
+        <div class="pick-right">
+          <div class="plbl">博高赔</div>
+          <div class="pmain">土耳其独赢 + 大球2.5（双串）@1.95×1.83≈3.57</div>
+          <div class="pdet">三依据：①伊尔迪兹伤愈复出提升创造力 ②巴拉圭首战防线半场丢3球暴露结构问题 ③两队首战合计6球进攻开放。核心风险：土耳其首战已爆冷负澳大利亚，心理状态存疑。建议20单位</div>
+        </div>
+      </div>
+      <div class="pick-item">
+        <div class="stars">★★<span class="off">☆☆☆</span></div>
+        <div class="pick-right">
+          <div class="plbl">冷门尝试</div>
+          <div class="pmain">苏格兰 vs 摩洛哥 平局 @3.72</div>
+          <div class="pdet">三依据：①苏格兰防守韧性极强（近5场仅失6球） ②定位球能力（麦金恩先例）可制造威胁 ③摩洛哥末轮还要战巴西可能有所保留。注意：摩洛哥阵容质量仍占优，仅押10单位博高赔。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div style="font-size:13px;font-weight:700;margin-bottom:10px">100单位资金分配建议</div>
+    <div class="alloc-row">
+      <div class="abox"><div class="al">巴西零封<br>+大球串</div><div class="av" style="color:#1a5fa8">35单位</div></div>
+      <div class="abox"><div class="al">美国<br>独赢</div><div class="av" style="color:#1a5fa8">25单位</div></div>
+      <div class="abox"><div class="al">土耳其+大球<br>双串</div><div class="av" style="color:#2a7a2a">20单位</div></div>
+      <div class="abox"><div class="al">苏摩平局<br>冷门</div><div class="av" style="color:#c07800">10单位</div></div>
+    </div>
+    <div style="font-size:12px;color:#888;margin-top:6px">预留10单位机动（盘口即时调整/串关补充用） · 预计命中率目标：55-65% · 预期赔率区间：1.62-3.72</div>
+
+    <div class="divider"></div>
+    <div class="highlight">
+      <strong>⭐ 今日最值关注的价值盘：</strong><br>
+      ①巴西 vs 海地 <strong>大球3.5 @1.91</strong>——实力悬殊+巴西急需正名大胜的双重动力下，进球总数有充分支撑<br>
+      ②美国 vs 澳大利亚 <strong>半场平局 @2.60</strong>——专业分析师明确推荐，澳大利亚开局收缩+美国惯于下半场发力的规律性<br>
+      ③土耳其 vs 巴拉圭 <strong>大球2.5 @1.83</strong>——两队首战合计6球的进攻开放性，叠加双方背水一战的主动进攻倾向
+    </div>
+
+    <div class="divider"></div>
+    <div class="note">
+      <strong>⚠ 风险提示：</strong>以上内容基于公开数据、博彩公司赔率、历史交锋记录及伤停/阵容信息的综合分析，仅供参考，不构成任何投资建议。世界杯小组赛第2轮存在大量"背水一战"和"动机复杂"场次，结果存在较大不确定性。请理性投注，量力而行。
+    </div>
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<script>
+function show(i){
+  document.querySelectorAll('.card').forEach((c,j)=>c.classList.toggle('active',j===i));
+  document.querySelectorAll('.tab').forEach((b,j)=>b.classList.toggle('active',j===i));
+}
+</script>
+</body>
+</html>
