@@ -19,7 +19,42 @@
         "1-1"
       ],
       "confidence": 7,
-      "notes": "6.18报告主选：捷克2-1南非，候选2-0、1-0、1-1。"
+      "notes": "6.18报告主选：捷克2-1南非，候选2-0、1-0、1-1。",
+      "markets": [
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "home",
+          "display": "捷克独赢 @1.70"
+        },
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "over",
+          "line": 2.5,
+          "display": "大球2.5 @1.95"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "yes",
+          "display": "双方进球-是 @2.05"
+        },
+        {
+          "market": "asian_handicap",
+          "label": "亚洲让球",
+          "team": "home",
+          "line": -0.5,
+          "display": "捷克 -0.5 @1.80"
+        },
+        {
+          "market": "half_full",
+          "label": "半全场",
+          "half": "draw",
+          "full": "home",
+          "display": "上半平 / 全场捷克 @5.50"
+        }
+      ]
     },
     {
       "date_beijing": "2026-06-18",
@@ -38,7 +73,41 @@
         "2-0"
       ],
       "confidence": 6,
-      "notes": "6.18报告主选：瑞士1-0波黑，候选1-1、2-1、2-0。"
+      "notes": "6.18报告主选：瑞士1-0波黑，候选1-1、2-1、2-0。",
+      "markets": [
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "home",
+          "display": "瑞士独赢 @1.65"
+        },
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "under",
+          "line": 2.5,
+          "display": "小球2.5 @1.72"
+        },
+        {
+          "market": "asian_handicap",
+          "label": "亚洲让球",
+          "team": "away",
+          "line": 0.5,
+          "display": "波黑 +0.5 @2.30"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "no",
+          "display": "双方进球-否 @1.75"
+        },
+        {
+          "market": "second_half_1x2",
+          "label": "下半场胜平负",
+          "pick": "home",
+          "display": "下半场瑞士独赢 @2.20"
+        }
+      ]
     },
     {
       "date_beijing": "2026-06-18",
@@ -57,7 +126,41 @@
         "1-1"
       ],
       "confidence": 7,
-      "notes": "6.18报告主选：加拿大2-0卡塔尔，候选1-0、2-1、1-1。"
+      "notes": "6.18报告主选：加拿大2-0卡塔尔，候选1-0、2-1、1-1。",
+      "markets": [
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "home",
+          "display": "加拿大独赢 @1.40"
+        },
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "under",
+          "line": 2.5,
+          "display": "小球2.5 @1.72"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "no",
+          "display": "双方不进球 @1.80"
+        },
+        {
+          "market": "asian_handicap",
+          "label": "亚洲让球",
+          "team": "home",
+          "line": -1.5,
+          "display": "加拿大 -1.5 @2.40"
+        },
+        {
+          "market": "scorer",
+          "label": "射手",
+          "display": "乔纳森·大卫首个进球 @2.00",
+          "note": "当前赛果源未提供首球球员，暂不自动结算"
+        }
+      ]
     },
     {
       "date_beijing": "2026-06-18",
@@ -76,7 +179,41 @@
         "0-1"
       ],
       "confidence": 5,
-      "notes": "6.18报告主选：1-1平，候选墨西哥1-0、2-1、韩国0-1。"
+      "notes": "6.18报告主选：1-1平，候选墨西哥1-0、2-1、韩国0-1。",
+      "markets": [
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "under",
+          "line": 2.5,
+          "display": "小球2.5 @1.65"
+        },
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "draw",
+          "display": "平局 @3.30"
+        },
+        {
+          "market": "asian_handicap",
+          "label": "亚洲让球",
+          "team": "home",
+          "line": 0,
+          "display": "墨西哥 0 盘 @1.90"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "yes",
+          "display": "双方进球-是 @2.00"
+        },
+        {
+          "market": "1x2",
+          "label": "韩国爆冷",
+          "pick": "away",
+          "display": "韩国独赢 @4.00"
+        }
+      ]
     },
     {
       "date_beijing": "2026-06-19",
@@ -95,7 +232,41 @@
         "0-0"
       ],
       "confidence": 6,
-      "notes": "澳大利亚低位防守和美国核心状态风险使平局价值高于追美国热度。"
+      "notes": "澳大利亚低位防守和美国核心状态风险使平局价值高于追美国热度。",
+      "markets": [
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "home",
+          "display": "美国胜小注 / 平局防守"
+        },
+        {
+          "market": "asian_handicap",
+          "label": "亚洲让球",
+          "team": "home",
+          "line": -0.25,
+          "display": "美国 -0.25，不追 -0.75"
+        },
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "under",
+          "line": 2.5,
+          "display": "小 2.5"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "no",
+          "display": "BTTS No"
+        },
+        {
+          "market": "half_1x2",
+          "label": "半场",
+          "pick": "draw",
+          "display": "半场平"
+        }
+      ]
     },
     {
       "date_beijing": "2026-06-19",
@@ -114,7 +285,42 @@
         "1-0"
       ],
       "confidence": 6,
-      "notes": "摩洛哥防守和同级别表现优于苏格兰，但苏格兰定位球可拖平。"
+      "notes": "摩洛哥防守和同级别表现优于苏格兰，但苏格兰定位球可拖平。",
+      "markets": [
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "away",
+          "display": "摩洛哥胜小注"
+        },
+        {
+          "market": "asian_handicap",
+          "label": "亚洲让球",
+          "team": "away",
+          "line": -0.25,
+          "display": "摩洛哥 -0.25"
+        },
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "under",
+          "line": 2.5,
+          "display": "小 2.5"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "no",
+          "display": "BTTS No"
+        },
+        {
+          "market": "half_full",
+          "label": "半全场",
+          "half": "draw",
+          "full": "away",
+          "display": "平 / 摩洛哥"
+        }
+      ]
     },
     {
       "date_beijing": "2026-06-19",
@@ -133,7 +339,42 @@
         "0-0"
       ],
       "confidence": 7,
-      "notes": "巴西阵容层级和抢三分战意明显高于海地，零封方向优先。"
+      "notes": "巴西阵容层级和抢三分战意明显高于海地，零封方向优先。",
+      "markets": [
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "home",
+          "display": "巴西胜，不追超低赔"
+        },
+        {
+          "market": "asian_handicap",
+          "label": "亚洲让球",
+          "team": "home",
+          "line": -1.25,
+          "display": "巴西 -1.25 小注"
+        },
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "under",
+          "line": 3.5,
+          "display": "小 3.5 优于大 2.5"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "no",
+          "display": "BTTS No"
+        },
+        {
+          "market": "half_full",
+          "label": "半全场",
+          "half": "home",
+          "full": "home",
+          "display": "巴西 / 巴西"
+        }
+      ]
     },
     {
       "date_beijing": "2026-06-19",
@@ -152,7 +393,42 @@
         "0-1"
       ],
       "confidence": 6,
-      "notes": "两队0分压力大，土耳其技术推进略优，巴拉圭首战防线问题明显。"
+      "notes": "两队0分压力大，土耳其技术推进略优，巴拉圭首战防线问题明显。",
+      "markets": [
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "home",
+          "display": "土耳其胜小注"
+        },
+        {
+          "market": "asian_handicap",
+          "label": "亚洲让球",
+          "team": "home",
+          "line": -0.25,
+          "display": "土耳其 0 / -0.25"
+        },
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "under",
+          "line": 2.5,
+          "display": "小 2.5"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "no",
+          "display": "BTTS No"
+        },
+        {
+          "market": "half_full",
+          "label": "半全场",
+          "half": "draw",
+          "full": "home",
+          "display": "平 / 土耳其"
+        }
+      ]
     }
   ]
 }
