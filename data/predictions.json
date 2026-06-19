@@ -3,6 +3,82 @@
   "updated_at": "2026-06-19",
   "predictions": [
     {
+      "date_beijing": "2026-06-18",
+      "time_beijing": "00:00",
+      "home_team": "Czechia",
+      "away_team": "South Africa",
+      "group": "Group A",
+      "venue": "Mercedes-Benz Stadium",
+      "report": "reports/2026-06-18.html",
+      "pick_1x2": "home",
+      "primary_score": "2-1",
+      "score_candidates": [
+        "2-1",
+        "2-0",
+        "1-0",
+        "1-1"
+      ],
+      "confidence": 7,
+      "notes": "6.18报告主选：捷克2-1南非，候选2-0、1-0、1-1。"
+    },
+    {
+      "date_beijing": "2026-06-18",
+      "time_beijing": "03:00",
+      "home_team": "Switzerland",
+      "away_team": "Bosnia-Herzegovina",
+      "group": "Group B",
+      "venue": "SoFi Stadium",
+      "report": "reports/2026-06-18.html",
+      "pick_1x2": "home",
+      "primary_score": "1-0",
+      "score_candidates": [
+        "1-0",
+        "1-1",
+        "2-1",
+        "2-0"
+      ],
+      "confidence": 6,
+      "notes": "6.18报告主选：瑞士1-0波黑，候选1-1、2-1、2-0。"
+    },
+    {
+      "date_beijing": "2026-06-18",
+      "time_beijing": "06:00",
+      "home_team": "Canada",
+      "away_team": "Qatar",
+      "group": "Group B",
+      "venue": "BC Place Vancouver",
+      "report": "reports/2026-06-18.html",
+      "pick_1x2": "home",
+      "primary_score": "2-0",
+      "score_candidates": [
+        "2-0",
+        "1-0",
+        "2-1",
+        "1-1"
+      ],
+      "confidence": 7,
+      "notes": "6.18报告主选：加拿大2-0卡塔尔，候选1-0、2-1、1-1。"
+    },
+    {
+      "date_beijing": "2026-06-18",
+      "time_beijing": "09:00",
+      "home_team": "Mexico",
+      "away_team": "South Korea",
+      "group": "Group A",
+      "venue": "Guadalajara Stadium",
+      "report": "reports/2026-06-18.html",
+      "pick_1x2": "draw",
+      "primary_score": "1-1",
+      "score_candidates": [
+        "1-1",
+        "1-0",
+        "2-1",
+        "0-1"
+      ],
+      "confidence": 5,
+      "notes": "6.18报告主选：1-1平，候选墨西哥1-0、2-1、韩国0-1。"
+    },
+    {
       "date_beijing": "2026-06-19",
       "time_beijing": "04:00",
       "home_team": "USA",
@@ -12,7 +88,12 @@
       "report": "reports/2026-06-19.html",
       "pick_1x2": "draw",
       "primary_score": "1-1",
-      "score_candidates": ["1-1", "1-0", "0-1", "0-0"],
+      "score_candidates": [
+        "1-1",
+        "1-0",
+        "0-1",
+        "0-0"
+      ],
       "confidence": 6,
       "notes": "澳大利亚低位防守和美国核心状态风险使平局价值高于追美国热度。"
     },
@@ -26,7 +107,12 @@
       "report": "reports/2026-06-19.html",
       "pick_1x2": "away",
       "primary_score": "0-1",
-      "score_candidates": ["0-1", "1-1", "0-0", "1-0"],
+      "score_candidates": [
+        "0-1",
+        "1-1",
+        "0-0",
+        "1-0"
+      ],
       "confidence": 6,
       "notes": "摩洛哥防守和同级别表现优于苏格兰，但苏格兰定位球可拖平。"
     },
@@ -40,7 +126,12 @@
       "report": "reports/2026-06-19.html",
       "pick_1x2": "home",
       "primary_score": "2-0",
-      "score_candidates": ["1-0", "2-0", "1-1", "0-0"],
+      "score_candidates": [
+        "1-0",
+        "2-0",
+        "1-1",
+        "0-0"
+      ],
       "confidence": 7,
       "notes": "巴西阵容层级和抢三分战意明显高于海地，零封方向优先。"
     },
@@ -54,7 +145,12 @@
       "report": "reports/2026-06-19.html",
       "pick_1x2": "home",
       "primary_score": "1-0",
-      "score_candidates": ["1-0", "1-1", "0-0", "0-1"],
+      "score_candidates": [
+        "1-0",
+        "1-1",
+        "0-0",
+        "0-1"
+      ],
       "confidence": 6,
       "notes": "两队0分压力大，土耳其技术推进略优，巴拉圭首战防线问题明显。"
     }
