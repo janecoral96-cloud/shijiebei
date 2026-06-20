@@ -431,6 +431,198 @@
       ]
     },
     {
+      "date_beijing": "2026-06-19",
+      "time_beijing": "04:00",
+      "home_team": "USA",
+      "away_team": "Australia",
+      "group": "Group D",
+      "venue": "Seattle Stadium",
+      "report": "reports/2026-06-19-claude.html",
+      "pick_1x2": "home",
+      "primary_score": "2-1",
+      "score_candidates": [
+        "2-1",
+        "2-0",
+        "1-0",
+        "1-1"
+      ],
+      "confidence": 6,
+      "notes": "Claude 6.19报告：美国主场与机动性优势，主选2-1澳大利亚。",
+      "markets": [
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "home",
+          "display": "美国独赢 @1.62"
+        },
+        {
+          "market": "half_1x2",
+          "label": "半场",
+          "pick": "draw",
+          "display": "半场平局 @2.60"
+        },
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "over",
+          "line": 2.5,
+          "display": "大球2.5 @1.85"
+        }
+      ]
+    },
+    {
+      "date_beijing": "2026-06-19",
+      "time_beijing": "07:00",
+      "home_team": "Scotland",
+      "away_team": "Morocco",
+      "group": "Group C",
+      "venue": "Boston Stadium",
+      "report": "reports/2026-06-19-claude.html",
+      "pick_1x2": "away",
+      "primary_score": "0-1",
+      "score_candidates": [
+        "0-1",
+        "1-1",
+        "0-2",
+        "1-2"
+      ],
+      "confidence": 6,
+      "notes": "Claude 6.19报告：摩洛哥阵容质量占优，但尊重苏格兰防守韧性，主选苏格兰0-1摩洛哥。",
+      "markets": [
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "away",
+          "display": "摩洛哥独赢 @1.85"
+        },
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "under",
+          "line": 2.5,
+          "display": "小球2.5 @1.65"
+        },
+        {
+          "market": "win_to_nil",
+          "label": "零封获胜",
+          "team": "away",
+          "display": "摩洛哥赢到零封 @2.70"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "no",
+          "display": "双方不进球 @1.95"
+        },
+        {
+          "market": "1x2",
+          "label": "冷门尝试",
+          "pick": "draw",
+          "display": "平局 @3.72"
+        }
+      ]
+    },
+    {
+      "date_beijing": "2026-06-19",
+      "time_beijing": "10:00",
+      "home_team": "Brazil",
+      "away_team": "Haiti",
+      "group": "Group C",
+      "venue": "Philadelphia Stadium",
+      "report": "reports/2026-06-19-claude.html",
+      "pick_1x2": "home",
+      "primary_score": "4-0",
+      "score_candidates": [
+        "4-0",
+        "3-0",
+        "5-0",
+        "3-1"
+      ],
+      "confidence": 8,
+      "notes": "Claude 6.19报告：巴西急需大胜正名，主选4-0海地。",
+      "markets": [
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "over",
+          "line": 3.5,
+          "display": "大球3.5 @1.91"
+        },
+        {
+          "market": "win_to_nil",
+          "label": "零封获胜",
+          "team": "home",
+          "display": "巴西赢到零封 @1.65"
+        },
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "home",
+          "display": "巴西独赢 @1.13"
+        },
+        {
+          "market": "half_full",
+          "label": "半全场",
+          "half": "home",
+          "full": "home",
+          "display": "巴西 / 巴西 @1.25"
+        }
+      ]
+    },
+    {
+      "date_beijing": "2026-06-19",
+      "time_beijing": "13:00",
+      "home_team": "Türkiye",
+      "away_team": "Paraguay",
+      "group": "Group D",
+      "venue": "San Francisco Bay Area Stadium",
+      "report": "reports/2026-06-19-claude.html",
+      "pick_1x2": "home",
+      "primary_score": "2-1",
+      "score_candidates": [
+        "2-1",
+        "2-0",
+        "1-1",
+        "1-0"
+      ],
+      "confidence": 5,
+      "notes": "Claude 6.19报告：土耳其阵容质量和背水一战动机占优，但比赛节奏混乱，主选2-1。",
+      "markets": [
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "home",
+          "display": "土耳其独赢 @1.95"
+        },
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "over",
+          "line": 2.5,
+          "display": "大球2.5 @1.83"
+        },
+        {
+          "market": "asian_handicap",
+          "label": "亚洲让球",
+          "team": "home",
+          "line": -0.5,
+          "display": "土耳其 -0.5 @1.95"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "yes",
+          "display": "双方进球-是 @1.90"
+        },
+        {
+          "market": "1x2",
+          "label": "冷门尝试",
+          "pick": "draw",
+          "display": "平局 @3.20"
+        }
+      ]
+    },
+    {
       "date_beijing": "2026-06-21",
       "time_beijing": "01:00",
       "home_team": "Netherlands",
