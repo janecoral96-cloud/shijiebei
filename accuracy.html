@@ -15,6 +15,21 @@ h1{font-size:28px;line-height:1.2}
 .metric{background:#fff;border:1px solid #ddd;border-radius:8px;padding:14px}
 .metric .label{font-size:12px;color:#777;margin-bottom:4px}
 .metric .value{font-size:25px;font-weight:800;color:#1a5fa8}
+.report-picker{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:16px 0 18px}
+.report-card{display:flex;flex-direction:column;gap:5px;min-height:132px;background:#fff;border:1px solid #ddd;border-radius:8px;padding:14px;color:inherit;text-decoration:none;transition:border-color .15s ease,box-shadow .15s ease,transform .15s ease}
+.report-card:hover,.report-card.active{border-color:#1a5fa8;box-shadow:0 10px 22px rgba(0,0,0,.08);transform:translateY(-1px)}
+.report-date{font-size:28px;font-weight:900;color:#1a5fa8;line-height:1}
+.report-meta{width:max-content;border-radius:999px;background:#e8f2fc;color:#0d4e9e;font-size:11px;font-weight:800;padding:2px 8px}
+.report-line{font-size:12px;color:#666}
+.report-panel{display:none}
+.report-panel.active{display:block}
+.report-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;background:#fff;border:1px solid #ddd;border-radius:8px;padding:16px;margin-bottom:12px}
+.open-report{white-space:nowrap}
+.report-metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:12px}
+.report-metrics div{background:#fff;border:1px solid #ddd;border-radius:8px;padding:12px}
+.report-metrics span{display:block;font-size:11px;color:#777}
+.report-metrics strong{display:block;font-size:20px;color:#1a5fa8;margin-top:3px}
+.empty-state{background:#fff;border:1px dashed #ccc;border-radius:8px;padding:18px;color:#666;display:flex;flex-direction:column;gap:6px}
 .match-list{display:flex;flex-direction:column;gap:14px}
 .match-card{background:#fff;border:1px solid #ddd;border-radius:8px;padding:16px}
 .match-card.pending{color:#666}
@@ -43,7 +58,7 @@ a{color:#1a5fa8;text-decoration:none;font-weight:700}
 .market-card.miss{border-color:#edc0bd;background:#fff7f6}
 .market-card.push{border-color:#ead29a;background:#fffaf0}
 .note{margin-top:14px;color:#666;font-size:12px;line-height:1.7}
-@media(max-width:900px){.top,.match-head{display:block}.updated,.score-box{margin-top:8px;text-align:left}.cards{grid-template-columns:1fr 1fr}.quick-row{grid-template-columns:1fr}}
+@media(max-width:900px){.top,.match-head,.report-head{display:block}.updated,.score-box{margin-top:8px;text-align:left}.cards{grid-template-columns:1fr 1fr}.quick-row,.report-metrics{grid-template-columns:1fr}.open-report{display:inline-block;margin-top:8px}}
 </style>
 </head>
 <body>
@@ -53,17 +68,928 @@ a{color:#1a5fa8;text-decoration:none;font-weight:700}
       <h1>世界杯预测准确率</h1>
       <div class="sub">复盘胜平负、比分、大小球、双方进球、亚洲让球、半场/半全场等推荐。赛果优先级：手动覆盖 > ESPN 完赛数据 > FixtureDownload。</div>
     </div>
-    <div class="updated">北京时间 2026-06-19 17:20 更新</div>
+    <div class="updated">北京时间 2026-06-20 14:00 更新</div>
   </header>
   <section class="cards">
-    <div class="metric"><div class="label">已结算比赛</div><div class="value">4</div></div>
+    <div class="metric"><div class="label">已结算比赛</div><div class="value">8</div></div>
     <div class="metric"><div class="label">1X2 命中率</div><div class="value">50.0%</div></div>
-    <div class="metric"><div class="label">主比分命中率</div><div class="value">0.0%</div></div>
+    <div class="metric"><div class="label">主比分命中率</div><div class="value">12.5%</div></div>
     <div class="metric"><div class="label">候选比分命中率</div><div class="value">50.0%</div></div>
-    <div class="metric"><div class="label">盘口建议命中率</div><div class="value">42.1%</div></div>
+    <div class="metric"><div class="label">盘口建议命中率</div><div class="value">59.0%</div></div>
   </section>
-  <section class="match-list">
-    <article class="match-card finished">
+
+  <section class="report-picker" aria-label="选择报告">
+    <a class="report-card active" href="#report-reports-2026-06-20-html" data-target="report-reports-2026-06-20-html">
+      <span class="report-date">6.20</span>
+      <span class="report-meta">Codex生成</span>
+      <strong>2026年6月20日 · 周六</strong>
+      <span class="report-line">4 场预测 · 已结算 0 场</span>
+      <span class="report-line">1X2 - · 盘口 -</span>
+    </a><a class="report-card" href="#report-reports-2026-06-20-claude-html" data-target="report-reports-2026-06-20-claude-html">
+      <span class="report-date">6.20</span>
+      <span class="report-meta">Claude生成</span>
+      <strong>2026年6月20日 · 周六</strong>
+      <span class="report-line">4 场预测 · 已结算 0 场</span>
+      <span class="report-line">1X2 - · 盘口 -</span>
+    </a><a class="report-card" href="#report-reports-2026-06-19-html" data-target="report-reports-2026-06-19-html">
+      <span class="report-date">6.19</span>
+      <span class="report-meta">Codex生成</span>
+      <strong>2026年6月19日 · 周五</strong>
+      <span class="report-line">4 场预测 · 已结算 4 场</span>
+      <span class="report-line">1X2 50.0% · 盘口 75.0%</span>
+    </a><a class="report-card" href="#report-reports-2026-06-19-claude-html" data-target="report-reports-2026-06-19-claude-html">
+      <span class="report-date">6.19</span>
+      <span class="report-meta">Claude生成</span>
+      <strong>2026年6月19日 · 周五</strong>
+      <span class="report-line">0 场预测 · 已结算 0 场</span>
+      <span class="report-line">1X2 - · 盘口 -</span>
+    </a><a class="report-card" href="#report-reports-2026-06-18-html" data-target="report-reports-2026-06-18-html">
+      <span class="report-date">6.18</span>
+      <span class="report-meta">历史报告</span>
+      <strong>2026年6月18日 · 周四</strong>
+      <span class="report-line">4 场预测 · 已结算 4 场</span>
+      <span class="report-line">1X2 50.0% · 盘口 42.1%</span>
+    </a>
+  </section>
+
+  <section class="report-panel active" id="report-reports-2026-06-20-html" data-state="ready">
+    <div class="report-head">
+      <div>
+        <div class="match-date">2026年6月20日 · 周六 · Codex生成</div>
+        <h2>2026年6月20日 · 周六 · Codex生成</h2>
+      </div>
+      <a class="open-report" href="reports/2026-06-20.html">打开原报告</a>
+    </div>
+    <div class="report-metrics">
+      <div><span>预测场次</span><strong>4</strong></div>
+      <div><span>已结算</span><strong>0</strong></div>
+      <div><span>1X2</span><strong>-</strong></div>
+      <div><span>主比分</span><strong>-</strong></div>
+      <div><span>候选比分</span><strong>-</strong></div>
+      <div><span>盘口</span><strong>-</strong></div>
+    </div>
+    <div class="match-list">
+      <article class="match-card pending">
+      <div class="match-head">
+        <div>
+          <div class="match-date">2026-06-21 01:00 · Group F</div>
+          <h2>Netherlands vs Sweden</h2>
+        </div>
+        <div class="score-box">
+          <span>实际比分</span>
+          <strong>待赛果</strong>
+        </div>
+      </div>
+      <div class="quick-row">
+        <div><span>预测方向</span><strong>主胜</strong><em class="muted">-</em></div>
+        <div><span>主比分</span><strong>1-0</strong><em class="muted">-</em></div>
+        <div><span>候选比分</span><strong>1-0, 1-1, 2-0, 2-1</strong><em class="muted">-</em></div>
+      </div>
+      <div class="facts">
+        <span>半场：-</span>
+        <span>总进球：-</span>
+        <span>BTTS：-</span>
+        <span>来源：<a href="https://www.espn.com/soccer/match/_/gameId/760447/sweden-netherlands">ESPN</a></span>
+        <span>源时间：2026-06-21 01:00</span>
+        <a href="reports/2026-06-20.html">报告</a>
+      </div>
+      <p class="status-note">ESPN：Scheduled。ESPN 显示 completed=false 时不会用 0-0 结算。</p>
+      <div class="markets">
+        <div class="market-card muted">
+          <div class="market-top">
+            <span>胜平负</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">荷兰胜小注 / 荷兰不败</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>亚洲让球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">荷兰 -0.25</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>大小球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">小 2.75</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>双方进球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">BTTS No</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>半全场</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">平 / 荷兰</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+      </div>
+    </article>
+<article class="match-card pending">
+      <div class="match-head">
+        <div>
+          <div class="match-date">2026-06-21 04:00 · Group E</div>
+          <h2>Germany vs Ivory Coast</h2>
+        </div>
+        <div class="score-box">
+          <span>实际比分</span>
+          <strong>待赛果</strong>
+        </div>
+      </div>
+      <div class="quick-row">
+        <div><span>预测方向</span><strong>主胜</strong><em class="muted">-</em></div>
+        <div><span>主比分</span><strong>2-1</strong><em class="muted">-</em></div>
+        <div><span>候选比分</span><strong>2-1, 2-0, 1-0, 1-1</strong><em class="muted">-</em></div>
+      </div>
+      <div class="facts">
+        <span>半场：-</span>
+        <span>总进球：-</span>
+        <span>BTTS：-</span>
+        <span>来源：<a href="https://www.espn.com/soccer/match/_/gameId/760448/ivory-coast-germany">ESPN</a></span>
+        <span>源时间：2026-06-21 04:00</span>
+        <a href="reports/2026-06-20.html">报告</a>
+      </div>
+      <p class="status-note">ESPN：Scheduled。ESPN 显示 completed=false 时不会用 0-0 结算。</p>
+      <div class="markets">
+        <div class="market-card muted">
+          <div class="market-top">
+            <span>胜平负</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">德国胜</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>亚洲让球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">德国 -0.75</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>大小球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">大 2.25 / 谨慎大2.5</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>双方进球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">BTTS Yes 小注</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>半全场</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">平 / 德国</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+      </div>
+    </article>
+<article class="match-card pending">
+      <div class="match-head">
+        <div>
+          <div class="match-date">2026-06-21 08:00 · Group E</div>
+          <h2>Ecuador vs Curacao</h2>
+        </div>
+        <div class="score-box">
+          <span>实际比分</span>
+          <strong>待赛果</strong>
+        </div>
+      </div>
+      <div class="quick-row">
+        <div><span>预测方向</span><strong>主胜</strong><em class="muted">-</em></div>
+        <div><span>主比分</span><strong>1-0</strong><em class="muted">-</em></div>
+        <div><span>候选比分</span><strong>1-0, 2-0, 1-1, 2-1</strong><em class="muted">-</em></div>
+      </div>
+      <div class="facts">
+        <span>半场：-</span>
+        <span>总进球：-</span>
+        <span>BTTS：-</span>
+        <span>来源：<a href="https://www.espn.com/soccer/match/_/gameId/760446/curacao-ecuador">ESPN</a></span>
+        <span>源时间：2026-06-21 08:00</span>
+        <a href="reports/2026-06-20.html">报告</a>
+      </div>
+      <p class="status-note">ESPN：Scheduled。ESPN 显示 completed=false 时不会用 0-0 结算。</p>
+      <div class="markets">
+        <div class="market-card muted">
+          <div class="market-top">
+            <span>胜平负</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">厄瓜多尔胜</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>亚洲让球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">厄瓜多尔 -0.75 / -1</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>大小球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">小 3 / 小 3.25</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>双方进球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">BTTS No</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>半全场</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">平 / 厄瓜多尔</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+      </div>
+    </article>
+<article class="match-card pending">
+      <div class="match-head">
+        <div>
+          <div class="match-date">2026-06-21 12:00 · Group F</div>
+          <h2>Tunisia vs Japan</h2>
+        </div>
+        <div class="score-box">
+          <span>实际比分</span>
+          <strong>待赛果</strong>
+        </div>
+      </div>
+      <div class="quick-row">
+        <div><span>预测方向</span><strong>客胜</strong><em class="muted">-</em></div>
+        <div><span>主比分</span><strong>0-1</strong><em class="muted">-</em></div>
+        <div><span>候选比分</span><strong>0-1, 1-1, 0-0, 0-2</strong><em class="muted">-</em></div>
+      </div>
+      <div class="facts">
+        <span>半场：-</span>
+        <span>总进球：-</span>
+        <span>BTTS：-</span>
+        <span>来源：<a href="https://www.espn.com/soccer/match/_/gameId/760449/japan-tunisia">ESPN</a></span>
+        <span>源时间：2026-06-21 12:00</span>
+        <a href="reports/2026-06-20.html">报告</a>
+      </div>
+      <p class="status-note">ESPN：Scheduled。ESPN 显示 completed=false 时不会用 0-0 结算。</p>
+      <div class="markets">
+        <div class="market-card muted">
+          <div class="market-top">
+            <span>胜平负</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">日本胜 / 日本不败</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>亚洲让球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">日本 -0.25</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>大小球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">小 2.5</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>双方进球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">BTTS No</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>半全场</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">平 / 日本</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+      </div>
+    </article>
+    </div>
+  </section><section class="report-panel" id="report-reports-2026-06-20-claude-html" data-state="ready">
+    <div class="report-head">
+      <div>
+        <div class="match-date">2026年6月20日 · 周六 · Claude生成</div>
+        <h2>2026年6月20日 · 周六 · Claude生成</h2>
+      </div>
+      <a class="open-report" href="reports/2026-06-20-claude.html">打开原报告</a>
+    </div>
+    <div class="report-metrics">
+      <div><span>预测场次</span><strong>4</strong></div>
+      <div><span>已结算</span><strong>0</strong></div>
+      <div><span>1X2</span><strong>-</strong></div>
+      <div><span>主比分</span><strong>-</strong></div>
+      <div><span>候选比分</span><strong>-</strong></div>
+      <div><span>盘口</span><strong>-</strong></div>
+    </div>
+    <div class="match-list">
+      <article class="match-card pending">
+      <div class="match-head">
+        <div>
+          <div class="match-date">2026-06-21 01:00 · Group F</div>
+          <h2>Netherlands vs Sweden</h2>
+        </div>
+        <div class="score-box">
+          <span>实际比分</span>
+          <strong>待赛果</strong>
+        </div>
+      </div>
+      <div class="quick-row">
+        <div><span>预测方向</span><strong>主胜</strong><em class="muted">-</em></div>
+        <div><span>主比分</span><strong>2-1</strong><em class="muted">-</em></div>
+        <div><span>候选比分</span><strong>2-1, 2-2, 1-1, 2-0</strong><em class="muted">-</em></div>
+      </div>
+      <div class="facts">
+        <span>半场：-</span>
+        <span>总进球：-</span>
+        <span>BTTS：-</span>
+        <span>来源：<a href="https://www.espn.com/soccer/match/_/gameId/760447/sweden-netherlands">ESPN</a></span>
+        <span>源时间：2026-06-21 01:00</span>
+        <a href="reports/2026-06-20-claude.html">报告</a>
+      </div>
+      <p class="status-note">ESPN：Scheduled。ESPN 显示 completed=false 时不会用 0-0 结算。</p>
+      <div class="markets">
+        <div class="market-card muted">
+          <div class="market-top">
+            <span>大小球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">大球2.5 @1.91</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>胜平负</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">荷兰独赢 @1.72</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>双方进球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">双方进球-是 @1.95</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+      </div>
+    </article>
+<article class="match-card pending">
+      <div class="match-head">
+        <div>
+          <div class="match-date">2026-06-21 04:00 · Group E</div>
+          <h2>Germany vs Ivory Coast</h2>
+        </div>
+        <div class="score-box">
+          <span>实际比分</span>
+          <strong>待赛果</strong>
+        </div>
+      </div>
+      <div class="quick-row">
+        <div><span>预测方向</span><strong>主胜</strong><em class="muted">-</em></div>
+        <div><span>主比分</span><strong>2-0</strong><em class="muted">-</em></div>
+        <div><span>候选比分</span><strong>2-0, 2-1, 1-0, 3-0</strong><em class="muted">-</em></div>
+      </div>
+      <div class="facts">
+        <span>半场：-</span>
+        <span>总进球：-</span>
+        <span>BTTS：-</span>
+        <span>来源：<a href="https://www.espn.com/soccer/match/_/gameId/760448/ivory-coast-germany">ESPN</a></span>
+        <span>源时间：2026-06-21 04:00</span>
+        <a href="reports/2026-06-20-claude.html">报告</a>
+      </div>
+      <p class="status-note">ESPN：Scheduled。ESPN 显示 completed=false 时不会用 0-0 结算。</p>
+      <div class="markets">
+        <div class="market-card muted">
+          <div class="market-top">
+            <span>胜平负</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">德国独赢 @1.56</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>亚洲让球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">科特迪瓦 +1 @1.92</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>大小球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">小球2.5 @1.55</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>双方进球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">双方进球-否 @约2.10</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>半全场</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">德国 / 德国 @1.75</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+      </div>
+    </article>
+<article class="match-card pending">
+      <div class="match-head">
+        <div>
+          <div class="match-date">2026-06-21 08:00 · Group E</div>
+          <h2>Ecuador vs Curacao</h2>
+        </div>
+        <div class="score-box">
+          <span>实际比分</span>
+          <strong>待赛果</strong>
+        </div>
+      </div>
+      <div class="quick-row">
+        <div><span>预测方向</span><strong>主胜</strong><em class="muted">-</em></div>
+        <div><span>主比分</span><strong>3-1</strong><em class="muted">-</em></div>
+        <div><span>候选比分</span><strong>3-1, 2-0, 2-1, 1-0</strong><em class="muted">-</em></div>
+      </div>
+      <div class="facts">
+        <span>半场：-</span>
+        <span>总进球：-</span>
+        <span>BTTS：-</span>
+        <span>来源：<a href="https://www.espn.com/soccer/match/_/gameId/760446/curacao-ecuador">ESPN</a></span>
+        <span>源时间：2026-06-21 08:00</span>
+        <a href="reports/2026-06-20-claude.html">报告</a>
+      </div>
+      <p class="status-note">ESPN：Scheduled。ESPN 显示 completed=false 时不会用 0-0 结算。</p>
+      <div class="markets">
+        <div class="market-card muted">
+          <div class="market-top">
+            <span>亚洲让球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">厄瓜多尔 -1.5 @1.85</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>胜平负</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">厄瓜多尔独赢 @1.05</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>大小球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">小球3 @2.32</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>双方进球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">双方进球-是 @约2.20</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+      </div>
+    </article>
+<article class="match-card pending">
+      <div class="match-head">
+        <div>
+          <div class="match-date">2026-06-21 12:00 · Group F</div>
+          <h2>Tunisia vs Japan</h2>
+        </div>
+        <div class="score-box">
+          <span>实际比分</span>
+          <strong>待赛果</strong>
+        </div>
+      </div>
+      <div class="quick-row">
+        <div><span>预测方向</span><strong>客胜</strong><em class="muted">-</em></div>
+        <div><span>主比分</span><strong>0-2</strong><em class="muted">-</em></div>
+        <div><span>候选比分</span><strong>0-2, 0-3, 0-1, 1-2</strong><em class="muted">-</em></div>
+      </div>
+      <div class="facts">
+        <span>半场：-</span>
+        <span>总进球：-</span>
+        <span>BTTS：-</span>
+        <span>来源：<a href="https://www.espn.com/soccer/match/_/gameId/760449/japan-tunisia">ESPN</a></span>
+        <span>源时间：2026-06-21 12:00</span>
+        <a href="reports/2026-06-20-claude.html">报告</a>
+      </div>
+      <p class="status-note">ESPN：Scheduled。ESPN 显示 completed=false 时不会用 0-0 结算。</p>
+      <div class="markets">
+        <div class="market-card muted">
+          <div class="market-top">
+            <span>胜平负</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">日本独赢 @1.53</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>零封获胜</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">日本零封获胜 @2.10</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>大小球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">小球2.5 @1.78</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+<div class="market-card muted">
+          <div class="market-top">
+            <span>双方进球</span>
+            <strong>-</strong>
+          </div>
+          <div class="market-pick">双方进球-否 @约1.85</div>
+          <div class="market-actual">实际：待赛果</div>
+        </div>
+      </div>
+    </article>
+    </div>
+  </section><section class="report-panel" id="report-reports-2026-06-19-html" data-state="ready">
+    <div class="report-head">
+      <div>
+        <div class="match-date">2026年6月19日 · 周五 · Codex生成</div>
+        <h2>2026年6月19日 · 周五 · Codex生成</h2>
+      </div>
+      <a class="open-report" href="reports/2026-06-19.html">打开原报告</a>
+    </div>
+    <div class="report-metrics">
+      <div><span>预测场次</span><strong>4</strong></div>
+      <div><span>已结算</span><strong>4</strong></div>
+      <div><span>1X2</span><strong>50.0%</strong></div>
+      <div><span>主比分</span><strong>25.0%</strong></div>
+      <div><span>候选比分</span><strong>50.0%</strong></div>
+      <div><span>盘口</span><strong>75.0%</strong></div>
+    </div>
+    <div class="match-list">
+      <article class="match-card finished">
+      <div class="match-head">
+        <div>
+          <div class="match-date">2026-06-19 04:00 · Group D</div>
+          <h2>USA vs Australia</h2>
+        </div>
+        <div class="score-box">
+          <span>实际比分</span>
+          <strong>2-0</strong>
+        </div>
+      </div>
+      <div class="quick-row">
+        <div><span>预测方向</span><strong>平局</strong><em class="miss">未中</em></div>
+        <div><span>主比分</span><strong>1-1</strong><em class="miss">未中</em></div>
+        <div><span>候选比分</span><strong>1-1, 1-0, 0-1, 0-0</strong><em class="miss">未中</em></div>
+      </div>
+      <div class="facts">
+        <span>半场：2-0</span>
+        <span>总进球：2</span>
+        <span>BTTS：否</span>
+        <span>来源：<a href="https://www.espn.com/soccer/match/_/gameId/760442/australia-united-states">ESPN</a></span>
+        <span>源时间：2026-06-20 03:00</span>
+        <a href="reports/2026-06-19.html">报告</a>
+      </div>
+      <p class="status-note">已结算，来源：ESPN</p>
+      <div class="markets">
+        <div class="market-card hit">
+          <div class="market-top">
+            <span>胜平负</span>
+            <strong>命中</strong>
+          </div>
+          <div class="market-pick">美国胜小注 / 平局防守</div>
+          <div class="market-actual">实际：主胜</div>
+        </div>
+<div class="market-card hit">
+          <div class="market-top">
+            <span>亚洲让球</span>
+            <strong>命中</strong>
+          </div>
+          <div class="market-pick">美国 -0.25，不追 -0.75</div>
+          <div class="market-actual">实际：home -0.25 后比分差</div>
+        </div>
+<div class="market-card hit">
+          <div class="market-top">
+            <span>大小球</span>
+            <strong>命中</strong>
+          </div>
+          <div class="market-pick">小 2.5</div>
+          <div class="market-actual">实际：总进球 2</div>
+        </div>
+<div class="market-card hit">
+          <div class="market-top">
+            <span>双方进球</span>
+            <strong>命中</strong>
+          </div>
+          <div class="market-pick">BTTS No</div>
+          <div class="market-actual">实际：否</div>
+        </div>
+<div class="market-card miss">
+          <div class="market-top">
+            <span>半场</span>
+            <strong>未中</strong>
+          </div>
+          <div class="market-pick">半场平</div>
+          <div class="market-actual">实际：半场 2-0，主胜</div>
+        </div>
+      </div>
+    </article>
+<article class="match-card finished">
+      <div class="match-head">
+        <div>
+          <div class="match-date">2026-06-19 07:00 · Group C</div>
+          <h2>Scotland vs Morocco</h2>
+        </div>
+        <div class="score-box">
+          <span>实际比分</span>
+          <strong>0-1</strong>
+        </div>
+      </div>
+      <div class="quick-row">
+        <div><span>预测方向</span><strong>客胜</strong><em class="hit">命中</em></div>
+        <div><span>主比分</span><strong>0-1</strong><em class="hit">命中</em></div>
+        <div><span>候选比分</span><strong>0-1, 1-1, 0-0, 1-0</strong><em class="hit">命中</em></div>
+      </div>
+      <div class="facts">
+        <span>半场：0-1</span>
+        <span>总进球：1</span>
+        <span>BTTS：否</span>
+        <span>来源：<a href="https://www.espn.com/soccer/match/_/gameId/760445/morocco-scotland">ESPN</a></span>
+        <span>源时间：2026-06-20 06:00</span>
+        <a href="reports/2026-06-19.html">报告</a>
+      </div>
+      <p class="status-note">已结算，来源：ESPN</p>
+      <div class="markets">
+        <div class="market-card hit">
+          <div class="market-top">
+            <span>胜平负</span>
+            <strong>命中</strong>
+          </div>
+          <div class="market-pick">摩洛哥胜小注</div>
+          <div class="market-actual">实际：客胜</div>
+        </div>
+<div class="market-card hit">
+          <div class="market-top">
+            <span>亚洲让球</span>
+            <strong>命中</strong>
+          </div>
+          <div class="market-pick">摩洛哥 -0.25</div>
+          <div class="market-actual">实际：away -0.25 后比分差</div>
+        </div>
+<div class="market-card hit">
+          <div class="market-top">
+            <span>大小球</span>
+            <strong>命中</strong>
+          </div>
+          <div class="market-pick">小 2.5</div>
+          <div class="market-actual">实际：总进球 1</div>
+        </div>
+<div class="market-card hit">
+          <div class="market-top">
+            <span>双方进球</span>
+            <strong>命中</strong>
+          </div>
+          <div class="market-pick">BTTS No</div>
+          <div class="market-actual">实际：否</div>
+        </div>
+<div class="market-card miss">
+          <div class="market-top">
+            <span>半全场</span>
+            <strong>未中</strong>
+          </div>
+          <div class="market-pick">平 / 摩洛哥</div>
+          <div class="market-actual">实际：客胜 / 客胜</div>
+        </div>
+      </div>
+    </article>
+<article class="match-card finished">
+      <div class="match-head">
+        <div>
+          <div class="match-date">2026-06-19 10:00 · Group C</div>
+          <h2>Brazil vs Haiti</h2>
+        </div>
+        <div class="score-box">
+          <span>实际比分</span>
+          <strong>3-0</strong>
+        </div>
+      </div>
+      <div class="quick-row">
+        <div><span>预测方向</span><strong>主胜</strong><em class="hit">命中</em></div>
+        <div><span>主比分</span><strong>2-0</strong><em class="miss">未中</em></div>
+        <div><span>候选比分</span><strong>1-0, 2-0, 1-1, 0-0</strong><em class="miss">未中</em></div>
+      </div>
+      <div class="facts">
+        <span>半场：3-0</span>
+        <span>总进球：3</span>
+        <span>BTTS：否</span>
+        <span>来源：<a href="https://www.espn.com/soccer/match/_/gameId/760444/haiti-brazil">ESPN</a></span>
+        <span>源时间：2026-06-20 08:30</span>
+        <a href="reports/2026-06-19.html">报告</a>
+      </div>
+      <p class="status-note">已结算，来源：ESPN</p>
+      <div class="markets">
+        <div class="market-card hit">
+          <div class="market-top">
+            <span>胜平负</span>
+            <strong>命中</strong>
+          </div>
+          <div class="market-pick">巴西胜，不追超低赔</div>
+          <div class="market-actual">实际：主胜</div>
+        </div>
+<div class="market-card hit">
+          <div class="market-top">
+            <span>亚洲让球</span>
+            <strong>命中</strong>
+          </div>
+          <div class="market-pick">巴西 -1.25 小注</div>
+          <div class="market-actual">实际：home -1.25 后比分差</div>
+        </div>
+<div class="market-card hit">
+          <div class="market-top">
+            <span>大小球</span>
+            <strong>命中</strong>
+          </div>
+          <div class="market-pick">小 3.5 优于大 2.5</div>
+          <div class="market-actual">实际：总进球 3</div>
+        </div>
+<div class="market-card hit">
+          <div class="market-top">
+            <span>双方进球</span>
+            <strong>命中</strong>
+          </div>
+          <div class="market-pick">BTTS No</div>
+          <div class="market-actual">实际：否</div>
+        </div>
+<div class="market-card hit">
+          <div class="market-top">
+            <span>半全场</span>
+            <strong>命中</strong>
+          </div>
+          <div class="market-pick">巴西 / 巴西</div>
+          <div class="market-actual">实际：主胜 / 主胜</div>
+        </div>
+      </div>
+    </article>
+<article class="match-card finished">
+      <div class="match-head">
+        <div>
+          <div class="match-date">2026-06-19 13:00 · Group D</div>
+          <h2>Türkiye vs Paraguay</h2>
+        </div>
+        <div class="score-box">
+          <span>实际比分</span>
+          <strong>0-1</strong>
+        </div>
+      </div>
+      <div class="quick-row">
+        <div><span>预测方向</span><strong>主胜</strong><em class="miss">未中</em></div>
+        <div><span>主比分</span><strong>1-0</strong><em class="miss">未中</em></div>
+        <div><span>候选比分</span><strong>1-0, 1-1, 0-0, 0-1</strong><em class="hit">命中</em></div>
+      </div>
+      <div class="facts">
+        <span>半场：0-1</span>
+        <span>总进球：1</span>
+        <span>BTTS：否</span>
+        <span>来源：<a href="https://www.espn.com/soccer/match/_/gameId/760443/paraguay-turkiye">ESPN</a></span>
+        <span>源时间：2026-06-20 11:00</span>
+        <a href="reports/2026-06-19.html">报告</a>
+      </div>
+      <p class="status-note">已结算，来源：ESPN</p>
+      <div class="markets">
+        <div class="market-card miss">
+          <div class="market-top">
+            <span>胜平负</span>
+            <strong>未中</strong>
+          </div>
+          <div class="market-pick">土耳其胜小注</div>
+          <div class="market-actual">实际：客胜</div>
+        </div>
+<div class="market-card miss">
+          <div class="market-top">
+            <span>亚洲让球</span>
+            <strong>未中</strong>
+          </div>
+          <div class="market-pick">土耳其 0 / -0.25</div>
+          <div class="market-actual">实际：home -0.25 后比分差</div>
+        </div>
+<div class="market-card hit">
+          <div class="market-top">
+            <span>大小球</span>
+            <strong>命中</strong>
+          </div>
+          <div class="market-pick">小 2.5</div>
+          <div class="market-actual">实际：总进球 1</div>
+        </div>
+<div class="market-card hit">
+          <div class="market-top">
+            <span>双方进球</span>
+            <strong>命中</strong>
+          </div>
+          <div class="market-pick">BTTS No</div>
+          <div class="market-actual">实际：否</div>
+        </div>
+<div class="market-card miss">
+          <div class="market-top">
+            <span>半全场</span>
+            <strong>未中</strong>
+          </div>
+          <div class="market-pick">平 / 土耳其</div>
+          <div class="market-actual">实际：客胜 / 客胜</div>
+        </div>
+      </div>
+    </article>
+    </div>
+  </section><section class="report-panel" id="report-reports-2026-06-19-claude-html" data-state="empty">
+    <div class="report-head">
+      <div>
+        <div class="match-date">2026年6月19日 · 周五 · Claude生成</div>
+        <h2>2026年6月19日 · 周五 · Claude生成</h2>
+      </div>
+      <a class="open-report" href="reports/2026-06-19-claude.html">打开原报告</a>
+    </div>
+    <div class="report-metrics">
+      <div><span>预测场次</span><strong>0</strong></div>
+      <div><span>已结算</span><strong>0</strong></div>
+      <div><span>1X2</span><strong>-</strong></div>
+      <div><span>主比分</span><strong>-</strong></div>
+      <div><span>候选比分</span><strong>-</strong></div>
+      <div><span>盘口</span><strong>-</strong></div>
+    </div>
+    <div class="match-list">
+      <div class="empty-state">
+        <strong>这个 HTML 报告还没有结构化预测记录。</strong>
+        <span>可以先打开原报告查看内容；后续把该报告的胜平负、比分、大小球、让球、BTTS 等录入 data/predictions.json 后，这里会自动结算。</span>
+      </div>
+    </div>
+  </section><section class="report-panel" id="report-reports-2026-06-18-html" data-state="ready">
+    <div class="report-head">
+      <div>
+        <div class="match-date">2026年6月18日 · 周四 · 历史报告</div>
+        <h2>2026年6月18日 · 周四 · 历史报告</h2>
+      </div>
+      <a class="open-report" href="reports/2026-06-18.html">打开原报告</a>
+    </div>
+    <div class="report-metrics">
+      <div><span>预测场次</span><strong>4</strong></div>
+      <div><span>已结算</span><strong>4</strong></div>
+      <div><span>1X2</span><strong>50.0%</strong></div>
+      <div><span>主比分</span><strong>0.0%</strong></div>
+      <div><span>候选比分</span><strong>50.0%</strong></div>
+      <div><span>盘口</span><strong>42.1%</strong></div>
+    </div>
+    <div class="match-list">
+      <article class="match-card finished">
       <div class="match-head">
         <div>
           <div class="match-date">2026-06-18 00:00 · Group A</div>
@@ -130,7 +1056,8 @@ a{color:#1a5fa8;text-decoration:none;font-weight:700}
           <div class="market-actual">实际：主胜 / 平局</div>
         </div>
       </div>
-    </article><article class="match-card finished">
+    </article>
+<article class="match-card finished">
       <div class="match-head">
         <div>
           <div class="match-date">2026-06-18 03:00 · Group B</div>
@@ -197,7 +1124,8 @@ a{color:#1a5fa8;text-decoration:none;font-weight:700}
           <div class="market-actual">实际：下半场 4-1，主胜</div>
         </div>
       </div>
-    </article><article class="match-card finished">
+    </article>
+<article class="match-card finished">
       <div class="match-head">
         <div>
           <div class="match-date">2026-06-18 06:00 · Group B</div>
@@ -264,7 +1192,8 @@ a{color:#1a5fa8;text-decoration:none;font-weight:700}
           <div class="market-actual">实际：当前赛果源未提供首球球员，暂不自动结算</div>
         </div>
       </div>
-    </article><article class="match-card finished">
+    </article>
+<article class="match-card finished">
       <div class="match-head">
         <div>
           <div class="match-date">2026-06-18 09:00 · Group A</div>
@@ -331,280 +1260,34 @@ a{color:#1a5fa8;text-decoration:none;font-weight:700}
           <div class="market-actual">实际：主胜</div>
         </div>
       </div>
-    </article><article class="match-card pending">
-      <div class="match-head">
-        <div>
-          <div class="match-date">2026-06-19 04:00 · Group D</div>
-          <h2>USA vs Australia</h2>
-        </div>
-        <div class="score-box">
-          <span>实际比分</span>
-          <strong>待赛果</strong>
-        </div>
-      </div>
-      <div class="quick-row">
-        <div><span>预测方向</span><strong>平局</strong><em class="muted">-</em></div>
-        <div><span>主比分</span><strong>1-1</strong><em class="muted">-</em></div>
-        <div><span>候选比分</span><strong>1-1, 1-0, 0-1, 0-0</strong><em class="muted">-</em></div>
-      </div>
-      <div class="facts">
-        <span>半场：-</span>
-        <span>总进球：-</span>
-        <span>BTTS：-</span>
-        <span>来源：<a href="https://www.espn.com/soccer/match/_/gameId/760442/australia-united-states">ESPN</a></span>
-        <span>源时间：2026-06-20 03:00</span>
-        <a href="reports/2026-06-19.html">报告</a>
-      </div>
-      <p class="status-note">ESPN：Scheduled。ESPN 显示 completed=false 时不会用 0-0 结算。</p>
-      <div class="markets">
-        <div class="market-card muted">
-          <div class="market-top">
-            <span>胜平负</span>
-            <strong>-</strong>
-          </div>
-          <div class="market-pick">美国胜小注 / 平局防守</div>
-          <div class="market-actual">实际：待赛果</div>
-        </div>
-<div class="market-card muted">
-          <div class="market-top">
-            <span>亚洲让球</span>
-            <strong>-</strong>
-          </div>
-          <div class="market-pick">美国 -0.25，不追 -0.75</div>
-          <div class="market-actual">实际：待赛果</div>
-        </div>
-<div class="market-card muted">
-          <div class="market-top">
-            <span>大小球</span>
-            <strong>-</strong>
-          </div>
-          <div class="market-pick">小 2.5</div>
-          <div class="market-actual">实际：待赛果</div>
-        </div>
-<div class="market-card muted">
-          <div class="market-top">
-            <span>双方进球</span>
-            <strong>-</strong>
-          </div>
-          <div class="market-pick">BTTS No</div>
-          <div class="market-actual">实际：待赛果</div>
-        </div>
-<div class="market-card muted">
-          <div class="market-top">
-            <span>半场</span>
-            <strong>-</strong>
-          </div>
-          <div class="market-pick">半场平</div>
-          <div class="market-actual">实际：待赛果</div>
-        </div>
-      </div>
-    </article><article class="match-card pending">
-      <div class="match-head">
-        <div>
-          <div class="match-date">2026-06-19 07:00 · Group C</div>
-          <h2>Scotland vs Morocco</h2>
-        </div>
-        <div class="score-box">
-          <span>实际比分</span>
-          <strong>待赛果</strong>
-        </div>
-      </div>
-      <div class="quick-row">
-        <div><span>预测方向</span><strong>客胜</strong><em class="muted">-</em></div>
-        <div><span>主比分</span><strong>0-1</strong><em class="muted">-</em></div>
-        <div><span>候选比分</span><strong>0-1, 1-1, 0-0, 1-0</strong><em class="muted">-</em></div>
-      </div>
-      <div class="facts">
-        <span>半场：-</span>
-        <span>总进球：-</span>
-        <span>BTTS：-</span>
-        <span>来源：<a href="https://www.espn.com/soccer/match/_/gameId/760445/morocco-scotland">ESPN</a></span>
-        <span>源时间：2026-06-20 06:00</span>
-        <a href="reports/2026-06-19.html">报告</a>
-      </div>
-      <p class="status-note">ESPN：Scheduled。ESPN 显示 completed=false 时不会用 0-0 结算。</p>
-      <div class="markets">
-        <div class="market-card muted">
-          <div class="market-top">
-            <span>胜平负</span>
-            <strong>-</strong>
-          </div>
-          <div class="market-pick">摩洛哥胜小注</div>
-          <div class="market-actual">实际：待赛果</div>
-        </div>
-<div class="market-card muted">
-          <div class="market-top">
-            <span>亚洲让球</span>
-            <strong>-</strong>
-          </div>
-          <div class="market-pick">摩洛哥 -0.25</div>
-          <div class="market-actual">实际：待赛果</div>
-        </div>
-<div class="market-card muted">
-          <div class="market-top">
-            <span>大小球</span>
-            <strong>-</strong>
-          </div>
-          <div class="market-pick">小 2.5</div>
-          <div class="market-actual">实际：待赛果</div>
-        </div>
-<div class="market-card muted">
-          <div class="market-top">
-            <span>双方进球</span>
-            <strong>-</strong>
-          </div>
-          <div class="market-pick">BTTS No</div>
-          <div class="market-actual">实际：待赛果</div>
-        </div>
-<div class="market-card muted">
-          <div class="market-top">
-            <span>半全场</span>
-            <strong>-</strong>
-          </div>
-          <div class="market-pick">平 / 摩洛哥</div>
-          <div class="market-actual">实际：待赛果</div>
-        </div>
-      </div>
-    </article><article class="match-card pending">
-      <div class="match-head">
-        <div>
-          <div class="match-date">2026-06-19 10:00 · Group C</div>
-          <h2>Brazil vs Haiti</h2>
-        </div>
-        <div class="score-box">
-          <span>实际比分</span>
-          <strong>待赛果</strong>
-        </div>
-      </div>
-      <div class="quick-row">
-        <div><span>预测方向</span><strong>主胜</strong><em class="muted">-</em></div>
-        <div><span>主比分</span><strong>2-0</strong><em class="muted">-</em></div>
-        <div><span>候选比分</span><strong>1-0, 2-0, 1-1, 0-0</strong><em class="muted">-</em></div>
-      </div>
-      <div class="facts">
-        <span>半场：-</span>
-        <span>总进球：-</span>
-        <span>BTTS：-</span>
-        <span>来源：<a href="https://www.espn.com/soccer/match/_/gameId/760444/haiti-brazil">ESPN</a></span>
-        <span>源时间：2026-06-20 08:30</span>
-        <a href="reports/2026-06-19.html">报告</a>
-      </div>
-      <p class="status-note">ESPN：Scheduled。ESPN 显示 completed=false 时不会用 0-0 结算。</p>
-      <div class="markets">
-        <div class="market-card muted">
-          <div class="market-top">
-            <span>胜平负</span>
-            <strong>-</strong>
-          </div>
-          <div class="market-pick">巴西胜，不追超低赔</div>
-          <div class="market-actual">实际：待赛果</div>
-        </div>
-<div class="market-card muted">
-          <div class="market-top">
-            <span>亚洲让球</span>
-            <strong>-</strong>
-          </div>
-          <div class="market-pick">巴西 -1.25 小注</div>
-          <div class="market-actual">实际：待赛果</div>
-        </div>
-<div class="market-card muted">
-          <div class="market-top">
-            <span>大小球</span>
-            <strong>-</strong>
-          </div>
-          <div class="market-pick">小 3.5 优于大 2.5</div>
-          <div class="market-actual">实际：待赛果</div>
-        </div>
-<div class="market-card muted">
-          <div class="market-top">
-            <span>双方进球</span>
-            <strong>-</strong>
-          </div>
-          <div class="market-pick">BTTS No</div>
-          <div class="market-actual">实际：待赛果</div>
-        </div>
-<div class="market-card muted">
-          <div class="market-top">
-            <span>半全场</span>
-            <strong>-</strong>
-          </div>
-          <div class="market-pick">巴西 / 巴西</div>
-          <div class="market-actual">实际：待赛果</div>
-        </div>
-      </div>
-    </article><article class="match-card pending">
-      <div class="match-head">
-        <div>
-          <div class="match-date">2026-06-19 13:00 · Group D</div>
-          <h2>Türkiye vs Paraguay</h2>
-        </div>
-        <div class="score-box">
-          <span>实际比分</span>
-          <strong>待赛果</strong>
-        </div>
-      </div>
-      <div class="quick-row">
-        <div><span>预测方向</span><strong>主胜</strong><em class="muted">-</em></div>
-        <div><span>主比分</span><strong>1-0</strong><em class="muted">-</em></div>
-        <div><span>候选比分</span><strong>1-0, 1-1, 0-0, 0-1</strong><em class="muted">-</em></div>
-      </div>
-      <div class="facts">
-        <span>半场：-</span>
-        <span>总进球：-</span>
-        <span>BTTS：-</span>
-        <span>来源：<a href="https://www.espn.com/soccer/match/_/gameId/760443/paraguay-turkiye">ESPN</a></span>
-        <span>源时间：2026-06-20 11:00</span>
-        <a href="reports/2026-06-19.html">报告</a>
-      </div>
-      <p class="status-note">ESPN：Scheduled。ESPN 显示 completed=false 时不会用 0-0 结算。</p>
-      <div class="markets">
-        <div class="market-card muted">
-          <div class="market-top">
-            <span>胜平负</span>
-            <strong>-</strong>
-          </div>
-          <div class="market-pick">土耳其胜小注</div>
-          <div class="market-actual">实际：待赛果</div>
-        </div>
-<div class="market-card muted">
-          <div class="market-top">
-            <span>亚洲让球</span>
-            <strong>-</strong>
-          </div>
-          <div class="market-pick">土耳其 0 / -0.25</div>
-          <div class="market-actual">实际：待赛果</div>
-        </div>
-<div class="market-card muted">
-          <div class="market-top">
-            <span>大小球</span>
-            <strong>-</strong>
-          </div>
-          <div class="market-pick">小 2.5</div>
-          <div class="market-actual">实际：待赛果</div>
-        </div>
-<div class="market-card muted">
-          <div class="market-top">
-            <span>双方进球</span>
-            <strong>-</strong>
-          </div>
-          <div class="market-pick">BTTS No</div>
-          <div class="market-actual">实际：待赛果</div>
-        </div>
-<div class="market-card muted">
-          <div class="market-top">
-            <span>半全场</span>
-            <strong>-</strong>
-          </div>
-          <div class="market-pick">平 / 土耳其</div>
-          <div class="market-actual">实际：待赛果</div>
-        </div>
-      </div>
     </article>
+    </div>
   </section>
+
   <div class="note">
-    已结算盘口建议：19 条；命中：8 条；走水：0 条；待赛果比赛：4 场。本页抓取时间：北京时间 2026-06-19 17:20。
+    全站已结算盘口建议：39 条；命中：23 条；走水：0 条；待赛果比赛：8 场。本页抓取时间：北京时间 2026-06-20 14:00。
     如果 ESPN 仍显示 Scheduled 或 FixtureDownload 比分为空，本页不会把 0-0 当作完赛比分。
   </div>
 </main>
+<script>
+const cards = Array.from(document.querySelectorAll('.report-card'));
+const panels = Array.from(document.querySelectorAll('.report-panel'));
+function showReport(id) {
+  cards.forEach(card => card.classList.toggle('active', card.dataset.target === id));
+  panels.forEach(panel => panel.classList.toggle('active', panel.id === id));
+}
+cards.forEach(card => {
+  card.addEventListener('click', event => {
+    event.preventDefault();
+    const id = card.dataset.target;
+    showReport(id);
+    history.replaceState(null, '', '#' + id);
+  });
+});
+if (location.hash) {
+  const id = location.hash.slice(1);
+  if (document.getElementById(id)) showReport(id);
+}
+</script>
 </body>
 </html>

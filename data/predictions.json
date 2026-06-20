@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-06-19",
+  "updated_at": "2026-06-20",
   "predictions": [
     {
       "date_beijing": "2026-06-18",
@@ -427,6 +427,409 @@
           "half": "draw",
           "full": "home",
           "display": "平 / 土耳其"
+        }
+      ]
+    },
+    {
+      "date_beijing": "2026-06-21",
+      "time_beijing": "01:00",
+      "home_team": "Netherlands",
+      "away_team": "Sweden",
+      "group": "Group F",
+      "venue": "NRG Stadium",
+      "report": "reports/2026-06-20.html",
+      "pick_1x2": "home",
+      "primary_score": "1-0",
+      "score_candidates": [
+        "1-0",
+        "1-1",
+        "2-0",
+        "2-1"
+      ],
+      "confidence": 6.5,
+      "notes": "Codex 6.20报告：荷兰不败，小球优先，主比分1-0。",
+      "markets": [
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "home",
+          "display": "荷兰胜小注 / 荷兰不败"
+        },
+        {
+          "market": "asian_handicap",
+          "label": "亚洲让球",
+          "team": "home",
+          "line": -0.25,
+          "display": "荷兰 -0.25"
+        },
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "under",
+          "line": 2.75,
+          "display": "小 2.75"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "no",
+          "display": "BTTS No"
+        },
+        {
+          "market": "half_full",
+          "label": "半全场",
+          "half": "draw",
+          "full": "home",
+          "display": "平 / 荷兰"
+        }
+      ]
+    },
+    {
+      "date_beijing": "2026-06-21",
+      "time_beijing": "04:00",
+      "home_team": "Germany",
+      "away_team": "Ivory Coast",
+      "group": "Group E",
+      "venue": "BMO Field",
+      "report": "reports/2026-06-20.html",
+      "pick_1x2": "home",
+      "primary_score": "2-1",
+      "score_candidates": [
+        "2-1",
+        "2-0",
+        "1-0",
+        "1-1"
+      ],
+      "confidence": 6.5,
+      "notes": "Codex 6.20报告：德国胜，但科特迪瓦反击有进球风险。",
+      "markets": [
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "home",
+          "display": "德国胜"
+        },
+        {
+          "market": "asian_handicap",
+          "label": "亚洲让球",
+          "team": "home",
+          "line": -0.75,
+          "display": "德国 -0.75"
+        },
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "over",
+          "line": 2.25,
+          "display": "大 2.25 / 谨慎大2.5"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "yes",
+          "display": "BTTS Yes 小注"
+        },
+        {
+          "market": "half_full",
+          "label": "半全场",
+          "half": "draw",
+          "full": "home",
+          "display": "平 / 德国"
+        }
+      ]
+    },
+    {
+      "date_beijing": "2026-06-21",
+      "time_beijing": "08:00",
+      "home_team": "Ecuador",
+      "away_team": "Curacao",
+      "group": "Group E",
+      "venue": "Arrowhead Stadium",
+      "report": "reports/2026-06-20.html",
+      "pick_1x2": "home",
+      "primary_score": "1-0",
+      "score_candidates": [
+        "1-0",
+        "2-0",
+        "1-1",
+        "2-1"
+      ],
+      "confidence": 7,
+      "notes": "Codex 6.20报告：厄瓜多尔胜，反对过度追大胜。",
+      "markets": [
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "home",
+          "display": "厄瓜多尔胜"
+        },
+        {
+          "market": "asian_handicap",
+          "label": "亚洲让球",
+          "team": "home",
+          "line": -1,
+          "display": "厄瓜多尔 -0.75 / -1"
+        },
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "under",
+          "line": 3,
+          "display": "小 3 / 小 3.25"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "no",
+          "display": "BTTS No"
+        },
+        {
+          "market": "half_full",
+          "label": "半全场",
+          "half": "draw",
+          "full": "home",
+          "display": "平 / 厄瓜多尔"
+        }
+      ]
+    },
+    {
+      "date_beijing": "2026-06-21",
+      "time_beijing": "12:00",
+      "home_team": "Tunisia",
+      "away_team": "Japan",
+      "group": "Group F",
+      "venue": "Estadio BBVA",
+      "report": "reports/2026-06-20.html",
+      "pick_1x2": "away",
+      "primary_score": "0-1",
+      "score_candidates": [
+        "0-1",
+        "1-1",
+        "0-0",
+        "0-2"
+      ],
+      "confidence": 7,
+      "notes": "Codex 6.20报告：日本不败，小球，主比分突尼斯0-1日本。",
+      "markets": [
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "away",
+          "display": "日本胜 / 日本不败"
+        },
+        {
+          "market": "asian_handicap",
+          "label": "亚洲让球",
+          "team": "away",
+          "line": -0.25,
+          "display": "日本 -0.25"
+        },
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "under",
+          "line": 2.5,
+          "display": "小 2.5"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "no",
+          "display": "BTTS No"
+        },
+        {
+          "market": "half_full",
+          "label": "半全场",
+          "half": "draw",
+          "full": "away",
+          "display": "平 / 日本"
+        }
+      ]
+    },
+    {
+      "date_beijing": "2026-06-21",
+      "time_beijing": "01:00",
+      "home_team": "Netherlands",
+      "away_team": "Sweden",
+      "group": "Group F",
+      "venue": "NRG Stadium",
+      "report": "reports/2026-06-20-claude.html",
+      "pick_1x2": "home",
+      "primary_score": "2-1",
+      "score_candidates": [
+        "2-1",
+        "2-2",
+        "1-1",
+        "2-0"
+      ],
+      "confidence": 5,
+      "notes": "Claude 6.20报告：主选荷兰2-1瑞典，更看重大球和双方进球。",
+      "markets": [
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "over",
+          "line": 2.5,
+          "display": "大球2.5 @1.91"
+        },
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "home",
+          "display": "荷兰独赢 @1.72"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "yes",
+          "display": "双方进球-是 @1.95"
+        }
+      ]
+    },
+    {
+      "date_beijing": "2026-06-21",
+      "time_beijing": "04:00",
+      "home_team": "Germany",
+      "away_team": "Ivory Coast",
+      "group": "Group E",
+      "venue": "BMO Field",
+      "report": "reports/2026-06-20-claude.html",
+      "pick_1x2": "home",
+      "primary_score": "2-0",
+      "score_candidates": [
+        "2-0",
+        "2-1",
+        "1-0",
+        "3-0"
+      ],
+      "confidence": 6,
+      "notes": "Claude 6.20报告：德国2-0，价值点在科特迪瓦+1和小球。",
+      "markets": [
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "home",
+          "display": "德国独赢 @1.56"
+        },
+        {
+          "market": "asian_handicap",
+          "label": "亚洲让球",
+          "team": "away",
+          "line": 1,
+          "display": "科特迪瓦 +1 @1.92"
+        },
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "under",
+          "line": 2.5,
+          "display": "小球2.5 @1.55"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "no",
+          "display": "双方进球-否 @约2.10"
+        },
+        {
+          "market": "half_full",
+          "label": "半全场",
+          "half": "home",
+          "full": "home",
+          "display": "德国 / 德国 @1.75"
+        }
+      ]
+    },
+    {
+      "date_beijing": "2026-06-21",
+      "time_beijing": "08:00",
+      "home_team": "Ecuador",
+      "away_team": "Curacao",
+      "group": "Group E",
+      "venue": "Arrowhead Stadium",
+      "report": "reports/2026-06-20-claude.html",
+      "pick_1x2": "home",
+      "primary_score": "3-1",
+      "score_candidates": [
+        "3-1",
+        "2-0",
+        "2-1",
+        "1-0"
+      ],
+      "confidence": 6,
+      "notes": "Claude 6.20报告：厄瓜多尔3-1，独赢太低，主看让球和小3对冲。",
+      "markets": [
+        {
+          "market": "asian_handicap",
+          "label": "亚洲让球",
+          "team": "home",
+          "line": -1.5,
+          "display": "厄瓜多尔 -1.5 @1.85"
+        },
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "home",
+          "display": "厄瓜多尔独赢 @1.05"
+        },
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "under",
+          "line": 3,
+          "display": "小球3 @2.32"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "yes",
+          "display": "双方进球-是 @约2.20"
+        }
+      ]
+    },
+    {
+      "date_beijing": "2026-06-21",
+      "time_beijing": "12:00",
+      "home_team": "Tunisia",
+      "away_team": "Japan",
+      "group": "Group F",
+      "venue": "Estadio BBVA",
+      "report": "reports/2026-06-20-claude.html",
+      "pick_1x2": "away",
+      "primary_score": "0-2",
+      "score_candidates": [
+        "0-2",
+        "0-3",
+        "0-1",
+        "1-2"
+      ],
+      "confidence": 7,
+      "notes": "Claude 6.20报告：日本2-0突尼斯，重点看日本零封。",
+      "markets": [
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "away",
+          "display": "日本独赢 @1.53"
+        },
+        {
+          "market": "win_to_nil",
+          "label": "零封获胜",
+          "team": "away",
+          "display": "日本零封获胜 @2.10"
+        },
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "under",
+          "line": 2.5,
+          "display": "小球2.5 @1.78"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "no",
+          "display": "双方进球-否 @约1.85"
         }
       ]
     }

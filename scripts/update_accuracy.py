@@ -28,6 +28,7 @@ ROOT = Path(__file__).resolve().parent.parent
 PREDICTIONS_PATH = ROOT / "data" / "predictions.json"
 OVERRIDES_PATH = ROOT / "data" / "results_overrides.json"
 ACCURACY_PATH = ROOT / "accuracy.html"
+REPORTS_DIR = ROOT / "reports"
 FIXTURE_CSV_URL = "https://fixturedownload.com/download/fifa-world-cup-2026-GMTStandardTime.csv"
 ESPN_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard"
 ESPN_SUMMARY_URL = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/summary"
@@ -406,6 +407,12 @@ def evaluate_market(market: dict[str, Any], result: dict[str, Any] | None) -> di
             actual = side_from_score(*second_half)
             row["actual"] = f"下半场 {second_half[0]}-{second_half[1]}，{label_1x2(actual)}"
             row["result"] = "hit" if market.get("pick") == actual else "miss"
+    elif kind == "win_to_nil":
+        team = str(market.get("team", "home"))
+        actual = side_from_score(home_goals, away_goals)
+        opponent_goals = away_goals if team == "home" else home_goals
+        row["actual"] = f"{label_1x2(actual)}，对手进球 {opponent_goals}"
+        row["result"] = "hit" if actual == team and opponent_goals == 0 else "miss"
     else:
         row["actual"] = market.get("note", "缺少可自动核对的数据")
         row["result"] = "pending"
@@ -542,6 +549,93 @@ def build_market_grid(row: dict[str, Any]) -> str:
     return "\n".join(cards)
 
 
+def report_id(report_path: str) -> str:
+    cleaned = "".join(ch if ch.isalnum() else "-" for ch in report_path.lower())
+    while "--" in cleaned:
+        cleaned = cleaned.replace("--", "-")
+    return f"report-{cleaned.strip('-')}"
+
+
+def report_source_label(report_path: str) -> str:
+    name = Path(report_path).stem.lower()
+    if "claude" in name:
+        return "Claude生成"
+    if name >= "2026-06-19":
+        return "Codex生成"
+    return "历史报告"
+
+
+def report_date_label(report_path: str) -> tuple[str, str]:
+    stem = Path(report_path).stem
+    raw_date = stem[:10]
+    try:
+        date_value = dt.date.fromisoformat(raw_date)
+    except ValueError:
+        return stem, ""
+    weekdays = "周一 周二 周三 周四 周五 周六 周日".split()
+    return f"{date_value.month}.{date_value.day}", f"{date_value.year}年{date_value.month}月{date_value.day}日 · {weekdays[date_value.weekday()]}"
+
+
+def report_stats(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    finished = [row for row in rows if row["status"] == "finished"]
+    total = len(finished)
+    hit_1x2 = sum(1 for row in finished if row["hit_1x2"])
+    hit_primary = sum(1 for row in finished if row["hit_primary_score"])
+    hit_candidate = sum(1 for row in finished if row["hit_score_candidate"])
+    settled_markets, hit_markets, push_markets = market_stats(rows)
+    return {
+        "finished": total,
+        "pending": sum(1 for row in rows if row["status"] == "pending"),
+        "hit_1x2": hit_1x2,
+        "hit_primary": hit_primary,
+        "hit_candidate": hit_candidate,
+        "settled_markets": settled_markets,
+        "hit_markets": hit_markets,
+        "push_markets": push_markets,
+        "pct_1x2": pct(hit_1x2, total),
+        "pct_primary": pct(hit_primary, total),
+        "pct_candidate": pct(hit_candidate, total),
+        "pct_market": pct(hit_markets, settled_markets),
+    }
+
+
+def build_report_infos(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    by_report: dict[str, list[dict[str, Any]]] = {}
+    for row in rows:
+        report_path = str(row.get("report", "")).replace("\\", "/")
+        if report_path:
+            by_report.setdefault(report_path, []).append(row)
+
+    report_paths = set(by_report)
+    if REPORTS_DIR.exists():
+        for path in REPORTS_DIR.glob("*.html"):
+            report_paths.add(f"reports/{path.name}")
+
+    infos = []
+    for report_path in report_paths:
+        rows_for_report = by_report.get(report_path, [])
+        short_date, long_date = report_date_label(report_path)
+        source_label = report_source_label(report_path)
+        stats = report_stats(rows_for_report)
+        infos.append(
+            {
+                "id": report_id(report_path),
+                "path": report_path,
+                "short_date": short_date,
+                "long_date": long_date,
+                "source_label": source_label,
+                "title": f"{long_date or short_date} · {source_label}",
+                "rows": rows_for_report,
+                "stats": stats,
+                "source_order": 1 if source_label.startswith("Claude") else 0,
+                "date_sort": Path(report_path).stem[:10],
+            }
+        )
+
+    infos.sort(key=lambda item: (item["date_sort"], -item["source_order"]), reverse=True)
+    return infos
+
+
 def build_html(rows: list[dict[str, Any]], fetched_at: str) -> str:
     finished = [row for row in rows if row["status"] == "finished"]
     pending = [row for row in rows if row["status"] == "pending"]
@@ -551,15 +645,14 @@ def build_html(rows: list[dict[str, Any]], fetched_at: str) -> str:
     hit_candidate = sum(1 for row in finished if row["hit_score_candidate"])
     settled_markets, hit_markets, push_markets = market_stats(rows)
     updated = dt.datetime.now(BEIJING_TZ).strftime("%Y-%m-%d %H:%M")
+    report_infos = build_report_infos(rows)
 
-    match_cards = []
-    for row in rows:
+    def build_match_card(row: dict[str, Any]) -> str:
         actual_score = row["actual_score"] or "待赛果"
         source_time = ""
         if row.get("source_date"):
             source_time = f'{html.escape(row["source_date"])} {html.escape(row.get("source_time_beijing", ""))}'
-        match_cards.append(
-            f"""
+        return f"""
     <article class="match-card {row["status"]}">
       <div class="match-head">
         <div>
@@ -590,6 +683,58 @@ def build_html(rows: list[dict[str, Any]], fetched_at: str) -> str:
       </div>
     </article>
             """.strip()
+
+    report_cards = []
+    report_panels = []
+    for index, info in enumerate(report_infos):
+        stats = info["stats"]
+        active = " active" if index == 0 else ""
+        data_state = "empty" if not info["rows"] else "ready"
+        report_cards.append(
+            f"""
+    <a class="report-card{active}" href="#{html.escape(info["id"])}" data-target="{html.escape(info["id"])}">
+      <span class="report-date">{html.escape(info["short_date"])}</span>
+      <span class="report-meta">{html.escape(info["source_label"])}</span>
+      <strong>{html.escape(info["long_date"] or info["short_date"])}</strong>
+      <span class="report-line">{len(info["rows"])} 场预测 · 已结算 {stats["finished"]} 场</span>
+      <span class="report-line">1X2 {stats["pct_1x2"]} · 盘口 {stats["pct_market"]}</span>
+    </a>
+            """.strip()
+        )
+
+        if info["rows"]:
+            panel_body = "\n".join(build_match_card(row) for row in info["rows"])
+        else:
+            panel_body = f"""
+      <div class="empty-state">
+        <strong>这个 HTML 报告还没有结构化预测记录。</strong>
+        <span>可以先打开原报告查看内容；后续把该报告的胜平负、比分、大小球、让球、BTTS 等录入 data/predictions.json 后，这里会自动结算。</span>
+      </div>
+            """.strip()
+
+        report_panels.append(
+            f"""
+  <section class="report-panel{active}" id="{html.escape(info["id"])}" data-state="{data_state}">
+    <div class="report-head">
+      <div>
+        <div class="match-date">{html.escape(info["title"])}</div>
+        <h2>{html.escape(info["title"])}</h2>
+      </div>
+      <a class="open-report" href="{html.escape(info["path"])}">打开原报告</a>
+    </div>
+    <div class="report-metrics">
+      <div><span>预测场次</span><strong>{len(info["rows"])}</strong></div>
+      <div><span>已结算</span><strong>{stats["finished"]}</strong></div>
+      <div><span>1X2</span><strong>{stats["pct_1x2"]}</strong></div>
+      <div><span>主比分</span><strong>{stats["pct_primary"]}</strong></div>
+      <div><span>候选比分</span><strong>{stats["pct_candidate"]}</strong></div>
+      <div><span>盘口</span><strong>{stats["pct_market"]}</strong></div>
+    </div>
+    <div class="match-list">
+      {panel_body}
+    </div>
+  </section>
+            """.strip()
         )
 
     return f"""<!DOCTYPE html>
@@ -609,6 +754,21 @@ h1{{font-size:28px;line-height:1.2}}
 .metric{{background:#fff;border:1px solid #ddd;border-radius:8px;padding:14px}}
 .metric .label{{font-size:12px;color:#777;margin-bottom:4px}}
 .metric .value{{font-size:25px;font-weight:800;color:#1a5fa8}}
+.report-picker{{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:16px 0 18px}}
+.report-card{{display:flex;flex-direction:column;gap:5px;min-height:132px;background:#fff;border:1px solid #ddd;border-radius:8px;padding:14px;color:inherit;text-decoration:none;transition:border-color .15s ease,box-shadow .15s ease,transform .15s ease}}
+.report-card:hover,.report-card.active{{border-color:#1a5fa8;box-shadow:0 10px 22px rgba(0,0,0,.08);transform:translateY(-1px)}}
+.report-date{{font-size:28px;font-weight:900;color:#1a5fa8;line-height:1}}
+.report-meta{{width:max-content;border-radius:999px;background:#e8f2fc;color:#0d4e9e;font-size:11px;font-weight:800;padding:2px 8px}}
+.report-line{{font-size:12px;color:#666}}
+.report-panel{{display:none}}
+.report-panel.active{{display:block}}
+.report-head{{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;background:#fff;border:1px solid #ddd;border-radius:8px;padding:16px;margin-bottom:12px}}
+.open-report{{white-space:nowrap}}
+.report-metrics{{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:12px}}
+.report-metrics div{{background:#fff;border:1px solid #ddd;border-radius:8px;padding:12px}}
+.report-metrics span{{display:block;font-size:11px;color:#777}}
+.report-metrics strong{{display:block;font-size:20px;color:#1a5fa8;margin-top:3px}}
+.empty-state{{background:#fff;border:1px dashed #ccc;border-radius:8px;padding:18px;color:#666;display:flex;flex-direction:column;gap:6px}}
 .match-list{{display:flex;flex-direction:column;gap:14px}}
 .match-card{{background:#fff;border:1px solid #ddd;border-radius:8px;padding:16px}}
 .match-card.pending{{color:#666}}
@@ -637,7 +797,7 @@ a{{color:#1a5fa8;text-decoration:none;font-weight:700}}
 .market-card.miss{{border-color:#edc0bd;background:#fff7f6}}
 .market-card.push{{border-color:#ead29a;background:#fffaf0}}
 .note{{margin-top:14px;color:#666;font-size:12px;line-height:1.7}}
-@media(max-width:900px){{.top,.match-head{{display:block}}.updated,.score-box{{margin-top:8px;text-align:left}}.cards{{grid-template-columns:1fr 1fr}}.quick-row{{grid-template-columns:1fr}}}}
+@media(max-width:900px){{.top,.match-head,.report-head{{display:block}}.updated,.score-box{{margin-top:8px;text-align:left}}.cards{{grid-template-columns:1fr 1fr}}.quick-row,.report-metrics{{grid-template-columns:1fr}}.open-report{{display:inline-block;margin-top:8px}}}}
 </style>
 </head>
 <body>
@@ -656,14 +816,38 @@ a{{color:#1a5fa8;text-decoration:none;font-weight:700}}
     <div class="metric"><div class="label">候选比分命中率</div><div class="value">{pct(hit_candidate, total)}</div></div>
     <div class="metric"><div class="label">盘口建议命中率</div><div class="value">{pct(hit_markets, settled_markets)}</div></div>
   </section>
-  <section class="match-list">
-    {"".join(match_cards)}
+
+  <section class="report-picker" aria-label="选择报告">
+    {"".join(report_cards)}
   </section>
+
+  {"".join(report_panels)}
+
   <div class="note">
-    已结算盘口建议：{settled_markets} 条；命中：{hit_markets} 条；走水：{push_markets} 条；待赛果比赛：{len(pending)} 场。本页抓取时间：北京时间 {html.escape(fetched_at)}。
+    全站已结算盘口建议：{settled_markets} 条；命中：{hit_markets} 条；走水：{push_markets} 条；待赛果比赛：{len(pending)} 场。本页抓取时间：北京时间 {html.escape(fetched_at)}。
     如果 ESPN 仍显示 Scheduled 或 FixtureDownload 比分为空，本页不会把 0-0 当作完赛比分。
   </div>
 </main>
+<script>
+const cards = Array.from(document.querySelectorAll('.report-card'));
+const panels = Array.from(document.querySelectorAll('.report-panel'));
+function showReport(id) {{
+  cards.forEach(card => card.classList.toggle('active', card.dataset.target === id));
+  panels.forEach(panel => panel.classList.toggle('active', panel.id === id));
+}}
+cards.forEach(card => {{
+  card.addEventListener('click', event => {{
+    event.preventDefault();
+    const id = card.dataset.target;
+    showReport(id);
+    history.replaceState(null, '', '#' + id);
+  }});
+}});
+if (location.hash) {{
+  const id = location.hash.slice(1);
+  if (document.getElementById(id)) showReport(id);
+}}
+</script>
 </body>
 </html>
 """
