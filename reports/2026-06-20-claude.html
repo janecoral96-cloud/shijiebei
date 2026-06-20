@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界杯2026明日精选 · 6月20日四场分析报告</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0ede8;color:#1a1a1a;padding:20px;font-size:14px;line-height:1.6}
+.container{max-width:920px;margin:0 auto}
+h1{font-size:22px;font-weight:700;margin-bottom:4px}
+.subtitle{font-size:13px;color:#666;margin-bottom:18px}
+.schedule-box{background:#fff;border-radius:10px;border:1px solid #ddd;padding:16px;margin-bottom:18px}
+.schedule-box h2{font-size:14px;font-weight:700;color:#444;margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em}
+.sched-row{display:grid;grid-template-columns:80px 1fr;gap:8px;padding:7px 0;border-bottom:1px solid #f0ede8;font-size:13px}
+.sched-row:last-child{border-bottom:none}
+.sched-time{color:#1a5fa8;font-weight:700}
+.sched-match{color:#1a1a1a}
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:7px 14px;border-radius:20px;border:1px solid #ccc;background:transparent;color:#555;cursor:pointer;font-size:12px;font-family:inherit;transition:all .15s}
+.tab.active{background:#1a5fa8;color:#fff;border-color:#1a5fa8}
+.card{display:none;background:#fff;border-radius:12px;border:1px solid #ddd;padding:22px;margin-bottom:12px}
+.card.active{display:block}
+.mh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid #ece9e3}
+.mh-left .teams{font-size:18px;font-weight:700}
+.mh-left .grp{font-size:11px;color:#666;background:#f0ede8;padding:2px 9px;border-radius:10px;display:inline-block;margin-top:4px;margin-right:6px}
+.mh-left .status{font-size:11px;color:#c04000;background:#fff4ee;padding:2px 9px;border-radius:10px;display:inline-block;margin-top:4px}
+.mh-right{font-size:12px;color:#666;text-align:right}
+.sec{margin-bottom:20px}
+.sec-title{font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #f0ede8}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat-block{background:#f8f7f4;border-radius:8px;padding:10px 12px}
+.stat-block .lbl{font-size:11px;color:#888;margin-bottom:5px}
+.stat-block .val{font-size:14px;font-weight:700}
+.stat-block .sub{font-size:12px;color:#666;margin-top:4px;line-height:1.55}
+.form-row{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+.fw{width:22px;height:22px;border-radius:50%;background:#d4f0d4;color:#1a6b1a;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.fd{width:22px;height:22px;border-radius:50%;background:#fdf0c0;color:#7a5c00;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.fl{width:22px;height:22px;border-radius:50%;background:#fdd4d4;color:#8b1a1a;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.alist{list-style:none;display:flex;flex-direction:column;gap:7px}
+.alist li{font-size:13px;line-height:1.65;padding-left:16px;position:relative}
+.alist li::before{content:"▸";position:absolute;left:0;color:#1a5fa8;font-size:11px;top:2px}
+.odds-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.ob{background:#f8f7f4;border-radius:8px;padding:9px 10px;text-align:center}
+.ob .ol{font-size:11px;color:#888;margin-bottom:3px}
+.ob .ov{font-size:17px;font-weight:700;color:#1a5fa8}
+.ob .ov.hot{color:#b54000}
+.pred-panel{background:linear-gradient(135deg,#e8f2fc,#eee8fb);border-radius:12px;padding:18px;margin-bottom:16px;border:1px solid #c8d8f0}
+.pred-score{font-size:26px;font-weight:800;color:#0d4e9e;margin-bottom:5px}
+.pred-meta{font-size:12px;color:#2a5fb0;margin-bottom:10px}
+.conf-row{display:flex;gap:3px;margin:6px 0}
+.cdot{width:11px;height:11px;border-radius:2px;background:#1a5fa8}
+.cdot.off{background:#c5d8f0}
+.pred-body{font-size:12px;color:#1a3a7a;line-height:1.75}
+.bets-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bet-card{background:#f8f7f4;border-radius:8px;padding:10px 12px}
+.bet-card.val{border-left:3px solid #1a5fa8;border-radius:0 8px 8px 0}
+.bet-card.risk{border-left:3px solid #c07800;border-radius:0 8px 8px 0}
+.bet-card.cool{border-left:3px solid #aa2222;border-radius:0 8px 8px 0}
+.bc-type{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.bc-rec{font-size:13px;font-weight:700;margin-bottom:3px}
+.bc-reason{font-size:11px;color:#555;line-height:1.55}
+.tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:8px;margin-left:5px;vertical-align:middle}
+.tv{background:#dbeeff;color:#0d4e9e}
+.tr{background:#fce8c0;color:#7a4800}
+.th{background:#fdd4d4;color:#7a1a1a}
+.risk-box{background:#fff8e6;border-radius:8px;padding:10px 13px;margin-top:8px;border-left:3px solid #e0a800}
+.risk-box .rtitle{font-size:11px;font-weight:700;color:#7a4800;margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em}
+.risk-box p{font-size:12px;color:#5c3a00;line-height:1.6}
+.must-win-box{background:#fff0f0;border-radius:8px;padding:10px 13px;margin-top:8px;border-left:3px solid #cc2200}
+.must-win-box .rtitle{font-size:11px;font-weight:700;color:#8b1a1a;margin-bottom:5px}
+.must-win-box p{font-size:12px;color:#661a1a;line-height:1.6}
+.divider{height:1px;background:#ece9e3;margin:16px 0}
+.final-card{background:#fff;border-radius:12px;border:1px solid #ddd;padding:22px}
+.final-title{font-size:16px;font-weight:700;margin-bottom:16px;color:#111;border-bottom:2px solid #1a5fa8;padding-bottom:8px}
+.pick-row{display:flex;flex-direction:column;gap:10px}
+.pick-item{background:#f8f7f4;border-radius:10px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start}
+.stars{font-size:15px;color:#c07800;min-width:82px}
+.stars .off{color:#ccc}
+.pick-right .plbl{font-size:11px;color:#888;margin-bottom:2px}
+.pick-right .pmain{font-size:14px;font-weight:700;margin-bottom:4px}
+.pick-right .pdet{font-size:12px;color:#555;line-height:1.55}
+.alloc-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.abox{background:#f8f7f4;border-radius:8px;padding:10px 8px;text-align:center;border:1px solid #e8e5e0}
+.abox .al{font-size:10px;color:#888;margin-bottom:4px;line-height:1.4}
+.abox .av{font-size:18px;font-weight:800}
+.note{font-size:12px;color:#888;line-height:1.7;background:#f8f7f4;border-radius:8px;padding:11px 13px;margin-top:10px}
+.highlight{background:#e8f4ff;border-radius:8px;padding:10px 13px;margin-top:8px;font-size:12px;color:#0d4e9e;line-height:1.65;border-left:3px solid #1a5fa8}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>⚽ 2026世界杯 · 6月20日四场赛事投注参考方案</h1>
+<div class="subtitle">F组第2轮 ×2 + E组第2轮 ×2 · 第二轮小组赛 · 强队对决与生死战交织</div>
+
+<div class="schedule-box">
+  <h2>📅 明日赛程一览</h2>
+  <div class="sched-row"><div class="sched-time">比赛①</div><div class="sched-match">荷兰 🆚 瑞典 · 休斯顿NRG体育场（室内）· F组第2轮 · 当地12:00 CT</div></div>
+  <div class="sched-row"><div class="sched-time">比赛②</div><div class="sched-match">德国 🆚 科特迪瓦 · 多伦多BMO Field · E组第2轮 · 当地16:00 ET</div></div>
+  <div class="sched-row"><div class="sched-time">比赛③</div><div class="sched-match">厄瓜多尔 🆚 库拉索 · 堪萨斯城Arrowhead体育场 · E组第2轮 · 当地19:00 CT</div></div>
+  <div class="sched-row"><div class="sched-time">比赛④</div><div class="sched-match">突尼斯 🆚 日本 · 蒙特雷BBVA体育场 · F组第2轮 · 当地22:00 CT</div></div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="show(0)">🇳🇱 荷兰 vs 瑞典</button>
+  <button class="tab" onclick="show(1)">🇩🇪 德国 vs 科特迪瓦</button>
+  <button class="tab" onclick="show(2)">🇪🇨 厄瓜多尔 vs 库拉索</button>
+  <button class="tab" onclick="show(3)">🇹🇳 突尼斯 vs 日本</button>
+  <button class="tab" onclick="show(4)">★ 明日精选方案</button>
+</div>
+
+<!-- ========== MATCH 1 荷兰 vs 瑞典 ========== -->
+<div class="card active" id="m0">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇳🇱 荷兰 vs 瑞典 🇸🇪</div>
+      <span class="grp">F组 · 第2轮</span>
+      <span class="status">荷兰门将范布鲁根存疑</span>
+    </div>
+    <div class="mh-right">休斯顿 NRG体育场（室内·温控）</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇳🇱 荷兰（近5场）</div>
+        <div class="form-row"><span class="fd">D</span><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span><span class="fd">D</span></div>
+        <div class="sub">世界杯MD1：2-2平日本（两度领先被逼平，暴露防守问题）<br>预选赛战绩亮眼：6胜2平0负，进27球仅失4球<br>德佩状态回暖，加克波边路提供宽度<br>近期"高开低走"特征明显，需警惕状态波动</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇸🇪 瑞典（近5场）</div>
+        <div class="form-row"><span class="fw">W</span><span class="fw">W</span><span class="fd">D</span><span class="fw">W</span><span class="fw">W</span></div>
+        <div class="sub">世界杯MD1：5-1大胜突尼斯！（队史第二大世界杯胜利）<br>近5场4胜1平，状态火热<br>伊萨克+于克雷斯双前锋组合本届均已破门<br>近10场进球效率极高，是F组目前最大黑马</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">荷兰</div><div class="val">FIFA第7位</div><div class="sub">F组第3（1分）· 阵容深度仍获市场信任（赔率仍是热门）<br>科曼面临"逼平日本"后的压力局面</div></div>
+      <div class="stat-block"><div class="lbl">瑞典</div><div class="val">FIFA第20位左右</div><div class="sub">F组榜首（3分，净胜球+4）· 历史最佳战绩为1958年亚军<br>波特执教，整体上升期明显</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">荷兰</div><div class="val">进~29球 / 失~6球</div><div class="sub">预选赛6胜2平0负，27球仅失4球，整体数据华丽<br>但首战丢2球暴露范戴克+范海克后防潜在问题</div></div>
+      <div class="stat-block"><div class="lbl">瑞典</div><div class="val">进~16球 / 失~5球</div><div class="sub">5-1胜突尼斯是队史第二大世界杯胜利<br>伊萨克+于克雷斯锋线组合本届表现极为亮眼</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>北欧德比传统对决，历史上荷兰整体占优但近年交锋日趋接近</li>
+      <li>两队同处欧洲区，过去十年正式赛事交锋多次，荷兰阵容深度通常占优势</li>
+      <li>本场是双方首次世界杯舞台交锋，历史友谊赛/预选赛参考价值有限，更应关注当前阵容状态</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>荷兰：</strong>门将巴特·范布鲁根曾带轻伤出战日本一战，本场存疑但预期仍将首发。德佩（队史进球王，55球）可能替代马伦先发，因马伦对日本一战表现"乏力"</li>
+      <li><strong>瑞典：</strong>亚历山大·伊萨克（利物浦）本周被拍到独自训练，球队正在管理其出场时间，但伤情不重预期首发；维克托·林德洛夫领衔后防，20岁热刺中场卢卡斯·贝格瓦尔提供中场创造力</li>
+      <li><strong>关键变量：</strong>范戴克+范海克组成的荷兰防线刚被日本队攻入2球，本场将面对伊萨克+于克雷斯更强的双前锋组合，压力陡增</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>荷兰4-2-3-1：</strong>德容深位组织进攻是核心引擎，若获得充足时间出球，荷兰攻势如虎添翼；萨默维尔+雷因德斯+马伦/德佩组成攻击线，加克波提供边路宽度</li>
+      <li><strong>瑞典3-5-2：</strong>双前锋体系（伊萨克+于克雷斯）正面冲击荷兰防线，古德蒙德松+阿亚里+尼格伦+卡尔斯特罗姆+贝恩哈德松构成五人中场带来更强覆盖面</li>
+      <li><strong>关键对位：</strong>伊萨克的灵活跑位+于克雷斯的身体强度对荷兰防线是真正考验；荷兰若想限制瑞典反击，德容能否压制对方中场是胜负关键</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组赛形势 / 战意分析</div>
+    <ul class="alist">
+      <li><strong>F组格局已被打乱：</strong>赛前夺冠热门荷兰意外仅排名第三，瑞典横扫突尼斯后跃居榜首</li>
+      <li><strong>荷兰必须赢：</strong>科曼的球队不容再失分，否则末轮战突尼斯前局面将异常被动</li>
+      <li><strong>瑞典可借此锁定小组头名：</strong>若取胜，几乎确保出线并大概率拿下F组第一</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">荷兰独赢</div><div class="ov hot">1.72</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">3.50</div></div>
+      <div class="ob"><div class="ol">瑞典独赢</div><div class="ov">4.80</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov hot">1.91</div></div>
+      <div class="ob"><div class="ol">小球2.5</div><div class="ov">1.91</div></div>
+      <div class="ob"><div class="ol">双方进球</div><div class="ov">1.95</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">BetOnline：荷兰-139（约1.72）· 市场仍信任荷兰阵容深度（尽管排名暂列第三）· 大球2.5（-110）被多家机构列为核心推荐</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>荷兰独赢仍是资金主力方向，市场逻辑是"两场样本下阵容深度更可靠"，但分析师提醒"把这当成干净低分热门取胜"是有问题的简单化判断</li>
+      <li>大球2.5（-110）获得Rotowire、OneFootball、Shekicks、TheSportsRush、Sportsgambler等多家机构一致推荐，价值点集中在进球总数而非干净结果</li>
+      <li>德佩任意时刻进球是另一个被广泛关注的价值盘，反映市场对荷兰锋线调整（德佩可能替代马伦）的认可</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：中等偏高（约30%）</div>
+      <p>瑞典5-1横扫突尼斯并非偶然，伊萨克+于克雷斯组成本届赛事最炙手可热的双前锋组合之一；荷兰防线刚被日本队攻破2次，范戴克+范海克需要比上一场更敏锐才能应对瑞典更强的冲击力。专业分析师明确指出"瑞典两前锋对阵刚丢2球的荷兰防线"可能是决定胜负的关键对位，瑞典完全有实力再次制造冷门。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">荷兰 2-1 瑞典（主选）</div>
+    <div class="pred-meta">概率约26% · 次选：2-2平（约20%） · 1-1平（约18%） · 2-0荷兰（约15%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 5/10（本日最难预测场次之一）</div>
+    <div class="pred-body">
+      <strong>为什么预测2-1？</strong><br>
+      荷兰阵容深度（预选赛27球仅失4球）和德容的中场调度能力理论上仍占据上风，德佩可能替代马伦先发也是积极调整信号；但荷兰防线刚被日本队攻破2球的现实问题不可忽视，瑞典伊萨克+于克雷斯的双前锋组合质量明显高于日本攻击线，本场荷兰防线极可能再次失球。2-1反映"荷兰整体实力占优但防线问题延续"的现实预期。<br><br>
+      <strong>数据支持：</strong>①荷兰预选赛27球仅失4球的底子仍在 ②瑞典5-1横扫突尼斯证明真实攻击力 ③荷兰首战已丢2球说明防线非无懈可击<br><br>
+      <strong>风险因素：</strong>①伊萨克+于克雷斯对阵刚丢球的防线可能制造多球 ②瑞典近5场4胜1平状态火热远超预期 ③范布鲁根伤情若影响发挥可能放大荷兰防守问题
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">大小球 <span class="tag tv">首推</span></div><div class="bc-rec">大球2.5 @1.91</div><div class="bc-reason">三依据：①多家机构一致推荐为核心价值盘 ②荷兰防线刚丢2球延续风险 ③瑞典双前锋火力凶猛+荷兰自身进攻深度</div></div>
+      <div class="bet-card"><div class="bc-type">胜平负</div><div class="bc-rec">荷兰独赢 @1.72</div><div class="bc-reason">阵容深度仍是市场信任的核心逻辑，但赔率反映了瑞典的真实威胁，非无脑稳胆</div></div>
+      <div class="bet-card val"><div class="bc-type">双方进球 <span class="tag tv">价值</span></div><div class="bc-rec">双方进球-是 @1.95</div><div class="bc-reason">三依据：①两队首战均参与4球比赛 ②荷兰防线问题延续概率高 ③瑞典攻击力同样可能被荷兰反击打穿</div></div>
+      <div class="bet-card"><div class="bc-type">射手</div><div class="bc-rec">德佩任意时刻进球 @约2.80</div><div class="bc-reason">德佩可能替代马伦先发，状态回暖，是市场认可的价值射手盘</div></div>
+      <div class="bet-card cool"><div class="bc-type">冷门尝试 <span class="tag th">高风险</span></div><div class="bc-rec">瑞典独赢或平局 @4.80/3.50</div><div class="bc-reason">伊萨克+于克雷斯对阵问题防线的错位优势明显，瑞典完全有实力再次制造冷门</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 2 德国 vs 科特迪瓦 ========== -->
+<div class="card" id="m1">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇩🇪 德国 vs 科特迪瓦 🇨🇮</div>
+      <span class="grp">E组 · 第2轮</span>
+      <span class="status">⚠ 科特迪瓦：恩迪卡（腘绳肌）存疑</span>
+    </div>
+    <div class="mh-right">多伦多 BMO Field</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇩🇪 德国（近5场）</div>
+        <div class="form-row"><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span></div>
+        <div class="sub">世界杯MD1：7-1血洗库拉索！（维尔茨+穆西亚拉+哈弗茨大爆发）<br>近10场10连胜，状态恐怖<br>整体攻击线表现统治级，进攻效率极高<br>"另一种动物"级别的进攻表现已获多方认可</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇨🇮 科特迪瓦（近5场）</div>
+        <div class="form-row"><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span></div>
+        <div class="sub">世界杯MD1：1-0险胜厄瓜多尔（阿马德·迪亚洛90分钟绝杀）<br>近5场5连胜，近11场9胜<br>整体打法偏向身体对抗+反击效率<br>大小球倾向"小球"（近4场3次小球），BTTS近5场4次落空</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">德国</div><div class="val">FIFA前10位</div><div class="sub">E组榜首（3分，净胜球+6）· 7-1胜库拉索已基本锁定小组前三<br>德国是本届赛事公认的争冠候选</div></div>
+      <div class="stat-block"><div class="lbl">科特迪瓦</div><div class="val">约第35-40位</div><div class="sub">E组次席（3分，净胜球+1）· 出线希望大增<br>赢下本场将创造队史最佳世界杯小组赛战绩</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">德国</div><div class="val">进~22球 / 失~6球</div><div class="sub">7-1横扫库拉索展现统治级攻击力<br>维尔茨+穆西亚拉+哈弗茨多点开花</div></div>
+      <div class="stat-block"><div class="lbl">科特迪瓦</div><div class="val">进~10球 / 失~5球</div><div class="sub">近4场3次小球（偏低分倾向）· 近5场BTTS 4次落空<br>整体打法偏防守反击，非进攻导向</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>两队历史交锋次数有限，缺乏直接参考的近期数据</li>
+      <li>科特迪瓦此前在国际大赛对阵欧洲强队战绩参差，整体处于劣势地位</li>
+      <li>更具参考价值的是双方近期状态对比：德国10连胜vs科特迪瓦"惊险求生"型的胜利模式</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>德国：</strong>全队无伤停。德尼斯·乌恩达夫（替补登场对阵库拉索表现出色）可能进入首发，顶替勒罗伊·萨内位置，哈弗茨则可能后撤至更深位置，穆西亚拉移至右侧</li>
+      <li><strong>科特迪瓦⚠：</strong>埃文·恩迪卡（中后卫）因腘绳肌伤病缺席首战，本场仍存疑。阿马德·迪亚洛（曼联，对阵厄瓜多尔替补建功绝杀）预计将进入首发，巴祖马纳·图雷可能因此退至替补</li>
+      <li><strong>关键变量：</strong>恩迪卡若继续缺阵，科特迪瓦中后卫位置将面临德国维尔茨+穆西亚拉+哈弗茨组合的猛烈冲击，防守稳定性堪忧</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>德国4-2-3-1：</strong>基米希组织防守反击转换，维尔茨+穆西亚拉+哈弗茨组成的攻击线技术细腻、跑动覆盖面广，已证明能在90分钟内多点开花</li>
+      <li><strong>科特迪瓦4-4-2（身体对抗+反击）：</strong>整体打法偏重身体强度，依靠反击效率制造威胁，对阵厄瓜多尔已展现出"硬磕到底"的韧性（90分钟才被绝杀）</li>
+      <li><strong>关键对位：</strong>德国攻击线的技术质量vs科特迪瓦的身体对抗和组织防守——若恩迪卡缺阵，防线漏洞可能被维尔茨等人利用</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组赛形势 / 战意分析</div>
+    <ul class="alist">
+      <li><strong>E组榜首争夺战：</strong>双方均3分领跑，胜者将占据绝对主导地位</li>
+      <li><strong>德国动机：</strong>赢球几乎锁定E组头名，并向夺冠候选地位再进一步</li>
+      <li><strong>科特迪瓦动机：</strong>这是队史首次世界杯小组赛取得突破的历史性机遇，若能击败德国级别的强队将创造历史</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">德国独赢</div><div class="ov hot">1.56</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">3.50</div></div>
+      <div class="ob"><div class="ol">科特迪瓦独赢</div><div class="ov">5.00</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov hot">2.50</div></div>
+      <div class="ob"><div class="ol">小球2.5</div><div class="ov">1.55</div></div>
+      <div class="ob"><div class="ol">科特迪瓦+1亚让</div><div class="ov">1.92</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">Sports Interaction：德国-180（约1.56）/ 平+350 / 科特迪瓦+450 · 大球2.5(+150)倾向，但科特迪瓦近4场3次小球的现实数据形成对冲</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>德国独赢-180资金集中，但市场也认可"另一场血洗"概率不高——科特迪瓦比库拉索是"更强更具运动能力的对手"</li>
+      <li>科特迪瓦+1亚洲让球（约-102/1.92）受到部分价值投注者关注，因其防守韧性和身体对抗能力在让球盘中提供保护</li>
+      <li>大球/小球出现分歧：部分机构看好德国进攻火力延续大球，另一部分基于科特迪瓦近4场3次小球的数据倾向小球</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：低（约12-15%）</div>
+      <p>德国近10场10连胜状态恐怖，攻击线质量远超科特迪瓦近期对手层级；但科特迪瓦近5场5连胜、近11场9胜的身体对抗型打法证明其有能力让强队不舒服（对阵厄瓜多尔耗到90分钟才被绝杀）。爆冷（科特迪瓦获胜）概率不高，但"科特迪瓦不会再被血洗一次"的判断获得多方认同，让球盘+1是更具价值的关注点。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">德国 2-0 科特迪瓦（主选）</div>
+    <div class="pred-meta">概率约25% · 次选：2-1德国（约20%） · 1-0德国（约20%） · 3-0德国（约15%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 6/10</div>
+    <div class="pred-body">
+      <strong>为什么预测2-0？</strong><br>
+      德国维尔茨+穆西亚拉+哈弗茨的攻击线质量远超科特迪瓦此前对手层级，理论上能制造2球以上优势；但科特迪瓦身体对抗能力强且近期展现极强的防守韧性（对厄瓜多尔耗到补时才丢球），不太可能像库拉索一样被轻易血洗。恩迪卡若继续缺阵会增加德国进球概率，但科特迪瓦整体防守组织度仍能限制部分机会。2-0是兼顾德国实力优势和科特迪瓦防守韧性的合理预测。<br><br>
+      <strong>数据支持：</strong>①德国10连胜状态恐怖 ②科特迪瓦近4场3次小球倾向 ③德国攻击线技术质量碾压级<br><br>
+      <strong>风险因素：</strong>①科特迪瓦身体对抗能力可能制造1球甚至逼平 ②恩迪卡若恢复出战将提升防守稳定性 ③德国可能轮换部分球员保留体能导致进球数不及预期
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">胜平负 <span class="tag tv">推荐</span></div><div class="bc-rec">德国独赢 @1.56</div><div class="bc-reason">三依据：①近10场10连胜状态恐怖 ②攻击线技术质量碾压级 ③E组净胜球+6领跑实力得到验证</div></div>
+      <div class="bet-card val"><div class="bc-type">亚洲让球 <span class="tag tv">价值首推</span></div><div class="bc-rec">科特迪瓦+1让球 @1.92</div><div class="bc-reason">三依据：①科特迪瓦近5场5连胜证明身体对抗韧性 ②对厄瓜多尔耗到补时才丢球说明防守组织度高 ③不会再被血洗一次的市场共识</div></div>
+      <div class="bet-card"><div class="bc-type">大小球</div><div class="bc-rec">小球2.5 @1.55</div><div class="bc-reason">科特迪瓦近4场3次小球的现实数据+其防守反击打法天然偏低分</div></div>
+      <div class="bet-card"><div class="bc-type">双方进球</div><div class="bc-rec">双方进球-否 @约2.10</div><div class="bc-reason">科特迪瓦近5场BTTS 4次落空，进攻端难以从德国身上抢分</div></div>
+      <div class="bet-card risk"><div class="bc-type">半全场 <span class="tag tr">价值</span></div><div class="bc-rec">德国/德国 @1.75</div><div class="bc-reason">德国近期惯于全场掌控比赛节奏，半全场同队组合赔率合理</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 3 厄瓜多尔 vs 库拉索 ========== -->
+<div class="card" id="m2">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇪🇨 厄瓜多尔 vs 库拉索 🇨🇼</div>
+      <span class="grp">E组 · 第2轮</span>
+      <span class="status">无重大伤停 · 双方均需止血</span>
+    </div>
+    <div class="mh-right">堪萨斯城 Arrowhead体育场</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇪🇨 厄瓜多尔（近5场）</div>
+        <div class="form-row"><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span><span class="fd">D</span><span class="fl">L</span></div>
+        <div class="sub">世界杯MD1：0-1负科特迪瓦（90分钟被绝杀，赛前19场不败终结）<br>南美区预选赛18场仅失5球，防守极为出色<br>近20场国际赛事仅此1负<br>恩纳尔·瓦伦西亚领衔锋线，但近18场国家队进球效率不高（近16场仅1次大球3+）</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇨🇼 库拉索（近5场）</div>
+        <div class="form-row"><span class="fl">L</span><span class="fw">W</span><span class="fd">D</span><span class="fw">W</span><span class="fd">D</span></div>
+        <div class="sub">世界杯MD1：1-7惨败德国（历史性首秀但惨遭血洗）<br>世界杯历史最小参赛国，防线被打得支离破碎<br>对阵德国仅35%控球率和2次射正<br>利瓦诺·科门嫩西亚是唯一进球功臣</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">厄瓜多尔</div><div class="val">FIFA第23位</div><div class="sub">E组第3（0分，净胜球-1）· 必须赢球才能保留出线希望<br>南美区预选赛战绩证明实力远超表面排名</div></div>
+      <div class="stat-block"><div class="lbl">库拉索</div><div class="val">约第80位以外</div><div class="sub">E组垫底（0分，净胜球-6）· 历史最小参赛国<br>本场基本是"生存测试"而非真正出线希望</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">厄瓜多尔</div><div class="val">进~12球 / 失~5球</div><div class="sub">南美区预选赛18场仅失5球，防守体系顶级<br>近16场国际赛事仅1次出现3球以上大比分</div></div>
+      <div class="stat-block"><div class="lbl">库拉索</div><div class="val">进~6球 / 失~18球</div><div class="sub">2026年5场国际赛事已失18球，防守彻底崩溃<br>对德国一战仅2次射正，进攻威胁微乎其微</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <div class="stat-block">
+      <div class="val">两队首次世界杯舞台交锋，历史交锋记录稀少</div>
+      <div class="sub">库拉索是世界杯历史最小参赛国，本身缺乏国际大赛履历对比，历史交锋参考价值近乎为零，应完全依据当前实力判断</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>厄瓜多尔：</strong>全队无伤停。佩尔维斯·埃斯图皮南（米兰，对阵科特迪瓦意外缺阵）预计本场回归首发；肯德里·帕埃斯（小将）此前带轻伤但预计可以出战；皮耶罗·因卡皮耶对阵科特迪瓦曾完成5次抢断（全场最高）</li>
+      <li><strong>库拉索：</strong>无重大伤停报告，但球队整体实力和阵容厚度严重不足，无法在战术上对厄瓜多尔形成有效威胁。塔希特·钟（中场）在首战是被侵犯最多的球员（8次），体现其虽努力但缺乏支援</li>
+      <li><strong>关键变量：</strong>埃斯图皮南回归将增强厄瓜多尔左路推进能力，这是对阵库拉索密集防守的重要破局点</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>厄瓜多尔4-4-1-1：</strong>因卡皮耶+埃斯图皮南组成左路双人组，普拉塔+维特+耶博阿提供边路宽度，帕埃斯前场串联，瓦伦西亚中锋终结。整体打法偏向稳健控球+边路渗透</li>
+      <li><strong>库拉索4-3-1-2（被动收缩）：</strong>巴库纳坐镇中场后腰，但整体防线缺乏对抗高水平球队的经验和身体素质，对阵德国已暴露巨大漏洞</li>
+      <li><strong>关键对位：</strong>厄瓜多尔近18次正式赛事难以打出大胜（近16场仅1次3球+），这与库拉索可能持续摆大巴形成有趣的对抗——厄瓜多尔的进攻效率问题可能延续</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组赛形势 / 战意分析</div>
+    <ul class="alist">
+      <li><strong>厄瓜多尔生死战：</strong>0分排名E组第三，必须取胜才能保留出线希望，末轮还要面对德国，本场是"应急三分"机会</li>
+      <li><strong>库拉索几乎"生存测试"：</strong>历史性参赛已属奇迹，本场更多是争取尊严而非真正出线目标，末轮还要战科特迪瓦</li>
+      <li><strong>德国和科特迪瓦已拿到6分：</strong>本场输家几乎确定出局</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">厄瓜多尔独赢</div><div class="ov hot">1.05</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">11.00</div></div>
+      <div class="ob"><div class="ol">库拉索独赢</div><div class="ov">27.00</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球3</div><div class="ov hot">1.68</div></div>
+      <div class="ob"><div class="ol">小球3</div><div class="ov">2.32</div></div>
+      <div class="ob"><div class="ol">厄瓜多尔-1.5让球</div><div class="ov">1.85</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">BetOnline：厄瓜多尔-950（约1.105）/ 平+1000 / 库拉索+2600 · 大球3球线（-146/+132）反映市场对厄瓜多尔大胜的预期</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>厄瓜多尔独赢赔率极低（-950），单独投注价值有限，资金转向让球盘和进球数市场</li>
+      <li>"厄瓜多尔3-1胜库拉索"被列为最佳平衡比分预测——既反映必胜预期，又承认库拉索可能制造1个安慰进球</li>
+      <li>值得警惕的反向数据：厄瓜多尔近11次比赛中仅1次以2球以上优势取胜，且近18场国际赛事难以打出大胜，这与"厄瓜多尔大胜"的市场直觉形成潜在矛盾</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：极低（库拉索获胜&lt;3%），但"小胜"概率不可忽视</div>
+      <p>库拉索作为世界杯历史最小参赛国，对阵德国已暴露出全方位的实力差距（35%控球率，仅2次射正），战胜厄瓜多尔的可能性微乎其微。但需要注意的反向数据是：厄瓜多尔近11场比赛仅1次以2球以上优势获胜，这意味着即便确定获胜，比分也可能是1-0或2-1这类"小胜"而非外界预期的大胜。这是本场的核心风险点。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">厄瓜多尔 3-1 库拉索（主选）</div>
+    <div class="pred-meta">概率约22% · 次选：2-0厄瓜多尔（约20%） · 2-1厄瓜多尔（约20%） · 1-0厄瓜多尔（约18%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 6/10（结果方向高度确定，具体比分有较大分歧）</div>
+    <div class="pred-body">
+      <strong>为什么预测3-1？</strong><br>
+      厄瓜多尔实力远超库拉索（南美区预选赛18场仅失5球的防线碾压库拉索的进攻），赢球毫无悬念；但厄瓜多尔近18场国际赛事难以打出大胜（仅1次3球+优势）的历史数据值得警惕，说明球队风格偏稳健而非血洗对手。3-1兼顾了"必胜+多球"和"厄瓜多尔历史进球效率有限+库拉索可能利用反击或定位球制造1个安慰进球"两种现实因素。<br><br>
+      <strong>数据支持：</strong>①南美区预选赛18场仅失5球证明防线稳固 ②库拉索对德国一战仅2次射正暴露进攻乏力 ③埃斯图皮南回归提升左路进攻火力<br><br>
+      <strong>风险因素：</strong>①厄瓜多尔近16场仅1次3球以上大胜，进攻效率历史数据保守 ②库拉索可能持续摆大巴导致总进球数低于预期 ③厄瓜多尔可能为末轮战德国保留部分体能
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">亚洲让球 <span class="tag tv">首推</span></div><div class="bc-rec">厄瓜多尔-1.5球 @1.85</div><div class="bc-reason">三依据：①南美区预选赛防线碾压级 ②库拉索对德国一战仅2次射正进攻乏力 ③埃斯图皮南回归增强左路进攻</div></div>
+      <div class="bet-card"><div class="bc-type">胜平负</div><div class="bc-rec">厄瓜多尔独赢 @1.05（仅作串关腿）</div><div class="bc-reason">几乎确定但赔率太低，单独投注价值有限，适合作为串关组合的稳定腿</div></div>
+      <div class="bet-card risk"><div class="bc-type">大小球 <span class="tag tr">注意风险</span></div><div class="bc-rec">小球3（备选，对冲大球热度）@2.32</div><div class="bc-reason">三依据：①厄瓜多尔近16场仅1次3球以上大胜 ②球队风格偏稳健而非血洗 ③大球3的市场热度可能已被过度定价</div></div>
+      <div class="bet-card"><div class="bc-type">双方进球</div><div class="bc-rec">双方进球-是 @约2.20</div><div class="bc-reason">库拉索虽弱但反击机会仍存，结合厄瓜多尔历史进球效率保守的特点，双方进球有一定概率</div></div>
+      <div class="bet-card val"><div class="bc-type">射手 <span class="tag tv">价值</span></div><div class="bc-rec">恩纳尔·瓦伦西亚任意时刻进球 @约2.00</div><div class="bc-reason">作为厄瓜多尔锋线核心，对阵库拉索这类弱旅有较高进球概率</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 4 突尼斯 vs 日本 ========== -->
+<div class="card" id="m3">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇹🇳 突尼斯 vs 日本 🇯🇵</div>
+      <span class="grp">F组 · 第2轮</span>
+      <span class="status">⚠ 突尼斯换帅雷纳尔 · 日本久保建英重伤缺阵</span>
+    </div>
+    <div class="mh-right">蒙特雷 BBVA体育场</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇹🇳 突尼斯（近5场）</div>
+        <div class="form-row"><span class="fl">L</span><span class="fl">L</span><span class="fl">L</span><span class="fd">D</span><span class="fl">L</span></div>
+        <div class="sub">世界杯MD1：1-5惨败瑞典（队史第二差世界杯失利）<br>近8场仅1胜2平5负，近3场失球合计11球（含赛前5-0负比利时）<br>主帅拉穆希因首战惨败被即时解雇，换帅赫尔维·雷纳尔<br>整体进攻能力极弱，对阵瑞典上半场仅2次射门</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇯🇵 日本（近5场）</div>
+        <div class="form-row"><span class="fd">D</span><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span></div>
+        <div class="sub">世界杯MD1：2-2平荷兰（两度落后两度追平，展现韧性）<br>赛前热身3连胜零封（加纳、玻利维亚、苏格兰）<br>久保健英（皇马）对阵荷兰严重膝伤，确认本届报销<br>替补小川航基补时扳平，已显示替补深度</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">突尼斯</div><div class="val">FIFA第55位</div><div class="sub">F组垫底（0分，净胜球-4）· 7次参加世界杯从未小组出线<br>本场近乎"必须赢球"才能保留理论希望</div></div>
+      <div class="stat-block"><div class="lbl">日本</div><div class="val">FIFA前20位左右</div><div class="sub">F组第2/3（1分）· 赢球将提前锁定出线名额甚至有望反超瑞典登顶<br>近期已证明能与德国、西班牙等强队抗衡</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">突尼斯</div><div class="val">进~5球 / 失~16球</div><div class="sub">近3场比赛失球合计11球（含5-0负比利时热身）<br>进攻端创造力严重不足，对瑞典一战开局30分钟仅2次射门</div></div>
+      <div class="stat-block"><div class="lbl">日本</div><div class="val">进~15球 / 失~5球</div><div class="sub">赛前热身3连续零封（加纳、玻利维亚、苏格兰）<br>对阵荷兰展现出顶级防守韧性（限制荷兰xG仅0.79）</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>历史交锋6次，日本5胜1负占据压倒性优势，且仅1次被攻破球门</li>
+      <li>4年前麒麟杯友谊赛决赛日本3-0大胜突尼斯，近期交锋继续延续日本主导格局</li>
+      <li>历史交锋数据高度支持日本的优势地位，且趋势一致性极强</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>突尼斯⚠双重打击：</strong>主帅拉穆希因首战惨败被即时解雇，技术总监凯巴耶尔短暂代管后由57岁法国教练赫尔维·雷纳尔（曾带领沙特击败阿根廷制造奇迹）紧急接任，仓促上任难有充分备战时间。球门员阿卜杜勒穆希卜·查马赫被认为对首战至少2个失球负有责任，队长埃利耶斯·斯希里和塔尔比是阵容核心但难以弥补结构性缺陷</li>
+      <li><strong>日本✓利好但有伤：</strong>久保健英（皇马边锋）对阵荷兰遭遇严重膝伤，确认本届世界杯报销，预期由小川航基（资格赛打入6球+热身赛对芬兰破门）替补登场；远藤航已确认本届报销。日本整体无新增伤病，预计沿用对阵荷兰的首发阵容</li>
+      <li><strong>核心差距：</strong>即便久保健英伤退，日本阵容厚度（中村敬人、伊东纯也等可登场）仍明显优于突尼斯换帅后仓促应战的阵容状态</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>突尼斯4-3-3（雷纳尔仓促接手）：</strong>新帅上任时间极短，战术磨合几乎为零，球队大概率延续此前防守体系但士气和组织度堪忧。斯希里+塔尔比领衔但难以弥补结构性缺陷</li>
+      <li><strong>日本4-2-3-1（控球+反击转换）：</strong>对阵荷兰展现出色的控球分配能力（40%控球率下仍创造威胁），中村敬人创造力突出，小川航基替补登场即制造威胁，深度阵容优势明显</li>
+      <li><strong>关键对位：</strong>日本整体控球+组织度对突尼斯仓促应战+创造力匮乏的攻击线——这是本场实力差距最直观的体现</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组赛形势 / 战意分析</div>
+    <ul class="alist">
+      <li><strong>突尼斯近乎必须赢球：</strong>0分垫底且净胜球-4，输球将基本终结其7次参赛从未小组出线的尴尬纪录延续的命运</li>
+      <li><strong>日本志在锁定出线甚至争夺组头：</strong>3分将几乎确保晋级淘汰赛，且有可能反超瑞典登顶F组</li>
+      <li><strong>突尼斯雪上加霜：</strong>临阵换帅进一步削弱球队凝聚力，对阵已证明强大的日本队几乎毫无优势</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">日本独赢</div><div class="ov hot">1.53</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">4.20</div></div>
+      <div class="ob"><div class="ol">突尼斯独赢</div><div class="ov">7.50</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov">2.05</div></div>
+      <div class="ob"><div class="ol">小球2.5</div><div class="ov hot">1.78</div></div>
+      <div class="ob"><div class="ol">日本零封获胜</div><div class="ov">2.10</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">日本-187（约1.53）· 突尼斯长赔可达+650 · 日本零封获胜被分析师列为标志性推荐（基于热身赛3连续零封和荷兰一战防守表现）</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>日本独赢-187资金集中，但市场更看重比分细节而非简单结果——"日本2-0"被多家机构列为最值得关注的精确比分</li>
+      <li>小球2.5（1.78）获得分析师特别关注，依据是日本赛前热身3连续零封+突尼斯进攻端的极度低效</li>
+      <li>"日本零封获胜"是本场公认的高价值盘——日本防守体系成熟+突尼斯换帅后进攻磨合更加困难</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：极低（约8-10%）</div>
+      <p>历史交锋日本5胜1负的压倒性优势+突尼斯近期换帅引发的混乱+突尼斯近3场失球合计11球的防守崩盘趋势，几乎没有支持突尼斯获胜的论据。唯一变量是雷纳尔曾在2022年世界杯带领沙特爆冷击败阿根廷的"奇迹教练"履历，但接手时间过短（仅数日备战），难以在战术层面对日本形成实质性威胁。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">日本 2-0 突尼斯（主选）</div>
+    <div class="pred-meta">概率约30% · 次选：3-0日本（约20%） · 1-0日本（约20%） · 2-1日本（约15%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 7/10（本日仅次于巴西海地的高确定性场次）</div>
+    <div class="pred-body">
+      <strong>为什么预测2-0？</strong><br>
+      历史交锋日本5胜1负仅1次失球的压倒性数据+突尼斯临阵换帅带来的混乱+其近3场失球合计11球的防守崩盘趋势，共同支撑日本获胜且大概率零封的预测。久保健英伤退虽是利好折损，但小川航基的替补深度和日本整体控球+反击转换体系仍能持续制造威胁。2-0兼顾了日本胜势明确和突尼斯防线虽弱但雷纳尔可能临时调整防守站位减少失球数的现实因素。<br><br>
+      <strong>数据支持：</strong>①历史交锋日本5胜1负且仅1次失球 ②日本热身赛3连续零封证明防守体系成熟 ③突尼斯近3场失球合计11球的防守崩盘趋势<br><br>
+      <strong>风险因素：</strong>①雷纳尔曾带领沙特爆冷击败阿根廷的"奇迹教练"履历不可完全排除 ②久保健英伤退削弱日本进攻创造力 ③突尼斯背水一战可能激发超水平防守表现，制造低分胶着
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">胜平负 <span class="tag tv">推荐</span></div><div class="bc-rec">日本独赢 @1.53</div><div class="bc-reason">三依据：①历史交锋5胜1负压倒性优势 ②突尼斯临阵换帅引发混乱 ③突尼斯近3场失球合计11球防守崩盘</div></div>
+      <div class="bet-card val"><div class="bc-type">亚洲让球 <span class="tag tv">价值</span></div><div class="bc-rec">日本零封获胜 @2.10</div><div class="bc-reason">三依据：①日本热身赛3连续零封 ②对阵荷兰限制对手xG仅0.79证明防守体系成熟 ③突尼斯进攻端创造力严重不足（开局30分钟仅2次射门）</div></div>
+      <div class="bet-card"><div class="bc-type">大小球</div><div class="bc-rec">小球2.5 @1.78</div><div class="bc-reason">日本防守体系稳固+突尼斯进攻效率低下，比赛大概率呈现低分态势</div></div>
+      <div class="bet-card"><div class="bc-type">双方进球</div><div class="bc-rec">双方进球-否 @约1.85</div><div class="bc-reason">突尼斯进攻端极度乏力，日本零封获胜概率高，双方进球可能性偏低</div></div>
+      <div class="bet-card risk"><div class="bc-type">射手 <span class="tag tr">价值</span></div><div class="bc-rec">小川航基任意时刻进球 @约2.60</div><div class="bc-reason">补时绝平荷兰展现状态，预期顶替久保健英位置获得更多出场时间和射门机会</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 精选方案 ========== -->
+<div class="card" id="m4">
+  <div class="final-card">
+    <div class="final-title">🏆 世界杯明日精选方案 · 6月20日</div>
+    <div style="font-size:12px;color:#666;margin-bottom:14px">核心逻辑：本日呈现"强队对决+生死战"交织格局——德国/日本是高确定性稳胆，荷兰瑞典是价值丰富的不确定场次，厄瓜多尔/突尼斯需关注让球细节而非简单独赢。</div>
+
+    <div class="pick-row">
+      <div class="pick-item">
+        <div class="stars">★★★★<span class="off">☆</span></div>
+        <div class="pick-right">
+          <div class="plbl">稳胆（Banker）</div>
+          <div class="pmain">日本独赢 @1.53 + 日本零封获胜 @2.10</div>
+          <div class="pdet">双串一赔率约3.21 · 三依据：①历史交锋5胜1负压倒性优势 ②突尼斯临阵换帅+近3场失球合计11球 ③日本热身3连续零封证明防守体系成熟。风险：奇迹教练雷纳尔不可完全排除。建议30单位</div>
+        </div>
+      </div>
+      <div class="pick-item">
+        <div class="stars">★★★★<span class="off">☆</span></div>
+        <div class="pick-right">
+          <div class="plbl">稳胆（Banker）</div>
+          <div class="pmain">科特迪瓦+1让球 @1.92</div>
+          <div class="pdet">三依据：①科特迪瓦近5场5连胜证明身体对抗韧性 ②对厄瓜多尔耗到补时才丢球说明防守组织度高 ③不会再被血洗一次的市场共识。风险：德国攻击线统治级表现可能延续。建议25单位</div>
+        </div>
+      </div>
+      <div class="pick-item">
+        <div class="stars">★★★<span class="off">☆☆</span></div>
+        <div class="pick-right">
+          <div class="plbl">博高赔</div>
+          <div class="pmain">荷兰vs瑞典 大球2.5 @1.91 + 双方进球-是 @1.95（双串）</div>
+          <div class="pdet">双串一赔率约3.72 · 三依据：①多家机构一致推荐大球为核心价值盘 ②荷兰防线刚丢2球延续风险 ③瑞典伊萨克+于克雷斯火力凶猛。核心风险：本日最难预测场次，信心仅5/10。建议20单位</div>
+        </div>
+      </div>
+      <div class="pick-item">
+        <div class="stars">★★<span class="off">☆☆☆</span></div>
+        <div class="pick-right">
+          <div class="plbl">冷门尝试</div>
+          <div class="pmain">厄瓜多尔 vs 库拉索 小球3 @2.32</div>
+          <div class="pdet">三依据：①厄瓜多尔近16场仅1次3球以上大胜 ②球队风格偏稳健而非血洗 ③市场对"必胜大胜"的直觉可能与历史数据矛盾。注意：方向与多数机构预期相反，仅押10单位。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div style="font-size:13px;font-weight:700;margin-bottom:10px">100单位资金分配建议</div>
+    <div class="alloc-row">
+      <div class="abox"><div class="al">日本独赢+<br>零封串</div><div class="av" style="color:#1a5fa8">30单位</div></div>
+      <div class="abox"><div class="al">科特迪瓦<br>+1让球</div><div class="av" style="color:#1a5fa8">25单位</div></div>
+      <div class="abox"><div class="al">荷兰瑞典<br>大球+BTTS串</div><div class="av" style="color:#2a7a2a">20单位</div></div>
+      <div class="abox"><div class="al">厄库小球<br>逆向冷门</div><div class="av" style="color:#c07800">10单位</div></div>
+    </div>
+    <div style="font-size:12px;color:#888;margin-top:6px">预留15单位机动（厄瓜多尔让球/德国独赢补充用） · 预计命中率目标：55-65% · 预期赔率区间：1.53-3.72</div>
+
+    <div class="divider"></div>
+    <div class="highlight">
+      <strong>⭐ 今日最值关注的价值盘：</strong><br>
+      ①科特迪瓦 <strong>+1亚洲让球 @1.92</strong>——近5场5连胜的身体对抗韧性+"不会再被血洗"的市场共识，对阵德国仍有保护空间<br>
+      ②荷兰 vs 瑞典 <strong>大球2.5 @1.91</strong>——Rotowire等多家机构一致推荐，荷兰防线问题与瑞典双前锋火力形成双向进球支撑<br>
+      ③厄瓜多尔-1.5让球 <strong>@1.85</strong>——南美区预选赛防线碾压级+库拉索进攻乏力，比单纯独赢更具赔率价值
+    </div>
+
+    <div class="divider"></div>
+    <div class="note">
+      <strong>⚠ 风险提示：</strong>以上内容基于公开数据、博彩公司赔率、历史交锋记录、伤停信息及球队近期状态的综合分析，仅供参考，不构成任何投资建议。世界杯小组赛第2轮存在强队对决和生死战交织的复杂局面，结果存在较大不确定性。请理性投注，量力而行。
+    </div>
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<script>
+function show(i){
+  document.querySelectorAll('.card').forEach((c,j)=>c.classList.toggle('active',j===i));
+  document.querySelectorAll('.tab').forEach((b,j)=>b.classList.toggle('active',j===i));
+}
+</script>
+</body>
+</html>
