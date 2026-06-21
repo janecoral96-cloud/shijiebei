@@ -1,5 +1,16 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-06-19",
-  "results": []
+  "updated_at": "2026-06-21",
+  "results": [
+    {
+      "date_beijing": "2026-06-21",
+      "time_beijing": "12:00",
+      "home_team": "Tunisia",
+      "away_team": "Japan",
+      "actual_score": "0-3",
+      "halftime_score": "",
+      "source_url": "https://www.google.com/search?q=Tunisia+0-3+Japan+World+Cup+2026+result",
+      "note": "自动赛果源暂未结算，手动按公开赛果覆盖。"
+    }
+  ]
 }
