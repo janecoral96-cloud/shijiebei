@@ -1240,6 +1240,204 @@
           "display": "平 / 埃及"
         }
       ]
+    },
+    {
+      "date_beijing": "2026-06-22",
+      "time_beijing": "00:00",
+      "home_team": "Spain",
+      "away_team": "Saudi Arabia",
+      "group": "Group H",
+      "venue": "Atlanta Stadium",
+      "report": "reports/2026-06-21-claude.html",
+      "pick_1x2": "home",
+      "primary_score": "3-0",
+      "score_candidates": [
+        "3-0",
+        "4-0",
+        "2-0",
+        "0-0"
+      ],
+      "confidence": 6,
+      "notes": "Claude 6.21报告：亚马尔和尼科回归提升边路突破效率，主选西班牙3-0沙特。",
+      "markets": [
+        {
+          "market": "asian_handicap",
+          "label": "亚洲让球",
+          "team": "home",
+          "line": -2.5,
+          "display": "西班牙 -2.5 @1.93"
+        },
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "home",
+          "display": "西班牙独赢 @1.11"
+        },
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "over",
+          "line": 3,
+          "display": "大球3 @1.83"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "no",
+          "display": "双方不进球 @约1.95"
+        }
+      ]
+    },
+    {
+      "date_beijing": "2026-06-22",
+      "time_beijing": "03:00",
+      "home_team": "Belgium",
+      "away_team": "Iran",
+      "group": "Group G",
+      "venue": "Los Angeles Stadium",
+      "report": "reports/2026-06-21-claude.html",
+      "pick_1x2": "home",
+      "primary_score": "2-1",
+      "score_candidates": [
+        "2-1",
+        "1-1",
+        "2-0",
+        "1-0"
+      ],
+      "confidence": 5,
+      "notes": "Claude 6.21报告：比利时整体质量占优，但多库缺席和伊朗韧性增加不确定性。",
+      "markets": [
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "home",
+          "display": "比利时独赢 @1.43"
+        },
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "under",
+          "line": 2.5,
+          "display": "小球2.5 @2.00"
+        },
+        {
+          "market": "asian_handicap",
+          "label": "亚洲让球",
+          "team": "home",
+          "line": -1.25,
+          "display": "比利时 -1.25 @1.89"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "yes",
+          "display": "双方进球-是 @约1.85"
+        },
+        {
+          "market": "1x2",
+          "label": "冷门尝试",
+          "pick": "draw",
+          "display": "平局 @3.60"
+        }
+      ]
+    },
+    {
+      "date_beijing": "2026-06-22",
+      "time_beijing": "06:00",
+      "home_team": "Uruguay",
+      "away_team": "Cape Verde",
+      "group": "Group H",
+      "venue": "Miami Stadium",
+      "report": "reports/2026-06-21-claude.html",
+      "pick_1x2": "home",
+      "primary_score": "1-0",
+      "score_candidates": [
+        "1-0",
+        "2-0",
+        "0-0",
+        "1-1"
+      ],
+      "confidence": 5,
+      "notes": "Claude 6.21报告：乌拉圭整体实力仍占优，但佛得角防守纪律和乌拉圭伤停压低比分。",
+      "markets": [
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "under",
+          "line": 2.5,
+          "display": "小球2.5 @1.68"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "no",
+          "display": "双方进球-否 @约1.60"
+        },
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "home",
+          "display": "乌拉圭独赢 @1.48"
+        },
+        {
+          "market": "win_to_nil",
+          "label": "零封获胜",
+          "team": "home",
+          "display": "乌拉圭赢到零封 @1.91"
+        },
+        {
+          "market": "1x2",
+          "label": "冷门尝试",
+          "pick": "draw",
+          "display": "平局 @3.43"
+        }
+      ]
+    },
+    {
+      "date_beijing": "2026-06-22",
+      "time_beijing": "09:00",
+      "home_team": "New Zealand",
+      "away_team": "Egypt",
+      "group": "Group G",
+      "venue": "Vancouver Stadium",
+      "report": "reports/2026-06-21-claude.html",
+      "pick_1x2": "away",
+      "primary_score": "1-2",
+      "score_candidates": [
+        "1-2",
+        "0-1",
+        "0-2",
+        "1-1"
+      ],
+      "confidence": 5,
+      "notes": "Claude 6.21报告：埃及整体质量占优，但新西兰首轮已证明有制造进球能力。",
+      "markets": [
+        {
+          "market": "1x2",
+          "label": "胜平负",
+          "pick": "away",
+          "display": "埃及独赢 @1.62"
+        },
+        {
+          "market": "total",
+          "label": "大小球",
+          "pick": "under",
+          "line": 2.5,
+          "display": "小球2.5 @1.67"
+        },
+        {
+          "market": "win_to_nil",
+          "label": "零封获胜",
+          "team": "away",
+          "display": "埃及零封获胜 @2.10"
+        },
+        {
+          "market": "btts",
+          "label": "双方进球",
+          "pick": "yes",
+          "display": "双方进球-是 @约1.95"
+        }
+      ]
     }
   ]
 }
