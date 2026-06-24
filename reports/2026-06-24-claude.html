@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界杯2026明日精选 · 6月25日六场小组赛末轮分析报告</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0ede8;color:#1a1a1a;padding:20px;font-size:14px;line-height:1.6}
+.container{max-width:920px;margin:0 auto}
+h1{font-size:22px;font-weight:700;margin-bottom:4px}
+.subtitle{font-size:13px;color:#666;margin-bottom:18px}
+.schedule-box{background:#fff;border-radius:10px;border:1px solid #ddd;padding:16px;margin-bottom:18px}
+.schedule-box h2{font-size:14px;font-weight:700;color:#444;margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em}
+.sched-row{display:grid;grid-template-columns:80px 1fr;gap:8px;padding:7px 0;border-bottom:1px solid #f0ede8;font-size:13px}
+.sched-row:last-child{border-bottom:none}
+.sched-time{color:#1a5fa8;font-weight:700}
+.sched-match{color:#1a1a1a}
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:7px 14px;border-radius:20px;border:1px solid #ccc;background:transparent;color:#555;cursor:pointer;font-size:12px;font-family:inherit;transition:all .15s}
+.tab.active{background:#1a5fa8;color:#fff;border-color:#1a5fa8}
+.card{display:none;background:#fff;border-radius:12px;border:1px solid #ddd;padding:22px;margin-bottom:12px}
+.card.active{display:block}
+.mh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid #ece9e3;flex-wrap:wrap;gap:8px}
+.mh-left .teams{font-size:18px;font-weight:700}
+.mh-left .grp{font-size:11px;color:#666;background:#f0ede8;padding:2px 9px;border-radius:10px;display:inline-block;margin-top:4px;margin-right:6px}
+.mh-left .status{font-size:11px;color:#c04000;background:#fff4ee;padding:2px 9px;border-radius:10px;display:inline-block;margin-top:4px}
+.mh-right{font-size:12px;color:#666;text-align:right}
+.sec{margin-bottom:20px}
+.sec-title{font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #f0ede8}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat-block{background:#f8f7f4;border-radius:8px;padding:10px 12px}
+.stat-block .lbl{font-size:11px;color:#888;margin-bottom:5px}
+.stat-block .val{font-size:14px;font-weight:700}
+.stat-block .sub{font-size:12px;color:#666;margin-top:4px;line-height:1.55}
+.form-row{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+.fw{width:22px;height:22px;border-radius:50%;background:#d4f0d4;color:#1a6b1a;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.fd{width:22px;height:22px;border-radius:50%;background:#fdf0c0;color:#7a5c00;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.fl{width:22px;height:22px;border-radius:50%;background:#fdd4d4;color:#8b1a1a;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.alist{list-style:none;display:flex;flex-direction:column;gap:7px}
+.alist li{font-size:13px;line-height:1.65;padding-left:16px;position:relative}
+.alist li::before{content:"▸";position:absolute;left:0;color:#1a5fa8;font-size:11px;top:2px}
+.odds-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.ob{background:#f8f7f4;border-radius:8px;padding:9px 10px;text-align:center}
+.ob .ol{font-size:11px;color:#888;margin-bottom:3px}
+.ob .ov{font-size:15px;font-weight:700;color:#999}
+.pred-panel{background:linear-gradient(135deg,#e8f2fc,#eee8fb);border-radius:12px;padding:18px;margin-bottom:16px;border:1px solid #c8d8f0}
+.pred-score{font-size:24px;font-weight:800;color:#0d4e9e;margin-bottom:5px}
+.pred-meta{font-size:12px;color:#2a5fb0;margin-bottom:10px}
+.conf-row{display:flex;gap:3px;margin:6px 0}
+.cdot{width:11px;height:11px;border-radius:2px;background:#1a5fa8}
+.cdot.off{background:#c5d8f0}
+.pred-body{font-size:12px;color:#1a3a7a;line-height:1.75}
+.bets-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bet-card{background:#f8f7f4;border-radius:8px;padding:10px 12px}
+.bet-card.val{border-left:3px solid #1a5fa8;border-radius:0 8px 8px 0}
+.bet-card.risk{border-left:3px solid #c07800;border-radius:0 8px 8px 0}
+.bet-card.cool{border-left:3px solid #aa2222;border-radius:0 8px 8px 0}
+.bc-type{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.bc-rec{font-size:13px;font-weight:700;margin-bottom:3px}
+.bc-reason{font-size:11px;color:#555;line-height:1.55}
+.tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:8px;margin-left:5px;vertical-align:middle}
+.tv{background:#dbeeff;color:#0d4e9e}
+.tr{background:#fce8c0;color:#7a4800}
+.th{background:#fdd4d4;color:#7a1a1a}
+.tg{background:#eee;color:#666}
+.risk-box{background:#fff8e6;border-radius:8px;padding:10px 13px;margin-top:8px;border-left:3px solid #e0a800}
+.risk-box .rtitle{font-size:11px;font-weight:700;color:#7a4800;margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em}
+.risk-box p{font-size:12px;color:#5c3a00;line-height:1.6}
+.divider{height:1px;background:#ece9e3;margin:16px 0}
+.final-card{background:#fff;border-radius:12px;border:1px solid #ddd;padding:22px}
+.final-title{font-size:16px;font-weight:700;margin-bottom:16px;color:#111;border-bottom:2px solid #1a5fa8;padding-bottom:8px}
+.pick-row{display:flex;flex-direction:column;gap:10px}
+.pick-item{background:#f8f7f4;border-radius:10px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+.stars{font-size:15px;color:#c07800;min-width:82px}
+.stars .off{color:#ccc}
+.pick-right{flex:1;min-width:200px}
+.pick-right .plbl{font-size:11px;color:#888;margin-bottom:2px}
+.pick-right .pmain{font-size:14px;font-weight:700;margin-bottom:4px}
+.pick-right .pdet{font-size:12px;color:#555;line-height:1.55}
+.alloc-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.abox{background:#f8f7f4;border-radius:8px;padding:10px 8px;text-align:center;border:1px solid #e8e5e0}
+.abox .al{font-size:10px;color:#888;margin-bottom:4px;line-height:1.4}
+.abox .av{font-size:18px;font-weight:800}
+.note{font-size:12px;color:#888;line-height:1.7;background:#f8f7f4;border-radius:8px;padding:11px 13px;margin-top:10px}
+.highlight{background:#e8f4ff;border-radius:8px;padding:10px 13px;margin-top:8px;font-size:12px;color:#0d4e9e;line-height:1.65;border-left:3px solid #1a5fa8}
+.correction{background:#fff0f0;border-radius:8px;padding:10px 13px;margin-bottom:14px;font-size:12px;color:#7a1a1a;line-height:1.6;border-left:3px solid #cc2200}
+.databox{background:#eef6ee;border-radius:8px;padding:10px 13px;margin-bottom:14px;font-size:12px;color:#1a5c1a;line-height:1.6;border-left:3px solid #2a8a2a}
+.src-na{color:#aaa;font-style:italic;font-size:11px}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>⚽ 2026世界杯 · 6月25日六场小组赛末轮投注参考方案</h1>
+<div class="subtitle">A组 ×2 + B组 ×2 + C组 ×2 · 全部为小组赛收官战，3个小组的出线归属将在今天同时揭晓</div>
+
+<div class="databox">
+<strong>✅ 数据说明：</strong>本报告中的<strong>近期战绩、世界排名、历史交锋、小组积分/出线形势</strong>均基于公开新闻与百科联网核实，标注来源时效；<strong>球员伤停信息</strong>部分存在多个媒体报道相互矛盾或未经官方最终确认的情况，已在对应位置注明"信息存疑/待官方确认"；<strong>赔率初盘/即时盘、博彩公司资金流向、市场投注热度</strong>因缺乏可核实的实时数据源，已统一标注为"数据来源不明确/暂缺"，仅提供赔率取向的公开报道线索作参考，不作为投注依据的主要支撑。
+</div>
+
+<div class="schedule-box">
+  <h2>📅 赛程一览（北京时间 6月25日）</h2>
+  <div class="sched-row"><div class="sched-time">比赛①</div><div class="sched-match">瑞士 🆚 加拿大 · 温哥华BC体育场 · B组第3轮（末轮） · 03:00</div></div>
+  <div class="sched-row"><div class="sched-time">比赛②</div><div class="sched-match">波黑 🆚 卡塔尔 · 西雅图Lumen球场 · B组第3轮（末轮） · 03:00</div></div>
+  <div class="sched-row"><div class="sched-time">比赛③</div><div class="sched-match">苏格兰 🆚 巴西 · 迈阿密硬石体育场 · C组第3轮（末轮） · 06:00</div></div>
+  <div class="sched-row"><div class="sched-time">比赛④</div><div class="sched-match">摩洛哥 🆚 海地 · 亚特兰大梅赛德斯-奔驰体育场 · C组第3轮（末轮） · 06:00</div></div>
+  <div class="sched-row"><div class="sched-time">比赛⑤</div><div class="sched-match">捷克 🆚 墨西哥 · 瓜达拉哈拉Akron体育场 · A组第3轮（末轮） · 09:00</div></div>
+  <div class="sched-row"><div class="sched-time">比赛⑥</div><div class="sched-match">南非 🆚 韩国 · 地点待核实 · A组第3轮（末轮） · 09:00</div></div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="show(0)">🇨🇭 瑞士 vs 加拿大</button>
+  <button class="tab" onclick="show(1)">🇧🇦 波黑 vs 卡塔尔</button>
+  <button class="tab" onclick="show(2)">🏴 苏格兰 vs 巴西</button>
+  <button class="tab" onclick="show(3)">🇲🇦 摩洛哥 vs 海地</button>
+  <button class="tab" onclick="show(4)">🇨🇿 捷克 vs 墨西哥</button>
+  <button class="tab" onclick="show(5)">🇿🇦 南非 vs 韩国</button>
+  <button class="tab" onclick="show(6)">★ 明日精选方案</button>
+</div>
+
+<!-- ========== MATCH 1 瑞士 vs 加拿大 ========== -->
+<div class="card active" id="m0">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇨🇭 瑞士 vs 加拿大 🇨🇦</div>
+      <span class="grp">B组 · 第3轮（末轮）</span>
+      <span class="status">戴维斯/科内伤情存疑（信息存疑）</span>
+    </div>
+    <div class="mh-right">温哥华 BC体育场</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近2轮小组赛战绩 + 近期状态</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">瑞士</div>
+        <div class="val">首轮 1-1 卡塔尔 → 次轮 4-1 波黑</div>
+        <div class="sub">两战1胜1平，积4分，净胜球+3，暂列小组第二。次轮替补登场的曼赞比梅开二度，状态正在上升。近15场国际比赛仅1负，整体稳定性是欧洲二档球队中的佼佼者。</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">加拿大</div>
+        <div class="val">首轮 1-1 波黑 → 次轮 6-0 卡塔尔</div>
+        <div class="sub">两战1胜1平，积4分，净胜球+6，暂列小组第一。次轮戴维单场戴帽，创队史世界杯首胜。作为东道主在本土比赛士气正盛，但次轮取胜过程中后防核心科内受伤情况需关注。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名</div>
+    <ul class="alist">
+      <li>瑞士：FIFA世界排名第19位（一份信源），另一份信源基于6月中旬榜单将瑞士列入"第11-30名"区间，两者方向一致，确认瑞士排名稳定在20位左右</li>
+      <li>加拿大：FIFA世界排名第31位左右（截至5月）；另有信源在B组首轮报道中提到"加拿大世界排名第30/32位"，各信源略有出入但均落在30-32区间</li>
+      <li>两队排名差距并不悬殊（约10-12位），与小组赛呈现的"瑞士、加拿大两强并列"的实际走势相符</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 本届世界杯近2场进失球数据</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">瑞士</div>
+        <div class="val">2场5进2失</div>
+        <div class="sub">首轮1-1战平卡塔尔（被绝平），次轮4-1大胜波黑；进攻效率随轮次提升明显</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">加拿大</div>
+        <div class="val">2场7进1失</div>
+        <div class="sub">首轮1-1战平波黑，次轮6-0狂胜卡塔尔；东道主进攻火力两队中最猛，戴维状态火热</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>公开搜索未见瑞士与加拿大两队有显著的历史正式交锋记录可查，本场大概率为两队世界杯历史首次交手或交手次数极少</li>
+      <li>缺乏历史交锋参考意味着本场更多要依赖当前状态、阵容深度和临场战意判断，历史心理优势这一变量基本不存在</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况（信息存疑，请以临场首发名单为准）</div>
+    <ul class="alist">
+      <li>加拿大：队长阿方索·戴维斯（拜仁慕尼黑）此前因腿部伤势缺席首战，状态恢复程度存疑；次轮戴帽功臣戴维伤情报道中提及"科内伤情"但细节不明确——<span class="src-na">具体伤情和能否出战缺乏权威信源确认</span></li>
+      <li>瑞士：诺阿·奥卡福（利兹联）此前因小腿轻伤缺席首战，此后状态恢复情况未见最新报道；扎卡、阿坎吉等核心未见伤停报道，预计基本可以出战</li>
+      <li>提醒：本场是B组出线的关键战，建议投注前留意赛前1小时左右公布的官方首发名单，伤停变化可能直接影响盘口</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位</div>
+    <ul class="alist">
+      <li>瑞士主打控球+边中结合的传控体系，中场扎卡、埃比舍组织能力强，恩博洛、巴尔加斯前场支点稳定，整体节奏偏稳健</li>
+      <li>加拿大依靠戴维斯左路爆点和戴维中路终结效率打反击转换，东道主主场氛围会进一步放大其前场冲击力</li>
+      <li>本场出线形势特殊：两队目前同积4分（瑞士净胜球+3，加拿大净胜球+6），<strong>只要打平，两队即可携手出线</strong>，这意味着战术上双方都有"求稳不求险"的现实动机</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组形势与战意</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 关键形势：平局即可双双出线</div>
+      <p>当前B组积分榜：加拿大4分（净胜球+6）暂列第一，瑞士4分（净胜球+3）暂列第二，波黑、卡塔尔各1分。只要瑞士vs加拿大打平，两队各得1分变成5分，而波黑vs卡塔尔的胜方最多拿到4分，无法追上，因此两队战平即可锁定出线名额。这是本场比赛"战意"层面最大的变量——双方都有极强的动机避免冒险，呈现"理性默契"下的低风险比赛走势。</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘/即时盘 ＆ ⑨ 市场投注热度</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">瑞士独赢</div><div class="ov">数据暂缺</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">数据暂缺</div></div>
+      <div class="ob"><div class="ol">加拿大独赢</div><div class="ov">数据暂缺</div></div>
+    </div>
+    <div class="note" style="margin-top:8px">未能核实到可靠的实时盘口数字与资金流向数据，此处不作赔率/热度层面的具体分析。如需精确盘口，建议以你常用的正规博彩平台赛前公示数据为准。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：中等偏低，但需警惕"默契球"走势</div>
+      <p>本场最大的不确定性不是"谁更强"，而是"双方是否会为了确保出线而踢得过于保守"，导致比赛呈现低强度、少冒险的态势。如果两队都满足于1-1或0-0，则比分预测的核心风险在于会不会有一方在场面占优时仍按耐不住扩大比分的欲望，打破默契平衡。整体出现真正"爆冷"（即某队大比分失利或出局）的概率不高，因为两队都已大概率锁定出线资格。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">瑞士 1-1 加拿大（主选）</div>
+    <div class="pred-meta">概率约30% · 次选：0-0平局（约22%） · 2-1加拿大（约16%） · 2-1瑞士（约14%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 6/10（双方均有"打平即出线"的现实动机，行为模式比实力对比更难预判）</div>
+    <div class="pred-body">
+      <strong>为什么预测1-1？</strong><br>
+      两队近2轮合计14个进球的火力说明双方都不缺乏破门能力，但本场"双赢平局"的客观激励极强——历史上类似积分形势下的小组赛末轮，球队倾向于在前场保持一定压迫力（避免被指责"踢默契球"招致舆论压力和FIFA关注），但一旦任意一方率先破门，落后方也有足够的进攻底蕴迅速追平，而非死守一场失利。<br><br>
+      <strong>数据支持：</strong>①两队近2轮合计14球，进攻火力均不弱，单纯死守0-0的概率有限 ②历史交锋数据缺失，意味着双方互相摸底有限，开局阶段大概率谨慎试探 ③双方同积4分且都已掌握平局即出线的主动权，理性博弈下"打平默契"是统计学上最容易出现的结果之一<br><br>
+      <strong>风险因素：</strong>①若戴维斯/科内等核心球员因伤缺阵，加拿大边路爆点和后防硬度都会打折，可能被瑞士打出更大分差 ②东道主在主场作战，球迷和舆论压力可能促使加拿大主帅选择放手一搏而非保守，从而打破"默契平局"的剧本 ③历史交锋样本为零，意味着场面走势的不可预测性高于一般同分对决
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">胜平负 <span class="tag tv">推荐</span></div><div class="bc-rec">平局</div><div class="bc-reason">三依据：①双方同积4分，打平即可双双出线，理性博弈下平局概率被结构性放大 ②两队近2轮均未出现0战绩，但末轮形势性质完全不同 ③历史交锋样本为零，缺乏一方碾压另一方的心理基础</div></div>
+      <div class="bet-card val"><div class="bc-type">大小球</div><div class="bc-rec">小球2.5</div><div class="bc-reason">三依据：①双方出线压力下大概率收着踢，进攻烈度会低于此前两轮 ②"求稳"心理下犯错和冒险传球都会减少 ③若走向平局剧本，小比分概率显著更高</div></div>
+      <div class="bet-card"><div class="bc-type">亚洲让球</div><div class="bc-rec">不主推让球盘（无明显价值）</div><div class="bc-reason">两队净胜球差距+3，盘口大概率围绕平手附近浮动，让球价值不突出，谨慎参与</div></div>
+      <div class="bet-card"><div class="bc-type">双方进球</div><div class="bc-rec">双方进球-是（谨慎参与）</div><div class="bc-reason">两队近2轮合计14球，进攻底蕴具备支撑双方进球的基础，但若走纯保守剧本，0-0也有相当概率</div></div>
+      <div class="bet-card cool"><div class="bc-type">半全场 <span class="tag tg">辅助参考</span></div><div class="bc-rec">半场平-全场平</div><div class="bc-reason">如果"默契平局"剧本兑现，比赛大概率全程节奏平稳，半场1-1或0-0进入全场同结果的可能性较高</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 2 波黑 vs 卡塔尔 ========== -->
+<div class="card" id="m1">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇧🇦 波黑 vs 卡塔尔 🇶🇦</div>
+      <span class="grp">B组 · 第3轮（末轮）</span>
+      <span class="status">卡塔尔2主力红牌停赛 · 哲科(40岁)体能存疑</span>
+    </div>
+    <div class="mh-right">西雅图 Lumen球场</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近2轮小组赛战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">波黑</div>
+        <div class="val">首轮 1-1 加拿大 → 次轮 1-4 负瑞士</div>
+        <div class="sub">两战1平1负，积1分，净胜球-4，暂列小组第三。次轮在第80分钟左右出现红牌后被瑞士打崩，防守韧性在被压制后明显瓦解</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">卡塔尔</div>
+        <div class="val">首轮 1-1 瑞士 → 次轮 0-6 负加拿大</div>
+        <div class="sub">两战1平1负，积1分，净胜球-6，暂列小组垫底。次轮上半场即染红牌少打一人，溃败明显，且两名主力球员被红牌罚下，将缺席本场</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名</div>
+    <ul class="alist">
+      <li>波黑：FIFA世界排名第65位（一份近期信源），另有信源将其归入"第31-48名"区间，综合判断波黑排名大致在60-65位左右</li>
+      <li>卡塔尔：FIFA世界排名约第49位（B组首轮报道）；另一份6月中旬榜单信源将卡塔尔列入"第31-48名"区间靠后位置，方向基本一致</li>
+      <li>两队排名较为接近，波黑可能略占微弱优势，但差距不显著</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 本届世界杯近2场进失球数据</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">波黑</div>
+        <div class="val">2场2进5失</div>
+        <div class="sub">首轮1-1战平加拿大，次轮被瑞士打入4球，防守端在多打少局面下表现脆弱，进攻端持续乏力（近况"近6场场均≤1球"的报道亦印证这一趋势）</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">卡塔尔</div>
+        <div class="val">2场1进7失</div>
+        <div class="sub">首轮1-1逼平瑞士（补时乌龙送礼），次轮0-6惨败给加拿大且两次染红，攻防两端在本届世界杯表现均为B组最弱</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>公开搜索未见波黑与卡塔尔有显著的历史正式交锋记录，本场大概率是两队历史上少有的直接对话</li>
+      <li>双方在本届世界杯前两轮战绩、净胜球完全走低迷路线，历史交锋参考价值有限，更多要看临场状态和伤停名单</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li>卡塔尔：<strong>两名主力球员在次轮0-6惨败加拿大的比赛中被红牌罚下，将自动停赛、无缘本场</strong>（这是本场最明确、最具实战影响的伤停/停赛信息）</li>
+      <li>波黑：核心前锋哲科已40岁高龄，体能无法支撑90分钟高强度对抗，是球队进攻端的隐患；左路防守球员科拉希纳茨若无法出战，左路防守硬度会明显下降（信息存疑，请以临场首发为准）</li>
+      <li>波黑老将迪斯高（具体伤停情况未见详细报道）按报道描述为"球迷需珍惜的最后亮相机会"，暗示出场机会有限</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位</div>
+    <ul class="alist">
+      <li>波黑偏向4-4-2身体对抗+高空球优势的东欧球队打法，依靠哲科支点和定位球威胁，但缺乏中场创造力</li>
+      <li>卡塔尔传控体系渐趋成型但本场因2名主力停赛，中前场出球和组织能力将大幅削弱，被迫更依赖反击效率</li>
+      <li>两队都是本组实力相对较弱的一方，本场更像"垫底者的荣誉之战"，整体技战术含量预计低于其他5场比赛</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组形势与战意</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 关键形势：胜者才有出线希望，且希望渺茫</div>
+      <p>波黑、卡塔尔目前均积1分，本场胜方最多拿到4分，但由于瑞士vs加拿大大概率以平局收场（双方各得5分），4分几乎注定无法追上前两位。因此本场实际意义更多是"避免垫底"和"争夺成绩较好小组第三"的理论可能性，而非真正意义上的出线生死战。卡塔尔因2名主力停赛+净胜球-6的劣势，战意和实际竞争力都明显弱于波黑。</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘/即时盘 ＆ ⑨ 市场投注热度</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">波黑独赢</div><div class="ov">数据暂缺</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">数据暂缺</div></div>
+      <div class="ob"><div class="ol">卡塔尔独赢</div><div class="ov">数据暂缺</div></div>
+    </div>
+    <div class="note" style="margin-top:8px">未能核实到可靠的实时盘口数字。公开报道倾向认为"波黑是实力占优的一方"，但这只是媒体判断而非赔率数据，请以正规平台公示赔率为准。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：中等（约30-35%）</div>
+      <p>由于双方均已基本无出线希望（即便取胜，4分大概率也不够），本场存在明显的"垫底之战"心理特征——双方都可能放开手脚比赛，也可能出现因无欲无求而比赛质量下降的情况。卡塔尔因2主力停赛实力被明显削弱，理论上波黑占优，但波黑次轮被瑞士打入4球暴露的防守问题，加上哲科体能瓶颈，使得卡塔尔仍有一定反弹空间，平局或卡塔尔小胜都不算意外。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">波黑 2-1 卡塔尔（主选）</div>
+    <div class="pred-meta">概率约24% · 次选：1-1平（约22%） · 1-0波黑（约20%） · 2-0波黑（约16%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 4/10（双方均已基本出局，比赛动机和投入程度高度不确定）</div>
+    <div class="pred-body">
+      <strong>为什么预测2-1？</strong><br>
+      卡塔尔2名主力停赛后中场组织能力大幅削弱，理论上波黑凭借哲科的支点作用和定位球威胁能取得分数优势；但波黑自身防守端在次轮暴露的问题（被瑞士打入4球）和哲科的体能瓶颈，意味着卡塔尔凭借反击效率（首轮逼平瑞士时展现过亚洲球队的反击效率）有一定机会破门，形成偏向波黑但不会大胜的结果。<br><br>
+      <strong>数据支持：</strong>①卡塔尔2名主力停赛，进攻组织能力被实质性削弱 ②波黑近况"近6场场均≤1球"暴露进攻乏力，难以确保大胜 ③卡塔尔首轮逼平瑞士时展现过"不错的亚洲顶级反击效率"，具备偷分能力<br><br>
+      <strong>风险因素：</strong>①双方均已基本出局，比赛投入程度和教练排兵布阵的"放手"程度难以预判，可能出现大量年轻球员或边缘球员登场 ②哲科年龄和体能问题可能导致波黑下半场失速 ③历史交锋样本为零，缺乏可靠参考基准
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">胜平负 <span class="tag tv">推荐</span></div><div class="bc-rec">波黑不败（让球-或独赢）</div><div class="bc-reason">三依据：①卡塔尔2名主力红牌停赛，中前场创造力被实质削弱 ②波黑排名/历史身价均小幅占优 ③卡塔尔本届净胜球-6为两队中最差，状态低迷</div></div>
+      <div class="bet-card"><div class="bc-type">大小球</div><div class="bc-rec">小球2.5（谨慎参与）</div><div class="bc-reason">三依据：①两队均已基本出局，比赛烈度和投入度存在下降可能 ②波黑近况进攻效率持续偏低 ③双方此前合计被打入9球，但自身进攻贡献有限</div></div>
+      <div class="bet-card"><div class="bc-type">亚洲让球</div><div class="bc-rec">波黑-0.5/-1让球（视盘口浮动）</div><div class="bc-reason">卡塔尔减员后实力差距被放大，让半球或一球级别的盘口若出现，波黑仍具备覆盖空间</div></div>
+      <div class="bet-card cool"><div class="bc-type">双方进球 <span class="tag th">高风险</span></div><div class="bc-rec">双方进球-是</div><div class="bc-reason">两队本届合计失9球、合计进3球，防守稳定性都不高，双方进球理论概率不低，但属于波动较大的辅助选项</div></div>
+      <div class="bet-card cool"><div class="bc-type">半全场 <span class="tag tg">辅助参考</span></div><div class="bc-rec">半场平-全场波黑胜</div><div class="bc-reason">考虑哲科体能瓶颈，波黑可能下半场才打开局面，半场闷平、全场拿下的剧本概率相对合理</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 3 苏格兰 vs 巴西 ========== -->
+<div class="card" id="m2">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🏴 苏格兰 vs 巴西 🇧🇷</div>
+      <span class="grp">C组 · 第3轮（末轮）</span>
+      <span class="status">苏格兰麦肯纳伤停存疑 · 巴西拉菲尼亚伤缺/内马尔复出（信息冲突）</span>
+    </div>
+    <div class="mh-right">迈阿密 硬石体育场</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近2轮小组赛战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">苏格兰</div>
+        <div class="val">首轮 1-0 胜海地 → 次轮 0-1 负摩洛哥</div>
+        <div class="sub">两战1胜1负，积3分，净胜球0，暂列小组第三。首轮麦金制胜，次轮被摩洛哥开场70秒闪击击败，进攻端持续乏力（前两轮仅打入1球）</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">巴西</div>
+        <div class="val">首轮 1-1 平摩洛哥 → 次轮 3-0 胜海地</div>
+        <div class="sub">两战1胜1平，积4分，净胜球+3，暂列小组第一。次轮库尼亚梅开二度+维尼修斯补射，攻防两端找到状态，近5场比赛合计15球仅失5球</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名</div>
+    <ul class="alist">
+      <li>苏格兰：FIFA世界排名第42-43位（两份近期信源一致）</li>
+      <li>巴西：FIFA世界排名第6位（近期信源），另需注意6月中旬一份排名分析提到"巴西已跌出前五、与西班牙同积1241分并列第七"——两份信源在巴西具体名次上略有差异（第6 vs 第7），但均明确巴西仍是世界排名前十的传统强队</li>
+      <li>两队排名差距悬殊（30+位），是本轮6场中实力差距最大的一场对决</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 本届世界杯近2场进失球数据</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">苏格兰</div>
+        <div class="val">2场1进1失</div>
+        <div class="sub">前两轮仅打入1球（麦金制胜海地一役），近期非正式比赛"近4场3胜1负"，整体进攻效率全场最低，防守端尚算稳健</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">巴西</div>
+        <div class="val">2场4进1失</div>
+        <div class="sub">首轮被摩洛哥闪击扳平丢1球，次轮零封海地；近5场合计15球仅失5球，攻防两端均处于上升通道</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li><strong>历史交锋信源存在明显冲突</strong>：一份报道称两队"过往4次世界杯交手苏格兰从未取胜"（1974年0-0、1982年1-4、1990年0-1、1998年1-2，本场为第5次世界杯交手）；另一份报道称"两队历史上共交手5次，巴西4胜1平不败，打入12球仅丢2球"；还有一份报道称"两队此前仅有1次交锋，2011年友谊赛苏格兰0-2负巴西"</li>
+      <li>三份信源在具体交手次数和细节上不一致，但<strong>方向高度一致</strong>：苏格兰历史上从未在与巴西的交锋中取胜，心理层面明显处于劣势</li>
+      <li>建议以"苏格兰对巴西保持着较长的不胜纪录"这一共识性结论作为分析依据，不纠结具体交手场次的细节差异</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况（信息存在明显冲突，请高度关注赛前首发）</div>
+    <ul class="alist">
+      <li>苏格兰：中卫斯科特·麦肯纳因小腿伤情反复，出场存疑（多份信源一致）；中场核心比利·吉尔莫已因膝伤提前告别本届世界杯（确认缺阵）；麦克托米奈此前有胃部不适报道，但后续报道显示已恢复训练，可以出战</li>
+      <li>巴西：<strong>关于内马尔和拉菲尼亚的报道存在直接冲突</strong>——一份信源称"主力边锋拉菲尼亚意外受伤，基本确定缺席本场"；另一份信源称"内马尔确定可以出战末轮（小组赛末轮和苏格兰一战）"，且"内马尔上一次代表国家队出场要追溯到2023年10月"；此前还有报道提到"内马尔因伤缺席对阵海地的第二场小组赛"。综合来看，内马尔大概率本场复出但状态未知，拉菲尼亚能否出战存在争议，<span class="src-na">具体以赛前官方首发名单为准</span></li>
+      <li>巴西后腰卡塞米罗、中卫伊巴涅斯首轮各吃一张黄牌，需注意是否会因再次染黄导致出场时间或姿态受限（非停赛，但战术上可能更谨慎）</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位</div>
+    <ul class="alist">
+      <li>苏格兰主打4-2-3-1防守反击，场均控球率仅35-40%，依靠罗伯逊边路传中、麦克托米奈远射和定位球抢点作为主要得分手段，整体技术和个人能力与巴西差距悬殊</li>
+      <li>巴西主打4-3-3传控进攻体系，场均控球率可达56%，维尼修斯边路速度+中路渗透是核心进攻路径，但此前暴露过"久攻不下时缺少单点爆破"的问题，内马尔若状态在线可弥补这一短板</li>
+      <li>本场技战术核心矛盾：巴西的边路速度与控球优势 vs 苏格兰的密集防守和身体对抗，巴西需要耐心破局，苏格兰的反击效率和定位球将是仅有的威胁来源</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组形势与战意</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 关键形势：巴西打平即出线，苏格兰必须取胜</div>
+      <p>巴西目前4分排名第一，本场只要不败（含平局）即可确保出线，取胜则基本锁定小组第一。苏格兰目前3分排名第三，必须取胜才能将出线命运掌握在自己手中（若平局或失利，则需要寄望摩洛哥vs海地爆冷，转而争夺成绩最好的小组第三名额）。这意味着苏格兰的战意和孤注一掷的程度将远高于巴西，而巴西在确保基本目标（出线）后，可能在阵容轮换和风险控制上更趋谨慎，除非他们想确保小组头名以获得更有利的淘汰赛签位。</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘/即时盘 ＆ ⑨ 市场投注热度</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">巴西独赢</div><div class="ov">数据暂缺</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">数据暂缺</div></div>
+      <div class="ob"><div class="ol">苏格兰独赢</div><div class="ov">数据暂缺</div></div>
+    </div>
+    <div class="note" style="margin-top:8px">一份公开报道提到"机构为巴西开出1.25的让球力度"，但该数字来源未经多方核实，仅供参考，不作为投注依据的主要支撑。实时即时盘变化和资金流向数据暂缺。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：中等偏低（约20-25%）</div>
+      <p>巴西在实力、阵容深度、历史交锋（苏格兰historically未尝胜绩）上全面占优，且只需平局即可出线，没有必须冒险的理由。但苏格兰"唯有取胜才能直接出线"的极强动机，加上巴西若内马尔复出状态不佳、拉菲尼亚缺阵导致边路创造力下降，存在阵地战久攻不下的可能性。苏格兰的定位球和反击效率（罗伯逊传中、麦克托米奈远射）若能在关键时刻打入一球，配合密集防守拖入僵局，不能完全排除苏格兰爆冷或逼平的可能。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">巴西 2-0 苏格兰（主选）</div>
+    <div class="pred-meta">概率约26% · 次选：2-1巴西（约20%） · 1-0巴西（约18%） · 1-1平（约16%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 6/10（实力差距明确，但巴西"只需平局"的心态可能影响其投入程度）</div>
+    <div class="pred-body">
+      <strong>为什么预测2-0？</strong><br>
+      巴西近5场15球仅失5球的攻防数据、历史上对苏格兰保持不胜纪录的心理优势、以及苏格兰本届世界杯进攻端"前两轮仅打入1球"的现实疲软，共同支撑巴西大概率能够取胜并以多球优势结束比赛；但考虑到巴西只需平局即可出线（缺乏必须大胜的动机）以及内马尔复出状态未知、拉菲尼亚可能缺阵削弱进攻创造力，预测比分不会过分悬殊，2-0是兼顾"实力占优"与"投入克制"两个因素的平衡结果。<br><br>
+      <strong>数据支持：</strong>①巴西近5场15球仅失5球的火力证明 ②苏格兰历史交锋对巴西保持不胜纪录（无论具体场次） ③苏格兰本届世界杯进攻端2轮仅1球，终结效率全场最低<br><br>
+      <strong>风险因素：</strong>①若内马尔复出但状态生疏、拉菲尼亚缺阵，巴西边路创造力会明显下降，可能出现"久攻不下"的阵地战 ②苏格兰"唯有取胜才能出线"的极强动机可能激发超水平防守表现和反击效率 ③巴西若提前确认出线无忧，存在主力轮换导致整体强度下降的可能
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">胜平负 <span class="tag tv">推荐</span></div><div class="bc-rec">巴西不败（双重机会：巴西胜或平）</div><div class="bc-reason">三依据：①巴西历史对苏格兰保持不胜纪录 ②巴西本届攻防数据全面占优 ③巴西本场只需平局即可出线，没有冒险输球的动机</div></div>
+      <div class="bet-card"><div class="bc-type">亚洲让球</div><div class="bc-rec">巴西-1让球（视盘口浮动，谨慎参与）</div><div class="bc-reason">巴西实力明显占优，但"只需平局即出线"的心态可能压低净胜球预期，让一球存在覆盖风险</div></div>
+      <div class="bet-card"><div class="bc-type">大小球</div><div class="bc-rec">大球2.5（轻微倾向）</div><div class="bc-reason">三依据：①巴西近5场场均3球的进攻火力 ②苏格兰必须拼抢进攻寻求出线，可能给巴西反击送出更多机会 ③巴西若提前确立优势，可能加快终结节奏</div></div>
+      <div class="bet-card cool"><div class="bc-type">双方进球 <span class="tag th">高风险</span></div><div class="bc-rec">双方进球-是</div><div class="bc-reason">苏格兰首轮已证明具备定位球+反击破门能力，但本届2轮仅1球的疲软进攻效率使其概率存疑，属于风险博弈选项</div></div>
+      <div class="bet-card cool"><div class="bc-type">半全场 <span class="tag tg">辅助参考</span></div><div class="bc-rec">半场巴西胜-全场巴西胜</div><div class="bc-reason">若巴西能延续次轮对海地的强势开局节奏，半全场都保持领先是较为常见的强弱分明走势</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 4 摩洛哥 vs 海地 ========== -->
+<div class="card" id="m3">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇲🇦 摩洛哥 vs 海地 🇭🇹</div>
+      <span class="grp">C组 · 第3轮（末轮）</span>
+      <span class="status">阿格尔德/埃扎尔祖利缺阵（摩洛哥，确认） · 海地核心中场皮埃尔伤情待核实</span>
+    </div>
+    <div class="mh-right">亚特兰大 梅赛德斯-奔驰体育场</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近2轮小组赛战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">摩洛哥</div>
+        <div class="val">首轮 1-1 平巴西 → 次轮 1-0 胜苏格兰</div>
+        <div class="sub">两战1胜1平，积4分，净胜球+1，暂列小组第二。首轮逼平巴西展现强队抗压能力，次轮开场70秒赛巴里闪击制胜，攻防纪律性突出</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">海地</div>
+        <div class="val">首轮 0-1 负苏格兰 → 次轮 0-3 负巴西</div>
+        <div class="sub">两战2负，积0分，净胜球-4，已提前确定小组垫底出局（即便末轮取胜也无法翻盘，因与苏格兰相互战绩处于劣势）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名</div>
+    <ul class="alist">
+      <li>摩洛哥：FIFA世界排名第8位（近期信源），是本轮6场比赛中排名最高的球队之一，非洲区预选赛8战全胜提前出线，是非洲"一哥"</li>
+      <li>海地：未见明确的具体世界排名数字，但全队总身价仅约5600万欧元（本届6场比赛中身价最低的球队之一），综合判断排名应在100名开外</li>
+      <li>两队排名差距极大，是本轮实力差距同样悬殊的一场对决</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 本届世界杯近2场进失球数据</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">摩洛哥</div>
+        <div class="val">2场2进1失</div>
+        <div class="sub">首轮被巴西扳平丢1球，次轮零封苏格兰；门将布努持续证明自己是"国际足坛最可靠的门将之一"，防线组织稳定</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">海地</div>
+        <div class="val">2场0进4失</div>
+        <div class="sub">两轮均未能破门，合计丢4球，是本轮6场比赛中进攻端表现最弱的球队，1974年历史上唯一一次参赛曾3战狂丢14球，本届虽未到那种程度，但破门能力依然欠缺</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>公开搜索未见摩洛哥与海地有显著的历史正式交锋记录，本场大概率为两队历史首次或极少次数交手</li>
+      <li>缺乏历史交锋参考，分析需更多依赖本届世界杯实际表现和实力对比</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li>摩洛哥：<strong>中卫纳伊夫·阿格尔德（腹股沟伤）、边锋阿卜杜萨马德·埃扎尔祖利（膝盖/腿部伤）双双确认缺阵，已无缘本届世界杯剩余比赛</strong>（多份信源一致确认）；已补召马尔万·萨阿达内、阿明·斯拜入替；队长阿什拉夫·哈基米、中场阿姆拉巴特健康可用，首轮破门功臣赛巴里预计继续首发</li>
+      <li>海地：核心中场皮埃尔此前曾因伤缺阵影响球队中场衔接能力（来自早前海地vs苏格兰一役的报道），<span class="src-na">本场是否仍受伤情影响缺乏最新确认信源</span></li>
+      <li>摩洛哥虽有2名轮换/重要球员缺阵，但首发框架未受根本影响，整体阵容深度依然充足</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位</div>
+    <ul class="alist">
+      <li>摩洛哥主打4-3-3，防守反击+定位球结合，哈基米的助攻插上和赛巴里的禁区嗅觉是主要威胁点，整体战术纪律性是非洲球队中的标杆</li>
+      <li>海地依靠中北美预选赛阶段展示过的快速转换防反体系，拥有两名中北美地区顶尖前锋，但本届前两场对阵实力强队时未能转化为有效进攻</li>
+      <li>本场预计呈现"摩洛哥控球压制、海地放手一搏"的格局——海地已无出线压力，可能踢得更加放松，类似"光脚的不怕穿鞋的"心理状态</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组形势与战意</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 关键形势：摩洛哥打平即出线，海地已确定出局但仍可能成为"搅局者"</div>
+      <p>摩洛哥目前4分排名第二，本场只要不败即可确保出线（取胜则可能反超巴西争夺小组第一，需结合苏格兰vs巴西的结果）。海地已提前确定小组垫底出局，本场对其而言是"荣誉之战"，没有出线压力的球队往往会放开手脚进攻，如果摩洛哥出现轮换或松懈，海地完全有可能制造冷门，从而打乱C组最终的出线排序（尤其影响摩洛哥与苏格兰之间的小组第二归属）。</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘/即时盘 ＆ ⑨ 市场投注热度</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">摩洛哥独赢</div><div class="ov">数据暂缺</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">数据暂缺</div></div>
+      <div class="ob"><div class="ol">海地独赢</div><div class="ov">数据暂缺</div></div>
+    </div>
+    <div class="note" style="margin-top:8px">未能核实到可靠的实时盘口数字与资金流向数据，此处不作具体分析。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：中等（约25-30%，含逼平概率）</div>
+      <p>摩洛哥在实力、排名、本届表现上全面占优，且门将布努和后防组织稳定性已在对阵巴西时得到验证。但海地作为已出局、毫无心理负担的球队，反而可能踢得更加肆意，加上摩洛哥若提前为下一阶段考虑而轮换阵容（尤其在2名重要球员伤缺的背景下），不排除被海地利用反击制造麻烦甚至逼平的可能。摩洛哥近年对阵实力差距明显的对手时也曾出现过"轻敌"案例，需保持警惕。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">摩洛哥 2-0 海地（主选）</div>
+    <div class="pred-meta">概率约28% · 次选：3-0摩洛哥（约18%） · 1-0摩洛哥（约18%） · 1-1平（约14%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 6/10（实力差距明确，但海地"无压力放手一搏"的心理状态增加变数）</div>
+    <div class="pred-body">
+      <strong>为什么预测2-0？</strong><br>
+      摩洛哥近2轮场均仅失0.5球、海地近2轮0进4失的攻防数据形成鲜明对比，加上摩洛哥本场只需不败即可出线（动机充足但不需要冒险），同时考虑海地已无出线压力可能放手一搏制造一定威胁，预测摩洛哥能够取胜但不会形成大比分屠杀的局面。<br><br>
+      <strong>数据支持：</strong>①摩洛哥近2场仅失1球的稳定防守 ②海地近2场0球的进攻乏力数据 ③摩洛哥队长哈基米和门将布努持续在线，阵容核心未受根本影响<br><br>
+      <strong>风险因素：</strong>①摩洛哥2名重要球员伤缺，若教练为下阶段考虑提前轮换主力，整体强度可能下降 ②海地"无压力放手一搏"的心理状态可能制造出乎意料的反击威胁 ③历史交锋样本为零，缺乏可靠参考基准
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">胜平负 <span class="tag tv">推荐</span></div><div class="bc-rec">摩洛哥独赢</div><div class="bc-reason">三依据：①摩洛哥世界排名第8位远高于海地 ②摩洛哥近2轮场均仅失0.5球的稳定防守纪律 ③海地已确定出局，士气和实际竞争力均处于低谷</div></div>
+      <div class="bet-card"><div class="bc-type">亚洲让球</div><div class="bc-rec">摩洛哥-1让球（视盘口浮动）</div><div class="bc-reason">两队实力差距悬殊，若让一球盘口出现，摩洛哥历史上对阵弱旅时的大胜能力可支撑覆盖</div></div>
+      <div class="bet-card"><div class="bc-type">大小球</div><div class="bc-rec">大球2.5（轻微倾向）</div><div class="bc-reason">三依据：①摩洛哥需要净胜球优势来争夺小组第一 ②海地防线本届已暴露明显漏洞（2场失4球） ③摩洛哥有充足动机扩大比分</div></div>
+      <div class="bet-card cool"><div class="bc-type">双方进球 <span class="tag th">高风险</span></div><div class="bc-rec">双方进球-否（更倾向摩洛哥零封）</div><div class="bc-reason">摩洛哥本届防守纪律性极强（仅失1球），且海地2轮0进球的疲软火力使其破门概率偏低</div></div>
+      <div class="bet-card cool"><div class="bc-type">半全场 <span class="tag tg">辅助参考</span></div><div class="bc-rec">半场摩洛哥胜-全场摩洛哥胜</div><div class="bc-reason">参考次轮对苏格兰开场70秒闪击的效率，摩洛哥具备早早建立领先优势的能力</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 5 捷克 vs 墨西哥 ========== -->
+<div class="card" id="m4">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇨🇿 捷克 vs 墨西哥 🇲🇽</div>
+      <span class="grp">A组 · 第3轮（末轮）</span>
+      <span class="status">墨西哥蒙特斯首轮染红已停赛满 · 捷克阵容基本齐整</span>
+    </div>
+    <div class="mh-right">瓜达拉哈拉 Akron体育场</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近2轮小组赛战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">捷克</div>
+        <div class="val">首轮 1-2 负韩国 → 次轮 1-1 平南非</div>
+        <div class="sub">两战1平1负，积1分，净胜球-1，暂列小组第三。首轮一度领先但被韩国连扳两球逆转，次轮被南非逼平，整体表现未达预期</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">墨西哥</div>
+        <div class="val">首轮 2-0（或1-0，信源不一致）胜南非 → 次轮 1-0 胜韩国</div>
+        <div class="sub">两战2胜，积6分，净胜球+3，已提前一轮锁定小组第一，是本届世界杯首支晋级淘汰赛的球队。东道主主场优势+门将兰赫尔多次关键扑救是球队两连胜的重要支撑</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名</div>
+    <ul class="alist">
+      <li>捷克：FIFA世界排名第40-41位（多份信源一致，时隔20年重返世界杯正赛）</li>
+      <li>墨西哥：FIFA世界排名第13-15位（不同信源给出13/14/15等略有差异的具体名次，但均明确处于该区间），作为东道主排名明显占优</li>
+      <li>两队排名差距约25-27位，墨西哥整体实力占优</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 本届世界杯近2场进失球数据</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">捷克</div>
+        <div class="val">2场2进3失</div>
+        <div class="sub">首轮一度由克雷伊奇头球破门取得领先，但下半场被连扳两球；次轮与南非1-1互交白卷，进攻端虽有希克、绍切克的高空威胁但终结效率不足</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">墨西哥</div>
+        <div class="val">2场近5场9进2失（赛前数据）</div>
+        <div class="sub">近5场比赛轰入9球仅失2球，攻防表现出色；小组赛实战中2场仅丢0球（南非、韩国均未能破门），防线坚固，本届世界杯前完全占据主场环境优势</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>未见捷克与墨西哥具体历史交锋次数和战绩的明确报道，公开搜索未能核实到这两队之间的直接交锋历史数据</li>
+      <li>缺乏历史交锋参考，但墨西哥近9场7胜2平不败、且本届赛前"两队历史交锋1胜1平1负"的另一份信源描述（注：该信源具体指代对象存在歧义，可能是指墨西哥vs南非而非vs捷克，存在信息混淆风险，此处不作为可靠依据）</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li>墨西哥：主力中卫塞萨尔·蒙特斯首轮因破坏单刀机会染红，已在次轮停赛一场，本场理论上应已解禁可以复出（需以官方名单确认）；此前另有报道提到"主力门将马拉贡、中场鲁伊斯重伤落选大名单"，但奥乔亚、希门尼斯、阿尔瓦雷斯等核心均可出战</li>
+      <li>捷克：赫洛泽克已从小腿和脚部伤势中恢复，希克、绍切克、克雷伊奇等核心球员悉数在列，阵容基本齐整，无重大停赛问题</li>
+      <li>墨西哥保持着"本届赛前进入小组赛前零失球纪录"的说法，但需面对仍有一线晋级希望、必须取胜的捷克队，防线将首次接受高强度考验</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位</div>
+    <ul class="alist">
+      <li>捷克主打3-4-2-1或类似阵型，依靠希克的禁区支点、绍切克和克雷伊奇的定位球争顶能力，"高塔战术"和边路传中是核心进攻武器，全队平均身高186cm的高空优势明显</li>
+      <li>墨西哥依靠主场环境、东道主氛围和较为均衡的攻守体系，罗莫、希门尼斯等球员保持着稳定输出，整体节奏控制能力强</li>
+      <li>捷克必须取胜才能保留出线希望，不太可能采取深守策略，这虽然可能为墨西哥的反击创造空间，但也可能使墨西哥首次暴露防线漏洞——这是本场战术层面最值得关注的矛盾点</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组形势与战意</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 关键形势：墨西哥已出线无忧，捷克必须取胜</div>
+      <p>墨西哥已提前锁定A组第一并晋级淘汰赛，本场对其而言没有生存压力，存在较大的主力轮换可能性（尤其是为下一阶段保留体能和避免伤停/累积黄牌）。捷克目前1分，必须依靠取胜并结合南非vs韩国的结果才有机会争夺出线（小组第二或成绩最好的小组第三）。这种"一方求稳轮换、另一方全力搏命"的局面，往往会让捷克在战意和投入程度上占据相对优势，但墨西哥即便轮换，整体实力差距依然存在。</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘/即时盘 ＆ ⑨ 市场投注热度</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">捷克独赢</div><div class="ov">数据暂缺</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">数据暂缺</div></div>
+      <div class="ob"><div class="ol">墨西哥独赢</div><div class="ov">数据暂缺</div></div>
+    </div>
+    <div class="note" style="margin-top:8px">未能核实到可靠的实时盘口数字与资金流向数据，此处不作具体分析。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：中等（约30-35%）</div>
+      <p>墨西哥已出线无忧，主帅大概率会进行一定程度的阵容轮换以保留主力体能，这会客观上削弱球队整体强度；而捷克作为"必须取胜"的一方，全队战意和投入程度会显著提升，且捷克的高空轰炸打法（希克、绍切克、克雷伊奇）此前已在对阵南非时验证过威胁性。如果墨西哥的轮换幅度较大，捷克凭借主场氛围之外的纯粹实力差距缩小，存在偷分甚至小胜的现实可能性，这是本轮6场中爆冷概率相对较高的一场。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">墨西哥 1-1 捷克（主选）</div>
+    <div class="pred-meta">概率约22% · 次选：2-1墨西哥（约20%） · 1-0墨西哥（约18%） · 1-2捷克（约16%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 4/10（墨西哥轮换幅度未知是最大不确定因素，且历史交锋数据缺失）</div>
+    <div class="pred-body">
+      <strong>为什么预测1-1？</strong><br>
+      墨西哥已出线无忧大概率进行轮换，整体强度会有所下降；捷克必须取胜的强烈动机加上希克、绍切克等核心的高空威胁，具备创造进球的能力；但即便轮换，墨西哥替补阵容的个人能力和主场氛围依然能提供一定保障，难以被轻易击败。综合"捷克进攻威胁真实存在"与"墨西哥底蕴仍能保平"两个因素，预测为偏向均势的1-1。<br><br>
+      <strong>数据支持：</strong>①捷克全队平均身高186cm的高空优势，此前对阵南非时已验证定位球威胁 ②墨西哥已锁定出线存在轮换动机，主力投入度可能下降 ③捷克近5场4胜1平不败的赛前状态印证其具备一定竞争力<br><br>
+      <strong>风险因素：</strong>①若墨西哥主帅选择全力争夺小组第一（避免不利的淘汰赛签位）而非轮换，则实力差距会重新拉开 ②蒙特斯解禁复出后墨西哥防线稳定性可能回升，压低捷克进球预期 ③历史交锋数据完全缺失，增加预测不确定性
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">胜平负 <span class="tag tv">推荐</span></div><div class="bc-rec">捷克不败（双重机会：捷克胜或平）</div><div class="bc-reason">三依据：①墨西哥已出线无忧存在轮换动机，主力投入度可能下降 ②捷克必须取胜的强烈战意会拉满全队投入 ③捷克高空轰炸打法已在对阵南非时验证威胁性</div></div>
+      <div class="bet-card"><div class="bc-type">大小球</div><div class="bc-rec">大球2.5（轻微倾向）</div><div class="bc-reason">三依据：①捷克必须进攻寻求胜利，不会采取深守策略 ②墨西哥轮换后防线协防默契度可能下降 ③双方此前合计对阵南非/韩国时均能保持一定进球效率</div></div>
+      <div class="bet-card"><div class="bc-type">亚洲让球</div><div class="bc-rec">不主推让球盘（不确定性过高）</div><div class="bc-reason">墨西哥轮换幅度未知导致盘口预期实力差距难以准确判断，谨慎参与或不参与</div></div>
+      <div class="bet-card cool"><div class="bc-type">双方进球 <span class="tag tr">价值参考</span></div><div class="bc-rec">双方进球-是</div><div class="bc-reason">墨西哥本届赛前近5场9进2失证明并非纯防守型球队，捷克进攻威胁也真实存在，双方进球概率相对合理</div></div>
+      <div class="bet-card cool"><div class="bc-type">半全场 <span class="tag tg">辅助参考</span></div><div class="bc-rec">半场平-全场平 / 半场平-全场捷克胜</div><div class="bc-reason">若墨西哥轮换导致开局节奏放缓，半场闷平后捷克凭借高空球后段发力是合理走势之一</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 6 南非 vs 韩国 ========== -->
+<div class="card" id="m5">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇿🇦 南非 vs 韩国 🇰🇷</div>
+      <span class="grp">A组 · 第3轮（末轮）</span>
+      <span class="status">南非2主力中场红牌停赛 · 孙兴慜本届世界杯进球荒</span>
+    </div>
+    <div class="mh-right">场馆信息暂未核实清楚</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近2轮小组赛战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">南非</div>
+        <div class="val">首轮 0-1（或0-2，信源不一致）负墨西哥 → 次轮 1-1 平捷克</div>
+        <div class="sub">两战1平1负，积1分，净胜球-1或-2，暂列小组第四。首轮两名主力中场被红牌罚下并自动停赛1场，次轮对阵捷克的1-1表现已属超出预期</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">韩国</div>
+        <div class="val">首轮 2-1 胜捷克 → 次轮 0-1 负墨西哥</div>
+        <div class="sub">两战1胜1负，积3分，净胜球0，暂列小组第二。首轮替补吴贤揆绝杀逆转，次轮被墨西哥门将失误送出唯一进球，孙兴慜全场0射门，状态低迷</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名</div>
+    <ul class="alist">
+      <li>南非：FIFA世界排名第60位（捷克vs南非前瞻报道明确数字）</li>
+      <li>韩国：FIFA世界排名第25位（多份信源一致）</li>
+      <li>两队排名差距约35位，韩国整体实力明显占优，是亚洲范围内的强队（日本之后亚洲第二集团）</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 本届世界杯近2场进失球数据</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">南非</div>
+        <div class="val">2场1进2失（或1进3失，信源略有差异）</div>
+        <div class="sub">首轮告负，次轮逼平捷克难能可贵；赛前曾有报道称南非"近5场3平2负未尝胜绩，进攻端哑火"，整体进攻乏力是核心短板</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">韩国</div>
+        <div class="val">2场3进2失</div>
+        <div class="sub">首轮2-1逆转捷克展现替补深度，次轮0-1负墨西哥暴露终结效率问题（全场仅5脚射门0射正），孙兴慜个人状态持续低迷需重点关注</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>公开搜索未能找到南非与韩国之间具体的历史正式交锋记录，两队过往大型赛事直接对话样本极少或缺失</li>
+      <li>缺乏历史交锋数据意味着本场分析需完全依赖当前实力对比、世界排名差距和本届世界杯实战表现</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li>南非：<strong>中场球员西索勒（第49分钟犯规染红）、兹瓦内（第84分钟暴力行为染红）在首轮对阵墨西哥的比赛中被红牌罚下，已自动停赛1场（次轮对阵捷克）</strong>——若停赛仅为1场，理论上本场末轮应已解禁，但需以官方名单确认是否存在累积停赛等其他限制；中场拦截和组织能力在两人停赛影响下持续承压</li>
+      <li>韩国：主力中卫曹侑珉此前在热身赛中因无对抗受伤，诊断需约8周恢复，已确认无缘本届世界杯，洪明甫紧急征召赵伟济递补（赵伟济缺乏大赛经验，防线默契度和防空能力有所下降）；轮换边前腰裴峻浩脚踝伤情存疑；孙兴慜、李刚仁、金玟哉等绝对核心健康在列</li>
+      <li>韩国本场出线压力的核心矛盾：孙兴慜次轮0射门的低迷状态是否能在末轮生死战中调整回来，是球队能否锁定出线的关键变量</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位</div>
+    <ul class="alist">
+      <li>南非主打4-2-3-1或5-4-1，因中场两名核心此前停赛，主帅布罗斯被迫调整阵型，整体更依赖密集防守和锋线福斯特（伯恩利）的个人能力打反击</li>
+      <li>韩国依靠孙兴慜、李刚仁、黄喜灿的速度优势和反击转换效率，中场传球成功率较高（此前报道提及"84.7%"），但核心问题是临门一脚的终结效率持续不稳定</li>
+      <li>本场韩国整体实力和阵容深度占优，但若孙兴慜状态继续低迷、南非密集防守效果显著，比赛存在被拖入僵局的可能</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组形势与战意</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 关键形势：韩国打平即出线，南非必须取胜</div>
+      <p>韩国目前3分排名第二，<strong>本场只需打平南非即可锁定4分确定小组第二出线</strong>；若末轮失利，则将无缘小组前二，只能依靠3分争夺成绩最好的小组第三名额（且存在跌至垫底出局的极端情况，前提是捷克同时击败已经提前出线的墨西哥）。南非目前1分，必须取胜才能保留出线希望（且即便取胜也仍需结合捷克vs墨西哥的结果）。这是一场韩国"保平争胜"、南非"必须搏命"的典型末轮生死战。</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘/即时盘 ＆ ⑨ 市场投注热度</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">南非独赢</div><div class="ov">数据暂缺</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">数据暂缺</div></div>
+      <div class="ob"><div class="ol">韩国独赢</div><div class="ov">数据暂缺</div></div>
+    </div>
+    <div class="note" style="margin-top:8px">未能核实到可靠的实时盘口数字与资金流向数据，此处不作具体分析。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：中等（约30%）</div>
+      <p>韩国整体实力、排名和阵容深度均明显占优，理论上"保平争胜"的策略足以应对南非。但孙兴慜次轮0射门的低迷状态如果持续，加上曹侑珉伤退后韩国防线默契度的实际下滑（赵伟济缺乏大赛经验），南非凭借密集防守+福斯特反击效率，存在制造冷门逼平甚至小胜的现实空间，尤其是南非作为"必须取胜"的一方会展现出更强的拼搏意志。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">韩国 1-1 南非（主选）</div>
+    <div class="pred-meta">概率约24% · 次选：2-1韩国（约20%） · 1-0韩国（约18%） · 0-1南非（约14%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 5/10（韩国"打平即出线"的心理状态与孙兴慜状态低迷叠加，增加不确定性）</div>
+    <div class="pred-body">
+      <strong>为什么预测1-1？</strong><br>
+      韩国整体实力和阵容深度占优，理论上有能力取胜，但本场客观上韩国只需1分即可出线，缺乏必须冒险取胜的动机，加上孙兴慜近况低迷、曹侑珉伤退后防线存在隐患；而南非作为"必须取胜"的一方拼搏意志会拉满，密集防守+反击效率有机会偷到进球。两个因素叠加，最容易出现的是韩国保住出线所需的1分，同时被南非利用机会制造威胁的1-1走势。<br><br>
+      <strong>数据支持：</strong>①韩国本场只需平局即可出线，缺乏冒险动机 ②孙兴慜次轮0射门的状态数据，进攻效率存在隐忧 ③南非两名中场停赛影响后，次轮仍能逼平捷克，证明防守反击体系具备现实威胁<br><br>
+      <strong>风险因素：</strong>①若韩国主帅洪明甫调整战术激发孙兴慜等核心找回状态，韩国仍具备直接取胜锁定小组第二、争夺更有利淘汰赛签位的动机 ②南非若中场停赛影响持续（即便理论解禁，状态恢复程度未知），组织能力可能依然受限 ③历史交锋数据完全缺失，增加预测不确定性
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">胜平负 <span class="tag tv">推荐</span></div><div class="bc-rec">韩国不败（双重机会：韩国胜或平）</div><div class="bc-reason">三依据：①韩国本场只需平局即可出线，风险可控 ②韩国整体实力、排名（第25 vs 第60）和阵容深度明显占优 ③南非本届进攻端持续哑火，2轮仅打入1球左右</div></div>
+      <div class="bet-card"><div class="bc-type">大小球</div><div class="bc-rec">小球2.5（轻微倾向）</div><div class="bc-reason">三依据：①韩国"保平争胜"心态下进攻烈度可能克制 ②南非密集防守体系会进一步压低比赛进球数 ③双方近2轮合计进球数均不算多</div></div>
+      <div class="bet-card"><div class="bc-type">亚洲让球</div><div class="bc-rec">不主推让球盘（孙兴慜状态不确定性较高）</div><div class="bc-reason">韩国核心进攻点状态低迷，让球盘的覆盖能力存疑，建议谨慎或不参与</div></div>
+      <div class="bet-card cool"><div class="bc-type">双方进球 <span class="tag tr">价值参考</span></div><div class="bc-rec">双方进球-是</div><div class="bc-reason">韩国反击效率仍在（首轮已证明逆转能力），南非反击威胁点福斯特同样存在，双方进球概率相对合理</div></div>
+      <div class="bet-card cool"><div class="bc-type">半全场 <span class="tag tg">辅助参考</span></div><div class="bc-rec">半场平-全场平</div><div class="bc-reason">若双方都呈现"求稳"心态，半场闷平后全场维持平局结果是统计学上较常见的走势</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 精选方案 ========== -->
+<div class="card" id="m6">
+  <div class="final-card">
+    <div class="final-title">🏆 世界杯明日精选方案 · 6月25日（A/B/C组小组赛末轮）</div>
+    <div style="font-size:12px;color:#666;margin-bottom:14px">核心逻辑：今天6场比赛全部是小组赛收官战，3个小组的出线归属将同时揭晓。其中"瑞士vs加拿大"和"波黑vs卡塔尔"互相牵制（B组）、"苏格兰vs巴西"和"摩洛哥vs海地"互相牵制（C组）、"捷克vs墨西哥"和"南非vs韩国"互相牵制（A组）。本方案重点关注"已出线方求稳/已出局方放手"和"必须取胜方战意拉满"两种典型心理状态带来的盘面机会，赔率因数据暂缺，全部投注建议基于真实战绩、排名、伤停和历史交锋的综合分析，并非赔率驱动。</div>
+
+    <div class="pick-row">
+      <div class="pick-item">
+        <div class="stars">★★★★<span class="off">☆</span></div>
+        <div class="pick-right">
+          <div class="plbl">稳胆（Banker）</div>
+          <div class="pmain">摩洛哥独赢（vs海地）</div>
+          <div class="pdet">三依据：①摩洛哥世界排名第8位，远高于海地（身价仅5600万欧元，本轮最弱队之一） ②摩洛哥近2轮场均仅失0.5球的防守纪律性，海地近2轮0进4失的进攻乏力形成鲜明对比 ③海地已提前确定出局，士气和实际竞争力均处于低谷。风险：摩洛哥2名重要球员（阿格尔德、埃扎尔祖利）伤缺，若教练提前轮换主力可能影响强度。建议30单位</div>
+        </div>
+      </div>
+      <div class="pick-item">
+        <div class="stars">★★★★<span class="off">☆</span></div>
+        <div class="pick-right">
+          <div class="plbl">稳胆（Banker）</div>
+          <div class="pmain">巴西不败（vs苏格兰，双重机会：胜或平）</div>
+          <div class="pdet">三依据：①巴西历史交锋对苏格兰保持不胜纪录（三份信源方向一致） ②巴西本届近2轮4进1失的攻防数据全面占优，世界排名差距悬殊（第6-7位 vs 第42-43位） ③巴西本场只需平局即可出线，没有冒险输球的动机。风险：内马尔复出状态未知、拉菲尼亚可能缺阵，进攻创造力存在不确定性。建议25单位</div>
+        </div>
+      </div>
+      <div class="pick-item">
+        <div class="stars">★★★<span class="off">☆☆</span></div>
+        <div class="pick-right">
+          <div class="plbl">博高赔</div>
+          <div class="pmain">韩国不败（vs南非，双重机会）+ 捷克不败（vs墨西哥，双重机会）双串</div>
+          <div class="pdet">三依据：①韩国排名第25位远高于南非第60位，且只需平局即可出线，风险可控 ②墨西哥已提前出线存在轮换动机，捷克必须取胜的强烈战意会拉满全队投入，高空轰炸打法已验证威胁性 ③两场都是"求稳方"实力占优、"必须取胜方"战意爆棚的典型结构，双重机会盘本身具备容错空间。核心风险：孙兴慜状态低迷+南非两名中场停赛影响的双重不确定性，可能导致比赛走势偏离预期。建议25单位</div>
+        </div>
+      </div>
+      <div class="pick-item">
+        <div class="stars">★★<span class="off">☆☆☆</span></div>
+        <div class="pick-right">
+          <div class="plbl">冷门尝试</div>
+          <div class="pmain">瑞士vs加拿大 平局</div>
+          <div class="pdet">三依据：①两队同积4分，打平即可双双出线，理性博弈下平局概率被结构性放大 ②两队历史交锋样本为零，缺乏一方碾压另一方的心理基础 ③本届前2轮两队均未出现0战绩走势，但末轮性质完全不同，"默契平局"是统计学上的合理推断。注意：东道主主场氛围和舆论压力可能促使加拿大放手一搏打破默契，建议仅小注尝试，押20单位</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div style="font-size:13px;font-weight:700;margin-bottom:10px">100单位资金分配建议</div>
+    <div class="alloc-row">
+      <div class="abox"><div class="al">摩洛哥独赢<br>稳胆</div><div class="av" style="color:#1a5fa8">30单位</div></div>
+      <div class="abox"><div class="al">巴西不败<br>稳胆</div><div class="av" style="color:#1a5fa8">25单位</div></div>
+      <div class="abox"><div class="al">韩国+捷克<br>不败双串</div><div class="av" style="color:#2a7a2a">25单位</div></div>
+      <div class="abox"><div class="al">瑞士加拿大<br>平局冷门</div><div class="av" style="color:#c07800">20单位</div></div>
+    </div>
+    <div style="font-size:12px;color:#888;margin-top:6px">预计命中率目标：稳胆类55-65%，博高赔双串35-45%，冷门尝试25-30% · 因缺乏可靠实时赔率数据，预期赔率区间无法给出具体数字，建议以正规平台赛前公示赔率为准自行核算性价比</div>
+
+    <div class="divider"></div>
+    <div class="highlight">
+      <strong>⭐ 本轮最值得关注的结构性机会：</strong><br>
+      ①三个小组的末轮都呈现"两队打平即双双出线/已出线方求稳 vs 已出局或必须取胜方放手一搏"的相似结构——这种心理状态比单纯的实力对比更适合作为预测的核心抓手<br>
+      ②南非vs韩国、捷克vs墨西哥的"求稳不败"类双重机会盘，是本轮中风险收益比相对均衡的选择，因为"打平即可"的一方即便不追求胜利也能完成目标<br>
+      ③波黑vs卡塔尔因卡塔尔2名主力红牌停赛，是本轮中实力差距被外部因素（停赛）进一步拉大的一场，但因双方均已基本出局，比赛投入度存在不确定性，建议仅作为参考而非主力下注对象
+    </div>
+
+    <div class="divider"></div>
+    <div class="correction">
+      <strong>⚠ 关于本报告数据可靠性的重要说明：</strong>①本报告中的小组积分、近2轮战绩、世界排名区间、历史交锋方向，均有2个以上独立公开信源交叉印证，可信度较高；②部分具体数字（如墨西哥首轮战胜南非的比分是2-0还是1-0、世界排名个位数差异等）在不同信源间存在轻微出入，已在正文中如实标注，不强行统一为单一数字；③核心球员伤停信息中，苏格兰vs巴西一战的"内马尔/拉菲尼亚出战情况"存在明显信源冲突，南非vs韩国一战的"南非中场停赛是否已解禁"亦缺乏最终确认，请务必以赛前1-2小时内公布的官方首发名单为准；④博彩公司初盘/即时盘数字、市场资金流向、投注热度数据因缺乏可靠实时数据源，全文统一标注为"数据暂缺"，未做任何编造或估测性填充。
+    </div>
+
+    <div class="divider"></div>
+    <div class="note">
+      <strong>⚠ 风险提示：</strong>以上内容基于公开新闻报道、百科资料、历史交锋记录及球队近期状态的综合分析，仅供参考，不构成任何投资建议，也不保证准确性或时效性。本人非持牌博彩顾问，文中所有"概率""信心指数"均为基于公开数据的主观推断，并非精算结果。请理性投注，量力而行，不要投入超出自己承受能力的资金。
+    </div>
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<script>
+function show(i){
+  document.querySelectorAll('.card').forEach((c,j)=>c.classList.toggle('active',j===i));
+  document.querySelectorAll('.tab').forEach((b,j)=>b.classList.toggle('active',j===i));
+}
+</script>
+</body>
+</html>
