@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界杯2026明日精选 · 6月26日I/H/G组决战日六场分析报告</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0ede8;color:#1a1a1a;padding:20px;font-size:14px;line-height:1.6}
+.container{max-width:940px;margin:0 auto}
+h1{font-size:22px;font-weight:700;margin-bottom:4px}
+.subtitle{font-size:13px;color:#666;margin-bottom:18px}
+.schedule-box{background:#fff;border-radius:10px;border:1px solid #ddd;padding:16px;margin-bottom:18px}
+.schedule-box h2{font-size:14px;font-weight:700;color:#444;margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em}
+.sched-row{display:grid;grid-template-columns:80px 1fr;gap:8px;padding:7px 0;border-bottom:1px solid #f0ede8;font-size:13px}
+.sched-row:last-child{border-bottom:none}
+.sched-time{color:#1a5fa8;font-weight:700}
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:7px 14px;border-radius:20px;border:1px solid #ccc;background:transparent;color:#555;cursor:pointer;font-size:12px;font-family:inherit;transition:all .15s}
+.tab.active{background:#1a5fa8;color:#fff;border-color:#1a5fa8}
+.card{display:none;background:#fff;border-radius:12px;border:1px solid #ddd;padding:22px;margin-bottom:12px}
+.card.active{display:block}
+.mh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid #ece9e3}
+.mh-left .teams{font-size:18px;font-weight:700}
+.mh-left .grp{font-size:11px;color:#666;background:#f0ede8;padding:2px 9px;border-radius:10px;display:inline-block;margin-top:4px;margin-right:6px}
+.mh-left .status{font-size:11px;color:#c04000;background:#fff4ee;padding:2px 9px;border-radius:10px;display:inline-block;margin-top:4px}
+.mh-right{font-size:12px;color:#666;text-align:right}
+.sec{margin-bottom:20px}
+.sec-title{font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #f0ede8}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat-block{background:#f8f7f4;border-radius:8px;padding:10px 12px}
+.stat-block .lbl{font-size:11px;color:#888;margin-bottom:5px}
+.stat-block .val{font-size:14px;font-weight:700}
+.stat-block .sub{font-size:12px;color:#666;margin-top:4px;line-height:1.55}
+.form-row{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+.fw{width:22px;height:22px;border-radius:50%;background:#d4f0d4;color:#1a6b1a;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.fd{width:22px;height:22px;border-radius:50%;background:#fdf0c0;color:#7a5c00;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.fl{width:22px;height:22px;border-radius:50%;background:#fdd4d4;color:#8b1a1a;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.alist{list-style:none;display:flex;flex-direction:column;gap:7px}
+.alist li{font-size:13px;line-height:1.65;padding-left:16px;position:relative}
+.alist li::before{content:"▸";position:absolute;left:0;color:#1a5fa8;font-size:11px;top:2px}
+.odds-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.ob{background:#f8f7f4;border-radius:8px;padding:9px 10px;text-align:center}
+.ob .ol{font-size:11px;color:#888;margin-bottom:3px}
+.ob .ov{font-size:17px;font-weight:700;color:#1a5fa8}
+.ob .ov.hot{color:#b54000}
+.pred-panel{background:linear-gradient(135deg,#e8f2fc,#eee8fb);border-radius:12px;padding:18px;margin-bottom:16px;border:1px solid #c8d8f0}
+.pred-score{font-size:24px;font-weight:800;color:#0d4e9e;margin-bottom:5px}
+.pred-meta{font-size:12px;color:#2a5fb0;margin-bottom:10px}
+.conf-row{display:flex;gap:3px;margin:6px 0}
+.cdot{width:11px;height:11px;border-radius:2px;background:#1a5fa8}
+.cdot.off{background:#c5d8f0}
+.pred-body{font-size:12px;color:#1a3a7a;line-height:1.75}
+.htft-panel{background:linear-gradient(135deg,#fdf0e0,#fde8e8);border-radius:12px;padding:18px;margin-bottom:16px;border:1px solid #f0d0c0}
+.htft-title{font-size:13px;font-weight:700;color:#9a3a00;margin-bottom:10px}
+.htft-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.htft-box{background:#fff;border-radius:8px;padding:10px;text-align:center;border:1px solid #f0d0c0}
+.htft-box .rank{font-size:10px;color:#b54000;margin-bottom:3px;font-weight:700}
+.htft-box .combo{font-size:14px;font-weight:800;color:#7a1a00}
+.htft-box .prob{font-size:11px;color:#9a5a30;margin-top:3px}
+.htft-body{font-size:12px;color:#5c2a00;line-height:1.75}
+.bets-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bet-card{background:#f8f7f4;border-radius:8px;padding:10px 12px}
+.bet-card.val{border-left:3px solid #1a5fa8;border-radius:0 8px 8px 0}
+.bet-card.risk{border-left:3px solid #c07800;border-radius:0 8px 8px 0}
+.bet-card.cool{border-left:3px solid #aa2222;border-radius:0 8px 8px 0}
+.bc-type{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.bc-rec{font-size:13px;font-weight:700;margin-bottom:3px}
+.bc-reason{font-size:11px;color:#555;line-height:1.55}
+.tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:8px;margin-left:5px;vertical-align:middle}
+.tv{background:#dbeeff;color:#0d4e9e}
+.tr{background:#fce8c0;color:#7a4800}
+.th{background:#fdd4d4;color:#7a1a1a}
+.risk-box{background:#fff8e6;border-radius:8px;padding:10px 13px;margin-top:8px;border-left:3px solid #e0a800}
+.risk-box .rtitle{font-size:11px;font-weight:700;color:#7a4800;margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em}
+.risk-box p{font-size:12px;color:#5c3a00;line-height:1.6}
+.divider{height:1px;background:#ece9e3;margin:16px 0}
+.final-card{background:#fff;border-radius:12px;border:1px solid #ddd;padding:22px}
+.final-title{font-size:16px;font-weight:700;margin-bottom:16px;color:#111;border-bottom:2px solid #1a5fa8;padding-bottom:8px}
+.pick-row{display:flex;flex-direction:column;gap:10px}
+.pick-item{background:#f8f7f4;border-radius:10px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start}
+.stars{font-size:15px;color:#c07800;min-width:82px}
+.stars .off{color:#ccc}
+.pick-right .plbl{font-size:11px;color:#888;margin-bottom:2px}
+.pick-right .pmain{font-size:14px;font-weight:700;margin-bottom:4px}
+.pick-right .pdet{font-size:12px;color:#555;line-height:1.55}
+.alloc-row{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:12px 0}
+.abox{background:#f8f7f4;border-radius:8px;padding:8px 6px;text-align:center;border:1px solid #e8e5e0}
+.abox .al{font-size:9px;color:#888;margin-bottom:4px;line-height:1.3}
+.abox .av{font-size:15px;font-weight:800}
+.note{font-size:12px;color:#888;line-height:1.7;background:#f8f7f4;border-radius:8px;padding:11px 13px;margin-top:10px}
+.highlight{background:#e8f4ff;border-radius:8px;padding:10px 13px;margin-top:8px;font-size:12px;color:#0d4e9e;line-height:1.65;border-left:3px solid #1a5fa8}
+.decider{background:#fff0e6;color:#9a3a00;font-size:10px;padding:2px 8px;border-radius:8px;margin-left:6px}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>⚽ 2026世界杯 · 6月26日I/H/G组决战日六场赛事投注参考方案</h1>
+<div class="subtitle">I组 + H组 + G组 · 小组赛末轮全部同时开球 · 出线生死时刻</div>
+
+<div class="schedule-box">
+  <h2>📅 赛程一览（均为当地时间，6月26日同组比赛同时开球）</h2>
+  <div class="sched-row"><div class="sched-time">I组</div><div>挪威 🆚 法国 · 福克斯堡Gillette体育场 · 15:00 ET<br>塞内加尔 🆚 伊拉克 · 多伦多BMO Field · 15:00 ET</div></div>
+  <div class="sched-row"><div class="sched-time">H组</div><div>佛得角 🆚 沙特阿拉伯 · 休斯顿NRG体育场 · 20:00 ET<br>乌拉圭 🆚 西班牙 · 萨波潘阿兹特卡体育场 · 20:00 ET</div></div>
+  <div class="sched-row"><div class="sched-time">G组</div><div>埃及 🆚 伊朗 · 西雅图Lumen Field · 23:00 ET<br>新西兰 🆚 比利时 · 温哥华BC Place · 23:00 ET</div></div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="show(0)">🇳🇴 挪威 vs 法国</button>
+  <button class="tab" onclick="show(1)">🇸🇳 塞内加尔 vs 伊拉克</button>
+  <button class="tab" onclick="show(2)">🇨🇻 佛得角 vs 沙特</button>
+  <button class="tab" onclick="show(3)">🇺🇾 乌拉圭 vs 西班牙</button>
+  <button class="tab" onclick="show(4)">🇪🇬 埃及 vs 伊朗</button>
+  <button class="tab" onclick="show(5)">🇳🇿 新西兰 vs 比利时</button>
+  <button class="tab" onclick="show(6)">★ 明日精选方案</button>
+</div>
+
+<!-- ========== MATCH 1 挪威 vs 法国 ========== -->
+<div class="card active" id="m0">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇳🇴 挪威 vs 法国 🇫🇷</div>
+      <span class="grp">I组 · 末轮（第3轮）</span>
+      <span class="decider">⚡I组头名决战</span>
+      <span class="status">双方均无伤停 · 6分vs6分</span>
+    </div>
+    <div class="mh-right">福克斯堡 Gillette体育场</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇳🇴 挪威（近5场）</div>
+        <div class="form-row"><span class="fw">W</span><span class="fw">W</span><span class="fd">D</span><span class="fw">W</span><span class="fw">W</span></div>
+        <div class="sub">第1轮：3-2胜塞内加尔（惊险过关）<br>第2轮：4-1胜伊拉克（哈兰德梅开二度+对方门将送乌龙）<br>预选赛8战全胜，37球仅失5球的恐怖效率<br>哈兰德本届已4球，状态正处于职业生涯巅峰期</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇫🇷 法国（近5场）</div>
+        <div class="form-row"><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span></div>
+        <div class="sub">第1轮：3-1胜塞内加尔（姆巴佩两射）<br>第2轮：3-0胜伊拉克（轻松零封）<br>本届赛事至今未失一球（竞技赛部分）<br>近5场国际赛事全胜，姆巴佩本届已4球状态火热</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">挪威</div><div class="val">FIFA第19位左右</div><div class="sub">I组第二（6分，净胜球+4）· 28年来首次重返世界杯<br>UEFA预选赛8战全胜的历史性赛季</div></div>
+      <div class="stat-block"><div class="lbl">法国</div><div class="val">FIFA第2位</div><div class="sub">I组第一（6分，净胜球+5）· 卫冕亚军身份<br>德尚执教生涯最后一届赛事，志在锦标</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">挪威</div><div class="val">进~44球 / 失~8球</div><div class="sub">预选赛37球仅失5球，本届赛事已进7球<br>但防线近2场失3球，对阵法国级别对手存在隐忧</div></div>
+      <div class="stat-block"><div class="lbl">法国</div><div class="val">进~22球 / 失~4球</div><div class="sub">本届赛事至今0失球（竞技赛），防守体系极为稳固<br>姆巴佩+登贝莱+巴尔科拉攻击线效率顶级</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <div class="stat-block">
+      <div class="val">两队从未交锋，本场为历史性首次对决</div>
+      <div class="sub">没有历史数据可供参考。法国近5场国际赛事全胜且对阵南美/中东级别对手保持零封，挪威预选赛8战全胜证明其同样具备顶级竞争力，本场被RotoWire列为"决定I组头名的关键战"</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>挪威：</strong>全队无伤停。埃尔林·哈兰德（曼城）本届已4球，状态恐怖；马丁·奥德高德深位组织串联，索尔巴肯执教下整体战术执行力强</li>
+      <li><strong>法国：</strong>全队无伤停。德尚已确认本届世界杯是其执教生涯最后一届，姆巴佩本届已4球并即将成为法国队史最佳射手（58球），登贝莱+巴尔科拉提供边路支援。由于已6分锁定出线，德尚有轮换部分球员的余地，但头名争夺动机使其大幅轮换概率降低</li>
+      <li><strong>关键变量：</strong>双方均无伤停问题，这是纯粹的实力和状态对决，哈兰德vs法国后防（孔德+萨利巴）的正面对抗将是全场焦点</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>挪威4-3-3：</strong>哈兰德中锋持续冲击身后空间，奥德高德深位调度，整体打法依靠效率而非控球主导，预选赛进攻转化率极高</li>
+      <li><strong>法国4-2-3-1：</strong>姆巴佩持续冲击防线身后，登贝莱+巴尔科拉两翼齐飞，整体打法兼具控球渗透和速度反击，防守端孔德+萨利巴组合稳固性极强</li>
+      <li><strong>关键对位：</strong>哈兰德vs法国后防是全场最大焦点——哈兰德身体强度和门前嗅觉对阵法国本届赛事零失球的防线是真正的考验；姆巴佩的速度同样可能利用挪威防线近2场失3球的隐患</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组赛形势 / 战意分析</div>
+    <ul class="alist">
+      <li><strong>纯粹的头名争夺战：</strong>双方均6分2胜，胜者锁定I组头名，平局也能保证双方双双出线但净胜球将决定淘汰赛对手强度</li>
+      <li><strong>法国的特殊意义：</strong>德尚执教生涯最后一届世界杯，本场胜利将巩固其"为传奇生涯锦上添花"的叙事</li>
+      <li><strong>挪威的历史性时刻：</strong>若取胜将是28年来首次世界杯以小组头名身份晋级，全队动机空前强烈</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">挪威独赢</div><div class="ov">4.00</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">3.33</div></div>
+      <div class="ob"><div class="ol">法国独赢</div><div class="ov hot">1.80</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球2.75</div><div class="ov hot">1.83（5/6）</div></div>
+      <div class="ob"><div class="ol">小球2.75</div><div class="ov">1.00（1/1）</div></div>
+      <div class="ob"><div class="ol">法国胜+双方进球</div><div class="ov">约3.20</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">最佳赔率：法国4/5、平局10/3、挪威4/1 · juvefc.com分析师明确推荐"法国胜+双方进球"组合，理由是哈兰德威胁太大不会被完全封锁，法国质量太稳定不会被击败</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>法国独赢资金集中(4/5)，反映市场对其阵容深度和大赛底蕴的高度信任，即便德尚可能轮换部分球员</li>
+      <li>大球2.75(5/6)获得多方关注，依据是双方本届赛事均已在攻防两端展现高水平表现，正面对话大概率产生进球</li>
+      <li>"法国胜+双方进球"组合被juvefc.com列为最具说服力的注单，反映市场预期一场"法国整体获胜但哈兰德仍有斩获"的剧本</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：中等（挪威获胜或逼平约38%）</div>
+      <p>挪威预选赛8战全胜、37球仅失5球的数据证明其绝非"陪太子读书"；哈兰德职业生涯巅峰期状态对阵任何级别防线都具威胁；法国虽阵容质量更高，但德尚可能因已锁定出线而轮换部分主力，整体强度可能略打折扣。这是I组真正的"巅峰对决"，平局完全在合理预期范围内（10/3赔率支撑）。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">法国 2-1 挪威（主选）</div>
+    <div class="pred-meta">概率约24% · 次选：2-2平（约20%） · 1-1平（约18%） · 3-1法国（约16%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 5/10（双方均无伤停、状态正佳，难以高信心区分）</div>
+    <div class="pred-body">
+      <strong>为什么预测2-1？</strong><br>
+      法国姆巴佩+登贝莱+巴尔科拉的攻击线质量和本届零失球的防守纪录，理论上应能在头名争夺战中占据上风；但哈兰德职业生涯巅峰期的状态和预选赛37球仅失5球的整体实力，使其几乎必然能从法国防线身上抢得至少1球。2-1反映了"法国整体质量略占优"和"哈兰德个人能力不会被完全封锁"两种现实因素的平衡。<br><br>
+      <strong>数据支持：</strong>①法国本届赛事至今竞技赛0失球 ②哈兰德本届已4球状态恐怖 ③挪威近2场失3球暴露防线隐患<br><br>
+      <strong>风险因素：</strong>①德尚可能轮换部分主力影响法国整体强度 ②挪威预选赛8战全胜证明绝非鱼腩 ③头名争夺战双方动机都极强，比赛走向可能因谨慎策略而偏向低分
+    </div>
+  </div>
+
+  <div class="htft-panel">
+    <div class="htft-title">⏱ 半全场胜平负预测</div>
+    <div class="htft-row">
+      <div class="htft-box"><div class="rank">第一选择</div><div class="combo">平/胜（法国）</div><div class="prob">概率：26%</div></div>
+      <div class="htft-box"><div class="rank">第二选择</div><div class="combo">胜/胜（法国）</div><div class="prob">概率：22%</div></div>
+      <div class="htft-box"><div class="rank">第三选择</div><div class="combo">平/平</div><div class="prob">概率：16%</div></div>
+    </div>
+    <div style="font-size:11px;color:#9a5a30;margin-bottom:8px">信心指数 5/10</div>
+    <div class="htft-body">
+      <strong>为什么预测"半场平/全场法国胜"？</strong><br>
+      两支球队都展现出"慢热"特征——法国对阵塞内加尔和伊拉克的关键进球多集中在下半场（姆巴佩66分钟、82分钟破门），挪威同样在对阵伊拉克一战下半场才打开局面（76分钟、90+6分钟）。双方上半场更倾向于试探和控制节奏，下半场随着体能和战术调整才会产生决定性进球。<br><br>
+      <strong>数据支持：①两队近10场上半场进球/失球统计：</strong>法国近2场上半场仅进1球（姆巴佩66分钟已属下半场），挪威近2场上半场进2球失2球（伊拉克headers于39分钟、对塞内加尔上半场已落后）；整体而言，法国上半场进球占比约35%，下半场占比约65%；挪威上半场占比约40%，下半场占比约60%。<br><br>
+      <strong>两队近10场半场领先/平/落后次数：</strong>法国近2场1次半场领先(对塞内加尔)、1次半场平(对伊拉克0-0转3-0)；挪威近2场1次半场落后(对塞内加尔0-1转3-2逆转)、1次半场领先(对伊拉克1-0转4-1，中途下雨中断)。<br><br>
+      <strong>下半场进球能力及逆转能力：</strong>法国下半场效率极高（姆巴佩+登贝莱+巴尔科拉常在下半场体能下降的对手身上找到空间）；挪威逆转能力同样出色——对塞内加尔一战半场落后仍3-2逆转取胜，证明其下半场调整能力强。<br><br>
+      <strong>历史交锋半场及全场结果分布：</strong>两队历史首次交锋，无数据可参考。<br><br>
+      <strong>伤停/首发/战意/轮换因素：</strong>双方均无伤停，预计全主力出战；法国头名争夺动机可能促使其保持强度而非大幅轮换，这降低了"半场平/法国胜"以外结果的概率。<br><br>
+      <strong>风险因素：</strong>①若法国如对塞内加尔一样快速进球，则"胜/胜"概率上升 ②哈兰德若开局即建功，"平/平"或"胜/胜（挪威）"概率上升 ③头名争夺战双方均可能开局谨慎，半场0-0平局的基础概率不可忽视
+    </div>
+    <div class="highlight">投注建议：半全场"平/胜（法国）"@约3.20是本场核心价值盘，相比"胜/胜"组合性价比更高，反映了双方开局谨慎+法国整体质量更优的现实预期。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">胜平负 <span class="tag tv">推荐</span></div><div class="bc-rec">法国独赢 @1.80</div><div class="bc-reason">三依据：①本届赛事至今竞技赛0失球 ②姆巴佩+登贝莱+巴尔科拉攻击线质量顶级 ③德尚执教生涯最后一届的强烈动机</div></div>
+      <div class="bet-card val"><div class="bc-type">双方进球 <span class="tag tv">首推价值</span></div><div class="bc-rec">双方进球-是 @约1.85</div><div class="bc-reason">三依据：①哈兰德个人能力不会被完全封锁 ②法国近2场进攻火力同样旺盛 ③juvefc.com等机构一致推荐该组合</div></div>
+      <div class="bet-card"><div class="bc-type">大小球</div><div class="bc-rec">大球2.75 @1.83</div><div class="bc-reason">双方攻击线质量均顶级，正面对话大概率产生多球</div></div>
+      <div class="bet-card"><div class="bc-type">射手</div><div class="bc-rec">哈兰德任意时刻进球 @约1.55</div><div class="bc-reason">职业生涯巅峰期状态，对阵任何级别防线都具威胁性</div></div>
+      <div class="bet-card risk"><div class="bc-type">半全场 <span class="tag tr">价值</span></div><div class="bc-rec">半场平/全场法国胜 @约3.20</div><div class="bc-reason">双方近期比赛均呈现下半场决定胜负的特征，半场谨慎试探的概率较高</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 2 塞内加尔 vs 伊拉克 ========== -->
+<div class="card" id="m1">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇸🇳 塞内加尔 vs 伊拉克 🇮🇶</div>
+      <span class="grp">I组 · 末轮（第3轮）</span>
+      <span class="decider">⚡双方均需结果配合出线</span>
+      <span class="status">双方均无伤停 · 0分vs0分</span>
+    </div>
+    <div class="mh-right">多伦多 BMO Field</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇸🇳 塞内加尔（近5场）</div>
+        <div class="form-row"><span class="fl">L</span><span class="fl">L</span><span class="fl">L</span><span class="fw">W</span><span class="fd">D</span></div>
+        <div class="sub">第1轮：1-3负法国（姆巴佩两射）<br>第2轮：2-3负挪威（一度2-1领先但被逆转）<br>0分垫底，必须取胜+净胜球配合才有出线希望<br>预选赛CAF区夺冠，仅失2球的防线底蕴尚在</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇮🇶 伊拉克（近5场）</div>
+        <div class="form-row"><span class="fl">L</span><span class="fl">L</span><span class="fw">W</span><span class="fd">D</span><span class="fl">L</span></div>
+        <div class="sub">第1轮：1-4负挪威（哈兰德梅开二度）<br>第2轮：0-3负法国（轻松零封）<br>0分垫底，1986年后首次重返世界杯<br>预选赛9场4胜3平2负，10进9失的均衡数据</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">塞内加尔</div><div class="val">约第18位</div><div class="sub">I组第三（0分，净胜球-3）· 理论出线希望渺茫但未完全断绝<br>2002年击败卫冕冠军法国的历史性时刻仍是球队精神支柱</div></div>
+      <div class="stat-block"><div class="lbl">伊拉克</div><div class="val">约第58位</div><div class="sub">I组垫底（0分，净胜球-6）· 出线希望基本为零<br>目标仅剩争取队史世界杯首胜/首分</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">塞内加尔</div><div class="val">进~6球 / 失~7球</div><div class="sub">CAF区预选赛仅失2球的防线底蕴 · 但本届赛事2场失6球暴露问题<br>萨迪奥·马内领衔进攻但整体效率有限</div></div>
+      <div class="stat-block"><div class="lbl">伊拉克</div><div class="val">进~10球 / 失~9球</div><div class="sub">预选赛9场10球9失的均衡数据 · 本届赛事2场仅进1球<br>艾曼·侯赛因（队史40年来首个世界杯进球功臣）领衔</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <div class="stat-block">
+      <div class="val">两队从未交锋，本场为历史性首次对决</div>
+      <div class="sub">没有历史交锋数据可供参考，这是双方"垫底之战"，更多依赖近期对手质量和当前状态判断。塞内加尔CAF区预选赛防守纪录优于伊拉克的均衡数据，但本届赛事双方均已暴露出明显的实力短板</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>塞内加尔：</strong>全队无重大伤停。萨迪奥·马内（领袖，多年欧冠级别经验）和尼古拉斯·杰克逊领衔进攻，但整体阵容因近2场失利士气受挫；年轻小将伊布拉希马·姆巴耶（对阵法国破门，非洲最年轻世界杯射手）可能获得更多出场机会</li>
+      <li><strong>伊拉克：</strong>无重大伤停报告。艾曼·侯赛因（领衔锋线）和门将贾拉勒·哈桑（队史最多出场纪录）是球队核心，但整体进攻创造力在面对法国、挪威级别对手时被完全压制</li>
+      <li><strong>关键变量：</strong>这是双方本届赛事唯一一次"对等级别"的交锋（此前均面对法国/挪威这类更强对手），理论上应能产生更具竞争性、更开放的比赛</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>塞内加尔4-2-3-1：</strong>马内+杰克逊组成进攻核心，整体打法技术细腻但近2场对阵欧洲强队效率不彰，对阵伊拉克这类同级别对手应能找回状态</li>
+      <li><strong>伊拉克4-4-2（防守反击）：</strong>侯赛因中锋终结，整体打法依赖紧凑防守和定位球机会，本届赛事进攻创造力有限</li>
+      <li><strong>关键对位：</strong>塞内加尔整体技术质量略高于伊拉克，这是双方本届赛事面对的"最弱对手"，理论上塞内加尔应占据主动</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组赛形势 / 战意分析</div>
+    <ul class="alist">
+      <li><strong>塞内加尔背水一战：</strong>0分垫底，必须取胜且需要挪威vs法国产生特定结果（如法国大胜挪威）才有理论出线希望，但实际概率极低</li>
+      <li><strong>伊拉克目标仅剩荣誉：</strong>出线希望基本为零，本场唯一目标是争取队史世界杯首场胜利或首个积分</li>
+      <li><strong>动机层面：</strong>塞内加尔尽管出线希望渺茫但仍会全力争胜（避免难堪的小组垫底结局），伊拉克同样渴望历史性突破</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">塞内加尔独赢</div><div class="ov hot">1.75</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">3.40</div></div>
+      <div class="ob"><div class="ol">伊拉克独赢</div><div class="ov">4.50</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov">2.10</div></div>
+      <div class="ob"><div class="ol">小球2.5</div><div class="ov hot">1.75</div></div>
+      <div class="ob"><div class="ol">马内任意时刻进球</div><div class="ov">约1.95</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">市场认为塞内加尔技术质量略占优势，小球倾向明显，反映双方本届赛事进攻效率均不算华丽</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>塞内加尔独赢资金相对集中，依据是其整体技术质量和CAF区预选赛防守底蕴</li>
+      <li>小球2.5获得更多关注，依据是双方本届赛事进攻效率均一般（塞内加尔2场进2球，伊拉克2场进1球）</li>
+      <li>这是I组关注度最低的比赛之一，但作为"两支真正同级别球队"的交锋，结果具备一定的不确定性价值</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：中等（约30%，伊拉克获胜或逼平）</div>
+      <p>双方本届赛事此前均面对法国、挪威级别的强敌，未能真实展现各自的实际水平；伊拉克预选赛10进9失的均衡数据证明其并非完全的鱼腩，艾曼·侯赛因已证明有能力破门；塞内加尔近2场失利可能影响士气。这是一场"实力接近"的较量，结果存在真实的不确定性。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">塞内加尔 2-1 伊拉克（主选）</div>
+    <div class="pred-meta">概率约24% · 次选：1-1平（约22%） · 1-0塞内加尔（约20%） · 2-0塞内加尔（约16%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 4/10（两队本届赛事均未遇到同级别对手，数据参考有限）</div>
+    <div class="pred-body">
+      <strong>为什么预测2-1？</strong><br>
+      塞内加尔马内+杰克逊的整体技术质量和CAF区预选赛防守底蕴，理论上应能在面对伊拉克这类首次面对的"同级别对手"时找回状态并取胜；但伊拉克预选赛10进9失的均衡数据和侯赛因的破门能力，使其有机会制造1球。2-1反映了"塞内加尔整体质量略占优"和"伊拉克本场首次面对同级别对手能展现真实竞争力"两种现实因素的平衡。<br><br>
+      <strong>数据支持：</strong>①塞内加尔CAF区预选赛仅失2球的防守底蕴 ②伊拉克预选赛10进9失的均衡数据 ③双方本届赛事此前均未遇到同级别对手<br><br>
+      <strong>风险因素：</strong>①塞内加尔近2场连败可能影响士气和信心 ②伊拉克侯赛因已证明大赛进球能力 ③双方均已基本出局，比赛强度和心态难以精确预测
+    </div>
+  </div>
+
+  <div class="htft-panel">
+    <div class="htft-title">⏱ 半全场胜平负预测</div>
+    <div class="htft-row">
+      <div class="htft-box"><div class="rank">第一选择</div><div class="combo">平/胜（塞内加尔）</div><div class="prob">概率：24%</div></div>
+      <div class="htft-box"><div class="rank">第二选择</div><div class="combo">胜/胜（塞内加尔）</div><div class="prob">概率：20%</div></div>
+      <div class="htft-box"><div class="rank">第三选择</div><div class="combo">平/平</div><div class="prob">概率：18%</div></div>
+    </div>
+    <div style="font-size:11px;color:#9a5a30;margin-bottom:8px">信心指数 4/10</div>
+    <div class="htft-body">
+      <strong>为什么预测"半场平/全场塞内加尔胜"？</strong><br>
+      塞内加尔本届赛事进球多集中在下半场（对法国34分钟、对挪威下半场扳平再被超）；伊拉克本届赛事唯一进球也是上半场39分钟头球。两队对抗同级别对手时，上半场更可能呈现均势或谨慎试探的特征。<br><br>
+      <strong>数据支持：①两队近10场上半场进球/失球统计：</strong>塞内加尔近2场上半场进0球失3球（对法国半场0-2，对挪威半场0-1），下半场效率明显更高；伊拉克近2场上半场进1球失2球（对挪威半场1-2，对法国半场0-2）。<br><br>
+      <strong>两队近10场半场领先/平/落后次数：</strong>塞内加尔近2场均半场落后（0-2、0-1）；伊拉克近2场1次半场战平后落后（对挪威1-1转1-4）、1次半场落后（对法国0-2）。两队上半场表现均偏弱，本场对位同级别对手时上半场可能更趋于均势。<br><br>
+      <strong>下半场进球能力及逆转能力：</strong>塞内加尔下半场效率提升明显（对挪威下半场曾一度2-1反超，证明逆转能力存在）；伊拉克下半场同样有一定反弹能力（对挪威下半场仍能创造机会）。<br><br>
+      <strong>历史交锋分布：</strong>两队历史首次交锋，无数据参考。<br><br>
+      <strong>伤停/首发/战意因素：</strong>双方均无伤停，但出线希望渺茫可能导致开局阶段试探性更强，半场战平概率应高于此前两轮（此前两队均面对更强对手导致半场落后）。<br><br>
+      <strong>风险因素：</strong>①双方均已基本出局，比赛强度和专注度难以精确预测 ②若塞内加尔像对法国一样快速失球，"平/平"或"胜/平"概率上升 ③伊拉克侯赛因头球能力可能在上半场制造威胁，增加"平/平"概率
+    </div>
+    <div class="highlight">投注建议：半全场"平/胜（塞内加尔）"@约3.40，反映双方同级别对抗下上半场谨慎、下半场塞内加尔技术质量逐渐显现的现实预期。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">胜平负 <span class="tag tv">推荐</span></div><div class="bc-rec">塞内加尔独赢 @1.75</div><div class="bc-reason">三依据：①CAF区预选赛仅失2球的防守底蕴 ②马内+杰克逊整体技术质量更高 ③本场是双方首次面对真正同级别对手</div></div>
+      <div class="bet-card val"><div class="bc-type">大小球 <span class="tag tv">价值</span></div><div class="bc-rec">小球2.5 @1.75</div><div class="bc-reason">三依据：①双方本届赛事进攻效率均一般 ②两队近2场合计仅进3球 ③出线希望渺茫可能导致整体强度有限</div></div>
+      <div class="bet-card"><div class="bc-type">亚洲让球</div><div class="bc-rec">塞内加尔-0.5让球 @约1.85</div><div class="bc-reason">等同独赢但提供让球价值，反映市场对其取胜的合理确信</div></div>
+      <div class="bet-card"><div class="bc-type">双方进球</div><div class="bc-rec">双方进球-是 @约2.00</div><div class="bc-reason">侯赛因已证明破门能力+塞内加尔进攻端需要找回状态，双方都有一定进球概率</div></div>
+      <div class="bet-card risk"><div class="bc-type">半全场 <span class="tag tr">价值</span></div><div class="bc-rec">半场平/全场塞内加尔胜 @约3.40</div><div class="bc-reason">双方对抗同级别对手时上半场更趋均势，下半场塞内加尔技术质量逐渐显现</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 3 佛得角 vs 沙特阿拉伯 ========== -->
+<div class="card" id="m2">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇨🇻 佛得角 vs 沙特阿拉伯 🇸🇦</div>
+      <span class="grp">H组 · 末轮（第3轮）</span>
+      <span class="decider">⚡沙特必须取胜 · 佛得角占据主动</span>
+      <span class="status">双方均无重大伤停</span>
+    </div>
+    <div class="mh-right">休斯顿 NRG体育场（室内）</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇨🇻 佛得角（近5场）</div>
+        <div class="form-row"><span class="fd">D</span><span class="fd">D</span><span class="fw">W</span><span class="fd">D</span><span class="fw">W</span></div>
+        <div class="sub">第1轮：0-0平西班牙（历史性逼平夺冠热门，队史最大战绩）<br>第2轮：2-2平乌拉圭（两度落后两度追平）<br>2分排名H组第二，平局即可大概率出线<br>历史最小参赛国之一（人口约50万），首届世界杯即创造神话</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇸🇦 沙特阿拉伯（近5场）</div>
+        <div class="form-row"><span class="fd">D</span><span class="fl">L</span><span class="fw">W</span><span class="fd">D</span><span class="fl">L</span></div>
+        <div class="sub">第1轮：1-1平乌拉圭（35%控球率逼出1分）<br>第2轮：0-4负西班牙（被多球血洗，进攻端零射正）<br>1分排名H组垫底，必须取胜方能保留出线希望<br>雷纳尔执教，曾2022年率队2-1爆冷胜阿根廷的"奇迹教练"</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">佛得角</div><div class="val">约第70位</div><div class="sub">H组第二（2分，净胜球-2）· 平局或取胜均可大概率出线<br>第三小人口参赛国，逼平西班牙创造历史</div></div>
+      <div class="stat-block"><div class="lbl">沙特阿拉伯</div><div class="val">约第59位</div><div class="sub">H组垫底（1分，净胜球-4）· 必须取胜，若仅战平基本出局<br>0-4负西班牙后净胜球处境异常被动</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">佛得角</div><div class="val">进~4球 / 失~4球</div><div class="sub">预选赛10场7次零封的防守体系极为出色<br>本届赛事2场打入2球（均对乌拉圭），展现一定反击效率</div></div>
+      <div class="stat-block"><div class="lbl">沙特阿拉伯</div><div class="val">进~2球 / 失~5球</div><div class="sub">0-4负西班牙暴露防线脆弱性和进攻乏力<br>近5场进球仅2个（均为点球/定位球），公开进攻效率极差</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <div class="stat-block">
+      <div class="val">两队从未交锋，本场为历史性首次对决</div>
+      <div class="sub">没有历史交锋数据可供参考，但近期对手质量对比清晰：佛得角逼平西班牙+乌拉圭两支强队，沙特0-4负西班牙+1-1险平乌拉圭，整体状态对比明显倾向佛得角</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>佛得角：</strong>全队无重大伤停。40岁老将门将沃津哈（多次扑救封神，逼平西班牙和乌拉圭的最大功臣）状态正佳；瑞安·门德斯领衔进攻提供经验和领导力</li>
+      <li><strong>沙特阿拉伯：</strong>无重大伤停报告。萨勒姆·阿尔多萨里（队长，112场27球）领衔进攻，但对阵西班牙一战全队零射正的现实极为令人担忧；雷纳尔执教时间尚短，战术磨合仍在进行中</li>
+      <li><strong>关键变量：</strong>佛得角仅需1分即可大概率出线，动机相对克制（避免冒险失球）；沙特阿拉伯必须取胜全力出击，这种"动机不对等"是本场最大的战术变量</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>佛得角5-4-1（极致低位防守）：</strong>布比斯塔延续逼平西班牙和乌拉圭的密集防守策略，依靠沃津哈的神奇发挥和有限反击机会争取分数，本场更倾向于稳守1分而非冒险进攻</li>
+      <li><strong>沙特阿拉伯3-4-2-1（雷纳尔体系，必须取胜调整为更激进）：</strong>阿尔多萨里+阿尔布雷坎组成进攻核心，背水一战下可能采取更高位的压迫策略</li>
+      <li><strong>关键对位：</strong>佛得角"摆大巴换1分"的策略 vs 沙特阿拉伯"必须破门"的迫切需求——若佛得角能复制对西班牙和乌拉圭的防守纪律性，沙特将异常艰难</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组赛形势 / 战意分析</div>
+    <ul class="alist">
+      <li><strong>佛得角占据主动：</strong>平局或取胜均可大概率确保历史性的首次世界杯出线，动机相对克制（不需冒险）</li>
+      <li><strong>沙特阿拉伯背水一战：</strong>必须取胜才能保留出线希望，且仍需西班牙vs乌拉圭比赛结果的配合，全队将全力压上</li>
+      <li><strong>动机不对等：</strong>这种局面往往有利于"防守优先"的一方在对手冒险进攻时利用反击机会，对佛得角有利</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">佛得角独赢</div><div class="ov">3.10</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov hot">2.90</div></div>
+      <div class="ob"><div class="ol">沙特独赢</div><div class="ov">2.60</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov">2.30</div></div>
+      <div class="ob"><div class="ol">小球2.5</div><div class="ov hot">1.65</div></div>
+      <div class="ob"><div class="ol">沃津哈零封获胜</div><div class="ov">约4.50</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">三方赔率高度接近，反映市场认为这是本日最难预测的场次之一；沙特虽因"必须取胜"被赋予一定优势赔率，但佛得角逼平双强队的现实表现同样获得市场认可</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>三方胜负赔率几乎均等，本场是H组末轮市场分歧最大的比赛</li>
+      <li>小球2.5(1.65)获得明显倾向，依据是佛得角防守纪律性+沙特进攻效率历史性低迷（对西班牙零射正）</li>
+      <li>沃津哈零封获胜被视为价值盘，若佛得角能再次复制对强队的防守表现，零封沙特完全可能</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：中等偏高（本场无明显"爆冷"概念，三方接近）</div>
+      <p>沙特"必须取胜"的动机可能驱使其全力压上，但0-4负西班牙暴露的零射正效率是严重隐忧；佛得角防守纪律性已两次验证（逼平西班牙、乌拉圭），沃津哈的门将能力是关键变量。这是一场真正的"动机vs能力"对决，结果高度不确定。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">佛得角 1-1 沙特阿拉伯（主选）</div>
+    <div class="pred-meta">概率约22% · 次选：0-0平（约20%） · 1-0沙特（约18%） · 1-0佛得角（约18%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 4/10（三方赔率接近，本场是全日最难预测场次之一）</div>
+    <div class="pred-body">
+      <strong>为什么预测1-1？</strong><br>
+      佛得角防守纪律性已两次验证（逼平西班牙、乌拉圭），沃津哈门将能力对抗沙特的进攻应能限制失球数；但沙特必须取胜的强烈动机可能驱使其改变此前保守打法转为全力压上，制造1球机会。1-1反映了"佛得角防守体系延续"和"沙特背水一战下的进攻强度提升"两种现实因素的平衡，这也是对双方都"够用"（佛得角出线，沙特仍需祈祷）的结果。<br><br>
+      <strong>数据支持：</strong>①佛得角预选赛10场7次零封的防守体系 ②沙特对西班牙零射正的进攻效率历史性低迷 ③佛得角仅需1分即可大概率出线的动机相对克制<br><br>
+      <strong>风险因素：</strong>①沙特背水一战可能改变此前保守策略转为全力压上 ②佛得角可能因"够用1分"而过于保守导致被反超 ③雷纳尔曾创造2022年爆冷奇迹，战术调整能力不可忽视
+    </div>
+  </div>
+
+  <div class="htft-panel">
+    <div class="htft-title">⏱ 半全场胜平负预测</div>
+    <div class="htft-row">
+      <div class="htft-box"><div class="rank">第一选择</div><div class="combo">平/平</div><div class="prob">概率：30%</div></div>
+      <div class="htft-box"><div class="rank">第二选择</div><div class="combo">平/胜（佛得角）</div><div class="prob">概率：18%</div></div>
+      <div class="htft-box"><div class="rank">第三选择</div><div class="combo">平/胜（沙特）</div><div class="prob">概率：16%</div></div>
+    </div>
+    <div style="font-size:11px;color:#9a5a30;margin-bottom:8px">信心指数 4/10</div>
+    <div class="htft-body">
+      <strong>为什么预测"半场平/全场平"？</strong><br>
+      佛得角对阵西班牙和乌拉圭两场比赛均以低分开局（0-0、0-1半场），其密集防守体系在比赛前期效果最好；沙特进攻效率历史性低迷（对西班牙半场已0-2落后），开局阶段难以迅速破门。两队半场战平的概率应是本场最高的单一结果。<br><br>
+      <strong>数据支持：①两队近10场上半场进球/失球：</strong>佛得角近2场上半场0进0失（对西班牙）和0进1失（对乌拉圭半场0-1），整体偏低分；沙特近2场上半场0进1失（对乌拉圭半场0-1后下半场扳平）和0进2失（对西班牙半场0-2）。<br><br>
+      <strong>两队近10场半场领先/平/落后次数：</strong>佛得角近2场1次半场平(0-0对西班牙)、1次半场落后(0-1对乌拉圭，后扳平)；沙特近2场1次半场落后后扳平(对乌拉圭)、1次半场落后未能扳平(对西班牙)。<br><br>
+      <strong>下半场进球能力及逆转能力：</strong>佛得角下半场逆转能力突出（对乌拉圭两次扳平），证明其在比赛后段更具威胁；沙特下半场也曾扳平乌拉圭，但对西班牙时下半场反而被扩大比分。<br><br>
+      <strong>历史交锋分布：</strong>两队首次交锋，无数据参考。<br><br>
+      <strong>伤停/首发/战意因素：</strong>双方均无伤停。沙特背水一战可能促使其开局即压上而非如常规比赛般谨慎，这会略微降低"半场平"的概率但仍是最高概率单项。<br><br>
+      <strong>风险因素：</strong>①沙特若开局即拼命进攻可能打破半场平局的模式 ②佛得角防线偶有失误（被乌拉圭两次破门）可能导致半场落后 ③沃津哈若再次超凡发挥可能延续0-0半场直至全场
+    </div>
+    <div class="highlight">投注建议：半全场"平/平"@约5.50是本场理论价值最高的冷门选择，但鉴于双方均有强烈的下半场变化可能性，建议仅作小注尝试，主力资金应配置在胜平负三项盘和小球市场。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">大小球 <span class="tag tv">首推</span></div><div class="bc-rec">小球2.5 @1.65</div><div class="bc-reason">三依据：①佛得角预选赛10场7次零封 ②沙特对西班牙零射正的进攻效率历史性低迷 ③双方近期比赛多呈现低分特征</div></div>
+      <div class="bet-card risk"><div class="bc-type">胜平负 <span class="tag tr">谨慎参与</span></div><div class="bc-rec">平局 @2.90</div><div class="bc-reason">三依据：①佛得角动机相对克制只需1分 ②沙特进攻效率隐忧可能无法转化必要的胜利 ③三方赔率接近反映真实不确定性</div></div>
+      <div class="bet-card"><div class="bc-type">双方进球</div><div class="bc-rec">双方进球-是 @约2.10</div><div class="bc-reason">沙特背水一战必须进攻+佛得角已证明对强队仍能进球（对乌拉圭两球），双方都有一定概率</div></div>
+      <div class="bet-card"><div class="bc-type">亚洲让球</div><div class="bc-rec">佛得角+0.25 @约1.95</div><div class="bc-reason">小幅看好佛得角不败，同时保护本金避免单一独赢方向的赔率风险</div></div>
+      <div class="bet-card cool"><div class="bc-type">半全场 <span class="tag th">冷门</span></div><div class="bc-rec">半场平/全场平 @约5.50</div><div class="bc-reason">双方近期比赛均显示低分开局特征，本场理论价值最高的冷门选择，仅小注</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 4 乌拉圭 vs 西班牙 ========== -->
+<div class="card" id="m3">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇺🇾 乌拉圭 vs 西班牙 🇪🇸</div>
+      <span class="grp">H组 · 末轮（第3轮）</span>
+      <span class="decider">⚡乌拉圭背水一战 · 西班牙锁定头名良机</span>
+      <span class="status">双方均无重大伤停</span>
+    </div>
+    <div class="mh-right">萨波潘 阿兹特卡体育场（海拔1560米）</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇺🇾 乌拉圭（近5场）</div>
+        <div class="form-row"><span class="fd">D</span><span class="fd">D</span><span class="fl">L</span><span class="fd">D</span><span class="fw">W</span></div>
+        <div class="sub">第1轮：1-1平沙特阿拉伯（35%控球率被逼出1分）<br>第2轮：2-2平佛得角（两度领先两度被追平！）<br>2分排名H组第三，仅靠取胜方能确保晋级<br>阿劳霍+德阿拉斯卡埃塔伤情此前缺阵，本场需要确认复出情况</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇪🇸 西班牙（近5场）</div>
+        <div class="form-row"><span class="fd">D</span><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span></div>
+        <div class="sub">第1轮：0-0被佛得角逼平（27次射门0进球的尴尬开局）<br>第2轮：4-0胜沙特阿拉伯（亚马尔回归后火力全开）<br>4分领跑H组，平局即可锁定头名<br>亚马尔+尼科·威廉姆斯回归后进攻质变明显</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">乌拉圭</div><div class="val">FIFA第17位</div><div class="sub">H组第三（2分，净胜球0）· 必须取胜方能确保晋级（平局可能仍出线但需净胜球计算）<br>两届世界冠军底蕴但本届表现起伏不定</div></div>
+      <div class="stat-block"><div class="lbl">西班牙</div><div class="val">FIFA第1-2位</div><div class="sub">H组第一（4分，净胜球+4）· 平局即可锁定头名出线<br>欧锦赛卫冕冠军，4-0胜沙特已找回状态</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">乌拉圭</div><div class="val">进~3球 / 失~3球</div><div class="sub">本届赛事2场仅进3球，进攻效率持续低迷<br>近13场仅4场双方进球，整体偏低分特征</div></div>
+      <div class="stat-block"><div class="lbl">西班牙</div><div class="val">进~4球 / 失~0球</div><div class="sub">4-0胜沙特展现亚马尔回归后的统治级火力<br>预选赛21球仅失2球的恐怖效率，本届赛事仅失0球</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>历史交锋10次，包含两次世界杯交锋：1950年2-2平，1990年0-0平</li>
+      <li>近期最近一次交锋为2013年联合会杯，西班牙2-1取胜，保持不败纪录</li>
+      <li>世界杯历史交锋两次均为平局，反映两队风格的相互制约性，但本场双方状态差距明显（西班牙找回火力，乌拉圭持续低迷）</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>乌拉圭⚠：</strong>罗纳德·阿劳霍（巴萨中卫核心）和吉奥尔基安·德阿拉斯卡埃塔（核心组织者）此前因伤缺席前两轮，本场恢复情况待确认，若仍缺阵将是重大减分；努涅斯首战低迷表现可能继续影响其首发地位</li>
+      <li><strong>西班牙：</strong>全队无伤停。拉明·亚马尔和尼科·威廉姆斯回归后表现统治级（4-0胜沙特中贡献关键作用），由于已4分领跑且平局即可锁定头名，德拉富恩特有一定轮换余地但争夺净胜球优势（避开更强淘汰赛对手）的动机使其不太可能大幅轮换</li>
+      <li><strong>关键变量：</strong>若阿劳霍和德阿拉斯卡埃塔继续缺阵，乌拉圭攻防两端的稳定性都将受到严重影响，这是本场最大的不确定性来源</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>乌拉圭4-2-3-1（人员问题待解决）：</strong>瓦尔韦德承担更重组织和插上职责，整体打法依赖个人能力破解对手防线，但近2场进攻效率持续低迷</li>
+      <li><strong>西班牙4-3-3：</strong>维蒂尼亚+佩德里组织串联，亚马尔+尼科·威廉姆斯两翼齐飞提供直接突破能力，奥亚萨瓦尔中锋终结，整体打法控球渗透+边路爆破双管齐下</li>
+      <li><strong>关键对位：</strong>西班牙亚马尔+尼科的直接突破能力对阵乌拉圭可能存在人员问题的防线——这是本场最大的技术错位，西班牙整体技术质量和近期状态明显占优</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组赛形势 / 战意分析</div>
+    <ul class="alist">
+      <li><strong>乌拉圭背水一战：</strong>必须取胜才能确保晋级（即便平局也可能因净胜球问题陷入被动），全队将全力争胜</li>
+      <li><strong>西班牙志在锁定头名：</strong>平局即可确保H组第一，避免淘汰赛阶段过早遭遇强敌，动机充足但无需冒险</li>
+      <li><strong>动机不对等：</strong>乌拉圭孤注一掷，西班牙从容应对——这种局面理论上对技术质量更高的西班牙更有利</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">乌拉圭独赢</div><div class="ov">4.50</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">3.30</div></div>
+      <div class="ob"><div class="ol">西班牙独赢</div><div class="ov hot">1.75</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov">2.05</div></div>
+      <div class="ob"><div class="ol">小球2.5</div><div class="ov hot">1.78</div></div>
+      <div class="ob"><div class="ol">西班牙-1球让球</div><div class="ov">约2.00</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">sofascore模型给出乌拉圭仅18%胜率、平局约24%概率；西班牙独赢资金高度集中，反映市场对其近期火力回归的高度认可</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>西班牙独赢资金集中，市场认可其4-0胜沙特后找回的统治级状态</li>
+      <li>小球2.5获得相对更多关注，依据是乌拉圭本届赛事进攻效率持续低迷+西班牙可能因头名已基本锁定而控制节奏</li>
+      <li>西班牙-1球让球被视为务实的价值盘，反映市场预期一场"西班牙获胜但未必血洗"的比赛</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：低（约18%，乌拉圭获胜），但逼平概率不可忽视（约24%）</div>
+      <p>sofascore模型明确给出乌拉圭仅18%胜率的判断；西班牙亚马尔回归后的统治级状态和4-0胜沙特的现实表现，使其在本场具备明显优势。但乌拉圭历史上世界杯交锋两次均为平局，且其背水一战的强烈动机不可完全忽视，阿劳霍和德阿拉斯卡埃塔若能复出将大幅提升其竞争力。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">西班牙 2-0 乌拉圭（主选）</div>
+    <div class="pred-meta">概率约26% · 次选：2-1西班牙（约20%） · 1-0西班牙（约20%） · 1-1平（约16%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 6/10</div>
+    <div class="pred-body">
+      <strong>为什么预测2-0？</strong><br>
+      西班牙亚马尔+尼科·威廉姆斯回归后展现的统治级火力（4-0胜沙特）和近期状态明显占优，理论上能突破乌拉圭可能存在人员问题的防线；乌拉圭本届赛事进攻效率持续低迷（2场仅进3球），即便背水一战也难以对西班牙构成实质威胁。2-0反映了西班牙整体质量碾压+控制比赛节奏（无需冒险追求大胜）的现实预期。<br><br>
+      <strong>数据支持：</strong>①西班牙4-0胜沙特展现统治级火力 ②乌拉圭本届赛事2场仅进3球进攻低迷 ③sofascore模型给乌拉圭仅18%胜率<br><br>
+      <strong>风险因素：</strong>①若阿劳霍和德阿拉斯卡埃塔复出乌拉圭竞争力将提升 ②西班牙可能因头名已基本锁定而控制节奏不急于扩大优势 ③历史交锋世界杯两次均为平局的"魔咒"
+    </div>
+  </div>
+
+  <div class="htft-panel">
+    <div class="htft-title">⏱ 半全场胜平负预测</div>
+    <div class="htft-row">
+      <div class="htft-box"><div class="rank">第一选择</div><div class="combo">平/胜（西班牙）</div><div class="prob">概率：26%</div></div>
+      <div class="htft-box"><div class="rank">第二选择</div><div class="combo">胜/胜（西班牙）</div><div class="prob">概率：22%</div></div>
+      <div class="htft-box"><div class="rank">第三选择</div><div class="combo">平/平</div><div class="prob">概率：18%</div></div>
+    </div>
+    <div style="font-size:11px;color:#9a5a30;margin-bottom:8px">信心指数 5/10</div>
+    <div class="htft-body">
+      <strong>为什么预测"半场平/全场西班牙胜"？</strong><br>
+      西班牙首战对佛得角27次射门0进球的尴尬表现说明其存在"上半场难破密集防守"的特征；对沙特一战虽4-0大胜，但回顾过程可发现进球分布较为靠后。乌拉圭对沙特和佛得角两战上半场均未能进球，整体呈现慢热特征。两队结合下，半场战平后西班牙凭借整体质量在下半场打开局面的剧本概率最高。<br><br>
+      <strong>数据支持：①两队近10场上半场进球/失球：</strong>西班牙近2场上半场0进0失(对佛得角)和约2进0失(对沙特，亚马尔等回归后加快节奏)；乌拉圭近2场上半场0进1失(对沙特半场0-1后扳平)和1进1失(对佛得角)。<br><br>
+      <strong>两队近10场半场领先/平/落后次数：</strong>西班牙近2场1次半场平(0-0对佛得角)、1次半场领先(对沙特)；乌拉圭近2场1次半场落后后扳平(对沙特)、1次半场战平后被反超又扳平(对佛得角)。<br><br>
+      <strong>下半场进球能力及逆转能力：</strong>西班牙下半场效率明显更高（对佛得角全场27射的多数集中在下半场，对沙特下半场扩大比分）；乌拉圭下半场也有一定反弹能力但整体进攻乏力。<br><br>
+      <strong>历史交锋分布：</strong>两次世界杯交锋均为平局收场（1950年半场1-1，1990年半场0-0），历史数据支持"低分胶着"的半场特征。<br><br>
+      <strong>伤停/首发/战意因素：</strong>乌拉圭阿劳霍、德阿拉斯卡埃塔的复出情况将直接影响其上半场的组织和防守能力；西班牙因已基本锁定头名可能不急于上半场就扩大优势。<br><br>
+      <strong>风险因素：</strong>①西班牙若延续对沙特的火力可能"胜/胜"概率上升 ②若阿劳霍/德阿拉斯卡埃塔复出乌拉圭上半场抵抗力增强 ③历史交锋的"平局魔咒"为"平/平"提供额外支撑
+    </div>
+    <div class="highlight">投注建议：半全场"平/胜（西班牙）"@约2.80是本场性价比最高的选择，结合了西班牙首战"慢热"的真实数据和整体质量碾压乌拉圭的现实预期。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">胜平负 <span class="tag tv">推荐</span></div><div class="bc-rec">西班牙独赢 @1.75</div><div class="bc-reason">三依据：①4-0胜沙特展现统治级火力 ②乌拉圭本届赛事2场仅进3球进攻低迷 ③sofascore模型给乌拉圭仅18%胜率</div></div>
+      <div class="bet-card val"><div class="bc-type">大小球 <span class="tag tv">价值</span></div><div class="bc-rec">小球2.5 @1.78</div><div class="bc-reason">三依据：①乌拉圭近13场仅4场BTTS的低分特征 ②西班牙可能控制节奏不急于扩大优势 ③历史交锋世界杯两次均为平局印证低分倾向</div></div>
+      <div class="bet-card"><div class="bc-type">亚洲让球</div><div class="bc-rec">西班牙-1球 @约2.00</div><div class="bc-reason">兼顾西班牙整体实力优势和不需冒险追求大胜的现实动机，比独赢更具赔率价值</div></div>
+      <div class="bet-card"><div class="bc-type">射手</div><div class="bc-rec">拉明·亚马尔任意时刻进球 @约2.10</div><div class="bc-reason">回归后状态火热，对阵可能存在人员问题的乌拉圭防线有较高进球概率</div></div>
+      <div class="bet-card risk"><div class="bc-type">半全场 <span class="tag tr">首推价值</span></div><div class="bc-rec">半场平/全场西班牙胜 @约2.80</div><div class="bc-reason">西班牙首战已证明"慢热"特征（27射0进球），结合整体质量优势是本场最佳半全场价值盘</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 5 埃及 vs 伊朗 ========== -->
+<div class="card" id="m4">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇪🇬 埃及 vs 伊朗 🇮🇷</div>
+      <span class="grp">G组 · 末轮（第3轮）</span>
+      <span class="decider">⚡小组头名争夺战</span>
+      <span class="status">双方均无伤停 · 4分vs2分</span>
+    </div>
+    <div class="mh-right">西雅图 Lumen Field</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇪🇬 埃及（近5场）</div>
+        <div class="form-row"><span class="fd">D</span><span class="fw">W</span><span class="fl">L</span><span class="fw">W</span><span class="fw">W</span></div>
+        <div class="sub">第1轮：1-1平比利时（对手乌龙球帮助逼平）<br>第2轮：3-1逆转新西兰（上半场0-1落后，下半场连入3球，斩获队史世界杯正赛首胜）<br>2分排名第一（4分），萨拉赫本届已贡献1球1助攻<br>近6场各项赛事仅失0.5球/场，防守韧性十足，但热身赛1-2负巴西暴露面对顶级强队的抗压短板</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇮🇷 伊朗（近5场）</div>
+        <div class="form-row"><span class="fd">D</span><span class="fd">D</span><span class="fw">W</span><span class="fd">D</span><span class="fl">L</span></div>
+        <div class="sub">第1轮：2-2平新西兰（两度落后两度扳平，韧性十足）<br>第2轮：0-0平比利时（5-4-1极致摆大巴，门将贝兰万德半场4次扑救封神）<br>两连平积2分排名第二（总进球数优于比利时同分排名第三）<br>连续四届晋级世界杯但六次参赛均未能突破小组赛，本场是队史首次小组赛出线的最佳机会</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">埃及</div><div class="val">FIFA第29-37位左右</div><div class="sub">G组第一（4分，进4失2，净胜球+2）· 平局即可锁定小组前二直接出线<br>时隔8年重返世界杯，此前7次正赛历史一胜难求，本场1胜在握后地位空前稳固</div></div>
+      <div class="stat-block"><div class="lbl">伊朗</div><div class="val">FIFA第20位左右</div><div class="sub">G组第二（2分，进2失2，净胜球0）· 必须取胜方能确保小组第一，战平仍有出线机会但需看另一场结果<br>亚洲足坛传统劲旅，连续四届晋级世界杯却从未突破小组赛的"魔咒"亟待打破</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">埃及</div><div class="val">进~4球 / 失~2球</div><div class="sub">本届赛事2场已进4球失2球，下半场逆转能力突出（对新西兰0-1落后连入3球）<br>近6场各项赛事场均失球仅0.5个，防线在多数对手面前稳固，但对新西兰上半场一度被打出7次射门、3次射正</div></div>
+      <div class="stat-block"><div class="lbl">伊朗</div><div class="val">进~2球 / 失~2球</div><div class="sub">本届赛事2场进2球失2球，整体呈现低分特征（对比利时0-0，对新西兰2-2）<br>三大主力中场切什米、扎汉巴卡什、古多斯赛前一度集体成疑，中路组织能力面临考验，门将贝兰万德两场合计贡献多次关键扑救是球队近10场失球控制在低位的核心原因</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <div class="stat-block">
+      <div class="val">官方正式比赛历史交锋数据有限，世界杯历史上从未交锋</div>
+      <div class="sub">本场是两队在世界杯舞台的历史性首次对决，没有充分的历史交锋数据可供参考。仅能从近期对手质量对比：埃及逆转新西兰、逼平比利时；伊朗两度逼平新西兰、零封比利时半场——两队近期状态均呈上升趋势，整体实力差距并不悬殊，预计是一场势均力敌的较量</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>埃及：</strong>全队据报无重大伤停。萨拉赫（利物浦，33岁）虽与红军分手但状态依旧火热，预选赛贡献9球，本届赛事已1球1助攻，是球队唯一的爆点与硬解能力；马尔穆什（曼城）速度迅猛是萨拉赫身边最可靠的进攻搭档；后防线人员储备相对单薄是潜在隐忧</li>
+      <li><strong>伊朗：</strong>三大中场切什米、扎汉巴卡什、古多斯此前一度因伤/状态问题集体成疑，若末轮仍未能全部复出，中路组织能力将受较大削弱；门将贝兰万德两场比赛贡献多次极限扑救，是球队战绩的最大功臣；中锋塔雷米（效力过五大联赛）领衔反击，门前嗅觉依旧敏锐</li>
+      <li><strong>关键变量：</strong>伊朗中场人员问题若未解决，将直接影响其控制比赛节奏和限制萨拉赫拿球空间的能力；埃及在萨拉赫单点能力和下半场调整能力（已两次证明）上占据优势</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>埃及4-2-3-1（防守反击+巨星终结）：</strong>主帅哈桑打造的务实体系不拼控球、不拼场面，主打稳固低位防守+快速攻防转换+边路突击，萨拉赫+马尔穆什联动是边路爆点，对新西兰一战下半场逼抢强度的提升是其逆转的关键</li>
+      <li><strong>伊朗5-4-1（铁桶阵摆大巴）：</strong>全员回收堵死禁区线路，依靠塔雷米的牵制和门将贝兰万德的稳定发挥争取分数，对比利时一战即便面对81%控球率的压制仍能守住0-0，防守纪律性极强</li>
+      <li><strong>关键对位：</strong>埃及边路速度突破vs伊朗密集防守体系——萨拉赫和马尔穆什需要在伊朗5-4-1阵型中找到肋部空间，而伊朗的反击效率（塔雷米+雷扎伊安传中）同样能利用埃及相对单薄的后防线人员储备制造威胁</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组赛形势 / 战意分析</div>
+    <ul class="alist">
+      <li><strong>埃及游刃有余：</strong>4分在手，平局即可大概率锁定小组前二直接晋级，即便输球仍有较大机会凭借净胜球优势以小组第三身份出线（8个最佳第三名晋级规则），整体压力相对最小</li>
+      <li><strong>伊朗背水一战：</strong>若想锁定小组第一必须取胜；战平也能拿到3分但需观望另一场新西兰vs比利时的结果（若伊朗战平埃及，需比利时不取胜或净胜球不足才能确保前二），队史首次突破小组赛的历史性意义使全队动机空前强烈</li>
+      <li><strong>埃及的"两难"：</strong>足球圈内不乏埃及"是否会放伊朗一马"的讨论（两国文化联系紧密），但埃及若输给伊朗自身也有跌入小组第三、面临更强淘汰赛对手的风险，因此预计埃及仍会全力争胜或至少保平</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">埃及独赢</div><div class="ov">2.55</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov hot">3.00</div></div>
+      <div class="ob"><div class="ol">伊朗独赢</div><div class="ov">2.85</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov">2.20</div></div>
+      <div class="ob"><div class="ol">小球2.5</div><div class="ov hot">1.70</div></div>
+      <div class="ob"><div class="ol">双方进球-是</div><div class="ov">约1.95</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">三方赔率高度接近（2.55/3.00/2.85），是G组末轮乃至本日六场中分歧最大的场次之一，反映市场认为两队近期状态和战意都难以明显分出高下；小球倾向部分来自伊朗两场比赛均呈现低分特征，但埃及下半场的爆发力（对新西兰单场3球）使盘口未进一步压低大球赔率</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>三方胜负盘高度接近，资金没有明显单边倾斜，反映本场是六场中确定性最低的比赛之一</li>
+      <li>小球2.5相对受关注，依据是伊朗两场比赛总进球仅2个+对比利时一战全场0-0的低分基因，但埃及下半场逆转新西兰单场打入3球的爆发力同样不可忽视</li>
+      <li>双方进球-是被部分机构列为价值盘，理由是埃及边路速度对阵伊朗密集防守仍有较高概率制造威胁，伊朗反击效率（塔雷米+雷扎伊安）同样有较高威胁埃及单薄后防线的概率</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：中等（本场无明显"强弱分明"概念，三方接近）</div>
+      <p>本场严格意义上不存在"爆冷"，因为两队近期状态、实力评估高度接近：埃及4分在手但对新西兰一战上半场曾0-1落后暴露防线问题，伊朗两连平证明纪律性但中场人员问题若未解决将削弱其控制节奏的能力。若伊朗中场三人（切什米、扎汉巴卡什、古多斯）能基本复出，伊朗取胜或逼平的概率应高于赔率隐含概率；若埃及选择更保守策略锁定出线名额，平局概率同样会上升。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">埃及 1-1 伊朗（主选）</div>
+    <div class="pred-meta">概率约22% · 次选：2-1埃及（约19%） · 1-0伊朗（约18%） · 0-0平（约15%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 4/10（三方赔率接近，双方动机和实力均高度对等，全日最难定论场次之一）</div>
+    <div class="pred-body">
+      <strong>为什么预测1-1？</strong><br>
+      埃及拥有萨拉赫这一足以改变比赛的巨星硬解能力，对阵伊朗密集防守仍有较大概率制造至少1次破门；但伊朗的防守纪律性已两次验证（对比利时0-0、对新西兰两度落后仍扳平），加上塔雷米的反击效率，伊朗同样有较强能力从埃及相对单薄的后防线身上抢得进球。1-1反映了双方"各自有破门手段但都难以彻底压制对手"的现实预期，也兼顾了埃及4分在手不必冒险、伊朗必须进攻但伊朗历史上面对压力时的"两度落后仍扳平"的韧性特征。<br><br>
+      <strong>数据支持：</strong>①埃及萨拉赫本届已1球1助攻具备硬解能力 ②伊朗两连平证明防守纪律性极强（对比利时0-0） ③伊朗近2场两度落后仍扳平展现极强韧性，塔雷米反击威胁不容忽视<br><br>
+      <strong>风险因素：</strong>①若伊朗三大中场未能复出，控制节奏能力将大幅削弱，可能导致更大分差 ②埃及若选择保守策略锁定出线，可能导致0-0或小分差结果 ③萨拉赫若再现对新西兰一战下半场的爆发力，比分可能向2-1或更大方向偏离
+    </div>
+  </div>
+
+  <div class="htft-panel">
+    <div class="htft-title">⏱ 半全场胜平负预测</div>
+    <div class="htft-row">
+      <div class="htft-box"><div class="rank">第一选择</div><div class="combo">平/平</div><div class="prob">概率：26%</div></div>
+      <div class="htft-box"><div class="rank">第二选择</div><div class="combo">平/胜（埃及）</div><div class="prob">概率：20%</div></div>
+      <div class="htft-box"><div class="rank">第三选择</div><div class="combo">负/胜（埃及，逆转）</div><div class="prob">概率：12%</div></div>
+    </div>
+    <div style="font-size:11px;color:#9a5a30;margin-bottom:8px">信心指数 4/10</div>
+    <div class="htft-body">
+      <strong>为什么预测"半场平/全场平"？</strong><br>
+      埃及本届赛事两场上半场表现均偏保守（对比利时上半场0-0、对新西兰上半场0-1落后），下半场才是其真正爆发的阶段（对新西兰下半场连入3球）；伊朗同样呈现慢热特征，两场上半场合计仅进0球（对新西兰首个进球在55分钟后、对比利时全场0-0）。两队上半场战平的概率理论上是六场比赛中最高的单项之一。<br><br>
+      <strong>数据支持：①两队近10场上半场进球/失球：</strong>埃及近2场上半场0进0失（对比利时）和0进1失（对新西兰半场0-1落后）；伊朗近2场上半场0进0失（对比利时全场0-0）和0进2失（对新西兰半场0-2落后，下半场才两度扳平）。两队上半场进球能力均明显弱于下半场。<br><br>
+      <strong>两队近10场半场领先/平/落后次数：</strong>埃及近2场1次半场平(对比利时)、1次半场落后(对新西兰，后逆转)；伊朗近2场1次半场平(对比利时)、1次半场落后(对新西兰，后两度扳平)。两队均无一次"半场领先"的记录，进一步支持半场低分/战平的判断。<br><br>
+      <strong>下半场进球能力及逆转能力：</strong>埃及下半场逆转能力本届赛事已有最强力证明（对新西兰0-1落后连入3球逆转取胜）；伊朗下半场同样具备扳平能力（对新西兰两度落后两度追平），但其下半场更多是"扳平"而非"反超"的效率。<br><br>
+      <strong>历史交锋半场及全场结果分布：</strong>两队世界杯历史首次交锋，无数据可参考，需更多依赖两队本届赛事的实际表现规律。<br><br>
+      <strong>伤停/首发/战意/轮换因素：</strong>双方据报均无重大伤停，但伊朗中场三人状态需赛前确认；埃及4分在手的从容心态可能促使其上半场延续保守策略，伊朗必须取胜的动机可能促使其上半场就尝试更主动的进攻，但密集防守惯性可能限制这种转变的实际效果。<br><br>
+      <strong>风险因素：</strong>①若伊朗中场三人复出且全力压上，上半场即可能取得进球打破"平/平"模式 ②萨拉赫若延续高效状态可能让埃及提前在上半场建立优势 ③双方在末轮"求稳"心理下也存在0-0全场闷平的可能性，使"平/平"概率进一步集中
+    </div>
+    <div class="highlight">投注建议：半全场"平/平"@约4.20是本场性价比较高的核心价值盘，结合了两队上半场均无破门记录的真实数据规律；若追求更高赔率，"平/胜（埃及）"@约5.00可作为小注搭配，押注埃及下半场已验证的爆发力。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">双方进球 <span class="tag tv">首推价值</span></div><div class="bc-rec">双方进球-是 @约1.95</div><div class="bc-reason">三依据：①萨拉赫本届已1球1助攻具备硬解伊朗密集防守的能力 ②伊朗塔雷米+雷扎伊安反击效率对阵埃及单薄后防线有威胁 ③两队近5场各项赛事多次出现双方进球的局面</div></div>
+      <div class="bet-card val"><div class="bc-type">胜平负 <span class="tag tv">推荐</span></div><div class="bc-rec">平局 @3.00</div><div class="bc-reason">三依据：①三方赔率高度接近反映真实不确定性 ②埃及4分在手无需冒险，伊朗必须进攻但防守惯性根深蒂固 ③两队近5场合计4次以平局收场，整体风格接近</div></div>
+      <div class="bet-card"><div class="bc-type">大小球</div><div class="bc-rec">小球2.5 @1.70</div><div class="bc-reason">伊朗两场合计仅进2球+对比利时一战0-0印证低分基因，整体盘面偏向控制节奏的一场比赛</div></div>
+      <div class="bet-card"><div class="bc-type">射手</div><div class="bc-rec">萨拉赫任意时刻进球 @约2.20</div><div class="bc-reason">本届赛事已1球1助攻状态正佳，对阵伊朗密集防守仍是埃及最大的单点突破手段</div></div>
+      <div class="bet-card risk"><div class="bc-type">半全场 <span class="tag tr">价值</span></div><div class="bc-rec">半场平/全场平 @约4.20</div><div class="bc-reason">两队本届赛事上半场合计0次"半场领先"记录，慢热特征明显，是本场性价比较高的半全场价值盘</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 6 新西兰 vs 比利时 ========== -->
+<div class="card" id="m5">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇳🇿 新西兰 vs 比利时 🇧🇪</div>
+      <span class="grp">G组 · 末轮（第3轮）</span>
+      <span class="decider">⚡比利时生死战 · 新西兰背水一战</span>
+      <span class="status">恩戈伊停赛(红牌) · 多库存疑</span>
+    </div>
+    <div class="mh-right">温哥华 BC Place（可伸缩屋顶）</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇳🇿 新西兰（近5场）</div>
+        <div class="form-row"><span class="fl">L</span><span class="fl">L</span><span class="fd">D</span><span class="fl">L</span><span class="fl">L</span></div>
+        <div class="sub">第1轮：2-2平伊朗（两度领先两度被追平）<br>第2轮：1-3负埃及（半场1-0领先，下半场连丢3球崩盘）<br>1分排名G组垫底，本场必须全胜才有出线希望<br>队内仅1人效力五大联赛，整套体系依赖伍德高空支点+定位球，热身赛近况不佳（连负英格兰、海地）</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇧🇪 比利时（近5场）</div>
+        <div class="form-row"><span class="fd">D</span><span class="fd">D</span><span class="fw">W</span><span class="fw">W</span><span class="fd">D</span></div>
+        <div class="sub">第1轮：1-1平埃及（依靠对手乌龙球才逼平，进攻效率极差）<br>第2轮：0-0平伊朗（控球率81%、23次射门却0进球，第66分钟恩戈伊染红少打一人）<br>仅2分排名G组第三，本场必须取胜才能掌握晋级主动权<br>除乌龙球外队史世界杯已连续46脚射门未进球，黄金一代老化+锋线终结效率堪忧是最大隐患</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">新西兰</div><div class="val">FIFA第85位左右</div><div class="sub">G组垫底（1分，进3失5，净胜球-2）· 必须取胜且尽量多净胜球，同时需埃及vs伊朗赛果配合才有出线机会<br>16年来首次重返世界杯，历史上四连平的"逼平体质"（2010年三场全平），本届首战亦平局开局</div></div>
+      <div class="stat-block"><div class="lbl">比利时</div><div class="val">FIFA第9-10位左右</div><div class="sub">G组第三（2分，进2失2，净胜球0）· 取胜基本锁定出线，战平仍有较大出局风险<br>赛前曾被视为本组头号出线热门（机构给出超90%出线概率），两轮过后形势骤然恶化，黄金一代渐近谢幕</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">新西兰</div><div class="val">进~3球 / 失~5球</div><div class="sub">本届赛事2场进3球失5球，场均失2.5球，已连续13场各项赛事无法零封对手<br>贾斯特本届已2球是球队最大反击利器，但防线组织性有限，被射门次数明显高于对手</div></div>
+      <div class="stat-block"><div class="lbl">比利时</div><div class="val">进~2球 / 失~1球</div><div class="sub">本届赛事2场仅进2球（其中1球为对手乌龙），运动战至今未有真正破门，但防守端两场仅失1球（伊朗一战被吹掉1个越位进球）<br>预期进球(xG)数据不低但转化率极差，锋线终结能力是当前最大短板</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <div class="stat-block">
+      <div class="val">两队世界杯历史上从未交锋，正式比赛历史交锋数据极为有限</div>
+      <div class="sub">没有充分历史交锋数据可供参考。从两队本届赛事至今的攻防数据看，比利时整体控球和射门数据全面占优（对伊朗81%控球率、23次射门），但终结效率低迷；新西兰防线稳定性堪忧（连续13场无法零封），整体实力差距依然明显，纸面优势绝对倾向比利时</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>新西兰：</strong>阵容齐整，无核心伤病报告。预计首发4-4-2：克罗科姆守门，佩恩、博克索尔、苏尔曼、卡卡切组成防线，贝尔、斯塔梅尼奇、辛格、麦科瓦特组成中场，贾斯特、伍德搭档锋线；伍德高空支点能力和贾斯特反击效率是仅有的两大威胁点</li>
+      <li><strong>比利时⚠：</strong>纳坦·恩戈伊（中卫）因对阵伊朗一战染红停赛，泰阿特将顶替其首发位置，防线重组存在不确定性；多库（边路爆点）此前因呼吸道感染缺席对伊朗一战，本场回归状态成疑；卢卡库刚伤愈复出，主帅加西亚自己也承认"能入选已是奇迹"，需在卢卡库与德凯特拉雷之间权衡首发人选；德布劳内（34岁）仍是中场节拍器但巅峰已过，对伊朗一战87分钟即被换下</li>
+      <li><strong>关键变量：</strong>恩戈伊停赛+多库状态存疑是比利时本场最大的人员隐患，若防线重组出现问题，新西兰擅长利用的定位球和身后空当机会可能增多；但比利时阵容深度依然远超新西兰，即便多点不确定也大概率能填补</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>新西兰4-4-2（高举高打+定位球）：</strong>伍德中锋拉扯对手防线作支点，整体打法依赖身体对抗和高空球争夺，技术含量有限但执行力强，本场需要全力压上争取净胜球，防守端的冒险将进一步放大</li>
+      <li><strong>比利时4-3-3（加西亚体系，全力进攻）：</strong>德布劳内居中调度，多库（若复出）+特罗萨德两翼齐飞，卢卡库或德凯特拉雷中路终结，整体打法控球渗透为主，但锋线把握机会能力是持续两场的硬伤</li>
+      <li><strong>关键对位：</strong>比利时控球渗透 vs 新西兰高空球反击——比利时大概率延续对伊朗一战的控球优势（70%+控球率），但若新西兰能复制定位球+身后空当的反击效率（此前对伊朗、埃及均曾取得领先），仍有制造麻烦的可能；恩戈伊停赛后的防线重组是新西兰反击成功率的关键变量</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组赛形势 / 战意分析</div>
+    <ul class="alist">
+      <li><strong>新西兰孤注一掷：</strong>必须全取三分且尽量扩大净胜球优势才有出线希望，同时还需埃及vs伊朗的赛果配合，理论概率已极低但全队仍会拼尽全力争取队史突破</li>
+      <li><strong>比利时退无可退：</strong>赛前90%出线概率热门如今仅积2分排名第三，取胜基本锁定出线名额，若再战平则出局风险骤增（需依赖其他小组最佳第三名比较），全队压力空前巨大</li>
+      <li><strong>双方均"必须赢"：</strong>这是本日六场中动机最为对等且都无退路的一场比赛，理论上对比赛强度和开放程度都有正面影响，但比利时阵容质量的绝对优势仍是决定胜负的核心因素</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">新西兰独赢</div><div class="ov">8.00</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">5.50</div></div>
+      <div class="ob"><div class="ol">比利时独赢</div><div class="ov hot">1.25-1.30</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov">1.95</div></div>
+      <div class="ob"><div class="ol">小球2.5</div><div class="ov hot">1.85</div></div>
+      <div class="ob"><div class="ol">比利时-1.5让球</div><div class="ov">约2.10</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">BetOnline等机构开出比利时-450（约1.22赔率）的绝对热门赔率，uFootball模型给出比利时71%胜率、新西兰仅11%；比利时独赢资金高度集中，但鉴于其连续两场把握机会能力极差（46脚射门仅靠乌龙球破门），独赢之外的让球盘和总进球盘存在更高的赔率价值挖掘空间</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>比利时独赢资金高度集中（1.25-1.30），市场基于纸面实力和"必须取胜"的强烈动机给出绝对热门定价</li>
+      <li>比利时-1.5让球被部分机构和分析师（Racing Post等）列为更具赔率价值的选择，理由是新西兰连续13场无法零封对手+本场必须冒险进攻将进一步放大防线漏洞，比利时存在大胜基础</li>
+      <li>大小球盘口相对接近（1.95/1.85），反映市场对比利时锋线终结效率持续低迷的现实保持一定警惕，并未将总球数盘口压得过低</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：低（uFootball模型给新西兰仅11%胜率），但比利时"小胜/平局"风险不可完全忽视</div>
+      <p>新西兰实力、阵容深度与比利时存在明显差距，11%胜率的模型判断基本反映现实；但比利时连续两场暴露的锋线终结效率问题（运动战至今0球，46脚射门未进）是其最大隐忧，加上恩戈伊停赛+多库状态存疑的人员问题，"比利时虽占优却未必能轻松解决新西兰"的剧本同样具备一定概率，是本场相对于"大胜"预期的主要风险点。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">比利时 2-0 新西兰（主选）</div>
+    <div class="pred-meta">概率约24% · 次选：3-1比利时（约18%） · 1-0比利时（约18%） · 2-1比利时（约16%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 6/10（胜负方向高度确定，但比利时锋线效率问题为具体比分增添不确定性）</div>
+    <div class="pred-body">
+      <strong>为什么预测2-0？</strong><br>
+      比利时在控球、射门次数等纸面数据上全面占优，必须取胜的强烈动机叠加新西兰连续13场无法零封对手的防线问题，理论上应能取得多球优势；但考虑到比利时本届赛事运动战至今0球的现实+恩戈伊停赛、多库状态存疑的人员不确定性，"大胜"的剧本概率不应被过分夸大，2-0反映了"比利时整体获胜"和"锋线效率问题限制比分扩大"两种现实因素的平衡。<br><br>
+      <strong>数据支持：</strong>①uFootball模型给比利时71%胜率、新西兰仅11% ②新西兰连续13场各项赛事无法零封对手 ③比利时运动战至今0进球，把握机会能力存疑限制了更大分差的概率<br><br>
+      <strong>风险因素：</strong>①恩戈伊停赛后防线重组若出现问题可能被新西兰利用 ②比利时若延续锋线低效可能仅以1-0小胜甚至被逼平 ③新西兰背水一战的拼搏精神和定位球反击曾两次取得领先，不可完全排除制造麻烦的可能
+    </div>
+  </div>
+
+  <div class="htft-panel">
+    <div class="htft-title">⏱ 半全场胜平负预测</div>
+    <div class="htft-row">
+      <div class="htft-box"><div class="rank">第一选择</div><div class="combo">胜/胜（比利时）</div><div class="prob">概率：30%</div></div>
+      <div class="htft-box"><div class="rank">第二选择</div><div class="combo">平/胜（比利时）</div><div class="prob">概率：26%</div></div>
+      <div class="htft-box"><div class="rank">第三选择</div><div class="combo">平/平</div><div class="prob">概率：12%</div></div>
+    </div>
+    <div style="font-size:11px;color:#9a5a30;margin-bottom:8px">信心指数 5/10</div>
+    <div class="htft-body">
+      <strong>为什么预测"胜/胜（比利时）"？</strong><br>
+      与前两轮不同，本场比利时背负"必须取胜"的空前压力，预计会从开场就采取更高强度的压迫策略而非此前两场偏保守的控球打法；新西兰若延续此前"开局尚可、被压垂后段失球"的模式（对埃及一战半场1-0领先随后崩盘），比利时上半场取得领先的概率应高于此前两轮。<br><br>
+      <strong>数据支持：①两队近10场上半场进球/失球：</strong>比利时近2场上半场0进0失（对埃及）和0进0失（对伊朗，运动战未进球），但本场动机骤变可能打破此模式；新西兰近2场上半场1进1失（对伊朗）和1进0失（对埃及半场1-0领先）。<br><br>
+      <strong>两队近10场半场领先/平/落后次数：</strong>比利时近2场2次半场平（对埃及0-0进黄昏龙球前、对伊朗0-0）；新西兰近2场1次半场平(对伊朗1-1)、1次半场领先(对埃及1-0，下半场被逆转)，新西兰"半场领先下半场崩盘"的模式是本场最大警示信号。<br><br>
+      <strong>下半场进球能力及逆转能力：</strong>比利时下半场效率同样有限（两场合计运动战0球），但本场动机和阵容调整（卢卡库登场冲击）可能改变这一趋势；新西兰下半场防守稳定性堪忧，已被证明在体能下降阶段容易崩盘（对埃及下半场连丢3球）。<br><br>
+      <strong>历史交锋半场及全场结果分布：</strong>两队历史首次交锋，无数据可参考。<br><br>
+      <strong>伤停/首发/战意/轮换因素：</strong>比利时必须取胜的动机会显著提升其上半场的进攻强度和压迫强度，恩戈伊停赛后防线重组可能需要一定适应时间，但新西兰同样必须冒险进攻，攻防转换空间增多对比利时更有利；新西兰若如对埃及一战般早段取得领先，则"胜/胜"概率会下降，"负转胜"的逆转剧本概率上升。<br><br>
+      <strong>风险因素：</strong>①若比利时延续运动战0进球的低效，半场仍可能维持0-0平局 ②新西兰若复制对埃及一战的早段反击进球，可能形成"新西兰半场领先"的冷门开局 ③恩戈伊停赛后防线问题若被新西兰利用，可能导致比利时半场失球
+    </div>
+    <div class="highlight">投注建议：半全场"胜/胜（比利时）"@约1.55是本场確定性相对最高的核心稳胆，"平/胜（比利时）"@约2.60可作为追求更高赔率的搭配选择，反映比利时整体获胜概率极高但具体半场节奏仍有一定弹性。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">亚洲让球 <span class="tag tv">首推价值</span></div><div class="bc-rec">比利时-1.5让球 @约2.10</div><div class="bc-reason">三依据：①新西兰连续13场无法零封对手防线问题严重 ②比利时必须取胜的强烈动机将提升进攻强度 ③相比独赢1.25的极低赔率，让球盘提供更合理的风险收益比</div></div>
+      <div class="bet-card"><div class="bc-type">胜平负</div><div class="bc-rec">比利时独赢 @1.25-1.30</div><div class="bc-reason">uFootball模型给出71%胜率，纸面实力和动机均明显占优，作为稳胆选择确定性高但赔率价值有限</div></div>
+      <div class="bet-card"><div class="bc-type">大小球</div><div class="bc-rec">大球2.5 @1.95</div><div class="bc-reason">比利时必须取胜将全力进攻+新西兰防线问题严重，双方开放程度提升的比赛大球概率较高</div></div>
+      <div class="bet-card"><div class="bc-type">射手</div><div class="bc-rec">卢卡库/德布劳内任意时刻进球 @约2.40-2.60</div><div class="bc-reason">背水一战下比利时核心球员将承担更重的终结职责，对阵新西兰防线有较高进球概率</div></div>
+      <div class="bet-card val"><div class="bc-type">半全场 <span class="tag tv">推荐</span></div><div class="bc-rec">半场胜/全场胜（比利时） @约1.55</div><div class="bc-reason">必须取胜的动机使比利时大概率从开场即采取高强度压迫，本场半全场确定性是六场中相对最高的</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 7 世界杯明日精选方案 ========== -->
+<div class="card" id="m6">
+  <div class="final-card" style="border:none;padding:0">
+    <div class="final-title">★ 2026世界杯 · 6月26日六场赛事 · 明日精选方案</div>
+
+    <div class="pick-row">
+      <div class="pick-item">
+        <div class="stars">★★★★☆<br><span style="font-size:10px;color:#888">稳胆</span></div>
+        <div class="pick-right">
+          <div class="plbl">乌拉圭 vs 西班牙</div>
+          <div class="pmain">西班牙独赢 @1.75</div>
+          <div class="pdet">依据：①西班牙4-0胜沙特展现亚马尔回归后的统治级火力 ②乌拉圭本届赛事2场仅进3球进攻效率持续低迷，且阿劳霍、德阿拉斯卡埃塔伤停未明 ③sofascore模型给乌拉圭仅18%胜率，西班牙整体质量和近期状态明显占优；动机层面西班牙平局即可锁头名但仍有控制净胜球避开强敌的动力，不会消极应对</div>
+        </div>
+      </div>
+
+      <div class="pick-item">
+        <div class="stars">★★★★☆<br><span style="font-size:10px;color:#888">稳胆</span></div>
+        <div class="pick-right">
+          <div class="plbl">新西兰 vs 比利时</div>
+          <div class="pmain">比利时-1.5亚洲让球 @约2.10</div>
+          <div class="pdet">依据：①新西兰连续13场各项赛事无法零封对手，防线问题持续暴露 ②比利时背负"必须取胜"的空前压力，预计采取本届赛事最高强度的压迫策略 ③uFootball模型给比利时71%胜率vs新西兰仅11%，纸面实力和动机均压倒性占优；相比独赢1.25-1.30的低赔率，让球盘是性价比更高的稳胆选择</div>
+        </div>
+      </div>
+
+      <div class="pick-item">
+        <div class="stars">★★★☆☆<br><span style="font-size:10px;color:#888">博高赔</span></div>
+        <div class="pick-right">
+          <div class="plbl">挪威 vs 法国</div>
+          <div class="pmain">法国胜+双方进球 @约3.20</div>
+          <div class="pdet">依据：①法国本届赛事至今竞技赛0失球，姆巴佩+登贝莱+巴尔科拉攻击线质量顶级 ②哈兰德本届已4球状态恐怖，对阵挪威近2场失3球暴露隐患的法国防线仍有较高进球概率 ③juvefc.com等机构一致推荐该组合，反映"法国整体获胜但哈兰德仍有斩获"的市场共识；双方均无伤停的纯实力对决为这一高赔率组合提供合理基础</div>
+        </div>
+      </div>
+
+      <div class="pick-item">
+        <div class="stars">★★★☆☆<br><span style="font-size:10px;color:#888">博高赔</span></div>
+        <div class="pick-right">
+          <div class="plbl">埃及 vs 伊朗</div>
+          <div class="pmain">半场平/全场平 @约4.20</div>
+          <div class="pdet">依据：①两队本届赛事上半场合计0次"半场领先"记录，慢热特征明显（埃及对比利时上半场0-0、对新西兰上半场0-1落后；伊朗对比利时全场0-0、对新西兰上半场0-2落后） ②三方胜负赔率高度接近（2.55/3.00/2.85），反映双方实力和动机高度对等 ③埃及4分在手无需冒险，伊朗虽必须进攻但密集防守惯性根深蒂固，全场闷平的概率不可忽视</div>
+        </div>
+      </div>
+
+      <div class="pick-item">
+        <div class="stars">★★☆☆☆<br><span style="font-size:10px;color:#888">冷门尝试</span></div>
+        <div class="pick-right">
+          <div class="plbl">佛得角 vs 沙特阿拉伯</div>
+          <div class="pmain">半场平/全场平 @约5.50（小注）</div>
+          <div class="pdet">依据：①佛得角对阵西班牙、乌拉圭两场比赛均以低分开局，密集防守体系在比赛前期效果最佳 ②沙特对西班牙一战全场零射正，进攻效率历史性低迷，开局阶段难以迅速破门 ③三方胜负赔率几乎均等（3.10/2.90/2.60），本场是H组乃至全日确定性最低的比赛之一，仅建议小注尝试而非重仓</div>
+        </div>
+      </div>
+
+      <div class="pick-item">
+        <div class="stars">★★☆☆☆<br><span style="font-size:10px;color:#888">冷门尝试</span></div>
+        <div class="pick-right">
+          <div class="plbl">塞内加尔 vs 伊拉克</div>
+          <div class="pmain">双方进球-是（具体赔率以临场盘口为准）</div>
+          <div class="pdet">依据：①伊拉克即便已基本无出线希望仍可能放手一搏，背水一战下防守阵型容易松动 ②塞内加尔本届赛事进攻火力已得到验证，但其防线对阵伊拉克反击同样存在漏洞 ③小组赛末轮"一方求胜分、一方搏尊严"的局面历史上常伴随双方都有进球的开放比赛，建议作为多重过关的搭配腿而非单注重仓</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="sec-title" style="margin-top:4px">📊 综合预期与资金分配建议</div>
+    <div class="two-col" style="margin-bottom:10px">
+      <div class="stat-block"><div class="lbl">预计命中率</div><div class="val">稳胆类约65-70% · 高赔类约30-35% · 冷门类约18-25%</div><div class="sub">六项合计预期至少命中3-4项；稳胆两项若同时命中可大幅降低整体回撤风险</div></div>
+      <div class="stat-block"><div class="lbl">预期赔率区间</div><div class="val">1.25 ~ 5.50</div><div class="sub">稳胆类集中在1.25-2.10低赔区间，高赔类集中在3.00-4.20区间，冷门类5.00+区间仅作小注点缀</div></div>
+    </div>
+
+    <div class="sec-title">💰 资金分配建议（以100单位资金为基准）</div>
+    <div class="alloc-row">
+      <div class="abox"><div class="al">西班牙独赢<br>@1.75</div><div class="av">22</div></div>
+      <div class="abox"><div class="al">比利时-1.5<br>@2.10</div><div class="av">20</div></div>
+      <div class="abox"><div class="al">法国胜+BTTS<br>@3.20</div><div class="av">15</div></div>
+      <div class="abox"><div class="al">埃伊半全场平/平<br>@4.20</div><div class="av">13</div></div>
+      <div class="abox"><div class="al">佛沙半全场平/平<br>@5.50</div><div class="av">5</div></div>
+      <div class="abox"><div class="al">塞伊双方进球<br>临场盘口</div><div class="av">5</div></div>
+    </div>
+    <div class="note">说明：以上分配合计80单位投入六场推荐项，剩余20单位建议保留作为现金储备或用于赛前临场情报变化（首发名单公布、最新伤停确认）后的灵活调整，不建议在首发阵容公布前提前满额投入。两项★★★★☆稳胆合计占比42%，符合"低赔确定性仓位优先、高赔价值仓位适度跟进、冷门仓位严格控制"的资金管理原则。</div>
+
+    <div class="risk-box" style="margin-top:14px">
+      <div class="rtitle">⚠ 重要风险提示</div>
+      <p>本报告所有分析基于截至发稿前可获得的公开数据（近期战绩、伤停报告、博彩公司公开赔率等），仅作为投注参考，不构成保证盈利的承诺。足球比赛存在高度不确定性，伤停名单、临场战术变化、裁判判罚、定位球偶然性等因素均可能导致实际结果偏离预测。所有赔率请以投注平台临场实时显示为准，发稿后可能已发生变动。请理性投注、量力而行，将资金管理和长期纪律置于单场结果之上，切勿借贷投注或投入超出自身承受能力的资金。</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+function show(idx){
+  var cards = document.querySelectorAll('.card');
+  var tabs = document.querySelectorAll('.tab');
+  for (var i = 0; i < cards.length; i++) {
+    cards[i].classList.remove('active');
+  }
+  for (var j = 0; j < tabs.length; j++) {
+    tabs[j].classList.remove('active');
+  }
+  var targetCard = document.getElementById('m' + idx);
+  if (targetCard) { targetCard.classList.add('active'); }
+  if (tabs[idx]) { tabs[idx].classList.add('active'); }
+}
+</script>
+</body>
+</html>
