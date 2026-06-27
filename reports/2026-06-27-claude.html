@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界杯2026明日精选 · 6月27日J/K/L组收官六场分析报告</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0ede8;color:#1a1a1a;padding:20px;font-size:14px;line-height:1.6}
+.container{max-width:940px;margin:0 auto}
+h1{font-size:22px;font-weight:700;margin-bottom:4px}
+.subtitle{font-size:13px;color:#666;margin-bottom:18px}
+.schedule-box{background:#fff;border-radius:10px;border:1px solid #ddd;padding:16px;margin-bottom:18px}
+.schedule-box h2{font-size:14px;font-weight:700;color:#444;margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em}
+.sched-row{display:grid;grid-template-columns:80px 1fr;gap:8px;padding:7px 0;border-bottom:1px solid #f0ede8;font-size:13px}
+.sched-row:last-child{border-bottom:none}
+.sched-time{color:#1a5fa8;font-weight:700}
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:7px 14px;border-radius:20px;border:1px solid #ccc;background:transparent;color:#555;cursor:pointer;font-size:12px;font-family:inherit;transition:all .15s}
+.tab.active{background:#1a5fa8;color:#fff;border-color:#1a5fa8}
+.card{display:none;background:#fff;border-radius:12px;border:1px solid #ddd;padding:22px;margin-bottom:12px}
+.card.active{display:block}
+.mh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid #ece9e3}
+.mh-left .teams{font-size:18px;font-weight:700}
+.mh-left .grp{font-size:11px;color:#666;background:#f0ede8;padding:2px 9px;border-radius:10px;display:inline-block;margin-top:4px;margin-right:6px}
+.mh-left .status{font-size:11px;color:#c04000;background:#fff4ee;padding:2px 9px;border-radius:10px;display:inline-block;margin-top:4px}
+.mh-right{font-size:12px;color:#666;text-align:right}
+.sec{margin-bottom:20px}
+.sec-title{font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #f0ede8}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat-block{background:#f8f7f4;border-radius:8px;padding:10px 12px}
+.stat-block .lbl{font-size:11px;color:#888;margin-bottom:5px}
+.stat-block .val{font-size:14px;font-weight:700}
+.stat-block .sub{font-size:12px;color:#666;margin-top:4px;line-height:1.55}
+.form-row{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+.fw{width:22px;height:22px;border-radius:50%;background:#d4f0d4;color:#1a6b1a;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.fd{width:22px;height:22px;border-radius:50%;background:#fdf0c0;color:#7a5c00;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.fl{width:22px;height:22px;border-radius:50%;background:#fdd4d4;color:#8b1a1a;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.alist{list-style:none;display:flex;flex-direction:column;gap:7px}
+.alist li{font-size:13px;line-height:1.65;padding-left:16px;position:relative}
+.alist li::before{content:"▸";position:absolute;left:0;color:#1a5fa8;font-size:11px;top:2px}
+.odds-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.ob{background:#f8f7f4;border-radius:8px;padding:9px 10px;text-align:center}
+.ob .ol{font-size:11px;color:#888;margin-bottom:3px}
+.ob .ov{font-size:17px;font-weight:700;color:#1a5fa8}
+.ob .ov.hot{color:#b54000}
+.pred-panel{background:linear-gradient(135deg,#e8f2fc,#eee8fb);border-radius:12px;padding:18px;margin-bottom:16px;border:1px solid #c8d8f0}
+.pred-score{font-size:24px;font-weight:800;color:#0d4e9e;margin-bottom:5px}
+.pred-meta{font-size:12px;color:#2a5fb0;margin-bottom:10px}
+.conf-row{display:flex;gap:3px;margin:6px 0}
+.cdot{width:11px;height:11px;border-radius:2px;background:#1a5fa8}
+.cdot.off{background:#c5d8f0}
+.pred-body{font-size:12px;color:#1a3a7a;line-height:1.75}
+.htft-panel{background:linear-gradient(135deg,#fdf0e0,#fde8e8);border-radius:12px;padding:18px;margin-bottom:16px;border:1px solid #f0d0c0}
+.htft-title{font-size:13px;font-weight:700;color:#9a3a00;margin-bottom:10px}
+.htft-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.htft-box{background:#fff;border-radius:8px;padding:10px;text-align:center;border:1px solid #f0d0c0}
+.htft-box .rank{font-size:10px;color:#b54000;margin-bottom:3px;font-weight:700}
+.htft-box .combo{font-size:14px;font-weight:800;color:#7a1a00}
+.htft-box .prob{font-size:11px;color:#9a5a30;margin-top:3px}
+.htft-body{font-size:12px;color:#5c2a00;line-height:1.75}
+.bets-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bet-card{background:#f8f7f4;border-radius:8px;padding:10px 12px}
+.bet-card.val{border-left:3px solid #1a5fa8;border-radius:0 8px 8px 0}
+.bet-card.risk{border-left:3px solid #c07800;border-radius:0 8px 8px 0}
+.bet-card.cool{border-left:3px solid #aa2222;border-radius:0 8px 8px 0}
+.bc-type{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.bc-rec{font-size:13px;font-weight:700;margin-bottom:3px}
+.bc-reason{font-size:11px;color:#555;line-height:1.55}
+.tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:8px;margin-left:5px;vertical-align:middle}
+.tv{background:#dbeeff;color:#0d4e9e}
+.tr{background:#fce8c0;color:#7a4800}
+.th{background:#fdd4d4;color:#7a1a1a}
+.risk-box{background:#fff8e6;border-radius:8px;padding:10px 13px;margin-top:8px;border-left:3px solid #e0a800}
+.risk-box .rtitle{font-size:11px;font-weight:700;color:#7a4800;margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em}
+.risk-box p{font-size:12px;color:#5c3a00;line-height:1.6}
+.divider{height:1px;background:#ece9e3;margin:16px 0}
+.final-card{background:#fff;border-radius:12px;border:1px solid #ddd;padding:22px}
+.final-title{font-size:16px;font-weight:700;margin-bottom:16px;color:#111;border-bottom:2px solid #1a5fa8;padding-bottom:8px}
+.pick-row{display:flex;flex-direction:column;gap:10px}
+.pick-item{background:#f8f7f4;border-radius:10px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start}
+.stars{font-size:15px;color:#c07800;min-width:82px}
+.stars .off{color:#ccc}
+.pick-right .plbl{font-size:11px;color:#888;margin-bottom:2px}
+.pick-right .pmain{font-size:14px;font-weight:700;margin-bottom:4px}
+.pick-right .pdet{font-size:12px;color:#555;line-height:1.55}
+.alloc-row{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:12px 0}
+.abox{background:#f8f7f4;border-radius:8px;padding:8px 6px;text-align:center;border:1px solid #e8e5e0}
+.abox .al{font-size:9px;color:#888;margin-bottom:4px;line-height:1.3}
+.abox .av{font-size:15px;font-weight:800}
+.note{font-size:12px;color:#888;line-height:1.7;background:#f8f7f4;border-radius:8px;padding:11px 13px;margin-top:10px}
+.highlight{background:#e8f4ff;border-radius:8px;padding:10px 13px;margin-top:8px;font-size:12px;color:#0d4e9e;line-height:1.65;border-left:3px solid #1a5fa8}
+.decider{background:#fff0e6;color:#9a3a00;font-size:10px;padding:2px 8px;border-radius:8px;margin-left:6px}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>⚽ 2026世界杯 · 6月27日J/K/L组收官六场赛事投注参考方案</h1>
+<div class="subtitle">J组 + K组 + L组 · 小组赛收官日 · 只保留6月27日六场和精选方案</div>
+
+<div class="schedule-box">
+  <h2>📅 赛程一览（6月27日J/K/L组收官日）</h2>
+  <div class="sched-row"><div class="sched-time">L组</div><div>巴拿马 🆚 英格兰 · 纽约/新泽西MetLife体育场 · 05:00 ET<br>克罗地亚 🆚 加纳 · 费城林肯金融球场 · 05:00 ET</div></div>
+  <div class="sched-row"><div class="sched-time">K组</div><div>哥伦比亚 🆚 葡萄牙 · 迈阿密硬石体育场 · 07:30 ET<br>刚果(金) 🆚 乌兹别克斯坦 · 同时段开球</div></div>
+  <div class="sched-row"><div class="sched-time">J组</div><div>约旦 🆚 阿根廷 · 主场待定 · 当地时间下午<br>阿尔及利亚 🆚 奥地利 · 堪萨斯城Arrowhead体育场 · 同时段开球</div></div>
+</div>
+
+<div class="tabs">
+  <button class="tab" onclick="show(0)">🇵🇦 巴拿马 vs 英格兰</button>
+  <button class="tab" onclick="show(1)">🇭🇷 克罗地亚 vs 加纳</button>
+  <button class="tab" onclick="show(2)">🇨🇴 哥伦比亚 vs 葡萄牙</button>
+  <button class="tab" onclick="show(3)">🇨🇩 刚果金 vs 乌兹别克</button>
+  <button class="tab" onclick="show(4)">🇯🇴 约旦 vs 阿根廷</button>
+  <button class="tab" onclick="show(5)">🇩🇿 阿尔及利亚 vs 奥地利</button>
+  <button class="tab" onclick="show(6)">★ 6.27精选方案</button>
+</div>
+
+<!-- ========== MATCH 8 巴拿马 vs 英格兰 ========== -->
+<div class="card active" id="m0">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇵🇦 巴拿马 vs 英格兰 🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+      <span class="grp">L组 · 末轮（第3轮）</span>
+      <span class="decider">⚡英格兰已出线 · 巴拿马已出局</span>
+      <span class="status">双方均无重大伤停 · 0分vs4分</span>
+    </div>
+    <div class="mh-right">纽约/新泽西 MetLife体育场</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇵🇦 巴拿马（近5场）</div>
+        <div class="form-row"><span class="fl">L</span><span class="fl">L</span><span class="fd">D</span><span class="fw">W</span><span class="fd">D</span></div>
+        <div class="sub">第1轮：0-1负加纳（补时第95分钟绝杀，11射4正却未能进球）<br>第2轮：0-1负克罗地亚（第53分钟布迪米尔制胜，全场射门6-8落后于对手）<br>0分排名L组垫底，两战全负且一球未进，已确定无缘淘汰赛<br>队史世界杯正赛4场全负且至今颗粒无收，本场是洗刷耻辱的最后机会</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰（近5场）</div>
+        <div class="form-row"><span class="fw">W</span><span class="fd">D</span><span class="fw">W</span><span class="fw">W</span><span class="fd">D</span></div>
+        <div class="sub">第1轮：4-2胜克罗地亚（凯恩点球梅开二度，贝林厄姆下半场47秒世界波）<br>第2轮：0-0平加纳（19脚射门仅3次射正，凯恩空门打飞错失绝杀）<br>1胜1平积4分排名L组第一（净胜球占优），已提前锁定淘汰赛席位<br>近10场7胜2平1负，防守端仅失4球，整体实力远超巴拿马</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">巴拿马</div><div class="val">FIFA第34位左右</div><div class="sub">L组垫底（0分，进0失2）· 已确定出局，本场纯粹为队史荣誉而战<br>近10场对阵欧洲球队场均失球2.3个，但全队身价仅3450万欧元的"鱼腩"标签亟待洗刷</div></div>
+      <div class="stat-block"><div class="lbl">英格兰</div><div class="val">FIFA第4位</div><div class="sub">L组第一（4分，进6失4）· 已提前出线，本场可大规模轮换备战淘汰赛<br>图赫尔执教下4-2-3-1体系运转流畅，但仍需警惕加纳、克罗地亚反超头名的理论可能</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">巴拿马</div><div class="val">进~0球 / 失~2球</div><div class="sub">本届赛事2场合计8次射门仅2次射正，锋线球员禁区内触球场均不足5次，射门转化效率历史性低迷<br>门将梅希亚两场完成6次扑救仅失2球，防守端并非毫无组织，定位球是仅有的破门手段</div></div>
+      <div class="stat-block"><div class="lbl">英格兰</div><div class="val">进~6球 / 失~4球</div><div class="sub">首轮4-2胜克罗地亚展现多点开花的进攻火力，但次轮对加纳进攻效率骤降（19射仅3正）<br>凯恩两场打入2球但状态有波动（对加纳空门打飞），近10场防守端仅失4球整体稳固</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>世界杯正赛历史交锋1次：2018年俄罗斯世界杯英格兰6-1血洗巴拿马，凯恩当场梅开二度</li>
+      <li>那场比赛是巴拿马队史首次世界杯参赛，全程三战全败进2球失11球，成为巴拿马足球记忆中最刺眼的伤疤之一</li>
+      <li>八年后再度相遇，巴拿马整体实力已从FIFA第81位提升至34位，但本场仍是实力差距悬殊的较量，巴拿马志在避免重演惨案、争取队史世界杯首球</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>巴拿马：</strong>全队据报健康，无重大伤停，这是球队为数不多的利好；中场核心卡拉斯基利亚此前因腹股沟伤情存疑，若能复出将提升中场出球质量；队长戈多伊（34岁，157场队史出场纪录）迎来个人最后一届世界杯</li>
+      <li><strong>英格兰：</strong>全队同样无伤病困扰，但已出线背景下图赫尔大概率对阵容进行大规模轮换；凯恩、贝林厄姆等核心可能获得休息，沃特金斯、戈登、拉什福德等替补攻击手有望进入首发；萨卡因跟腱恢复进度不进首发但可替补，沃克因腿部伤势此前缺席</li>
+      <li><strong>关键变量：</strong>英格兰轮换阵容的默契度和进攻流畅度是本场最大不确定性来源——次轮对加纳替补登场的拉什福德曾打入1球，但整体进攻流畅度明显下降，这给了巴拿马制造冷门的理论空间</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>巴拿马5-4-1（铁桶大巴）：</strong>克里斯蒂安森打造的纪律严明体系全员收缩，边翼卫优先保证防守位置而非压上助攻，由守转攻时前场参与人数极少，本场面对已出线的英格兰轮换阵容，主帅或适度放宽边翼卫的进攻约束</li>
+      <li><strong>英格兰4-2-3-1（轮换阵容）：</strong>图赫尔强调边路宽度和中场控制的体系预计延续，但核心轮换后整体配合默契度存疑；若沃特金斯、戈登搭档锋线，速度和冲击力仍能制造威胁，但终结效率的稳定性是隐忧</li>
+      <li><strong>关键对位：</strong>巴拿马近10场3胜3平4负、对阵巴西2-6告负时仍打入2球的反击效率，对阵英格兰轮换阵容（防守组织磨合度下降）有一定制造威胁的空间，但整体实力差距决定了这仍是英格兰占优的一场比赛</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组赛形势 / 战意分析</div>
+    <ul class="alist">
+      <li><strong>巴拿马放手一搏：</strong>已确定无缘淘汰赛，本场没有任何出线压力，球员可以卸下包袱打出更开放的进攻，全力争取队史首粒世界杯正赛进球甚至首场不败</li>
+      <li><strong>英格兰留力为重：</strong>已提前锁定出线，本场更需要保证人员不受伤以备战淘汰赛，整体强度预计低于前两轮，胜负本身对晋级排名有一定影响（争夺小组头名）但非生死攸关</li>
+      <li><strong>动机的微妙平衡：</strong>巴拿马"无压力放开打"vs英格兰"避免受伤+保持小组头名"的双重诉求，使本场存在被低估的开放性，是本日J/K/L组六场中爆冷概率相对最高的场次之一</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">巴拿马独赢</div><div class="ov">8.50</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">5.75</div></div>
+      <div class="ob"><div class="ol">英格兰独赢</div><div class="ov hot">1.28</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov">2.10</div></div>
+      <div class="ob"><div class="ol">小球2.5</div><div class="ov hot">1.75</div></div>
+      <div class="ob"><div class="ol">英格兰-1.5让球</div><div class="ov">约2.05</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">uFootball模型给出英格兰71%胜率、巴拿马仅11%；独赢1.28的低赔率反映纸面实力悬殊，但鉴于英格兰大概率轮换+巴拿马已卸下心理负担放开进攻，盘口存在"诱主"嫌疑，让球盘和小球盘相对更具赔率价值挖掘空间</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>英格兰独赢资金集中(1.28)，但作为本场绝对热门，赔率本身缺乏价值空间</li>
+      <li>英格兰-1.5让球被部分分析师列为更具性价比的选择，理由是巴拿马近10场对阵欧洲球队场均失球2.3个的脆弱防线，叠加英格兰即便轮换仍有较大个人能力差距</li>
+      <li>小球2.5获得一定关注，依据是巴拿马队史世界杯4场颗粒无收的进攻效率，以及英格兰轮换阵容磨合度不足可能影响终结效率</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：低（uFootball模型给巴拿马仅11%胜率），但巴拿马取分概率不可完全忽视</div>
+      <p>英格兰整体实力、阵容深度与巴拿马存在巨大差距，11%胜率的模型判断基本反映现实；但英格兰已出线背景下的轮换强度下降，叠加巴拿马"放开打"的心理状态转变和队长戈多伊职业生涯最后一战的特殊动力，巴拿马争取一个进球甚至一分的概率应高于赔率隐含的极端悬殊预期。本场最大的风险因素是英格兰替补阵容磨合不足导致的效率波动。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">英格兰 2-0 巴拿马（主选）</div>
+    <div class="pred-meta">概率约24% · 次选：3-0英格兰（约18%） · 1-0英格兰（约18%） · 1-1平（约14%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 5/10（胜负方向高度确定，但轮换阵容下具体比分浮动空间较大）</div>
+    <div class="pred-body">
+      <strong>为什么预测2-0？</strong><br>
+      英格兰即便轮换阵容，整体个人能力和体系成熟度仍明显高于巴拿马，凯恩或轮换出场但替补攻击手沃特金斯、戈登具备一定终结能力；巴拿马队史世界杯4场颗粒无收的进攻效率短期内难以逆转，但其防守组织性（近10场失球可控）和已卸下心理负担的状态，使其有较大概率限制英格兰扩大比分。2-0反映了"英格兰整体获胜"与"轮换阵容终结效率有限+巴拿马放手一搏增加防守韧性"两种因素的平衡。<br><br>
+      <strong>数据支持：</strong>①uFootball模型给英格兰71%胜率、巴拿马仅11% ②巴拿马队史世界杯4场全负且颗粒无收 ③英格兰次轮对加纳19射仅3正暴露轮换/高强度防守下的终结效率隐忧<br><br>
+      <strong>风险因素：</strong>①英格兰大规模轮换可能导致进攻流畅度进一步下降 ②巴拿马放开打+定位球反击可能制造英格兰本届赛事首次丢球 ③若英格兰为保头名而提升强度，比分可能向3-0或更大方向偏离
+    </div>
+  </div>
+
+  <div class="htft-panel">
+    <div class="htft-title">⏱ 半全场胜平负预测</div>
+    <div class="htft-row">
+      <div class="htft-box"><div class="rank">第一选择</div><div class="combo">平/胜（英格兰）</div><div class="prob">概率：28%</div></div>
+      <div class="htft-box"><div class="rank">第二选择</div><div class="combo">胜/胜（英格兰）</div><div class="prob">概率：24%</div></div>
+      <div class="htft-box"><div class="rank">第三选择</div><div class="combo">平/平</div><div class="prob">概率：16%</div></div>
+    </div>
+    <div style="font-size:11px;color:#9a5a30;margin-bottom:8px">信心指数 5/10</div>
+    <div class="htft-body">
+      <strong>为什么预测"半场平/全场英格兰胜"？</strong><br>
+      英格兰轮换阵容首次合作，磨合需要时间，上半场大概率延续对加纳一战"控球占优但终结乏力"的特征；巴拿马铁桶阵在比赛前段防守组织性最强，体能下降后（60分钟以后）才会逐渐出现漏洞。两队近期比赛规律均指向"上半场谨慎、下半场分胜负"的模式。<br><br>
+      <strong>数据支持：①两队近10场上半场进球/失球：</strong>英格兰近2场上半场2进2失（对克罗地亚半场2-2）和0进0失（对加纳，19射仅3正未能进球）；巴拿马近2场上半场0进1失（对加纳半场0-0，补时丢球）和0进0失（对克罗地亚半场0-0，下半场才丢球）。<br><br>
+      <strong>两队近10场半场领先/平/落后次数：</strong>英格兰近2场1次半场平(2-2对克罗地亚)、1次半场平(0-0对加纳)；巴拿马近2场2次半场平，下半场才被分出胜负，体能下降阶段是失球高峰期。<br><br>
+      <strong>下半场进球能力及逆转能力：</strong>英格兰下半场效率历史上更高（对克罗地亚下半场贝林厄姆47秒世界波+拉什福德锁定胜局）；巴拿马下半场失球率明显上升（两场失球均发生在下半场或补时），逆转能力几乎为零。<br><br>
+      <strong>历史交锋分布：</strong>2018年世界杯交锋是上下半场各3球的"血洗"剧本（半场3-0，终场6-1），历史数据支持英格兰下半场扩大优势的倾向。<br><br>
+      <strong>伤停/首发/战意/轮换因素：</strong>英格兰大规模轮换的磨合问题主要体现在上半场，随着替补球员逐渐找到状态和体能优势显现，下半场效率预计回升；巴拿马"放手一搏"的心理状态可能使其上半场更具冲击力，但体能和实力差距会在下半场逐渐显现。<br><br>
+      <strong>风险因素：</strong>①若英格兰轮换阵容磨合顺利，可能提前在上半场建立优势形成"胜/胜" ②巴拿马若延续定位球反击效率，不排除半场0-0甚至取得领先的冷门开局 ③英格兰若为保头名提升强度，全场节奏可能更趋向单边屠杀
+    </div>
+    <div class="highlight">投注建议：半全场"平/胜（英格兰）"@约2.90是本场性价比较高的核心价值盘，反映了轮换阵容上半场磨合需要时间、下半场体能和实力差距显现的现实预期。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">亚洲让球 <span class="tag tv">首推价值</span></div><div class="bc-rec">英格兰-1.5让球 @约2.05</div><div class="bc-reason">三依据：①巴拿马近10场对阵欧洲球队场均失球2.3个防线脆弱 ②英格兰即便轮换整体个人能力仍占明显优势 ③相比独赢1.28的低赔率，让球盘提供更合理的风险收益比</div></div>
+      <div class="bet-card"><div class="bc-type">胜平负</div><div class="bc-rec">英格兰独赢 @1.28</div><div class="bc-reason">uFootball模型给出71%胜率，确定性高但赔率价值有限，适合作为稳胆配置</div></div>
+      <div class="bet-card"><div class="bc-type">大小球</div><div class="bc-rec">小球2.5 @1.75</div><div class="bc-reason">巴拿马队史4场颗粒无收+英格兰轮换阵容磨合度存疑，双重因素指向偏低分的比赛</div></div>
+      <div class="bet-card"><div class="bc-type">射手</div><div class="bc-rec">沃特金斯/戈登首发并进球 @约3.00+</div><div class="bc-reason">英格兰轮换预期下替补攻击手获得更多出场时间和终结机会，具备一定赔率价值</div></div>
+      <div class="bet-card val"><div class="bc-type">半全场 <span class="tag tv">推荐</span></div><div class="bc-rec">半场平/全场英格兰胜 @约2.90</div><div class="bc-reason">轮换阵容上半场磨合需要时间+巴拿马体能下降阶段才会出现漏洞，是本场最贴合实际节奏的半全场组合</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 9 克罗地亚 vs 加纳 ========== -->
+<div class="card" id="m1">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇭🇷 克罗地亚 vs 加纳 🇬🇭</div>
+      <span class="grp">L组 · 末轮（第3轮）</span>
+      <span class="decider">⚡克罗地亚生死战 · 加纳战平即出线</span>
+      <span class="status">库杜斯伤缺 · 帕尔特伊缺席</span>
+    </div>
+    <div class="mh-right">费城 林肯金融球场</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇭🇷 克罗地亚（近5场）</div>
+        <div class="form-row"><span class="fl">L</span><span class="fw">W</span><span class="fd">D</span><span class="fl">L</span><span class="fd">D</span></div>
+        <div class="sub">第1轮：2-4负英格兰（莫德里奇送点+巴图里纳世界波，但下半场被英格兰连入2球）<br>第2轮：1-0胜巴拿马（替补老将布迪米尔54分钟制胜，全场射门6-8落后于巴拿马）<br>1胜1负积3分排名L组第三，必须取胜才能确保晋级<br>近两届世界杯（亚军+四强）的黄金一代整体实力和竞技状态明显下滑</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇬🇭 加纳（近5场）</div>
+        <div class="form-row"><span class="fw">W</span><span class="fd">D</span><span class="fl">L</span><span class="fd">D</span><span class="fl">L</span></div>
+        <div class="sub">第1轮：1-0绝杀巴拿马（补时第95分钟耶林基制胜，全场反击效率高）<br>第2轮：0-0平英格兰（5-4-1低位防守体系，全场仅2次射门1次射正，但零封强敌英格兰）<br>1胜1平积4分排名L组第二，战平即可至少以小组第二身份晋级<br>近6场国际赛事曾遭遇1平5负的低迷期，但进入正赛后状态明显回升（近3场1胜2平不败）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">克罗地亚</div><div class="val">FIFA第11-13位左右</div><div class="sub">L组第三（3分，净胜球-1）· 必须取胜才能确保晋级，平局或输球将极度依赖其他小组第三名比较<br>全队身价约3.9亿欧元，整体实力远高于排名体现，但中前场阵容老化问题突出</div></div>
+      <div class="stat-block"><div class="lbl">加纳</div><div class="val">FIFA第64-73位左右</div><div class="sub">L组第二（4分，净胜球+1）· 不败即可至少锁定小组第二晋级，出线形势乐观<br>全队身价约2.34亿欧元，是克罗地亚的近6分之一，但防守端0失球的表现亮眼</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">克罗地亚</div><div class="val">进~3球 / 失~4球</div><div class="sub">本届赛事2场进3球失4球，对巴拿马一战全场射门6-8反而落后于实力更弱的对手，进攻流畅度堪忧<br>门将利瓦科维奇贡献多次关键扑救，但首战因莫德里奇个人失误送上点球暴露老将状态下滑隐患</div></div>
+      <div class="stat-block"><div class="lbl">加纳</div><div class="val">进~1球 / 失~0球</div><div class="sub">本届赛事2场仅进1球（绝杀巴拿马），但防守端0失球的纪律性极为亮眼，零封了纸面实力远超自己的英格兰<br>核心边锋库杜斯伤缺+中场节拍器帕尔特伊因签证问题无法参赛，进攻创造力大幅缩水，仅能依靠塞门约、阿尤等支撑反击体系</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <div class="stat-block">
+      <div class="val">两队世界杯历史上从未交锋，正式比赛历史交锋数据有限</div>
+      <div class="sub">没有充分历史交锋数据可供参考。从两队本届赛事至今的攻防数据对比：克罗地亚虽身价和阵容深度远超加纳，但近期表现（尤其对巴拿马一战射门数落后于对手）暴露中前场效率问题；加纳虽进攻火力有限，但防守纪律性已两次验证（0失球），整体实力差距理论上仍倾向克罗地亚，但加纳的防守体系是不可忽视的硬骨头</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>克罗地亚：</strong>全队主力据报可以正常出战，门将利瓦科维奇、前腰巴图里纳状态出色；但队长莫德里奇（40岁）体能下滑明显，对阵巴拿马一战已显露动作迟缓的隐患，年龄问题是球队最大的系统性风险</li>
+      <li><strong>加纳⚠：</strong>核心边锋库杜斯因伤确认缺席本届赛事，球队最具创造力的进攻点缺失；中场节拍器帕尔特伊被加拿大拒签无法参赛（此前曾因相关问题缺席首轮），三线核心集体缺阵对加纳的反击质量构成实质打击；仅能依靠塞门约、伊纳基·威廉姆斯、乔丹·阿尤等支撑进攻体系</li>
+      <li><strong>关键变量：</strong>加纳人员问题的严重性（库杜斯+帕尔特伊缺席）可能是克罗地亚本场最大的机会窗口——若克罗地亚能延续对巴拿马的高空争顶优势（首轮表现突出），有较大概率打破加纳的密集防守</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>克罗地亚4-3-3（莫德里奇+科瓦契奇中场调度）：</strong>技术上具备压制能力，但破密集防守的手段和效率仍需验证；若延续首轮表现出的高空争顶优势，有望利用定位球打破加纳防线</li>
+      <li><strong>加纳5-4-1（低位防守反击）：</strong>身体对抗凶悍，防守韧性突出，但库杜斯+帕尔特伊缺席后反击爆点和质量大幅下降，仅能依靠塞门约、阿尤的个人能力制造有限威胁</li>
+      <li><strong>关键对位：</strong>克罗地亚技术质量+定位球能力 vs 加纳纪律性防守+人员残缺的反击体系——加纳"全力进攻反而容易暴露防线漏洞"的逻辑使其更倾向保守求稳，这种局面理论上对技术更细腻的克罗地亚更有利，但加纳已两次证明的防守纪律性不可低估</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组赛形势 / 战意分析</div>
+    <ul class="alist">
+      <li><strong>克罗地亚必须取胜：</strong>没有任何容错空间，平局或输球都意味着出线形势严峻（需依赖其他小组最佳第三名比较），全队将全力压上争胜</li>
+      <li><strong>加纳战平即可：</strong>不败即可至少以小组第二身份晋级，整体压力相对较小，但若取胜可直接登顶小组第一，战意依然强烈</li>
+      <li><strong>动机的现实落差：</strong>克罗地亚"背水一战"的紧迫感 vs 加纳"立足防守、伺机抢分"的从容心态，使本场预计呈现"克罗地亚多点压上、加纳全员退守反击"的鲜明战术对立</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">克罗地亚独赢</div><div class="ov hot">1.60-1.65</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">3.05-3.70</div></div>
+      <div class="ob"><div class="ol">加纳独赢</div><div class="ov">5.25-5.65</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov">2.25</div></div>
+      <div class="ob"><div class="ol">小球2.5</div><div class="ov hot">1.70</div></div>
+      <div class="ob"><div class="ol">克罗地亚不败</div><div class="ov">约1.30</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">uFootball模型给出克罗地亚59%胜率@1.65、平局25%@3.7、加纳16%@5.25，是市场对克罗地亚必须取胜动机和整体实力优势的双重认可；但加纳此前两场0失球的防守纪录使大球盘口并未被进一步压低，反映市场认为克罗地亚破密集防守的难度依然存在</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>克罗地亚独赢资金集中(1.60-1.65)，反映市场对其"必须取胜"动机和技术质量优势的认可</li>
+      <li>小球2.5相对受关注，依据是加纳防守纪律性已两次验证0失球+库杜斯帕尔特伊缺席后进攻威胁有限，整体盘面偏向克罗地亚小胜而非大胜</li>
+      <li>克罗地亚不败盘被视为更稳健的选择，覆盖了"克罗地亚小胜"和"逼平加纳铁桶阵"两种现实可能性</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：中等（uFootball模型给加纳16%胜率，但加纳防守纪律性是真实变量）</div>
+      <p>克罗地亚整体技术质量和"必须取胜"的动机使其占据明显优势，但加纳已两次证明的防守纪律性（0失球，零封英格兰）不可低估，且克罗地亚对巴拿马一战暴露的中前场效率问题（射门数落后于实力更弱对手）是隐忧。莫德里奇40岁的体能和状态下滑，若被加纳针对性利用，存在被逼平甚至爆冷的可能性，尤其加纳只需1分即可晋级的"求稳"心理可能反而增加全场低分胶着的概率。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">克罗地亚 2-0 加纳（主选）</div>
+    <div class="pred-meta">概率约22% · 次选：1-0克罗地亚（约20%） · 1-1平（约18%） · 2-1克罗地亚（约16%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 5/10（克罗地亚必须取胜动机明确，但加纳防守纪律性增添不确定性）</div>
+    <div class="pred-body">
+      <strong>为什么预测2-0？</strong><br>
+      克罗地亚必须取胜的强烈动机将驱使其从开场即采取更高强度的压上策略，技术质量和定位球能力理论上能突破加纳因库杜斯+帕尔特伊缺席而被削弱的防守体系；但加纳已两次证明的防守纪律性（0失球，零封英格兰）和身体对抗强度，决定了克罗地亚很难轻松取胜或大比分获胜。2-0反映了"克罗地亚整体技术质量占优+必须取胜的动机驱动"和"加纳防守纪律性限制比分扩大"两种现实因素的平衡。<br><br>
+      <strong>数据支持：</strong>①uFootball模型给克罗地亚59%胜率 ②加纳本届赛事2场0失球的防守纪录 ③库杜斯、帕尔特伊缺席使加纳进攻威胁大幅下降<br><br>
+      <strong>风险因素：</strong>①莫德里奇40岁体能下滑可能被加纳针对性利用 ②克罗地亚对巴拿马一战已暴露中前场效率问题，破密集防守能力存疑 ③加纳"战平即可"的求稳心理可能延续此前的低位防守纪律，导致克罗地亚迟迟无法破门形成1-1或0-0的冷门结果
+    </div>
+  </div>
+
+  <div class="htft-panel">
+    <div class="htft-title">⏱ 半全场胜平负预测</div>
+    <div class="htft-row">
+      <div class="htft-box"><div class="rank">第一选择</div><div class="combo">平/胜（克罗地亚）</div><div class="prob">概率：30%</div></div>
+      <div class="htft-box"><div class="rank">第二选择</div><div class="combo">胜/胜（克罗地亚）</div><div class="prob">概率：22%</div></div>
+      <div class="htft-box"><div class="rank">第三选择</div><div class="combo">平/平</div><div class="prob">概率：18%</div></div>
+    </div>
+    <div style="font-size:11px;color:#9a5a30;margin-bottom:8px">信心指数 5/10</div>
+    <div class="htft-body">
+      <strong>为什么预测"半场平/全场克罗地亚胜"？</strong><br>
+      加纳此前两场比赛上半场均能保持0失球的密集防守纪律（对巴拿马上半场0-0、对英格兰全场0-0），其低位防守体系在比赛前段执行力最强；克罗地亚对巴拿马一战制胜球出现在54分钟，说明其破密集防守往往需要时间累积优势。两队比赛规律均指向"上半场胶着、下半场分胜负"的模式。<br><br>
+      <strong>数据支持：①两队近10场上半场进球/失球：</strong>克罗地亚近2场上半场2进2失（对英格兰半场2-2）和0进0失（对巴拿马，制胜球在下半场）；加纳近2场上半场0进0失（对巴拿马）和0进0失（对英格兰，全场仅2射1正）。<br><br>
+      <strong>两队近10场半场领先/平/落后次数：</strong>克罗地亚近2场1次半场平(对英格兰，后被超出)、1次半场平(对巴拿马，下半场才分胜负)；加纳近2场2次半场平，体能下降前防守体系最为稳固。<br><br>
+      <strong>下半场进球能力及逆转能力：</strong>克罗地亚下半场效率明显更高（对巴拿马制胜球在54分钟，对英格兰下半场曾试图反扑）；加纳下半场体能下滑明显（近6场状态低迷期多发生在下半场），随着比赛推进防守漏洞会逐渐增多。<br><br>
+      <strong>历史交锋分布：</strong>两队世界杯历史首次交锋，无数据可参考。<br><br>
+      <strong>伤停/首发/战意/轮换因素：</strong>克罗地亚全队可以正常出战，必须取胜的动机将驱使全场保持高强度；加纳库杜斯、帕尔特伊缺席使其进攻威胁有限，更可能在上半场专注防守、下半场体能下降阶段被克罗地亚打开局面。<br><br>
+      <strong>风险因素：</strong>①若克罗地亚定位球或个人能力在上半场即建功，可能形成"胜/胜"提前锁定胜局 ②莫德里奇若再次出现个人失误，可能让加纳获得意外破门机会 ③加纳若全场坚守住防线直至终场，0-0冷门结果的概率同样存在
+    </div>
+    <div class="highlight">投注建议：半全场"平/胜（克罗地亚）"@约2.50是本场核心价值盘，结合了加纳上半场防守纪律性的真实数据和克罗地亚下半场效率更高的历史规律。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">胜平负 <span class="tag tv">推荐</span></div><div class="bc-rec">克罗地亚独赢 @1.60-1.65</div><div class="bc-reason">三依据：①uFootball模型给出59%胜率 ②克罗地亚必须取胜动机明确 ③库杜斯、帕尔特伊缺席大幅削弱加纳进攻威胁</div></div>
+      <div class="bet-card"><div class="bc-type">亚洲让球</div><div class="bc-rec">克罗地亚-0.5/-1让球 @约1.95</div><div class="bc-reason">兼顾克罗地亚实力优势和加纳防守纪律性可能限制大胜的现实，比单纯独赢更具赔率价值</div></div>
+      <div class="bet-card"><div class="bc-type">大小球</div><div class="bc-rec">小球2.5 @1.70</div><div class="bc-reason">加纳防守纪律性已两次验证0失球+人员残缺进攻威胁有限，整体盘面偏向低分</div></div>
+      <div class="bet-card"><div class="bc-type">双方进球</div><div class="bc-rec">双方进球-否 @约1.85</div><div class="bc-reason">加纳两场0失球但本届至今仅进1球，进攻威胁有限，克罗地亚若能零封对手概率不低</div></div>
+      <div class="bet-card val"><div class="bc-type">半全场 <span class="tag tv">价值</span></div><div class="bc-rec">半场平/全场克罗地亚胜 @约2.50</div><div class="bc-reason">加纳上半场防守纪律性最强+克罗地亚下半场效率历史更高，是本场最贴合实际节奏的组合</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 10 哥伦比亚 vs 葡萄牙 ========== -->
+<div class="card" id="m2">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇨🇴 哥伦比亚 vs 葡萄牙 🇵🇹</div>
+      <span class="grp">K组 · 末轮（第3轮）</span>
+      <span class="decider">⚡K组头名争夺战</span>
+      <span class="status">双方均无重大伤停 · 6分vs4分</span>
+    </div>
+    <div class="mh-right">迈阿密 硬石体育场</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇨🇴 哥伦比亚（近5场）</div>
+        <div class="form-row"><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span><span class="fl">L</span></div>
+        <div class="sub">第1轮：3-1胜乌兹别克斯坦（迪亚斯助攻+破门，坎帕兹补时锁定胜局）<br>第2轮：1-0胜民主刚果（艰难取胜，本特库尔为代表的中场体系运转流畅）<br>两连胜积6分排名K组第一，已提前锁定淘汰赛席位，仅需平局即可锁定头名<br>近2场进4球仅失1球，防线由达文森·桑切斯坐镇，整体攻防体系成熟稳健</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇵🇹 葡萄牙（近5场）</div>
+        <div class="form-row"><span class="fd">D</span><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span><span class="fd">D</span></div>
+        <div class="sub">第1轮：1-1平民主刚果（爆冷被逼平，C罗整场表现挣扎未能射正）<br>第2轮：5-0狂胜乌兹别克斯坦（C罗梅开二度，成为唯一六届世界杯均有进球的球员）<br>1胜1平积4分排名K组第二，必须取胜才能反超夺取头名<br>近2场进6球仅失1球，找回状态后火力凶猛，但首轮被逼平暴露防线连续丢球隐患</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">哥伦比亚</div><div class="val">FIFA第13-15位左右</div><div class="sub">K组第一（6分，进4失1）· 已提前锁定淘汰赛，平局即可锁定头名<br>洛伦索执教下整体攻防体系成熟，J罗、路易斯·迪亚斯领衔的中前场是核心竞争力</div></div>
+      <div class="stat-block"><div class="lbl">葡萄牙</div><div class="val">FIFA第5-6位左右</div><div class="sub">K组第二（4分，进6失1）· 必须取胜才能夺回头名，战平或小负也大概率以小组第二/第三出线<br>C罗41岁参加第六届世界杯，努诺·门德斯、维蒂尼亚等新生代核心同样关键</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">哥伦比亚</div><div class="val">进~4球 / 失~1球</div><div class="sub">本届赛事2场进4球失1球，防线整体稳固（仅失1球），达文森·桑切斯坐镇后防表现出色<br>路易斯·迪亚斯已贡献1球1助攻，丹尼尔·穆尼奥斯（边卫）梅开二度同样亮眼，进攻点分散是优势</div></div>
+      <div class="stat-block"><div class="lbl">葡萄牙</div><div class="val">进~6球 / 失~1球</div><div class="sub">本届赛事2场进6球失1球，5-0狂胜乌兹别克斯坦展现统治级火力，C罗找回状态梅开二度<br>但首轮被民主刚果逼平时整体效率低迷，防线连续丢球的隐患在面对更强对手时需警惕</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>两队历史交锋数据有限，世界杯历史上从未交锋，本场是两队在世界杯舞台的历史性首次对决</li>
+      <li>近年友谊赛层面交锋记录较少，缺乏直接参考价值，需更多依赖两队本届赛事的实际表现规律进行判断</li>
+      <li>哥伦比亚2连胜的稳健表现与葡萄牙"首轮被逼平、次轮找回状态"的波动曲线形成对比，整体而言双方在攻防两端的硬实力较为接近，预计是一场势均力敌的头名争夺战</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>哥伦比亚：</strong>全队据报无重大伤停，J罗（队长）、路易斯·迪亚斯（拜仁，全队身价最高）状态正佳；丹尼尔·穆尼奥斯本届已贡献2球，边路威胁突出；后防核心达文森·桑切斯坐镇，整体阵容完整度高</li>
+      <li><strong>葡萄牙：</strong>全队同样据报无重大伤停，C罗（41岁）状态在首轮挣扎后于次轮找回水准，梅开二度并刷新六届世界杯进球纪录；努诺·门德斯、维蒂尼亚、若昂·内维斯等新生代核心随巴黎圣日耳曼夺得欧冠后状态正佳</li>
+      <li><strong>关键变量：</strong>双方均无伤停问题，这是一场纯粹的实力和状态对决，C罗对阵哥伦比亚坚固防线（达文森·桑切斯坐镇）的正面对抗是全场焦点，市场预期哥伦比亚防线会让C罗的射门机会变得稀少而珍贵</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>哥伦比亚4-3-3：</strong>J罗、迪亚斯领衔的中前场配合流畅，洛伦索体系强调控球和边路渗透，整体攻防转换效率高，2连胜的稳健表现证明体系运转良好</li>
+      <li><strong>葡萄牙4-3-3：</strong>努诺·门德斯+维蒂尼亚+若昂·内维斯的中场组合具备欧冠冠军级别的技术质量，C罗仍是终结端的核心，整体打法控球渗透+边路传中结合</li>
+      <li><strong>关键对位：</strong>葡萄牙欧冠冠军级中场配置 vs 哥伦比亚整体防守组织——哥伦比亚预计会采取更紧凑的防守阵型限制C罗的射门空间，正如分析所指出的，"考虑到达文森·桑切斯坐镇后防且哥伦比亚可以接受平局，预计他们会让C罗很难获得清晰的射门机会"</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组赛形势 / 战意分析</div>
+    <ul class="alist">
+      <li><strong>哥伦比亚从容应对：</strong>已提前锁定出线，平局即可锁定头名，动机相对克制（不需冒险），但取胜将带来更有利的淘汰赛签位，仍有较强求胜欲望</li>
+      <li><strong>葡萄牙背水一战：</strong>必须全取三分才能反超夺回K组头名，丢分基本无缘头名，全队将全力压上争胜，C罗渴望在这个舞台继续刷新纪录的个人动力同样强烈</li>
+      <li><strong>动机不对等下的开放性：</strong>哥伦比亚"平局可接受"vs葡萄牙"必须取胜"的局面，理论上有利于技术更细腻、更具侵略性的葡萄牙取得场面优势，但哥伦比亚的防守组织性和反击效率不可忽视</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">哥伦比亚独赢</div><div class="ov">3.50</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">3.25</div></div>
+      <div class="ob"><div class="ol">葡萄牙独赢</div><div class="ov hot">2.10</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov">1.95</div></div>
+      <div class="ob"><div class="ol">小球2.5</div><div class="ov hot">1.88</div></div>
+      <div class="ob"><div class="ol">C罗随时进球</div><div class="ov">2.10</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">uFootball模型给出葡萄牙43%胜率@2.1、哥伦比亚29%@3.5、平局28%@3.25，葡萄牙是微弱热门但赔率差距不大，反映市场认为这是一场势均力敌的头名争夺战；C罗随时进球2.10的赔率体现了"市场认可其威胁但承认哥伦比亚防线实力"的平衡判断（C罗不进球的赔率仅1.54，反而被列为更受认可的结果）</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>葡萄牙独赢资金略占优势(2.10)，但三方赔率差距不大，反映市场对哥伦比亚2连胜的稳健表现同样认可</li>
+      <li>C罗参与度市场（射正、被犯规、进球加助攻）被列为更稳妥的投注角度，相比直接进球赔率能更好平衡哥伦比亚防线的限制效果</li>
+      <li>大小球盘口接近(1.95/1.88)，反映市场预期这是一场有一定开放性但不会沦为乱战的比赛，双方控球和组织能力都较强</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：中等（本场无明显"强弱悬殊"概念，三方赔率接近）</div>
+      <p>葡萄牙43%、哥伦比亚29%、平局28%的概率分布说明这是一场高度开放的头名争夺战，并不存在传统意义上的"爆冷"。葡萄牙找回状态后的火力（5-0狂胜乌兹别克斯坦）和C罗的历史性动力是其优势，但首轮被民主刚果逼平证明其面对组织严密防守时存在效率问题——哥伦比亚的防守体系恰恰具备类似特质。哥伦比亚2连胜的稳健表现和"平局即可"的从容心态，使其完全具备逼平甚至取胜的实力基础。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">葡萄牙 2-1 哥伦比亚（主选）</div>
+    <div class="pred-meta">概率约20% · 次选：1-1平（约19%） · 1-0葡萄牙（约18%） · 2-0葡萄牙（约16%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 4/10（三方赔率接近，双方近期状态和动机都有较强支撑，是本日六场中最难定论的场次之一）</div>
+    <div class="pred-body">
+      <strong>为什么预测2-1？</strong><br>
+      葡萄牙必须取胜的强烈动机叠加找回状态后的进攻火力（5-0狂胜乌兹别克斯坦），理论上能对哥伦比亚防线形成压制；但哥伦比亚2连胜证明的整体攻防体系和路易斯·迪亚斯+丹尼尔·穆尼奥斯的进攻点，使其几乎必然能从葡萄牙身上抢得至少1球（葡萄牙首轮被逼平已证明其防线存在连续丢球的隐患）。2-1反映了"葡萄牙整体动机和状态略占优"和"哥伦比亚进攻效率不会被完全压制"两种现实因素的平衡。<br><br>
+      <strong>数据支持：</strong>①葡萄牙近2场进6球找回统治级火力 ②哥伦比亚近2场仅失1球防守组织性强 ③葡萄牙首轮被民主刚果逼平证明防线对组织严密对手存在隐患<br><br>
+      <strong>风险因素：</strong>①哥伦比亚若延续防守组织性可能逼平甚至零封葡萄牙 ②C罗若延续梅开二度的状态可能形成更大分差 ③哥伦比亚"平局可接受"的心态可能使其采取更保守策略，导致0-0或1-1的低分结果
+    </div>
+  </div>
+
+  <div class="htft-panel">
+    <div class="htft-title">⏱ 半全场胜平负预测</div>
+    <div class="htft-row">
+      <div class="htft-box"><div class="rank">第一选择</div><div class="combo">平/胜（葡萄牙）</div><div class="prob">概率：24%</div></div>
+      <div class="htft-box"><div class="rank">第二选择</div><div class="combo">平/平</div><div class="prob">概率：20%</div></div>
+      <div class="htft-box"><div class="rank">第三选择</div><div class="combo">胜/胜（葡萄牙）</div><div class="prob">概率：18%</div></div>
+    </div>
+    <div style="font-size:11px;color:#9a5a30;margin-bottom:8px">信心指数 4/10</div>
+    <div class="htft-body">
+      <strong>为什么预测"半场平/全场葡萄牙胜"？</strong><br>
+      葡萄牙首轮对民主刚果上半场曾0-0（最终1-1平局也是头球破门），次轮对乌兹别克斯坦虽5-0大胜但进球分布同样延续到下半场，整体呈现"需要时间打开局面"的特征；哥伦比亚对民主刚果一战同样1-0小胜，进攻效率偏向稳健而非爆发。两队结合下，半场战平后葡萄牙凭借整体技术质量在下半场打开局面的剧本概率最高。<br><br>
+      <strong>数据支持：①两队近10场上半场进球/失球：</strong>葡萄牙近2场上半场0进0失（对民主刚果，进球在下半场头球）和2进0失（对乌兹别克斯坦，C罗状态火热提速）；哥伦比亚近2场上半场1进0失（对乌兹别克斯坦）和0进0失（对民主刚果半场0-0，下半场才破门）。<br><br>
+      <strong>两队近10场半场领先/平/落后次数：</strong>葡萄牙近2场1次半场平(对民主刚果)、1次半场领先(对乌兹别克斯坦)；哥伦比亚近2场1次半场领先(对乌兹别克斯坦)、1次半场平(对民主刚果，下半场才分胜负)。<br><br>
+      <strong>下半场进球能力及逆转能力：</strong>葡萄牙下半场效率历史更高（对民主刚果下半场头球破门拿到关键1分，对乌兹别克斯坦下半场扩大比分）；哥伦比亚下半场同样具备稳定输出（对民主刚果下半场制胜），双方下半场威胁都更大。<br><br>
+      <strong>历史交锋分布：</strong>两队世界杯历史首次交锋，无数据可参考。<br><br>
+      <strong>伤停/首发/战意因素：</strong>双方均无伤停，预计全主力出战；葡萄牙必须取胜的动机可能促使其开场即提速，但哥伦比亚防守组织性可能限制这种提速的实际效果，使比赛延续"半场胶着"的模式。<br><br>
+      <strong>风险因素：</strong>①若葡萄牙如对乌兹别克斯坦一样快速进球，"胜/胜"概率上升 ②哥伦比亚若先于葡萄牙打破僵局，"平/平"或"胜/胜（哥伦比亚）"概率上升 ③头名争夺战双方均可能开局谨慎，半场0-0平局的基础概率不可忽视
+    </div>
+    <div class="highlight">投注建议：半全场"平/胜（葡萄牙）"@约3.30是本场性价比较高的价值盘，结合了葡萄牙近期比赛"需要时间打开局面"的真实数据规律和整体动机优势的现实预期。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">双方进球 <span class="tag tv">首推价值</span></div><div class="bc-rec">双方进球-是 @约1.85</div><div class="bc-reason">三依据：①双方近2场各项数据均显示稳定的进攻输出能力 ②葡萄牙首轮被逼平证明防线非无懈可击 ③C罗对阵密集防守仍有较高进球概率</div></div>
+      <div class="bet-card"><div class="bc-type">胜平负</div><div class="bc-rec">葡萄牙独赢 @2.10</div><div class="bc-reason">必须取胜的动机+找回状态后的火力，是市场认可的微弱热门，但赔率优势有限</div></div>
+      <div class="bet-card"><div class="bc-type">大小球</div><div class="bc-rec">大球2.5 @1.95</div><div class="bc-reason">双方近2场均有较强进攻输出，头名争夺战的开放性使总球数倾向偏高</div></div>
+      <div class="bet-card"><div class="bc-type">射手</div><div class="bc-rec">C罗进球+助攻 大于0.5 @2.00</div><div class="bc-reason">兼顾进球和助攻两种回报途径，应对哥伦比亚顽强防线时更具保障性</div></div>
+      <div class="bet-card val"><div class="bc-type">半全场 <span class="tag tv">推荐</span></div><div class="bc-rec">半场平/全场葡萄牙胜 @约3.30</div><div class="bc-reason">葡萄牙近期比赛均呈现"上半场胶着、下半场打开局面"的特征，是本场最佳半全场价值盘</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 11 刚果(金) vs 乌兹别克斯坦 ========== -->
+<div class="card" id="m3">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇨🇩 刚果(金) vs 乌兹别克斯坦 🇺🇿</div>
+      <span class="grp">K组 · 末轮（第3轮）</span>
+      <span class="decider">⚡刚果金争夺小组第三 · 乌兹别克基本出局</span>
+      <span class="status">双方均无重大伤停 · 1分vs0分</span>
+    </div>
+    <div class="mh-right">休斯顿 NRG体育场</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇨🇩 刚果(金)（近5场）</div>
+        <div class="form-row"><span class="fd">D</span><span class="fl">L</span><span class="fd">D</span><span class="fw">W</span><span class="fd">D</span></div>
+        <div class="sub">第1轮：1-1平葡萄牙（头球破门逼平夺冠热门，创造队史世界杯首分）<br>第2轮：0-1负哥伦比亚（532防守大巴体系对C罗限制有效，但对哥伦比亚整体实力仍有差距）<br>1分排名K组第三，必须取胜并寄望净胜球/进球数才能争取小组第三出线资格<br>自1974年（时为扎伊尔）后首次重返世界杯正赛，纪律性极强，预选赛曾力克喀麦隆、尼日利亚</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇺🇿 乌兹别克斯坦（近5场）</div>
+        <div class="form-row"><span class="fl">L</span><span class="fl">L</span><span class="fd">D</span><span class="fw">W</span><span class="fl">L</span></div>
+        <div class="sub">第1轮：1-3负哥伦比亚（费祖拉耶夫扳平后被对手反击连入2球）<br>第2轮：0-5负葡萄牙（C罗梅开二度，全队进攻端0威胁）<br>0分排名K组垫底，两战全负且净胜球-6，已基本无缘晋级<br>队史首次晋级世界杯正赛，整体经验和硬实力与小组其他三队存在明显差距</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">刚果(金)</div><div class="val">FIFA第60位左右</div><div class="sub">K组第三（1分，进1失2）· 末轮必须取胜，同时需要积累净胜球/进球数优势争夺8个最佳小组第三名额<br>全队身价约1.48亿欧元，纪律性强，预选赛曾击败喀麦隆、尼日利亚两大非洲劲旅</div></div>
+      <div class="stat-block"><div class="lbl">乌兹别克斯坦</div><div class="val">FIFA第60-65位左右</div><div class="sub">K组垫底（0分，进1失8）· 已基本无缘晋级，本场更多为队史荣誉而战<br>中亚地区代表，首次跻身世界杯正赛，整体经验不足是两连败的主要原因</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">刚果(金)</div><div class="val">进~1球 / 失~2球</div><div class="sub">本届赛事2场仅进1球失2球，进攻端依赖巴坎布、维萨的个人能力，整体效率有限<br>防守端纪律性突出，从未在历史上输球超过1球，532体系收缩紧凑，对阵C罗时限制效果显著</div></div>
+      <div class="stat-block"><div class="lbl">乌兹别克斯坦</div><div class="val">进~1球 / 失~8球</div><div class="sub">本届赛事2场仅进1球却失8球，防线在面对实力更强对手时几乎全面崩溃<br>对葡萄牙一战0-5的比分充分暴露其防守体系和整体硬实力与小组前两强的巨大差距</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <div class="stat-block">
+      <div class="val">两队历史上从未交锋，本场为两支世界杯新军的历史性首次对决</div>
+      <div class="sub">没有历史数据可供参考。从本届赛事至今的攻防表现对比，刚果(金)1分逼平葡萄牙+力守对哥伦比亚的失利分差，整体防守纪律性和硬实力明显优于0分且失球高达8个的乌兹别克斯坦，本场理论上是刚果(金)占据明显优势的一场比赛</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>刚果(金)：</strong>全队据报无重大伤停，前场组合巴坎布（皇家贝蒂斯）、维萨（纽卡斯尔联）领衔进攻，后防万-比萨卡、姆本巴等效力欧洲顶级联赛的球员提供稳定防守保障</li>
+      <li><strong>乌兹别克斯坦：</strong>全队同样无重大伤停报告，队长肖穆罗多夫领衔锋线，但整体阵容身价和大赛经验远逊于对手，多名球员效力中亚及国内联赛，缺乏顶级赛事历练</li>
+      <li><strong>关键变量：</strong>双方均无伤停问题，这是一场纯粹的硬实力对决，刚果(金)纪律性极强的532防守体系对阵乌兹别克斯坦本届赛事已暴露的防守脆弱性（失8球），理论上具备明显优势</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>刚果(金)5-3-2（务实防守反击）：</strong>德萨布雷打造的体系强调纪律性和身体对抗，从未大比分输球的纪录证明其防守稳定性，巴坎布作为支点串联反击</li>
+      <li><strong>乌兹别克斯坦（防守体系脆弱）：</strong>对阵葡萄牙一战0-5的比分暴露其防线组织性和应对欧洲球队身体强度时的明显短板，进攻端缺乏有效的创造力</li>
+      <li><strong>关键对位：</strong>刚果(金)纪律性防守+巴坎布反击效率 vs 乌兹别克斯坦本届赛事已验证的整体脆弱性——这是本场实力差距最为明显的对位之一，刚果(金)若能延续对葡萄牙、哥伦比亚的防守纪律性，取胜概率较高</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组赛形势 / 战意分析</div>
+    <ul class="alist">
+      <li><strong>刚果(金)背水一战：</strong>必须取胜才能争夺K组第三晋级资格，同时需要积累净胜球和进球数优势与其他小组第三名比较，全队动机空前强烈，争取自1974年后再次创造队史佳绩</li>
+      <li><strong>乌兹别克斯坦荣誉之战：</strong>已基本无缘晋级，本场更多是为队史首次世界杯参赛留下体面的结果，争取摆脱"0进球或大比分惨败"的尴尬纪录</li>
+      <li><strong>动机不对等：</strong>刚果(金)"必须赢球争资格"的强烈诉求 vs 乌兹别克斯坦"已无太多压力"的心理状态，理论上对刚果(金)更为有利，预计本场会呈现刚果(金)全力压上的局面</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">刚果(金)独赢</div><div class="ov hot">1.70</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">3.40</div></div>
+      <div class="ob"><div class="ol">乌兹别克斯坦独赢</div><div class="ov">4.50</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov">2.30</div></div>
+      <div class="ob"><div class="ol">小球2.5</div><div class="ov hot">1.62</div></div>
+      <div class="ob"><div class="ol">刚果金不败</div><div class="ov">约1.40</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">刚果(金)独赢资金集中(1.70)，反映市场对其纪律性防守和必须取胜动机的认可；小球盘口同样获得关注，依据是刚果(金)本届赛事整体进球效率有限（2场仅1球），而乌兹别克斯坦虽失球多但本场对阵同样非顶级强队的对手时防线压力相对减轻</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>刚果(金)独赢获得明显倾向(1.70)，依据是其纪律性防守体系+必须取胜的强烈动机+对阵乌兹别克斯坦本届已暴露的脆弱防线</li>
+      <li>小球2.5相对受关注，刚果(金)本届进攻效率本身有限，即便取胜也未必是大比分</li>
+      <li>刚果金不败盘被视为更稳健的选择，覆盖了"刚果金小胜"和"双方均存在不确定性导致逼平"两种现实可能</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：低（市场赔率明确倾向刚果金，但乌兹别克斯坦"无压力放开打"存在一定变数）</div>
+      <p>刚果(金)纪律性防守体系和必须取胜的动机使其明显占优，对阵乌兹别克斯坦本届赛事已暴露的整体脆弱性（2场失8球）更进一步巩固了这一判断。但需注意，乌兹别克斯坦在已基本出局、卸下心理负担的情况下，可能打出比此前两场更开放的进攻足球，尤其是面对同样非顶级强队的对手时，其反击效率可能有所回升，存在小幅爆冷或逼平的理论空间。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">刚果(金) 2-0 乌兹别克斯坦（主选）</div>
+    <div class="pred-meta">概率约24% · 次选：1-0刚果金（约20%） · 2-1刚果金（约18%） · 1-1平（约14%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 6/10（实力差距和动机层面均明确倾向刚果金）</div>
+    <div class="pred-body">
+      <strong>为什么预测2-0？</strong><br>
+      刚果(金)纪律性防守体系和必须取胜争夺小组第三的强烈动机，理论上能压制乌兹别克斯坦本届赛事已暴露的脆弱防线（2场失8球）；但刚果(金)自身进攻效率同样有限（2场仅进1球），即便取胜也未必能轻松扩大比分。2-0反映了"刚果金整体优势明显+动机驱动下全力进攻"和"自身终结效率有限制约大胜可能"两种因素的平衡。<br><br>
+      <strong>数据支持：</strong>①刚果(金)从未在历史上大比分输球的防守纪律性 ②乌兹别克斯坦本届赛事2场失8球的脆弱防线 ③刚果(金)必须取胜争夺小组第三资格的强烈动机<br><br>
+      <strong>风险因素：</strong>①刚果(金)自身进攻效率有限可能导致比分偏小 ②乌兹别克斯坦已无压力放开打可能制造反击威胁 ③若刚果金过于追求净胜球而冒险压上，可能被乌兹别克斯坦利用身后空档制造冷门进球
+    </div>
+  </div>
+
+  <div class="htft-panel">
+    <div class="htft-title">⏱ 半全场胜平负预测</div>
+    <div class="htft-row">
+      <div class="htft-box"><div class="rank">第一选择</div><div class="combo">平/胜（刚果金）</div><div class="prob">概率：28%</div></div>
+      <div class="htft-box"><div class="rank">第二选择</div><div class="combo">胜/胜（刚果金）</div><div class="prob">概率：24%</div></div>
+      <div class="htft-box"><div class="rank">第三选择</div><div class="combo">平/平</div><div class="prob">概率：16%</div></div>
+    </div>
+    <div style="font-size:11px;color:#9a5a30;margin-bottom:8px">信心指数 5/10</div>
+    <div class="htft-body">
+      <strong>为什么预测"半场平/全场刚果金胜"？</strong><br>
+      刚果(金)本届赛事进球效率本身有限（2场仅1球），上半场更倾向于先稳住防守再寻找机会；乌兹别克斯坦虽失球多，但失球也多分布在下半场体能下降阶段（对葡萄牙、哥伦比亚的失球均有一定比例集中在下半场）。两队结合下，半场战平后刚果金凭借下半场动机驱动打开局面的剧本概率最高。<br><br>
+      <strong>数据支持：①两队近10场上半场进球/失球：</strong>刚果(金)近2场上半场1进0失（对葡萄牙，头球破门）和0进0失（对哥伦比亚半场0-0，下半场才丢球）；乌兹别克斯坦近2场上半场1进2失（对哥伦比亚）和0进2失（对葡萄牙半场0-2，下半场再失3球）。<br><br>
+      <strong>两队近10场半场领先/平/落后次数：</strong>刚果(金)近2场1次半场领先(对葡萄牙，后被扳平)、1次半场平(对哥伦比亚)；乌兹别克斯坦近2场2次半场落后，下半场失球进一步扩大，体能和实力差距随比赛推进而加剧。<br><br>
+      <strong>下半场进球能力及逆转能力：</strong>刚果(金)下半场效率有限但防守稳定性强；乌兹别克斯坦下半场失球率明显上升（对葡萄牙下半场单独丢3球），随着比赛推进防线问题会愈发明显。<br><br>
+      <strong>历史交锋分布：</strong>两队世界杯历史首次交锋，无数据可参考。<br><br>
+      <strong>伤停/首发/战意因素：</strong>双方均无伤停，刚果(金)必须取胜的动机会驱使其全场保持强度；乌兹别克斯坦已基本无缘出线的心理状态可能影响其专注度和体能投入。<br><br>
+      <strong>风险因素：</strong>①若刚果金上半场即取得进球，可能提前形成"胜/胜"锁定胜局 ②乌兹别克斯坦若延续此前对哥伦比亚一战的反击效率，可能制造意外的"半场领先"冷门开局 ③若双方均较为谨慎，半场0-0的可能性同样存在
+    </div>
+    <div class="highlight">投注建议：半全场"平/胜（刚果金）"@约3.10是本场性价比较高的价值盘，结合了刚果金进攻效率需要时间累积、乌兹别克斯坦下半场防线问题更突出的真实数据规律。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">胜平负 <span class="tag tv">推荐</span></div><div class="bc-rec">刚果(金)独赢 @1.70</div><div class="bc-reason">三依据：①从未大比分输球的防守纪律性 ②乌兹别克斯坦本届2场失8球防线脆弱 ③刚果金必须取胜争夺小组第三资格</div></div>
+      <div class="bet-card"><div class="bc-type">亚洲让球</div><div class="bc-rec">刚果(金)-0.5/-1让球 @约1.90</div><div class="bc-reason">兼顾刚果金实力和动机优势，同时考虑其自身进攻效率有限可能限制大胜的现实</div></div>
+      <div class="bet-card val"><div class="bc-type">大小球 <span class="tag tv">价值</span></div><div class="bc-rec">小球2.5 @1.62</div><div class="bc-reason">三依据：①刚果金本届2场仅进1球进攻效率有限 ②双方风格均偏向防守优先 ③乌兹别克斯坦已基本出局可能缺乏足够动力打出高强度对攻</div></div>
+      <div class="bet-card"><div class="bc-type">射手</div><div class="bc-rec">巴坎布任意时刻进球 @约2.30</div><div class="bc-reason">作为刚果金前场支点，对阵防守脆弱的乌兹别克斯坦有较高进球概率</div></div>
+      <div class="bet-card risk"><div class="bc-type">半全场 <span class="tag tr">价值</span></div><div class="bc-rec">半场平/全场刚果金胜 @约3.10</div><div class="bc-reason">刚果金进攻效率需要时间累积+乌兹别克斯坦下半场防线问题更突出，是本场最贴合实际节奏的组合</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 12 约旦 vs 阿根廷 ========== -->
+<div class="card" id="m4">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇯🇴 约旦 vs 阿根廷 🇦🇷</div>
+      <span class="grp">J组 · 末轮（第3轮）</span>
+      <span class="decider">⚡阿根廷已锁头名 · 约旦已确定出局</span>
+      <span class="status">阿根廷大概率轮换 · 蒙铁尔伤情存疑</span>
+    </div>
+    <div class="mh-right">场馆待定</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇯🇴 约旦（近5场）</div>
+        <div class="form-row"><span class="fl">L</span><span class="fl">L</span><span class="fd">D</span><span class="fw">W</span><span class="fd">D</span></div>
+        <div class="sub">第1轮：1-3负奥地利（萨比策梅开二度+阿拉巴头球，约旦曾率先进球但被逆转）<br>第2轮：1-2负阿尔及利亚（古伊里第82分钟制胜，约旦再度先进球但被逆转）<br>0分排名J组垫底，两战全负且两次"先进球后被逆转"，已确定无缘小组前三<br>队史首次参加世界杯，整体经验不足，但展现出一定的进攻创造力和顽强韧性</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇦🇷 阿根廷（近5场）</div>
+        <div class="form-row"><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span><span class="fd">D</span></div>
+        <div class="sub">第1轮：3-0胜阿尔及利亚（梅西帽子戏法，整体压制力十足）<br>第2轮：2-0胜奥地利（梅西梅开二度，18球超越克洛泽加冕世界杯历史射手王）<br>2连胜6分排名J组第一，已提前一轮锁定小组头名，本场大概率大规模轮换<br>近10场7胜2平1负，斯卡洛尼体系成熟，卫冕冠军班底攻防两端运转流畅</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">约旦</div><div class="val">FIFA第68位左右</div><div class="sub">J组垫底（0分，进2失5）· 已确定出局，理论出线条件（赢阿根廷+奥地利输给阿尔及利亚+净胜球）已随阿根廷提前出线而几乎归零<br>2023亚洲杯亚军底蕴，首次跻身世界杯正赛即展现一定竞争力，但整体硬实力差距明显</div></div>
+      <div class="stat-block"><div class="lbl">阿根廷</div><div class="val">FIFA第1位</div><div class="sub">J组第一（6分，进5失0）· 已提前出线并基本锁定头名，本场轮换风险极低且不影响出线形势<br>卫冕冠军身份，梅西39岁仍是绝对核心，整体阵容深度和大赛经验全队顶级</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">约旦</div><div class="val">进~2球 / 失~5球</div><div class="sub">本届赛事2场进2球失5球，两次"率先进球却被逆转"的剧本反映其领先后稳固优势的能力不足<br>旅途消耗是本届参赛队中最大之一，两场长途飞行后体能状况持续承压，是连续被逆转的潜在因素</div></div>
+      <div class="stat-block"><div class="lbl">阿根廷</div><div class="val">进~5球 / 失~0球</div><div class="sub">本届赛事2场进5球零失球，攻防两端展现统治级水准，门将马丁内斯多次关键扑救保持球门不失<br>梅西本届已贡献多球并刷新世界杯历史射手王纪录（18球，超越克洛泽16球），整体进攻效率顶级</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>两队世界杯历史上从未交锋，正式比赛交锋数据极为有限，本场是历史性首次正式对决</li>
+      <li>实力差距悬殊是显而易见的事实——阿根廷FIFA排名第1，约旦排名68位左右，全队身价和大赛经验存在数量级差距</li>
+      <li>阿根廷已提前出线背景下大概率轮换主力，这是约旦理论上"实力差距悬殊"中唯一可寄望缩小的变量，但即便阿根廷轮换，替补阵容质量仍远超约旦</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>约旦：</strong>主力后卫纳西卜此前因伤一直存在出战疑虑，若仍未能复出将进一步削弱本就薄弱的防线；全队整体长途旅行后的体能状况是另一隐忧</li>
+      <li><strong>阿根廷：</strong>右后卫蒙铁尔此前曾遭遇肌肉拉伤出战存疑，但莫利纳、梅迪纳均可顶替该位置不影响整体战术框架；梅西、劳塔罗、阿尔瓦雷斯等核心攻击手健康，但已提前出线背景下，斯卡洛尼大概率会对阵容进行大规模轮换，梅西本人也有较大概率获得轮休</li>
+      <li><strong>关键变量：</strong>阿根廷的轮换力度是本场最大的不确定性来源——若梅西、劳塔罗等核心大规模轮休，替补阵容（如阿尔马达、迪巴拉级别球员）与约旦的实力差距虽然依然明显，但比分弹性会显著增大</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>约旦（防守反击，体能存疑）：</strong>两场比赛均展现出一定的进攻创造力（两次率先进球），但防守端稳定性不足且体能状况受长途旅行影响，难以支撑全场高强度对抗</li>
+      <li><strong>阿根廷（大概率轮换阵容）：</strong>斯卡洛尼体系即便轮换仍能保持基本框架，恩佐、麦卡利斯特、德保罗的中场三角传切体系成熟，整体技术质量远超约旦</li>
+      <li><strong>关键对位：</strong>约旦体能下降阶段的防守漏洞 vs 阿根廷轮换阵容的技术质量优势——即便阿根廷大规模轮换，球员个人能力和体系成熟度仍能在多数对位上占据优势，约旦的机会更多依赖阿根廷轮换后的整体强度下降和自身定位球/反击的爆发力</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组赛形势 / 战意分析</div>
+    <ul class="alist">
+      <li><strong>约旦理论残存希望渺茫：</strong>此前出线条件需要"自己击败阿根廷+奥地利输给阿尔及利亚+净胜球比较"三重苛刻条件同时满足，但实际上即便约旦爆冷取胜，按现行积分和净胜球差距，出线概率已极低，本场更多为队史荣誉和留下体面战绩而战</li>
+      <li><strong>阿根廷从容备战：</strong>已提前一轮锁定小组头名，本场无任何出线压力，核心诉求是保护主力球员健康、为淘汰赛做准备，预计斯卡洛尼会进行大规模轮换</li>
+      <li><strong>"轮换阿根廷"的双重影响：</strong>阿根廷的轮换不仅关乎本场结果，也间接影响J组第二名归属（阿尔及利亚vs奥地利的争夺）——市场分析指出，阿根廷淘汰约旦悬念的提前消失，等于"帮西班牙排掉了一个最大的雷"（J组第二将对阵H组第一）</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">约旦独赢</div><div class="ov">9.00+</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">5.50</div></div>
+      <div class="ob"><div class="ol">阿根廷独赢</div><div class="ov hot">1.30-1.40</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov">2.00</div></div>
+      <div class="ob"><div class="ol">小球2.5</div><div class="ov hot">1.80</div></div>
+      <div class="ob"><div class="ol">阿根廷-1.5让球</div><div class="ov">约2.00</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">阿根廷独赢资金高度集中，但鉴于已提前出线背景下大概率轮换，市场对其大胜的预期有所保留，小球盘口未被极度压低，反映轮换阵容下比赛强度和效率存在合理的不确定性折扣</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>阿根廷独赢资金集中，但作为绝对热门，赔率本身缺乏价值空间，更适合作为稳胆而非价值投注</li>
+      <li>阿根廷-1.5让球被部分分析师列为更具性价比的选择，理由是即便轮换，阿根廷个人能力差距仍能在让球盘中体现</li>
+      <li>小球盘相对受关注，依据是阿根廷轮换阵容下整体强度和效率会有所下降，约旦体能问题也限制其进攻输出，双重因素指向偏低分</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：低，但阿根廷大规模轮换下"小胜或被逼平"的可能性需要纳入考量</div>
+      <p>阿根廷整体实力和阵容深度远超约旦，即便大规模轮换，替补球员的个人能力和体系熟悉度仍占明显优势，真正意义上的"爆冷"（约旦取胜）概率极低。但需注意，已提前出线背景下阿根廷可能进行近乎换血式的轮换（梅西大概率轮休），这会显著降低整体强度，约旦凭借两场比赛展现的一定进攻创造力和"放手一搏"的心态，存在逼平甚至偷袭得分的理论空间，是本日六场中确定性相对较高但比分弹性较大的一场。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">阿根廷 2-0 约旦（主选）</div>
+    <div class="pred-meta">概率约22% · 次选：1-0阿根廷（约20%） · 1-1平（约18%） · 3-0阿根廷（约16%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 5/10（胜负方向高度确定，但轮换力度未知使比分浮动空间较大）</div>
+    <div class="pred-body">
+      <strong>为什么预测2-0？</strong><br>
+      阿根廷即便大规模轮换，整体技术质量和体系成熟度仍明显高于约旦，替补攻击手（阿尔马达等）具备一定终结能力；约旦本届赛事两次"率先进球却被逆转"的剧本说明其防守稳定性和体能续航存在明显短板，难以支撑抵挡阿根廷全场90分钟的压制。2-0反映了"阿根廷整体优势明显"与"轮换阵容降低强度+约旦体能问题限制反击效率"两种因素的平衡，避免对大胜比分给予过高权重。<br><br>
+      <strong>数据支持：</strong>①阿根廷本届赛事2场零失球的防守稳定性 ②约旦两场比赛均出现"先进球后被逆转"的稳定性问题 ③阿根廷已提前出线大概率轮换，市场对大胜预期已有所保留<br><br>
+      <strong>风险因素：</strong>①若阿根廷近乎换血式轮换，整体强度可能大幅下降形成"小胜或逼平" ②约旦若延续两场比赛展现的进攻创造力，存在制造1球甚至逼平的可能性 ③若梅西出战且状态火热，存在比分扩大至3-0以上的可能
+    </div>
+  </div>
+
+  <div class="htft-panel">
+    <div class="htft-title">⏱ 半全场胜平负预测</div>
+    <div class="htft-row">
+      <div class="htft-box"><div class="rank">第一选择</div><div class="combo">平/胜（阿根廷）</div><div class="prob">概率：26%</div></div>
+      <div class="htft-box"><div class="rank">第二选择</div><div class="combo">胜/胜（阿根廷）</div><div class="prob">概率：24%</div></div>
+      <div class="htft-box"><div class="rank">第三选择</div><div class="combo">平/平</div><div class="prob">概率：16%</div></div>
+    </div>
+    <div style="font-size:11px;color:#9a5a30;margin-bottom:8px">信心指数 5/10</div>
+    <div class="htft-body">
+      <strong>为什么预测"半场平/全场阿根廷胜"？</strong><br>
+      阿根廷轮换阵容首次配合需要时间磨合，上半场预计延续此前对阿尔及利亚一战38分钟才进球的节奏（即便对阵更强对手时也非开场即建功）；约旦两场比赛均能在上半场或比赛初段制造一定威胁（两次率先进球），随着比赛推进体能和实力差距才逐渐显现。<br><br>
+      <strong>数据支持：①两队近10场上半场进球/失球：</strong>阿根廷近2场上半场1进0失（对阿尔及利亚38分钟）和1进0失（对奥地利）；约旦近2场上半场1进1失（对奥地利，率先进球后被追平）和1进1失（对阿尔及利亚，同样率先进球后被反超）。<br><br>
+      <strong>两队近10场半场领先/平/落后次数：</strong>阿根廷近2场2次半场领先，整体节奏控制稳健；约旦近2场2次半场领先后被逆转，反映其"开局尚可、后段崩盘"的鲜明特征。<br><br>
+      <strong>下半场进球能力及逆转能力：</strong>阿根廷下半场效率稳定（对阿尔及利亚下半场扩大优势，对奥地利下半场锁定胜局）；约旦下半场失球率明显更高，体能和防守组织性问题在下半场集中暴露。<br><br>
+      <strong>历史交锋分布：</strong>两队世界杯历史首次交锋，无数据可参考。<br><br>
+      <strong>伤停/首发/战意/轮换因素：</strong>阿根廷轮换阵容的磨合问题主要体现在上半场，随着比赛推进个人能力差距逐渐显现；约旦若延续"开局有冲击力"的特征，上半场制造威胁甚至率先进球的概率不低，但下半场体能问题会限制其守住优势的能力。<br><br>
+      <strong>风险因素：</strong>①若约旦再次复制"率先进球"的开局，半全场可能呈现"胜/胜（约旦）"或"平/胜（阿根廷逆转）"的特殊走向 ②若阿根廷轮换阵容磨合顺利提前建立优势，"胜/胜"概率上升 ③双方若均较为谨慎，半场0-0的可能性同样存在
+    </div>
+    <div class="highlight">投注建议：半全场"平/胜（阿根廷）"@约2.95是本场性价比较高的核心价值盘，反映了轮换阵容上半场磨合需要时间、约旦体能问题在下半场集中暴露的现实预期。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">亚洲让球 <span class="tag tv">首推价值</span></div><div class="bc-rec">阿根廷-1.5让球 @约2.00</div><div class="bc-reason">三依据：①约旦两场比赛均出现"率先进球后被逆转"的稳定性问题 ②阿根廷即便轮换整体个人能力仍占明显优势 ③相比独赢1.30-1.40的低赔率，让球盘提供更合理的风险收益比</div></div>
+      <div class="bet-card"><div class="bc-type">胜平负</div><div class="bc-rec">阿根廷独赢 @1.30-1.40</div><div class="bc-reason">确定性高的稳胆选择，但赔率价值有限，适合搭配其他场次形成多重过关</div></div>
+      <div class="bet-card"><div class="bc-type">大小球</div><div class="bc-rec">小球2.5 @1.80</div><div class="bc-reason">阿根廷轮换阵容下整体强度可能下降+约旦体能问题限制进攻输出，双重因素指向偏低分</div></div>
+      <div class="bet-card"><div class="bc-type">双方进球</div><div class="bc-rec">双方进球-是 @约2.40</div><div class="bc-reason">约旦两场比赛均有进球的创造力，对阵轮换阵容下的阿根廷有一定机会延续这一特征</div></div>
+      <div class="bet-card val"><div class="bc-type">半全场 <span class="tag tv">推荐</span></div><div class="bc-rec">半场平/全场阿根廷胜 @约2.95</div><div class="bc-reason">轮换阵容上半场磨合需要时间+约旦体能问题在下半场集中暴露，是本场最贴合实际节奏的组合</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 13 阿尔及利亚 vs 奥地利 ========== -->
+<div class="card" id="m5">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇩🇿 阿尔及利亚 vs 奥地利 🇦🇹</div>
+      <span class="grp">J组 · 末轮（第3轮）</span>
+      <span class="decider">⚡J组第二归属战</span>
+      <span class="status">双方均无重大伤停 · 3分vs3分</span>
+    </div>
+    <div class="mh-right">堪萨斯城 Arrowhead体育场</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇩🇿 阿尔及利亚（近5场）</div>
+        <div class="form-row"><span class="fl">L</span><span class="fw">W</span><span class="fd">D</span><span class="fl">L</span><span class="fw">W</span></div>
+        <div class="sub">第1轮：0-3负阿根廷（陷入梅西状态爆棚的节奏中，但被普遍认为不完全反映真实水平）<br>第2轮：2-1逆转约旦（古伊里82分钟制胜，从落后中完成翻盘展现一定韧性）<br>1胜1负积3分排名J组第三，必须取胜才能确保晋级，战平则大概率降为小组第三争夺名额<br>热身赛曾爆冷击败荷兰，证明球队实力远不止首轮分数体现的那样</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇦🇹 奥地利（近5场）</div>
+        <div class="form-row"><span class="fw">W</span><span class="fl">L</span><span class="fw">W</span><span class="fd">D</span><span class="fw">W</span></div>
+        <div class="sub">第1轮：3-1胜约旦（萨比策梅开二度+阿拉巴头球，但上半场曾被约旦率先进球）<br>第2轮：0-2负阿根廷（全场对抗积极但终究无法抵挡阿根廷整体实力）<br>1胜1负积3分排名J组第二（净胜球优于阿尔及利亚），战平即可锁定出线<br>时隔28年重返世界杯，朗尼克高位逼抢体系执行到位，但防线对快速转换防守存在隐患</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">阿尔及利亚</div><div class="val">FIFA第29位左右</div><div class="sub">J组第三（3分，净胜球-2）· 必须取胜才能直接锁定小组前二，战平大概率需依赖小组第三名比较<br>全队拥有马赫雷兹等多名欧洲联赛球员，整体实力被普遍认为高于首轮0-3的比分体现</div></div>
+      <div class="stat-block"><div class="lbl">奥地利</div><div class="val">FIFA第22位左右</div><div class="sub">J组第二（3分，净胜球+1）· 战平即可锁定小组第二直接出线，出线形势相对主动<br>德甲中轴线球员（莱默尔、萨比策等）构成球队核心竞争力，阿拉巴坐镇后防兼顾攻防</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">阿尔及利亚</div><div class="val">进~2球 / 失~4球</div><div class="sub">本届赛事2场进2球失4球，对阿根廷一战0-3的比分中防线承受巨大压力，但对约旦一战展现出逆转能力<br>古伊里已在本届赛事贡献关键进球，马赫雷兹作为核心组织者持续输出威胁，左路新星艾特-努里值得关注</div></div>
+      <div class="stat-block"><div class="lbl">奥地利</div><div class="val">进~4球 / 失~2球</div><div class="sub">本届赛事2场进4球失2球，德甲中轴线（莱默尔拦截、萨比策调度）发挥稳定，阿瑙托维奇前场支点作用突出<br>边路防守回追速度不足是隐患，对手快速反击时身后容易出现空档，替补阵容深度也不及主力</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>两队世界杯历史上从未交锋，正式比赛交锋数据有限，本场是历史性首次正式对决</li>
+      <li>缺乏直接历史参考，但从本届赛事至今的表现对比：阿尔及利亚虽首轮大败给阿根廷，但次轮展现出落后逆转的韧性；奥地利两场比赛攻防两端数据均较为稳定，整体实力评估较为接近</li>
+      <li>两队同积3分但净胜球奥地利占优（+1对-2），这一差距某种程度上反映了两队首轮对阵不同级别对手（奥地利对约旦完胜，阿尔及利亚对阿根廷惨败）的现实差异，但次轮表现已显示两队真实实力较为接近</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>阿尔及利亚：</strong>全队据报无重大伤停，马赫雷兹作为进攻核心和组织者状态正常，古伊里本届已有进球贡献，左路新星艾特-努里同样值得关注；整体阵容深度因多名球员效力欧洲联赛而较为充足</li>
+      <li><strong>奥地利：</strong>全队同样无重大伤停报告，26人大名单全员健康，主力框架完整；队长阿拉巴攻防一肩挑表现稳定，莱默尔中场拦截能力突出，萨比策、阿瑙托维奇等前场核心状态在线</li>
+      <li><strong>关键变量：</strong>双方均无伤停问题，这是一场纯粹的实力和战意对决；阿尔及利亚"必须取胜"的强烈诉求 vs 奥地利"战平即可"的相对从容，是影响本场战术选择和最终结果的核心变量</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>阿尔及利亚（必须取胜，预计全力压上）：</strong>马赫雷兹组织串联，古伊里、艾特-努里提供进攻威胁，整体打法将更具侵略性以满足取胜诉求</li>
+      <li><strong>奥地利4-2-3-1（朗尼克高位逼抢体系）：</strong>莱默尔+萨比策中场调度，阿瑙托维奇支点作用突出，整体打法强调高强度逼抢和快速转换，但边路防守回追速度不足、后防身高一般是已暴露的隐患</li>
+      <li><strong>关键对位：</strong>阿尔及利亚的进攻侵略性 vs 奥地利边路防守和高空球争抢的隐患——若阿尔及利亚能针对性利用边路反击空间和定位球机会，有较大概率突破奥地利防线；奥地利的高位逼抢同样可能利用阿尔及利亚必须冒险压上后留下的身后空档发起反击</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 小组赛形势 / 战意分析</div>
+    <ul class="alist">
+      <li><strong>阿尔及利亚背水一战：</strong>必须取胜才能直接锁定小组前二出线，战平大概率只能争夺8个最佳小组第三名额（存在不确定性），全队将全力压上争胜</li>
+      <li><strong>奥地利相对从容：</strong>战平即可锁定小组第二直接出线，出线形势主动，但取胜可争夺更有利的淘汰赛签位（避免对阵更强的小组第一对手），仍有较强求胜动力</li>
+      <li><strong>动机的现实落差：</strong>阿尔及利亚"必须赢"vs奥地利"不输即可"的局面，理论上对技术质量和整体阵容深度更具优势的奥地利更有利，但阿尔及利亚的侵略性打法和此前展现的逆转能力不可忽视</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">阿尔及利亚独赢</div><div class="ov">3.50</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">3.20</div></div>
+      <div class="ob"><div class="ol">奥地利独赢</div><div class="ov hot">2.15</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov">2.05</div></div>
+      <div class="ob"><div class="ol">小球2.5</div><div class="ov hot">1.80</div></div>
+      <div class="ob"><div class="ol">奥地利不败</div><div class="ov">约1.35</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">uFootball模型给出奥地利42%胜率@2.15、阿尔及利亚27%@3.5、平局31%@3.2，奥地利是微弱热门，市场认为"奥地利占优但阿尔及利亚必须取胜会全力来攻"；奥地利不败盘覆盖了"奥地利小胜"和"双方逼平奥地利仍出线"两种现实可能，性价比较高</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>奥地利独赢获得一定资金倾斜(2.15)，但三方赔率差距不大，反映市场认为这是一场势均力敌的对决</li>
+      <li>奥地利不败盘被列为更稳健的投注角度，覆盖范围广且符合"战平即可出线，无需冒险"的现实诉求</li>
+      <li>大小球盘口接近(2.05/1.80)，反映市场预期这是一场有一定开放性但双方也会保持一定谨慎的比赛</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：中等（uFootball模型给出42%/31%/27%的接近概率分布，本场无明显爆冷概念）</div>
+      <p>奥地利42%、平局31%、阿尔及利亚27%的概率分布说明这是一场高度开放的小组第二归属战。阿尔及利亚必须取胜的强烈动机和此前展现的逆转能力（对约旦一战）是其优势，但奥地利"战平即可"的从容心态和整体阵容深度同样具备较强竞争力。奥地利边路防守和高空球争抢的隐患，若被阿尔及利亚针对性利用，存在被逆转甚至小负的可能性，是本场最大的风险点。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">奥地利 2-1 阿尔及利亚（主选）</div>
+    <div class="pred-meta">概率约19% · 次选：1-1平（约19%） · 1-0奥地利（约18%） · 2-1阿尔及利亚（约16%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 4/10（三方概率接近，是本日六场中最难定论的场次之一）</div>
+    <div class="pred-body">
+      <strong>为什么预测2-1？</strong><br>
+      奥地利德甲中轴线的整体技术质量和"战平即可"的从容心态，理论上能在多数对位上压制阿尔及利亚；但阿尔及利亚必须取胜的强烈动机和已证明的逆转能力（对约旦一战），叠加奥地利边路防守和高空球争抢的已暴露隐患，使其几乎必然能从奥地利身上抢得至少1球。2-1反映了"奥地利整体质量略占优+战平即可的诉求降低冒险程度"和"阿尔及利亚必须取胜的冒险进攻能制造威胁"两种现实因素的平衡。<br><br>
+      <strong>数据支持：</strong>①uFootball模型给奥地利42%胜率为微弱热门 ②阿尔及利亚对约旦一战展现的逆转能力 ③奥地利边路防守回追速度不足+后防身高一般的已知隐患<br><br>
+      <strong>风险因素：</strong>①阿尔及利亚若如对阿根廷一战般再次陷入被动可能形成奥地利大胜 ②奥地利若延续战平即出线的从容心态可能主动控制节奏导致低分平局 ③若阿尔及利亚开场即压上成功制造威胁，存在"胜/胜（阿尔及利亚）"的可能性
+    </div>
+  </div>
+
+  <div class="htft-panel">
+    <div class="htft-title">⏱ 半全场胜平负预测</div>
+    <div class="htft-row">
+      <div class="htft-box"><div class="rank">第一选择</div><div class="combo">平/平</div><div class="prob">概率：24%</div></div>
+      <div class="htft-box"><div class="rank">第二选择</div><div class="combo">平/胜（奥地利）</div><div class="prob">概率：22%</div></div>
+      <div class="htft-box"><div class="rank">第三选择</div><div class="combo">胜/胜（奥地利）</div><div class="prob">概率：18%</div></div>
+    </div>
+    <div style="font-size:11px;color:#9a5a30;margin-bottom:8px">信心指数 4/10</div>
+    <div class="htft-body">
+      <strong>为什么预测"半场平/全场平"或"半场平/全场奥地利胜"？</strong><br>
+      奥地利首轮对约旦一战上半场曾被对手率先进球（暴露防线对突然提速反击应对不足），次轮对阿根廷上半场也未能进球（38分钟才被阿根廷打破僵局，自身进攻未能在上半场体现）；阿尔及利亚对阿根廷一战上半场即陷入被动，对约旦一战则是下半场（82分钟）才完成逆转，两队均呈现"上半场偏谨慎/被动、下半场分胜负"的规律。<br><br>
+      <strong>数据支持：①两队近10场上半场进球/失球：</strong>奥地利近2场上半场1进1失（对约旦，被对手先进球后扳平）和0进1失（对阿根廷半场0-1）；阿尔及利亚近2场上半场0进2失（对阿根廷）和0进1失（对约旦半场0-1，下半场才逆转）。<br><br>
+      <strong>两队近10场半场领先/平/落后次数：</strong>奥地利近2场1次半场落后后扳平(对约旦)、1次半场落后(对阿根廷未能扳平)；阿尔及利亚近2场2次半场落后，下半场才有所改观（对约旦完成逆转）。<br><br>
+      <strong>下半场进球能力及逆转能力：</strong>奥地利下半场效率较高（对约旦下半场阿瑙托维奇锁定胜局）；阿尔及利亚下半场逆转能力已验证（对约旦82分钟绝杀），但对阵更强的奥地利时能否复制存疑。<br><br>
+      <strong>历史交锋分布：</strong>两队世界杯历史首次交锋，无数据可参考。<br><br>
+      <strong>伤停/首发/战意/轮换因素：</strong>双方均无伤停，阿尔及利亚必须取胜的动机可能促使其开场即提速，但此前两场比赛均显示其上半场表现欠佳；奥地利"战平即可"的心态可能使其上半场更趋谨慎，双方结合下半场战平的概率较高。<br><br>
+      <strong>风险因素：</strong>①若任意一方上半场即建功，半全场组合概率会显著变化 ②阿尔及利亚若延续对阿根廷一战的被动开局，可能形成"负/胜（奥地利）"或更大分差 ③两队近期比赛规律的"下半场分胜负"特征若延续，"平/平"和"平/胜"两种结果的合计概率应占主导
+    </div>
+    <div class="highlight">投注建议：半全场"平/平"@约4.20和"平/胜（奥地利）"@约3.40可搭配小注布局，分别覆盖"双方谨慎收场"和"奥地利下半场打开局面"两种最具数据支撑的现实剧本。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">双方进球 <span class="tag tv">首推价值</span></div><div class="bc-rec">双方进球-是 @约1.80</div><div class="bc-reason">三依据：①双方近2场均有进球能力 ②阿尔及利亚必须取胜会全力压上制造威胁 ③奥地利边路防守隐患可能被对手利用</div></div>
+      <div class="bet-card"><div class="bc-type">胜平负</div><div class="bc-rec">奥地利不败 @约1.35</div><div class="bc-reason">覆盖"奥地利小胜"和"逼平阿尔及利亚仍出线"两种现实可能，性价比较高的稳健选择</div></div>
+      <div class="bet-card"><div class="bc-type">大小球</div><div class="bc-rec">大球2.5 @2.05</div><div class="bc-reason">阿尔及利亚必须取胜会全力进攻+奥地利防守隐患，双重因素指向有一定开放性的比赛</div></div>
+      <div class="bet-card"><div class="bc-type">射手</div><div class="bc-rec">马赫雷兹任意时刻进球 @约2.60</div><div class="bc-reason">作为阿尔及利亚组织核心，必须取胜背景下承担更重的终结职责，具备一定赔率价值</div></div>
+      <div class="bet-card risk"><div class="bc-type">半全场 <span class="tag tr">价值</span></div><div class="bc-rec">半场平/全场平 @约4.20</div><div class="bc-reason">两队近期比赛均呈现"上半场谨慎/被动、下半场分胜负"的规律，是本场理论价值较高的半全场组合</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 14 6月27日 世界杯明日精选方案 ========== -->
+<div class="card" id="m6">
+  <div class="final-card" style="border:none;padding:0">
+    <div class="final-title">★ 2026世界杯 · 6月27日六场赛事（J/K/L组收官）· 明日精选方案</div>
+
+    <div class="pick-row">
+      <div class="pick-item">
+        <div class="stars">★★★★☆<br><span style="font-size:10px;color:#888">稳胆</span></div>
+        <div class="pick-right">
+          <div class="plbl">克罗地亚 vs 加纳</div>
+          <div class="pmain">克罗地亚独赢 @1.60-1.65</div>
+          <div class="pdet">依据：①uFootball模型给出59%胜率，是六场中模型置信度最高的单场 ②加纳核心边锋库杜斯伤缺+中场节拍器帕尔特伊被拒签，进攻威胁大幅削弱 ③克罗地亚必须取胜的动机空前强烈，全队将全力压上；加纳虽防守纪律性强（两战0失球），但本届进攻效率本身有限（仅1球），难以支撑爆冷</div>
+        </div>
+      </div>
+
+      <div class="pick-item">
+        <div class="stars">★★★★☆<br><span style="font-size:10px;color:#888">稳胆</span></div>
+        <div class="pick-right">
+          <div class="plbl">巴拿马 vs 英格兰</div>
+          <div class="pmain">英格兰-1.5亚洲让球 @约2.05</div>
+          <div class="pdet">依据：①巴拿马近10场对阵欧洲球队场均失球2.3个，防线脆弱性明确 ②英格兰即便大规模轮换，个人能力和体系成熟度仍远超巴拿马 ③巴拿马队史世界杯4场正赛全负且颗粒无收，进攻端8射2正的效率历史性低迷；相比独赢1.28的低赔率，让球盘提供更合理的风险收益比</div>
+        </div>
+      </div>
+
+      <div class="pick-item">
+        <div class="stars">★★★☆☆<br><span style="font-size:10px;color:#888">博高赔</span></div>
+        <div class="pick-right">
+          <div class="plbl">哥伦比亚 vs 葡萄牙</div>
+          <div class="pmain">双方进球-是 @约1.85</div>
+          <div class="pdet">依据：①葡萄牙首轮被民主刚果逼平证明防线非无懈可击，近2场失1球 ②哥伦比亚路易斯·迪亚斯+丹尼尔·穆尼奥斯的进攻点活跃，本届已贡献多球 ③C罗对阵任何级别防线都具备威胁性，进球加助攻大于0.5的赔率仅2.00反映市场认可其参与度；K组头名争夺战双方都有较强求胜欲望，对攻概率不低</div>
+        </div>
+      </div>
+
+      <div class="pick-item">
+        <div class="stars">★★★☆☆<br><span style="font-size:10px;color:#888">博高赔</span></div>
+        <div class="pick-right">
+          <div class="plbl">约旦 vs 阿根廷</div>
+          <div class="pmain">半场平/全场阿根廷胜 @约2.95</div>
+          <div class="pdet">依据：①阿根廷已提前出线大概率大规模轮换，替补阵容首次配合上半场磨合需要时间 ②约旦两场比赛均呈现"上半场尚可、下半场体能和实力差距显现"的规律 ③阿根廷近2场上半场进球时间均在30分钟后（38分钟对阿尔及利亚），并非开场即建功的节奏，半全场组合比单纯压全场胜负更具赔率价值</div>
+        </div>
+      </div>
+
+      <div class="pick-item">
+        <div class="stars">★★☆☆☆<br><span style="font-size:10px;color:#888">冷门尝试</span></div>
+        <div class="pick-right">
+          <div class="plbl">阿尔及利亚 vs 奥地利</div>
+          <div class="pmain">半场平/全场平 @约4.20（小注）</div>
+          <div class="pdet">依据：①两队近2场比赛均呈现"上半场谨慎或被动、下半场才分胜负"的规律 ②uFootball模型给出42%/31%/27%的接近概率分布，本场是J组末轮悬念最大的一场 ③奥地利"战平即可出线"的从容心态可能促使其上半场更趋保守，与阿尔及利亚必须取胜但此前两场均显示上半场表现欠佳的特征相呼应，但需注意比分弹性较大，仅建议小注</div>
+        </div>
+      </div>
+
+      <div class="pick-item">
+        <div class="stars">★★☆☆☆<br><span style="font-size:10px;color:#888">冷门尝试</span></div>
+        <div class="pick-right">
+          <div class="plbl">刚果(金) vs 乌兹别克斯坦</div>
+          <div class="pmain">小球2.5 @1.62</div>
+          <div class="pdet">依据：①刚果(金)本届赛事2场仅进1球，进攻效率本身有限，即便取胜也未必大比分 ②双方风格均偏向防守优先，刚果金从未在历史上大比分输球的纪律性同样会限制对攻空间 ③乌兹别克斯坦已基本出局，可能缺乏足够动力打出此前对阵葡萄牙时的开放节奏（实际是被压制而非主动进攻），整体盘面有利于小球，但赔率本身不算突出，建议作为搭配腿</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="sec-title" style="margin-top:4px">📊 综合预期与资金分配建议</div>
+    <div class="two-col" style="margin-bottom:10px">
+      <div class="stat-block"><div class="lbl">预计命中率</div><div class="val">稳胆类约68-72% · 高赔类约30-35% · 冷门类约20-26%</div><div class="sub">六项合计预期至少命中3-4项；两项稳胆若同时命中可大幅降低整体回撤风险</div></div>
+      <div class="stat-block"><div class="lbl">预期赔率区间</div><div class="val">1.60 ~ 4.20</div><div class="sub">稳胆类集中在1.60-2.05低赔区间，高赔类集中在1.85-2.95区间，冷门类4.20区间仅作小注点缀</div></div>
+    </div>
+
+    <div class="sec-title">💰 资金分配建议（以100单位资金为基准）</div>
+    <div class="alloc-row">
+      <div class="abox"><div class="al">克罗地亚独赢<br>@1.60-1.65</div><div class="av">22</div></div>
+      <div class="abox"><div class="al">英格兰-1.5让球<br>@2.05</div><div class="av">20</div></div>
+      <div class="abox"><div class="al">哥葡双方进球<br>@1.85</div><div class="av">16</div></div>
+      <div class="abox"><div class="al">约阿半全场<br>@2.95</div><div class="av">14</div></div>
+      <div class="abox"><div class="al">阿奥半全场平/平<br>@4.20</div><div class="av">5</div></div>
+      <div class="abox"><div class="al">刚乌小球2.5<br>@1.62</div><div class="av">8</div></div>
+    </div>
+    <div class="note">说明：以上分配合计85单位投入六场推荐项，剩余15单位建议保留作为现金储备或用于赛前临场情报变化（首发名单公布、轮换力度确认）后的灵活调整。本日六场中"英格兰大规模轮换"和"阿根廷大规模轮换"是最大的临场不确定性来源，建议在确认首发阵容（一般赛前1小时公布）后再最终决定让球盘和半全场盘的具体下注时点，避免在阵容信息不全时过早满额投入。两项★★★★☆稳胆合计占比42%，符合"低赔确定性仓位优先、高赔价值仓位适度跟进、冷门仓位严格控制"的资金管理原则，与6月26日方案保持一致的风控逻辑。</div>
+
+    <div class="risk-box" style="margin-top:14px">
+      <div class="rtitle">⚠ 重要风险提示</div>
+      <p>本报告所有分析基于截至发稿前可获得的公开数据（近期战绩、伤停报告、博彩公司公开赔率等），仅作为投注参考，不构成保证盈利的承诺。足球比赛存在高度不确定性，伤停名单、临场战术变化、裁判判罚、定位球偶然性等因素均可能导致实际结果偏离预测。已出线/已出局球队的轮换力度是本日六场比赛的最大变量，请密切关注赛前公布的首发名单。所有赔率请以投注平台临场实时显示为准，发稿后可能已发生变动。请理性投注、量力而行，将资金管理和长期纪律置于单场结果之上，切勿借贷投注或投入超出自身承受能力的资金。</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+function show(idx){
+  var cards = document.querySelectorAll('.card');
+  var tabs = document.querySelectorAll('.tab');
+  for (var i = 0; i < cards.length; i++) {
+    cards[i].classList.remove('active');
+  }
+  for (var j = 0; j < tabs.length; j++) {
+    tabs[j].classList.remove('active');
+  }
+  var targetCard = document.getElementById('m' + idx);
+  if (targetCard) { targetCard.classList.add('active'); }
+  if (tabs[idx]) { tabs[idx].classList.add('active'); }
+}
+</script>
+</body>
+</html>
