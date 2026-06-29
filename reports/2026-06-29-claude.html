@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界杯2026 · 32强淘汰赛 巴西vs日本/德国vs巴拉圭/荷兰vs摩洛哥投注参考方案</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0ede8;color:#1a1a1a;padding:20px;font-size:14px;line-height:1.6}
+.container{max-width:940px;margin:0 auto}
+h1{font-size:22px;font-weight:700;margin-bottom:4px}
+.subtitle{font-size:13px;color:#666;margin-bottom:18px}
+.schedule-box{background:#fff;border-radius:10px;border:1px solid #ddd;padding:16px;margin-bottom:18px}
+.schedule-box h2{font-size:14px;font-weight:700;color:#444;margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em}
+.sched-row{display:grid;grid-template-columns:80px 1fr;gap:8px;padding:7px 0;border-bottom:1px solid #f0ede8;font-size:13px}
+.sched-row:last-child{border-bottom:none}
+.sched-time{color:#1a5fa8;font-weight:700}
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:7px 14px;border-radius:20px;border:1px solid #ccc;background:transparent;color:#555;cursor:pointer;font-size:12px;font-family:inherit;transition:all .15s}
+.tab.active{background:#1a5fa8;color:#fff;border-color:#1a5fa8}
+.card{display:none;background:#fff;border-radius:12px;border:1px solid #ddd;padding:22px;margin-bottom:12px}
+.card.active{display:block}
+.mh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid #ece9e3}
+.mh-left .teams{font-size:18px;font-weight:700}
+.mh-left .grp{font-size:11px;color:#666;background:#f0ede8;padding:2px 9px;border-radius:10px;display:inline-block;margin-top:4px;margin-right:6px}
+.mh-left .status{font-size:11px;color:#c04000;background:#fff4ee;padding:2px 9px;border-radius:10px;display:inline-block;margin-top:4px}
+.mh-right{font-size:12px;color:#666;text-align:right}
+.sec{margin-bottom:20px}
+.sec-title{font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #f0ede8}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat-block{background:#f8f7f4;border-radius:8px;padding:10px 12px}
+.stat-block .lbl{font-size:11px;color:#888;margin-bottom:5px}
+.stat-block .val{font-size:14px;font-weight:700}
+.stat-block .sub{font-size:12px;color:#666;margin-top:4px;line-height:1.55}
+.form-row{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+.fw{width:22px;height:22px;border-radius:50%;background:#d4f0d4;color:#1a6b1a;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.fd{width:22px;height:22px;border-radius:50%;background:#fdf0c0;color:#7a5c00;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.fl{width:22px;height:22px;border-radius:50%;background:#fdd4d4;color:#8b1a1a;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.alist{list-style:none;display:flex;flex-direction:column;gap:7px}
+.alist li{font-size:13px;line-height:1.65;padding-left:16px;position:relative}
+.alist li::before{content:"▸";position:absolute;left:0;color:#1a5fa8;font-size:11px;top:2px}
+.odds-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.ob{background:#f8f7f4;border-radius:8px;padding:9px 10px;text-align:center}
+.ob .ol{font-size:11px;color:#888;margin-bottom:3px}
+.ob .ov{font-size:17px;font-weight:700;color:#1a5fa8}
+.ob .ov.hot{color:#b54000}
+.pred-panel{background:linear-gradient(135deg,#e8f2fc,#eee8fb);border-radius:12px;padding:18px;margin-bottom:16px;border:1px solid #c8d8f0}
+.pred-score{font-size:24px;font-weight:800;color:#0d4e9e;margin-bottom:5px}
+.pred-meta{font-size:12px;color:#2a5fb0;margin-bottom:10px}
+.conf-row{display:flex;gap:3px;margin:6px 0}
+.cdot{width:11px;height:11px;border-radius:2px;background:#1a5fa8}
+.cdot.off{background:#c5d8f0}
+.pred-body{font-size:12px;color:#1a3a7a;line-height:1.75}
+.htft-panel{background:linear-gradient(135deg,#fdf0e0,#fde8e8);border-radius:12px;padding:18px;margin-bottom:16px;border:1px solid #f0d0c0}
+.htft-title{font-size:13px;font-weight:700;color:#9a3a00;margin-bottom:10px}
+.htft-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.htft-box{background:#fff;border-radius:8px;padding:10px;text-align:center;border:1px solid #f0d0c0}
+.htft-box .rank{font-size:10px;color:#b54000;margin-bottom:3px;font-weight:700}
+.htft-box .combo{font-size:14px;font-weight:800;color:#7a1a00}
+.htft-box .prob{font-size:11px;color:#9a5a30;margin-top:3px}
+.htft-body{font-size:12px;color:#5c2a00;line-height:1.75}
+.bets-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bet-card{background:#f8f7f4;border-radius:8px;padding:10px 12px}
+.bet-card.val{border-left:3px solid #1a5fa8;border-radius:0 8px 8px 0}
+.bet-card.risk{border-left:3px solid #c07800;border-radius:0 8px 8px 0}
+.bet-card.cool{border-left:3px solid #aa2222;border-radius:0 8px 8px 0}
+.bc-type{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.bc-rec{font-size:13px;font-weight:700;margin-bottom:3px}
+.bc-reason{font-size:11px;color:#555;line-height:1.55}
+.tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:8px;margin-left:5px;vertical-align:middle}
+.tv{background:#dbeeff;color:#0d4e9e}
+.tr{background:#fce8c0;color:#7a4800}
+.th{background:#fdd4d4;color:#7a1a1a}
+.risk-box{background:#fff8e6;border-radius:8px;padding:10px 13px;margin-top:8px;border-left:3px solid #e0a800}
+.risk-box .rtitle{font-size:11px;font-weight:700;color:#7a4800;margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em}
+.risk-box p{font-size:12px;color:#5c3a00;line-height:1.6}
+.divider{height:1px;background:#ece9e3;margin:16px 0}
+.final-card{background:#fff;border-radius:12px;border:1px solid #ddd;padding:22px}
+.final-title{font-size:16px;font-weight:700;margin-bottom:16px;color:#111;border-bottom:2px solid #1a5fa8;padding-bottom:8px}
+.pick-row{display:flex;flex-direction:column;gap:10px}
+.pick-item{background:#f8f7f4;border-radius:10px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start}
+.stars{font-size:15px;color:#c07800;min-width:82px}
+.stars .off{color:#ccc}
+.pick-right .plbl{font-size:11px;color:#888;margin-bottom:2px}
+.pick-right .pmain{font-size:14px;font-weight:700;margin-bottom:4px}
+.pick-right .pdet{font-size:12px;color:#555;line-height:1.55}
+.alloc-row{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:12px 0}
+.abox{background:#f8f7f4;border-radius:8px;padding:8px 6px;text-align:center;border:1px solid #e8e5e0}
+.abox .al{font-size:9px;color:#888;margin-bottom:4px;line-height:1.3}
+.abox .av{font-size:15px;font-weight:800}
+.note{font-size:12px;color:#888;line-height:1.7;background:#f8f7f4;border-radius:8px;padding:11px 13px;margin-top:10px}
+.highlight{background:#e8f4ff;border-radius:8px;padding:10px 13px;margin-top:8px;font-size:12px;color:#0d4e9e;line-height:1.65;border-left:3px solid #1a5fa8}
+.decider{background:#fff0e6;color:#9a3a00;font-size:10px;padding:2px 8px;border-radius:8px;margin-left:6px}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>⚽ 2026世界杯32强淘汰赛 · 三场赛事投注参考方案</h1>
+<div class="subtitle">巴西vs日本（6月29日北京06:00）· 德国vs巴拉圭（6月30日北京04:30）· 荷兰vs摩洛哥（6月30日北京09:00）· 1/16决赛一锤定音</div>
+
+<div class="schedule-box">
+  <h2>📅 比赛信息（北京时间）</h2>
+  <div class="sched-row"><div class="sched-time">6.29</div><div>巴西 🆚 日本 · 06:00 · 休斯顿NRG体育场</div></div>
+  <div class="sched-row"><div class="sched-time">6.30</div><div>德国 🆚 巴拉圭 · 04:30 · 波士顿吉列体育场</div></div>
+  <div class="sched-row"><div class="sched-time">6.30</div><div>荷兰 🆚 摩洛哥 · 09:00 · 蒙特雷BBVA体育场</div></div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="show(0)">🇧🇷 巴西 vs 日本</button>
+  <button class="tab" onclick="show(1)">🇩🇪 德国 vs 巴拉圭</button>
+  <button class="tab" onclick="show(2)">🇳🇱 荷兰 vs 摩洛哥</button>
+  <button class="tab" onclick="show(3)">★ 三场精选方案</button>
+</div>
+
+<!-- ========== MATCH 1 巴西 vs 日本 ========== -->
+<div class="card active" id="m0">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇧🇷 巴西 vs 日本 🇯🇵</div>
+      <span class="grp">32强淘汰赛 · 1/16决赛</span>
+      <span class="decider">⚡淘汰赛首次正式交锋 · 友谊赛日本曾爆冷取胜</span>
+      <span class="status">拉菲尼亚伤缺 · 三笘薰南野落选</span>
+    </div>
+    <div class="mh-right">休斯顿 NRG体育场</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇧🇷 巴西（近5场，小组赛）</div>
+        <div class="form-row"><span class="fd">D</span><span class="fw">W</span><span class="fw">W</span></div>
+        <div class="sub">第1轮：1-1平摩洛哥（攻防互有顾忌，开局相对谨慎）<br>第2轮：3-0胜海地（找回进攻节奏，多点开花）<br>第3轮：3-0胜苏格兰（维尼修斯7分钟+半场补时连下两城，库尼亚锦上添花，21次射门9次射正）<br>C组第一（净胜球优势力压摩洛哥）出线，渐入佳境，末轮大面积轮换练兵，内马尔、恩德里克均获出场时间</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇯🇵 日本（近5场，小组赛）</div>
+        <div class="form-row"><span class="fd">D</span><span class="fw">W</span><span class="fd">D</span></div>
+        <div class="sub">第1轮：2-2平荷兰（控球打法对强敌不落下风）<br>第2轮：4-0横扫突尼斯（高位逼抢+快速短传渗透效果显著）<br>第3轮：1-1平瑞典（铃木彩艳多次关键扑救，全队顽强防守锁定出线）<br>F组第二（1胜2平，5分）三场不败晋级，本届赛事唯一保持不败的亚洲球队，心理素质和战术执行力已得到验证</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">巴西</div><div class="val">FIFA第5-6位</div><div class="sub">全队总身价超10亿欧元，维尼修斯、拉菲尼亚、内马尔等攻击线星光熠熠，是本届赛事夺冠热门之一<br>淘汰赛目标明确：吸取2022年世界杯止步八强的教训，志在走得更稳更远</div></div>
+      <div class="stat-block"><div class="lbl">日本</div><div class="val">FIFA第18位</div><div class="sub">全队总身价约2.5亿欧元，远藤航、镰田大地、久保建英等核心均效力欧洲主流联赛<br>队史首次面对巴西的世界杯淘汰赛考验，森保一曾在2022年世界杯逆转德国、西班牙，深谙研究强队战术之道</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">巴西</div><div class="val">进7球 / 失1球（小组赛3场）</div><div class="sub">小组赛阶段进攻火力随轮次递增（1-1摩洛哥→3-0海地→3-0苏格兰），末轮21次射门9次射正展现统治级压制<br>防线整体稳固仅失1球，但末轮大面积轮换+内马尔时隔近三年重返国家队的状态仍需淘汰赛检验</div></div>
+      <div class="stat-block"><div class="lbl">日本</div><div class="val">进7球 / 失3球（小组赛3场）</div><div class="sub">4-0横扫突尼斯展现进攻效率上限，但对阵荷兰、瑞典两场强敌均未能取胜，进攻端面对高强度对抗时仍有瓶颈<br>门将铃木彩艳末轮多次关键扑救是球队保持不败的重要保障，整体防守纪律性突出</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>两队历史上共交手14次，巴西11胜2平1负占据绝对统治地位，进28球仅失4球</li>
+      <li>世界杯赛场仅交锋一次：2006年德国世界杯小组赛，巴西4-1取胜（彼时实力差距悬殊）；本场是双方世界杯历史第二次相遇，也是淘汰赛首次正式对决</li>
+      <li>日本队史唯一一场对巴西的胜利发生在2025年10月的友谊赛：日本主场0-2落后情况下连扳三球完成3-2逆转。尽管友谊赛参考价值有限（带有练兵性质），但这场胜利让日本在心理上"不再恐惧巴西"，巴西国内媒体也曾对该役防守松懈和逆境心理波动进行猛烈批评</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>巴西⚠：</strong>拉菲尼亚（巴塞罗那边锋）受伤缺阵，对球队边路进攻布局有一定影响；好消息是内马尔已养伤完毕复出，国家队生涯128场79球59助，世界杯历史13场8球4助，是巴西队历史第一射手；维尼修斯、卡塞米罗、阿利松等主力健康，全队整体阵容齐整</li>
+      <li><strong>日本：</strong>主力阵容基本完整，远藤航（中场拦截核心）5月入选大名单时伤势已恢复，小组赛三场均有出战；久保建英三场均有登场；遗憾的是三笘薰、南野拓实因伤落选大名单，锋线深度受到一定影响；田中碧末轮首发出战状态正常</li>
+      <li><strong>关键变量：</strong>巴西拉菲尼亚的缺阵+内马尔复出后状态的不确定性，是巴西阵容的两大变量；日本三笘薰、南野拓实的缺席使锋线创造力略逊于巔峰期阵容，但远藤航、久保建英的稳定出战保障了中前场的基本框架</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>巴西4-3-3（主动进攻体系）：</strong>维尼修斯和拉菲尼亚（若出战）在两翼冲击，内马尔回撤组织，吉马良斯+卡塞米罗+帕奎塔的中场三角具备技术质量优势，整体打法强调个人能力解决问题</li>
+      <li><strong>日本3-4-2-1（控球+防守反击）：</strong>森保一的战术核心是控球与防守反击相结合，远藤航在中场的拦截和出球是攻防转换的关键，全场高位逼抢、快速短传渗透是其对阵强队时的标准应对模式</li>
+      <li><strong>关键对位：</strong>日本中场远藤航、守田英正的拦截调度 vs 巴西边路维尼修斯、拉菲尼亚的冲击——森保一深知如何利用对手边后卫压上留下的身后空档打反击，这是日本对阵南美球队时的经典破局手段；巴西若能在上半场取得进球，比赛将向其倾斜，若日本成功将0-0保持到30分钟后，悬念将大幅增加</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 淘汰赛战意分析</div>
+    <ul class="alist">
+      <li><strong>巴西志在雪耻：</strong>吸取2022年世界杯止步八强的教训，蒂特/现任教练组明确表态要走得更稳更远，2025年友谊赛输给日本的"耻辱"也是潜在的复仇动力</li>
+      <li><strong>日本毫无惧色：</strong>森保一赛后明确表态"我们会全力争胜"，球员们已经历去年友谊赛逆转巴西的心理突破，"不再恐惧巴西"是日本最大的心理优势</li>
+      <li><strong>淘汰赛零容错：</strong>一锤定音的赛制下，巴西若能在上半场建立优势，比赛大概率朝其有利方向发展；日本若能稳住阵脚拖入胶着，悬念将延续至下半场甚至加时，这场被外界称为"足球小将漫画照进现实"的对决备受关注</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">巴西独赢</div><div class="ov hot">1.45-1.55</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">4.20</div></div>
+      <div class="ob"><div class="ol">日本独赢</div><div class="ov">6.50</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov">1.95</div></div>
+      <div class="ob"><div class="ol">小球2.5</div><div class="ov hot">1.85</div></div>
+      <div class="ob"><div class="ol">巴西-1.5让球</div><div class="ov">约2.05</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">巴西独赢资金高度集中，反映市场对其排名、身价、历史交锋全面占优的认可；但2025年友谊赛的爆冷战绩+日本本届赛事验证的韧性，使部分分析机构倾向"巴西占优但过程不会轻松"的判断，大小球盘口接近(1.95/1.85)未呈现明显单边倾斜</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>巴西独赢资金集中，但1.45-1.55的低赔率本身缺乏太大价值空间，更适合作为稳胆而非价值投注</li>
+      <li>巴西-1.5让球被部分分析师列为更具性价比的选择，理由是巴西若需要时间打开局面，大胜未必轻松达成</li>
+      <li>独立分析机构（搜狐体育等）给出"巴西2-1或1-0小胜"的比分参考，反映市场对"巴西占优但日本能制造麻烦"剧本的广泛认可</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：低中（巴西全面占优，但日本去年友谊赛已验证逆转能力）</div>
+      <p>巴西在排名、身价、历史交锋和大赛经验上全面占优，是本场理所应当的热门。但需注意：①2025年10月友谊赛日本曾在0-2落后情况下连扳三球完成3-2逆转，证明其在逆境中具备爆发力；②日本本届小组赛多次在落后局面下扳平，韧性已得到验证；③巴西若久攻不下产生心态急躁，边路频繁前压可能留下身后空档，被日本快速反击利用（独立分析给出30%概率的"冷门剧本"）。尽管整体仍以巴西占优为主基调，但本场不宜简单视为"无悬念"的比赛。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">巴西 2-1 日本（主选）</div>
+    <div class="pred-meta">概率约24% · 次选：1-0巴西（约20%） · 2-0巴西（约18%） · 1-1平（约14%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 6/10（巴西整体优势明确，但日本验证过的韧性和逆转能力增添过程中的不确定性）</div>
+    <div class="pred-body">
+      <strong>为什么预测2-1？</strong><br>
+      巴西在个人能力、阵容深度和历史交锋（14战11胜）上全面占优，维尼修斯、内马尔的个人能力足以在关键时刻解决问题；但日本本届赛事多次在落后局面下扳平的韧性+对阵荷兰、瑞典等强队不落下风的整体表现，加上拉菲尼亚缺阵对巴西边路布局的削弱，使巴西很难轻松零封对手。2-1反映了"巴西整体实力解决比赛"与"日本战术纪律性和韧性能抢得至少1球"两种现实因素的平衡，与独立分析机构给出的"巴西2-1或1-0"比分参考高度吻合。<br><br>
+      <strong>数据支持：</strong>①两队历史交锋14战巴西11胜2平1负的绝对优势 ②日本本届赛事多次落后扳平证明的韧性（对荷兰2-2、对瑞典1-1） ③拉菲尼亚伤缺削弱巴西边路布局，内马尔复出后状态仍需检验<br><br>
+      <strong>风险因素：</strong>①若内马尔、维尼修斯延续末轮对苏格兰的爆发状态，比分可能扩大至3-0或更大 ②若日本复制2025年友谊赛的逆转剧本，结果可能向日本有利方向偏离 ③巴西若久攻不下产生心态波动，留下的身后空档可能被日本利用制造冷门
+    </div>
+  </div>
+
+  <div class="htft-panel">
+    <div class="htft-title">⏱ 半全场胜平负预测</div>
+    <div class="htft-row">
+      <div class="htft-box"><div class="rank">第一选择</div><div class="combo">平/胜（巴西）</div><div class="prob">概率：26%</div></div>
+      <div class="htft-box"><div class="rank">第二选择</div><div class="combo">胜/胜（巴西）</div><div class="prob">概率：24%</div></div>
+      <div class="htft-box"><div class="rank">第三选择</div><div class="combo">平/平</div><div class="prob">概率：14%</div></div>
+    </div>
+    <div style="font-size:11px;color:#9a5a30;margin-bottom:8px">信心指数 5/10</div>
+    <div class="htft-body">
+      <strong>为什么预测"半场平/全场巴西胜"？</strong><br>
+      日本本届赛事在面对强敌时上半场往往能保持组织性（对荷兰半场2-2不落下风，对瑞典半场战平），其高位逼抢和密集防守体系在比赛前期执行力最强；巴西末轮对苏格兰一战上半场已能连入两球，但面对日本更具组织性的防守，预计需要更长时间才能打开局面，与对摩洛哥首战1-1的开局类似。独立分析也指出"巴西若能在上半场取得进球，比赛将向其倾斜；若日本守住0-0至30分钟后，悬念将大幅增加"，反映两队上半场胶着、下半场分胜负的概率较高。<br><br>
+      <strong>数据支持：①两队近10场上半场进球/失球：</strong>巴西小组赛首战对摩洛哥上半场0-0（最终1-1），末轮对苏格兰上半场已下两城（7分钟+补时），呈现"对强队谨慎、对弱队提速"的特征；日本对荷兰上半场2-2、对瑞典上半场战平，组织性较强。<br><br>
+      <strong>两队近10场半场领先/平/落后次数：</strong>巴西近3场1次半场平(对摩洛哥)、2次半场领先(对海地、苏格兰均为实力悬殊场次)；日本近3场多次半场战平，鲜少落后，整体节奏控制稳健。<br><br>
+      <strong>下半场进球能力及逆转能力：</strong>巴西下半场效率历史更高（个人能力解决比赛的案例较多）；日本下半场同样具备扳平能力（对荷兰、瑞典均有下半场进球贡献），但对阵巴西这一级别对手的逆转尚无世界杯正赛先例（友谊赛逆转不计入此类统计）。<br><br>
+      <strong>历史交锋分布：</strong>2006年世界杯唯一一次正式交锋是巴西4-1取胜（彼时差距悬殊，参考价值有限）；2025年友谊赛日本0-2落后后连扳三球（性质不同，无法直接套用至本场半全场判断）。<br><br>
+      <strong>伤停/首发/战意/轮换因素：</strong>拉菲尼亚伤缺可能使巴西上半场边路进攻效率打折扣，内马尔复出后的状态分配也需要时间；日本无重大伤停，全队可全力以赴，预计会延续"上半场稳固防守、力争拖入下半场"的策略。<br><br>
+      <strong>风险因素：</strong>①若巴西延续末轮对苏格兰的爆发力，上半场即可能确立优势形成"胜/胜" ②若日本复制对荷兰、瑞典的稳健发挥，半场0-0甚至日本半场领先的可能性不可排除 ③淘汰赛心理压力可能使双方上半场都更趋谨慎，半场0-0平局概率同样不低
+    </div>
+    <div class="highlight">投注建议：半全场"平/胜（巴西）"@约2.75是本场性价比较高的核心价值盘，结合了日本上半场组织性强、巴西下半场个人能力解决比赛的真实数据规律和历史交锋特征。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">亚洲让球 <span class="tag tv">首推价值</span></div><div class="bc-rec">巴西-1.5让球 @约2.05</div><div class="bc-reason">三依据：①巴西独赢1.45-1.55赔率本身缺乏价值空间 ②历史交锋14战11胜证明巴西大胜的基础实力 ③拉菲尼亚缺阵增添不确定性，让球盘比独赢更具风险收益比</div></div>
+      <div class="bet-card"><div class="bc-type">胜平负</div><div class="bc-rec">巴西独赢 @1.45-1.55</div><div class="bc-reason">历史交锋和阵容实力全面占优的稳健选择，确定性高但赔率价值有限</div></div>
+      <div class="bet-card"><div class="bc-type">大小球</div><div class="bc-rec">大球2.5 @1.95</div><div class="bc-reason">巴西末轮已展现的爆发力+日本进攻同样具备一定威胁，双方近期比赛进球数均不低</div></div>
+      <div class="bet-card"><div class="bc-type">双方进球</div><div class="bc-rec">双方进球-是 @约1.90</div><div class="bc-reason">日本本届赛事三场均有进球，对阵巴西也有较大概率延续这一特征，巴西防线轮换后稳定性需观察</div></div>
+      <div class="bet-card val"><div class="bc-type">半全场 <span class="tag tv">推荐</span></div><div class="bc-rec">半场平/全场巴西胜 @约2.75</div><div class="bc-reason">日本上半场组织性强+巴西下半场个人能力解决比赛的历史规律，是本场最贴合实际节奏的半全场组合</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 2 德国 vs 巴拉圭 ========== -->
+<div class="card" id="m1">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇩🇪 德国 vs 巴拉圭 🇵🇾</div>
+      <span class="grp">32强淘汰赛 · 1/16决赛</span>
+      <span class="decider">⚡世界杯正赛历史首次交锋</span>
+      <span class="status">施洛特贝克重伤出局 · 戈麦斯/阿尔米隆存疑</span>
+    </div>
+    <div class="mh-right">波士顿 吉列体育场</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇩🇪 德国（近5场，小组赛）</div>
+        <div class="form-row"><span class="fw">W</span><span class="fw">W</span><span class="fl">L</span></div>
+        <div class="sub">第1轮：7-1血洗库拉索（进攻端多点开花，展现恐怖火力）<br>第2轮：2-1逆转科特迪瓦（一度0-1落后，翁达夫梅开二度完成逆转）<br>第3轮：1-2不敌厄瓜多尔（无悬念下纳格尔斯曼坚持排出主力，结果被逆转，赛后自称"战术性自杀"）<br>E组第一（6分）出线，11连胜被终结，小组赛10个进球场均3.3球，是进攻火力最强球队之一</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇵🇾 巴拉圭（近5场，小组赛）</div>
+        <div class="form-row"><span class="fl">L</span><span class="fw">W</span><span class="fd">D</span></div>
+        <div class="sub">第1轮：1-4负美国（惨败开局，暴露整体实力差距）<br>第2轮：1-0胜土耳其（阿尔米隆染红十人应战情况下小胜，展现极强韧性）<br>第3轮：0-0闷平澳大利亚（继续坚守防线锁定出线）<br>D组第三（2分，靠净胜球力压韩国）惊险跻身8个最佳小组第三之一，时隔16年重返世界杯，南美预选赛曾零封巴西、绝杀乌拉圭</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">德国</div><div class="val">FIFA第10位</div><div class="sub">全队身价超10亿欧元，世界杯历史四冠球队，但近几届表现未达预期，2026年核心看点是纳格尔斯曼能否重建中前场体系<br>若取胜将在1/4决赛对阵巴西与日本的胜者（大概率巴西），是德国争冠路上的关键一战</div></div>
+      <div class="stat-block"><div class="lbl">巴拉圭</div><div class="val">FIFA第40位</div><div class="sub">全队身价约1.5-1.57亿欧元，与德国不在一个量级，时隔16年重返世界杯目标是闯入八强（2010年曾达成）<br>主帅阿尔法罗惯用5-4-1/4-4-2密集防守反击体系，防守韧性是球队最大资本</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">德国</div><div class="val">进10球 / 失4球（小组赛3场）</div><div class="sub">场均3.3球展现进攻火力最强球队之一的实力，世预赛10战全胜轰入43球仅失4球的历史数据同样亮眼<br>防线隐患突出：主力中卫施洛特贝克脚踝重伤告别本届杯赛，末轮轮换阵容被厄瓜多尔打入2球暴露轮换深度问题</div></div>
+      <div class="stat-block"><div class="lbl">巴拉圭</div><div class="val">进2球 / 失4球（小组赛3场）</div><div class="sub">场均0.67球是32强中进攻效率最弱球队之一，三场比赛仅入2球，进攻端极度依赖恩西索和阿尔米隆的个人能力<br>防守韧性十足：三场仅失4球（其中3球来自美国），面对土耳其和澳大利亚均零封对手，密集防守战术执行成熟</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>两队从未在世界杯正赛交手，本场是双方世界杯历史首次正式对决</li>
+      <li>历史交手不多，最近一次是2013年8月的友谊赛，双方3-3握手言和；德国在世界杯对阵南美球队的战绩为7胜2平2负，整体占据上风</li>
+      <li>巴拉圭上一次在淘汰赛遭遇欧洲球队是2010年1/4决赛0-1负于西班牙（彼时也曾闯入八强），证明其面对欧洲强队时具备一定的防守组织能力和历史底蕴</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>德国⚠：</strong>主力中卫施洛特贝克因脚踝重伤已告别本届杯赛，是德国阵容的重大缺失；吕迪格将搭档塔镇守中卫，左后卫布朗带伤待命；萨内因伤缺阵，但翁达夫、哈弗茨领衔的攻击线依旧火力充足；诺伊尔确认首发，迎来个人第五届世界杯；预计首发(4-2-3-1)：诺伊尔；基米希、吕迪格、塔、劳姆；格雷茨卡、京多安；穆西亚拉、维尔茨；哈弗茨</li>
+      <li><strong>巴拉圭⚠⚠：</strong>中场主力迭戈·戈麦斯因累积黄牌停赛，确定无缘出战，这是巴拉圭中场拦截和组织的核心，对中场硬度影响极大；核心攻击手米格尔·阿尔米隆小组赛末轮受伤，出战存疑，若无法出战进攻威胁将进一步下降；头号射手胡利奥·恩西索已恢复将首发出战</li>
+      <li><strong>关键变量：</strong>德国后防因施洛特贝克重伤而打折扣，是巴拉圭身体对抗+定位球可寻求突破的薄弱点；巴拉圭中场因戈麦斯停赛+阿尔米隆存疑而"原本就不占优势的中场现在更难顶住德国冲击"（独立分析评价），双重人员问题叠加可能让巴拉圭的防守韧性大打折扣</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>德国4-2-3-1（高压逼抢+快速转换）：</strong>纳格尔斯曼体系以高位压迫为核心，哈弗茨的支点作用、穆西亚拉的盘带突破、维尔茨的创造力是破局关键，将利用身体优势和高空轰炸冲击巴拉圭防线，定位球是重要得分手段</li>
+      <li><strong>巴拉圭4-4-2/5-4-1（深度收缩防反）：</strong>依靠双后腰保护防线，恩西索和阿尔米隆（若出战）在反击中寻找机会，需要避免过早丢球将比赛拖入下半场甚至加时/点球，全队为了死守可以接受任何结果，心理包袱较小</li>
+      <li><strong>关键对位：</strong>维尔茨+穆西亚拉的个人突破能力 vs 巴拉圭密集防守体系——这是德国破局最依赖的武器，若两人能找回最佳状态德国应能较快撕开防线；若状态低迷，德国只能不断传中冲吊效率下降，可能陷入久攻不下的僵局，叠加波士顿现场大量巴拉圭球迷制造的"类客场"氛围，对德国的场上沟通构成额外考验</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 淘汰赛战意分析</div>
+    <ul class="alist">
+      <li><strong>德国背负历史阴影：</strong>近两届世界杯连续小组赛爆冷出局的心理阴影不可能完全消失，末轮"战术性自杀"的失利（队长基米希坦承对手求胜欲望更强）也暴露提前出线后切换强度的隐患，但德国已明确表态会全力以赴</li>
+      <li><strong>巴拉圭志在突破：</strong>时隔16年重返世界杯，目标是复刻2010年闯入八强的历史最佳战绩，全队为求生存可以接受任何结果，心理包袱小、放得开是其最大优势</li>
+      <li><strong>容错率为零的考验：</strong>德国若慢热迟迟找不到强度，时间拖得越久心理压力越大、出错概率越高；巴拉圭则需要顶住核心中场缺阵的冲击，能否扛住德国开场冲击是第一道关卡</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">德国独赢</div><div class="ov hot">1.30-1.35</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">5.00</div></div>
+      <div class="ob"><div class="ol">巴拉圭独赢</div><div class="ov">8.50</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">德国受让</div><div class="ov hot">2.02</div></div>
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov">1.85</div></div>
+      <div class="ob"><div class="ol">小球2.5</div><div class="ov">1.95</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">德国独赢资金高度集中(1.30-1.35)，但让球盘"德国-1.5"受让赔率达2.020，反映市场认为德国大胜并非轻而易举；巴拉圭8.5的独赢赔率仍为其留出一定爆冷空间，结合其防守韧性和"把比赛拖入加时/点球"的现实可能性，盘口设计体现了对德国"强弱分明却暗藏杀机"的综合判断</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>德国独赢资金集中，但1.30-1.35的低赔率本身缺乏价值空间，更适合作为稳胆而非价值投注角度</li>
+      <li>德国-1.5让球盘(2.02)被列为更具价值的角度，理由是巴拉圭防守韧性十足+中场核心戈麦斯停赛对德国大胜形成的不确定性相互抵消后的合理定价</li>
+      <li>小球盘相对受关注，巴拉圭密集防守战术成熟+若能拖入下半场甚至加时，整体比分可能维持低位</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：中等（独立分析师明确指出"爆冷概率会直接提升一倍以上"的特定条件）</div>
+      <p>德国整体实力远超巴拉圭，是理所应当的热门。但本场存在多个对巴拉圭有利的现实变量：①主力中卫施洛特贝克重伤，德国防线存在薄弱环节；②维尔茨、穆西亚拉本届赛事尚未打出最佳状态，若迟迟找不到状态德国可能陷入久攻不下；③德国近两届世界杯连续爆冷出局的心理阴影+提前出线后切换强度的隐患（末轮"战术性自杀"已有先例）；④若巴拉圭能成功把比赛拖入加时或点球大战，爆冷概率会直接提升一倍以上；⑤现场大量巴拉圭球迷制造的客场氛围可能影响德国场上沟通。但巴拉圭自身也有隐忧——中场核心戈麦斯停赛+阿尔米隆存疑，若过早丢球只能压出来进攻，会给德国更多空间，因此爆冷难度依然不小。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">德国 2-0 巴拉圭（主选）</div>
+    <div class="pred-meta">概率约22% · 次选：1-0德国（约20%） · 3-0德国（约18%） · 1-1平（约14%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 6/10（实力差距明确，但破密集防守的过程和德国后防隐患增添不确定性）</div>
+    <div class="pred-body">
+      <strong>为什么预测2-0？</strong><br>
+      德国进攻火力（小组赛场均3.3球）和阵容深度远超巴拉圭（场均0.67球进攻效率垫底），维尔茨+穆西亚拉的个人能力理论上能撕开密集防守；但巴拉圭防守韧性已多次验证（零封土耳其、澳大利亚），且戈麦斯停赛后的中场问题需要时间才会被完全暴露，德国也可能因维尔茨穆西亚拉状态未回升+施洛特贝克伤缺的防线隐患而无法轻松大胜。2-0反映了"德国整体实力碾压"与"巴拉圭防守体系延缓比分扩大节奏"两种现实因素的平衡。<br><br>
+      <strong>数据支持：</strong>①德国小组赛场均3.3球的进攻火力 ②巴拉圭三场仅失4球（含3球来自实力更强的美国）的防守韧性 ③巴拉圭中场核心戈麦斯停赛+阿尔米隆存疑的双重人员问题<br><br>
+      <strong>风险因素：</strong>①若维尔茨穆西亚拉迟迟找不到状态，可能陷入久攻不下的1-0或0-0僵局 ②若巴拉圭凭借密集防守把比赛拖入加时/点球，结果偏差概率会显著提升 ③德国主力中卫施洛特贝克伤缺，若被巴拉圭利用定位球或身体对抗制造威胁，可能形成1-1或更接近的比分
+    </div>
+  </div>
+
+  <div class="htft-panel">
+    <div class="htft-title">⏱ 半全场胜平负预测</div>
+    <div class="htft-row">
+      <div class="htft-box"><div class="rank">第一选择</div><div class="combo">平/胜（德国）</div><div class="prob">概率：30%</div></div>
+      <div class="htft-box"><div class="rank">第二选择</div><div class="combo">胜/胜（德国）</div><div class="prob">概率：22%</div></div>
+      <div class="htft-box"><div class="rank">第三选择</div><div class="combo">平/平</div><div class="prob">概率：16%</div></div>
+    </div>
+    <div style="font-size:11px;color:#9a5a30;margin-bottom:8px">信心指数 5/10</div>
+    <div class="htft-body">
+      <strong>为什么预测"半场平/全场德国胜"？</strong><br>
+      独立分析（黄健翔展望栏目）明确指出"德国队管理层对维尔茨、穆西亚拉的状态非常乐观，大概率会在下半场发力打破僵局"——这一判断与巴拉圭密集防守在比赛前期最具执行力、随体能下降才逐渐出现漏洞的规律高度吻合；德国小组赛首战7-1血洗库拉索式的开场爆发主要针对弱旅，对阵巴拉圭这种纪律性极强的密集防守，预计需要更长时间才能破局。<br><br>
+      <strong>数据支持：①两队近10场上半场进球/失球：</strong>德国对科特迪瓦一战上半场曾0-1落后（最终下半场逆转2-1），证明其面对组织性防守时上半场效率有限；巴拉圭对土耳其、澳大利亚两场上半场均能保持0失球的密集防守纪律。<br><br>
+      <strong>两队近10场半场领先/平/落后次数：</strong>德国近3场1次半场落后后逆转(对科特迪瓦)；巴拉圭近3场多次半场战平或落后但很快企稳，对阵实力强于自己的对手时上半场极少主动进攻冒险。<br><br>
+      <strong>下半场进球能力及逆转能力：</strong>德国下半场逆转能力已在对科特迪瓦一战验证（翁达夫梅开二度完成逆转）；巴拉圭下半场体能和防守纪律性会随时间推进逐渐承压，是德国打开局面的关键窗口期。<br><br>
+      <strong>历史交锋分布：</strong>两队世界杯历史首次交锋，无数据可参考，仅有2013年友谊赛3-3的有限参考价值。<br><br>
+      <strong>伤停/首发/战意/轮换因素：</strong>德国全队基本健康（除施洛特贝克），全力以赴出战；巴拉圭因戈麦斯停赛+阿尔米隆存疑，中场硬度下降可能使其上半场更难保持组织性，体能和人员问题会在比赛推进中逐渐显现。<br><br>
+      <strong>风险因素：</strong>①若维尔茨穆西亚拉提前找回状态，上半场即可能破局形成"胜/胜" ②若巴拉圭顶住开场冲击且德国心态急躁，半场0-0甚至全场闷平的可能性不可排除 ③淘汰赛容错率为零的压力下，德国若复制末轮"战术性自杀"的松懈表现，结果存在较大不确定性
+    </div>
+    <div class="highlight">投注建议：半全场"平/胜（德国）"@约2.60是本场性价比较高的核心价值盘，结合了独立分析师"德国大概率下半场发力破局"的判断和巴拉圭密集防守上半场执行力最强的真实数据规律。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">亚洲让球 <span class="tag tv">首推价值</span></div><div class="bc-rec">德国-1.5让球 @约2.02</div><div class="bc-reason">三依据：①独赢1.30-1.35赔率缺乏价值空间 ②德国场均3.3球进攻火力对阵巴拉圭场均0.67球的进攻劣势 ③巴拉圭中场戈麦斯停赛削弱防守组织性，德国大胜基础具备</div></div>
+      <div class="bet-card"><div class="bc-type">胜平负</div><div class="bc-rec">德国独赢 @1.30-1.35</div><div class="bc-reason">实力差距明确的稳健选择，确定性高但赔率价值有限，适合搭配多重过关</div></div>
+      <div class="bet-card"><div class="bc-type">大小球</div><div class="bc-rec">大球2.5 @1.85</div><div class="bc-reason">德国进攻火力充足+巴拉圭中场问题可能被针对性击破，整体盘面有利于德国扩大比分</div></div>
+      <div class="bet-card"><div class="bc-type">双方进球</div><div class="bc-rec">双方进球-否 @约1.95</div><div class="bc-reason">巴拉圭进攻端三场仅入2球的极弱效率，对阵德国稳固防线大概率延续颗粒无收的特征</div></div>
+      <div class="bet-card val"><div class="bc-type">半全场 <span class="tag tv">推荐</span></div><div class="bc-rec">半场平/全场德国胜 @约2.60</div><div class="bc-reason">独立分析师明确指出德国大概率下半场发力破局+巴拉圭密集防守上半场执行力最强，是本场最贴合实际节奏的组合</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 3 荷兰 vs 摩洛哥 ========== -->
+<div class="card" id="m2">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇳🇱 荷兰 vs 摩洛哥 🇲🇦</div>
+      <span class="grp">32强淘汰赛 · 1/16决赛</span>
+      <span class="decider">⚡欧非强强对话 · 时隔32年世界杯再相遇</span>
+      <span class="status">德容出战成疑 · 布罗比确认伤缺</span>
+    </div>
+    <div class="mh-right">蒙特雷 BBVA体育场</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇳🇱 荷兰（近5场，小组赛）</div>
+        <div class="form-row"><span class="fd">D</span><span class="fw">W</span><span class="fw">W</span></div>
+        <div class="sub">第1轮：2-2平日本（控球占优但未能取胜，暴露防线偶尔松懈）<br>第2轮：5-1血洗瑞典（加克波、德佩、马伦组成的攻击线火力全开）<br>第3轮：3-1胜突尼斯（开场7分钟即2-0领先，布罗比3次射门全部转化为进球）<br>F组第一（2胜1平，7分）出线，渐入佳境两连胜收官，小组赛轰入10球，纸面实力被部分经济学家列为夺冠候选</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇲🇦 摩洛哥（近5场，小组赛）</div>
+        <div class="form-row"><span class="fd">D</span><span class="fw">W</span><span class="fw">W</span></div>
+        <div class="sub">第1轮：1-1平巴西（逼平夺冠大热门，向外界证明实力）<br>第2轮：1-0胜苏格兰（客场取胜且让对手全场零射正，防守组织极为出色）<br>第3轮：4-2胜海地（一度两度落后，下半场换人调整惊险逆转）<br>C组第二（2胜1平，7分，仅净胜球劣势屈居第二）出线，近10场各项赛事保持不败，抗压能力经过实战检验</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">荷兰</div><div class="val">FIFA第7位</div><div class="sub">全队身价约7.54亿欧元，被誉为"无冕之王"，范戴克坐镇后防、赫拉芬贝赫中场调度，大赛经验丰富<br>仅凭净胜球优势压过日本拿到F组头名，成功避开强大的巴西队，但淘汰赛首关即遇摩洛哥这块硬骨头</div></div>
+      <div class="stat-block"><div class="lbl">摩洛哥</div><div class="val">FIFA第6位</div><div class="sub">全队身价约4.48亿欧元，2022年世界杯四强（非洲球队历史最佳战绩），曾击败比利时、西班牙、葡萄牙三支欧洲劲旅<br>上届四强功臣恩内斯里、齐耶赫缺阵，但阿什拉夫、马兹拉维组成的边路走廊+迪亚斯的突破串联是反击核心</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">荷兰</div><div class="val">进10球 / 失4球（小组赛3场）</div><div class="sub">小组赛阶段进攻火力强劲，对突尼斯一战开场7分钟即2-0领先展现高效终结能力，加克波、德佩、马伦三人均有进球贡献<br>范戴克领衔的防线整体稳固但首战对日本暴露偶尔松懈隐患（被扳平2次），整体而言后防仍有可被利用的空间</div></div>
+      <div class="stat-block"><div class="lbl">摩洛哥</div><div class="val">进6球 / 失3球（小组赛3场）</div><div class="sub">务实防反风格下，末轮对海地一战4-2取胜展现下半场调整和逆转能力，赛巴里小组赛贡献2球状态火热<br>整体防守体系成熟，对苏格兰一战让对手全场零射正，对巴西也能逼平证明防守组织对强队同样有效，唯一隐忧是对海地一战两度落后暴露的防线问题</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>两队历史交锋数据存在差异：部分来源指仅在2017年友谊赛交手一次（荷兰2-1小胜），另有来源统计两队历史交锋3次（荷兰2胜1负）——综合来看官方正式交锋记录有限，荷兰整体占据小优势</li>
+      <li>世界杯赛场上这是双方时隔32年的再次相遇，历史参考价值有限，更多需要依赖两队本届赛事的实际状态</li>
+      <li>摩洛哥在世界杯面对欧洲球队的战绩整体不俗，上届世界杯曾连续击败比利时、西班牙、葡萄牙三支欧洲劲旅一路闯入四强，这一战绩证明摩洛哥完全具备爆冷欧洲传统强队的实力和经验</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>荷兰⚠：</strong>中场核心弗兰基·德容小组赛末轮因伤被换下，出战成疑，若无法出战荷兰中场组织能力将大幅下降；前锋布罗比确认因伤缺阵；哈维·西蒙斯、斯豪滕、德里赫特此前已因伤无缘本届赛事，伤病累积情况不容乐观；预计首发(4-3-3)：费布鲁亨；邓弗里斯、范赫克、范戴克、阿克；赖因德斯、德容（伤疑）、赫拉芬贝赫；加克波、德佩、马伦</li>
+      <li><strong>摩洛哥：</strong>阵容齐整，无核心伤病报告，是本场人员层面的明显优势；阿什拉夫、马兹拉维、阿姆拉巴特均可出战；赛巴里小组赛打入2球状态火热；预计首发(4-2-3-1)：布努；哈基米、迪奥普、里亚德、马兹拉维；阿姆拉巴特、布阿迪；迪亚斯、奥纳希、赛巴里；恩内西里</li>
+      <li><strong>关键变量：</strong>荷兰中场因德容出战成疑+布罗比确认伤缺，进攻组织和终结点都受到影响；摩洛哥"阵容齐整"对比荷兰"伤病累积"形成本场最大的人员层面反差，这是摩洛哥制造冷门的重要现实基础</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>荷兰4-3-3（全攻全守体系）：</strong>延续荷兰传统的全攻全守风格，范戴克领衔后防坚如磐石，德容（健康时）中场调度自如，加克波、德佩、马伦组成的攻击线状态火热，整体打法身体优势对摩洛哥防守组织有一定优势</li>
+      <li><strong>摩洛哥4-2-3-1（务实防反极致化）：</strong>将防守反击演绎到极致，阿什拉夫、马兹拉维组成的边路走廊攻守俱佳，迪亚斯的突破和串联是反击中的锐利尖刀，阿姆拉巴特、布阿迪双后腰提供坚实的中场屏障</li>
+      <li><strong>关键对位：</strong>荷兰身体优势和边路冲击 vs 摩洛哥防守组织与快速转换——摩洛哥阵中阿什拉夫、马兹拉维等多名荷兰出生球员更添话题性（"荷兰制造"的摩洛哥球员对阵祖籍国），这种特殊的人员渊源也为本场比赛增添了额外的心理博弈维度；荷兰若德容缺阵，中场控制力下降可能让摩洛哥的反击空间进一步扩大</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 淘汰赛战意分析</div>
+    <ul class="alist">
+      <li><strong>荷兰渴望突破：</strong>主教练科曼明确表态"摩洛哥是一支实力很强的球队，有很多高水平球员，而且进球能力很强"，深知淘汰赛单场生死战是对球队"不仅擅长控场更能关键时刻一击致命"的巨大考验，渴望证明纸面实力能转化为淘汰赛战绩</li>
+      <li><strong>摩洛哥志在复刻历史：</strong>2022年世界杯四强的历史最佳战绩是全队的标杆和动力，本届赛事首轮逼平巴西已证明实力不输欧洲豪门，全队抗压能力经过实战检验（对海地一战两度落后仍能逆转）</li>
+      <li><strong>避战巴西的连带影响：</strong>荷兰仅凭净胜球优势拿到F组头名从而避开了强大的巴西队，但代价是淘汰赛首关就遇上同样具备四强底蕴的摩洛哥，"避虎遇狼"的赛程效应使本场实际难度不亚于对阵传统强队</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">荷兰独赢</div><div class="ov hot">2.10</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">3.10</div></div>
+      <div class="ob"><div class="ol">摩洛哥独赢</div><div class="ov">3.40</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov">2.05</div></div>
+      <div class="ob"><div class="ol">小球2/2.5</div><div class="ov hot">1.87</div></div>
+      <div class="ob"><div class="ol">荷兰-1让球</div><div class="ov">约2.00</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">荷兰独赢是微弱热门(2.10)但三方赔率差距不大(2.10/3.10/3.40)，是本届32强阶段"最具爆冷看点的对决之一"（独立分析评价）；小球2/2.5的赔率1.87反映市场认为摩洛哥防守成熟+控球消耗强的特点会限制总进球数，全场总进球控制在2球及以内的概率被市场认可为接近九成胜率的判断</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>荷兰独赢获得一定资金倾斜(2.10)，但三方赔率接近反映市场认为这是势均力敌的强强对话</li>
+      <li>小球2/2.5被多个独立分析机构（博讯等）列为高赔率价值首选，回报率测算约87%，依据是摩洛哥防守成熟+荷兰未必场场高效进球的现实组合</li>
+      <li>荷兰-1让球盘被视为兼顾荷兰实力优势和摩洛哥防守韧性的折中选择，比独赢2.10更具风险收益比的探讨空间</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：中高（被独立分析称为本届32强最具爆冷看点的对决之一）</div>
+      <p>荷兰纸面实力略占优势且整体进攻火力更强，但本场存在多个有利于摩洛哥的现实变量：①荷兰中场核心德容出战成疑+前锋布罗比确认伤缺，人员问题突出；②摩洛哥阵容齐整、无任何伤病报告，人员层面占据明显优势；③摩洛哥拥有2022年世界杯四强的淘汰赛大赛经验，且曾连续击败比利时、西班牙、葡萄牙三支欧洲劲旅，具备实战验证过的"爆冷欧洲强队"基因；④摩洛哥首轮逼平巴西、末轮逆转海地展现的抗压能力和韧性。这场比赛被独立分析机构和媒体普遍认为是本届32强阶段最具爆冷看点的对决，不宜简单视为荷兰占优的"无悬念"比赛。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">荷兰 1-1 摩洛哥（主选）</div>
+    <div class="pred-meta">概率约20% · 次选：2-1荷兰（约18%） · 1-0荷兰（约17%） · 0-0平（约15%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 4/10（三方赔率接近，是六场推荐项目中确定性最低的场次之一，被多方独立分析列为本阶段头号爆冷候选）</div>
+    <div class="pred-body">
+      <strong>为什么预测1-1？</strong><br>
+      荷兰进攻火力（小组赛10球）和身体优势理论上能压制摩洛哥防线，但德容出战成疑+布罗比伤缺使其中前场组织和终结点双双承压；摩洛哥阵容齐整+防守体系已多次验证（零封苏格兰射正、逼平巴西），加上阿什拉夫、马兹拉维边路走廊和迪亚斯的反击效率，几乎必然能从荷兰存在隐患的防线身上抢得至少1球。1-1反映了"荷兰整体实力仍占优"和"摩洛哥防守体系+反击效率能限制甚至抢分"两种现实因素的平衡，也契合了独立分析对本场"爆冷看点最高"的整体定性。<br><br>
+      <strong>数据支持：</strong>①荷兰德容出战成疑+布罗比确认伤缺的双重人员问题 ②摩洛哥阵容齐整、近10场各项赛事保持不败 ③摩洛哥2022年世界杯曾连续击败比利时、西班牙、葡萄牙三支欧洲劲旅的实战验证<br><br>
+      <strong>风险因素：</strong>①若德容最终能够出战且状态正常，荷兰中场控制力将显著提升，可能形成2-0或2-1的小胜 ②若摩洛哥延续对海地一战的逆转效率，存在爆冷取胜的可能性 ③若双方均较为谨慎试探，0-0全场闷平的概率同样不可忽视
+    </div>
+  </div>
+
+  <div class="htft-panel">
+    <div class="htft-title">⏱ 半全场胜平负预测</div>
+    <div class="htft-row">
+      <div class="htft-box"><div class="rank">第一选择</div><div class="combo">平/平</div><div class="prob">概率：24%</div></div>
+      <div class="htft-box"><div class="rank">第二选择</div><div class="combo">平/胜（荷兰）</div><div class="prob">概率：20%</div></div>
+      <div class="htft-box"><div class="rank">第三选择</div><div class="combo">胜/胜（荷兰）</div><div class="prob">概率：16%</div></div>
+    </div>
+    <div style="font-size:11px;color:#9a5a30;margin-bottom:8px">信心指数 4/10</div>
+    <div class="htft-body">
+      <strong>为什么预测"半场平/全场平"或"半场平/全场荷兰胜"？</strong><br>
+      摩洛哥对阵强队时（巴西、苏格兰）上半场均能保持组织性和零封纪录，防守体系在比赛前期执行力最强；荷兰若德容缺阵，中场组织效率在上半场可能受到明显影响（类比德容受伤被换下的末轮比赛节奏变化）。两队结合下，半场战平后再由控球和身体优势更强的荷兰逐渐扩大优势的剧本，或双方均保持谨慎导致全场低分胶着，是两种概率最高的现实路径。<br><br>
+      <strong>数据支持：①两队近10场上半场进球/失球：</strong>荷兰对突尼斯一战上半场已取得2-0优势（针对弱旅的高效开局），但对日本上半场被两度扳平暴露防线问题；摩洛哥对巴西上半场0-0、对苏格兰上半场即建立优势且全场零封对手射正，整体上半场组织性较强。<br><br>
+      <strong>两队近10场半场领先/平/落后次数：</strong>荷兰近3场1次半场领先大幅扩大(对突尼斯)、1次半场战平后被扳平(对日本)；摩洛哥近3场对海地一战曾两度半场落后（最终下半场逆转），证明其下半场调整能力强于上半场抗压能力。<br><br>
+      <strong>下半场进球能力及逆转能力：</strong>摩洛哥下半场逆转能力已在对海地一战验证（两度落后最终4-2取胜）；荷兰下半场效率同样不低，整体进攻火力贯穿全场。<br><br>
+      <strong>历史交锋分布：</strong>两队历史交锋数据有限且时隔32年未在世界杯相遇，无法提供可靠的半全场分布参考。<br><br>
+      <strong>伤停/首发/战意/轮换因素：</strong>荷兰德容出战成疑将直接影响上半场中场控制力和组织效率；摩洛哥阵容齐整保障了战术执行的稳定性；双方均为淘汰赛全力以赴，预计不会出现明显轮换。<br><br>
+      <strong>风险因素：</strong>①若德容最终出战且状态良好，荷兰上半场即可能建立优势形成"胜/胜" ②若摩洛哥复制对海地一战的逆转效率，"负/胜（摩洛哥）"的特殊走向不可排除 ③两队历史交锋数据稀少，半全场预测的不确定性高于其他两场比赛
+    </div>
+    <div class="highlight">投注建议：半全场"平/平"@约4.00和"平/胜（荷兰）"@约3.20可搭配小注布局，分别覆盖"双方谨慎对峙全场低分"和"荷兰下半场凭借身体优势打开局面"两种最具数据支撑的现实剧本，本场半全场盘建议适度控制单注金额。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">大小球 <span class="tag tv">首推价值</span></div><div class="bc-rec">小球2/2.5 @1.87</div><div class="bc-reason">三依据：①摩洛哥防守成熟体系对苏格兰一战实现零射正零封 ②荷兰未必场场高效进球，对日本一战被逼平证明终结效率存在波动 ③独立分析测算该盘口回报率约87%，是性价比突出的稳健选择</div></div>
+      <div class="bet-card"><div class="bc-type">亚洲让球</div><div class="bc-rec">荷兰-1让球 @约2.00</div><div class="bc-reason">兼顾荷兰整体实力优势和摩洛哥防守韧性可能限制大胜的现实，比独赢2.10更具风险收益比挖掘空间</div></div>
+      <div class="bet-card val"><div class="bc-type">双方进球 <span class="tag tv">价值</span></div><div class="bc-rec">双方进球-是 @约1.95</div><div class="bc-reason">三依据：①荷兰中前场进攻火力小组赛10球的硬实力 ②摩洛哥迪亚斯+赛巴里的反击效率对阵荷兰存在隐患的防线有威胁 ③荷兰德容缺阵情景下中场拦截减弱，摩洛哥反击空间增大</div></div>
+      <div class="bet-card"><div class="bc-type">胜平负</div><div class="bc-rec">摩洛哥不败（独赢+平局）@约1.60</div><div class="bc-reason">摩洛哥阵容齐整对比荷兰伤病累积的人员反差+2022年世界杯四强证明的大赛抗压能力，是本场最具赔率价值的角度之一</div></div>
+      <div class="bet-card risk"><div class="bc-type">半全场 <span class="tag tr">价值</span></div><div class="bc-rec">半场平/全场平 @约4.00</div><div class="bc-reason">摩洛哥对强队上半场组织性强+荷兰德容缺阵可能削弱中场控制，双方谨慎对峙下全场低分平局的概率不容忽视</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 4 三场精选方案 ========== -->
+<div class="card" id="m3">
+  <div class="final-card" style="border:none;padding:0">
+    <div class="final-title">★ 2026世界杯32强淘汰赛 · 三场赛事精选方案</div>
+
+    <div class="pick-row">
+      <div class="pick-item">
+        <div class="stars">★★★★☆<br><span style="font-size:10px;color:#888">稳胆</span></div>
+        <div class="pick-right">
+          <div class="plbl">德国 vs 巴拉圭</div>
+          <div class="pmain">德国-1.5亚洲让球 @约2.02</div>
+          <div class="pdet">依据：①德国小组赛场均3.3球进攻火力对阵巴拉圭场均0.67球进攻效率垫底的实力鸿沟 ②巴拉圭中场核心迭戈·戈麦斯因累积黄牌停赛，原本就薄弱的中场更难顶住德国冲击 ③德国独赢1.30-1.35赔率本身缺乏价值，让球盘提供更合理的风险收益比，是三场中确定性相对最高的单项</div>
+        </div>
+      </div>
+
+      <div class="pick-item">
+        <div class="stars">★★★★☆<br><span style="font-size:10px;color:#888">稳胆</span></div>
+        <div class="pick-right">
+          <div class="plbl">荷兰 vs 摩洛哥</div>
+          <div class="pmain">小球2/2.5 @1.87</div>
+          <div class="pdet">依据：①摩洛哥防守体系成熟，对苏格兰一战实现零射正零封的硬数据 ②荷兰中场核心德容出战成疑+前锋布罗比确认伤缺，进攻组织和终结效率双双承压 ③独立分析机构测算该盘口回报率约87%，是三场中性价比最突出的稳健选择之一</div>
+        </div>
+      </div>
+
+      <div class="pick-item">
+        <div class="stars">★★★☆☆<br><span style="font-size:10px;color:#888">博高赔</span></div>
+        <div class="pick-right">
+          <div class="plbl">巴西 vs 日本</div>
+          <div class="pmain">半场平/全场巴西胜 @约2.75</div>
+          <div class="pdet">依据：①日本对阵强敌（荷兰、瑞典）上半场均能保持组织性不落下风的真实数据规律 ②巴西历史交锋14战11胜的绝对优势保障全场获胜概率 ③拉菲尼亚伤缺使巴西上半场边路效率打折扣，需要更长时间才能打开局面，半全场组合比单纯压全场胜负更具赔率价值</div>
+        </div>
+      </div>
+
+      <div class="pick-item">
+        <div class="stars">★★★☆☆<br><span style="font-size:10px;color:#888">博高赔</span></div>
+        <div class="pick-right">
+          <div class="plbl">荷兰 vs 摩洛哥</div>
+          <div class="pmain">双方进球-是 @约1.95</div>
+          <div class="pdet">依据：①荷兰小组赛10球的进攻硬实力保障取得进球的概率 ②摩洛哥迪亚斯+赛巴里的反击效率对阵荷兰隐患防线（对日本曾两度被扳平）存在威胁 ③荷兰德容若缺阵，中场拦截减弱将进一步放大摩洛哥的反击空间，双方均有较高概率破门</div>
+        </div>
+      </div>
+
+      <div class="pick-item">
+        <div class="stars">★★☆☆☆<br><span style="font-size:10px;color:#888">冷门尝试</span></div>
+        <div class="pick-right">
+          <div class="plbl">荷兰 vs 摩洛哥</div>
+          <div class="pmain">摩洛哥不败（独赢+平局）@约1.60（注：作为高赔冷门小注，非完全意义上的低赔稳胆）</div>
+          <div class="pdet">依据：①摩洛哥阵容齐整对比荷兰伤病累积（德容存疑+布罗比伤缺）的鲜明人员反差 ②摩洛哥2022年世界杯四强的实战经验，曾连续击败比利时、西班牙、葡萄牙三支欧洲劲旅 ③本场被多个独立分析机构和媒体明确列为本届32强阶段"最具爆冷看点"的对决，市场赔率差距小(2.10/3.10/3.40)本身也反映了这种不确定性，建议适度参与而非重仓</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="sec-title" style="margin-top:4px">📊 综合预期与资金分配建议</div>
+    <div class="two-col" style="margin-bottom:10px">
+      <div class="stat-block"><div class="lbl">预计命中率</div><div class="val">稳胆类约65-70% · 高赔类约32-38% · 冷门类约35-40%</div><div class="sub">五项合计预期至少命中2-3项；两项稳胆若同时命中可大幅降低整体回撤风险；荷兰摩洛哥一役因不确定性较高，建议单场总仓位适度控制</div></div>
+      <div class="stat-block"><div class="lbl">预期赔率区间</div><div class="val">1.60 ~ 2.75</div><div class="sub">稳胆类集中在1.87-2.02低赔区间，高赔类集中在1.95-2.75区间，本次三场赛事整体赔率分布相对集中，未设置极端高赔冷门项</div></div>
+    </div>
+
+    <div class="sec-title">💰 资金分配建议（以100单位资金为基准）</div>
+    <div class="alloc-row">
+      <div class="abox"><div class="al">德国-1.5让球<br>@2.02</div><div class="av">26</div></div>
+      <div class="abox"><div class="al">荷摩小球2/2.5<br>@1.87</div><div class="av">24</div></div>
+      <div class="abox"><div class="al">巴日半全场<br>@2.75</div><div class="av">18</div></div>
+      <div class="abox"><div class="al">荷摩双方进球<br>@1.95</div><div class="av">16</div></div>
+      <div class="abox"><div class="al">摩洛哥不败<br>@1.60</div><div class="av">10</div></div>
+      <div class="abox"><div class="al">现金储备<br>-</div><div class="av">6</div></div>
+    </div>
+    <div class="note">说明：以上分配合计94单位投入五项推荐项，剩余6单位建议保留作为现金储备。需特别提醒：荷兰vs摩洛哥一场同时出现了三项推荐（小球、双方进球、摩洛哥不败），这三项并非完全独立——若实际比赛走势为荷兰大胜（如2-0、3-0），小球和摩洛哥不败两项会同时落空，请将这三项视为同一场比赛的组合敞口而非三个独立机会，不宜按三项简单叠加仓位。建议优先确认德容、阿尔米隆等关键伤停球员的最终出战情况（赛前1小时官方公布）后再决定是否追加投入。两项★★★★☆稳胆合计占比50%，是本次资金配置的核心压舱石。</div>
+
+    <div class="risk-box" style="margin-top:14px">
+      <div class="rtitle">⚠ 重要风险提示</div>
+      <p>本报告所有分析基于截至发稿前可获得的公开数据（近期战绩、伤停报告、博彩公司公开赔率等），仅作为投注参考，不构成保证盈利的承诺。32强淘汰赛阶段为单场决胜制，若常规时间战平将进入加时赛及点球大战，这会显著影响大小球、半全场等盘口的最终判定方式（多数盘口仅计算90分钟常规时间），请投注前仔细核实平台具体规则。足球比赛存在高度不确定性，伤停名单（尤其德容、阿尔米隆的出战情况）、临场战术变化、裁判判罚等因素均可能导致实际结果偏离预测。所有赔率请以投注平台临场实时显示为准，发稿后可能已发生变动。请理性投注、量力而行，将资金管理和长期纪律置于单场结果之上，切勿借贷投注或投入超出自身承受能力的资金。</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+function show(idx){
+  var cards = document.querySelectorAll('.card');
+  var tabs = document.querySelectorAll('.tab');
+  for (var i = 0; i < cards.length; i++) {
+    cards[i].classList.remove('active');
+  }
+  for (var j = 0; j < tabs.length; j++) {
+    tabs[j].classList.remove('active');
+  }
+  var targetCard = document.getElementById('m' + idx);
+  if (targetCard) { targetCard.classList.add('active'); }
+  if (tabs[idx]) { tabs[idx].classList.add('active'); }
+}
+</script>
+</body>
+</html>
