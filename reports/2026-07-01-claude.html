@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界杯2026 · 32强淘汰赛 科特迪瓦vs挪威/法国vs瑞典/墨西哥vs厄瓜多尔投注参考方案</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0ede8;color:#1a1a1a;padding:20px;font-size:14px;line-height:1.6}
+.container{max-width:940px;margin:0 auto}
+h1{font-size:22px;font-weight:700;margin-bottom:4px}
+.subtitle{font-size:13px;color:#666;margin-bottom:18px}
+.schedule-box{background:#fff;border-radius:10px;border:1px solid #ddd;padding:16px;margin-bottom:18px}
+.schedule-box h2{font-size:14px;font-weight:700;color:#444;margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em}
+.sched-row{display:grid;grid-template-columns:80px 1fr;gap:8px;padding:7px 0;border-bottom:1px solid #f0ede8;font-size:13px}
+.sched-row:last-child{border-bottom:none}
+.sched-time{color:#1a5fa8;font-weight:700}
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:7px 14px;border-radius:20px;border:1px solid #ccc;background:transparent;color:#555;cursor:pointer;font-size:12px;font-family:inherit;transition:all .15s}
+.tab.active{background:#1a5fa8;color:#fff;border-color:#1a5fa8}
+.card{display:none;background:#fff;border-radius:12px;border:1px solid #ddd;padding:22px;margin-bottom:12px}
+.card.active{display:block}
+.mh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid #ece9e3}
+.mh-left .teams{font-size:18px;font-weight:700}
+.mh-left .grp{font-size:11px;color:#666;background:#f0ede8;padding:2px 9px;border-radius:10px;display:inline-block;margin-top:4px;margin-right:6px}
+.mh-left .status{font-size:11px;color:#c04000;background:#fff4ee;padding:2px 9px;border-radius:10px;display:inline-block;margin-top:4px}
+.mh-right{font-size:12px;color:#666;text-align:right}
+.sec{margin-bottom:20px}
+.sec-title{font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #f0ede8}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat-block{background:#f8f7f4;border-radius:8px;padding:10px 12px}
+.stat-block .lbl{font-size:11px;color:#888;margin-bottom:5px}
+.stat-block .val{font-size:14px;font-weight:700}
+.stat-block .sub{font-size:12px;color:#666;margin-top:4px;line-height:1.55}
+.form-row{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+.fw{width:22px;height:22px;border-radius:50%;background:#d4f0d4;color:#1a6b1a;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.fd{width:22px;height:22px;border-radius:50%;background:#fdf0c0;color:#7a5c00;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.fl{width:22px;height:22px;border-radius:50%;background:#fdd4d4;color:#8b1a1a;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.alist{list-style:none;display:flex;flex-direction:column;gap:7px}
+.alist li{font-size:13px;line-height:1.65;padding-left:16px;position:relative}
+.alist li::before{content:"▸";position:absolute;left:0;color:#1a5fa8;font-size:11px;top:2px}
+.odds-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.ob{background:#f8f7f4;border-radius:8px;padding:9px 10px;text-align:center}
+.ob .ol{font-size:11px;color:#888;margin-bottom:3px}
+.ob .ov{font-size:17px;font-weight:700;color:#1a5fa8}
+.ob .ov.hot{color:#b54000}
+.pred-panel{background:linear-gradient(135deg,#e8f2fc,#eee8fb);border-radius:12px;padding:18px;margin-bottom:16px;border:1px solid #c8d8f0}
+.pred-score{font-size:24px;font-weight:800;color:#0d4e9e;margin-bottom:5px}
+.pred-meta{font-size:12px;color:#2a5fb0;margin-bottom:10px}
+.conf-row{display:flex;gap:3px;margin:6px 0}
+.cdot{width:11px;height:11px;border-radius:2px;background:#1a5fa8}
+.cdot.off{background:#c5d8f0}
+.pred-body{font-size:12px;color:#1a3a7a;line-height:1.75}
+.htft-panel{background:linear-gradient(135deg,#fdf0e0,#fde8e8);border-radius:12px;padding:18px;margin-bottom:16px;border:1px solid #f0d0c0}
+.htft-title{font-size:13px;font-weight:700;color:#9a3a00;margin-bottom:10px}
+.htft-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.htft-box{background:#fff;border-radius:8px;padding:10px;text-align:center;border:1px solid #f0d0c0}
+.htft-box .rank{font-size:10px;color:#b54000;margin-bottom:3px;font-weight:700}
+.htft-box .combo{font-size:14px;font-weight:800;color:#7a1a00}
+.htft-box .prob{font-size:11px;color:#9a5a30;margin-top:3px}
+.htft-body{font-size:12px;color:#5c2a00;line-height:1.75}
+.bets-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bet-card{background:#f8f7f4;border-radius:8px;padding:10px 12px}
+.bet-card.val{border-left:3px solid #1a5fa8;border-radius:0 8px 8px 0}
+.bet-card.risk{border-left:3px solid #c07800;border-radius:0 8px 8px 0}
+.bet-card.cool{border-left:3px solid #aa2222;border-radius:0 8px 8px 0}
+.bc-type{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.bc-rec{font-size:13px;font-weight:700;margin-bottom:3px}
+.bc-reason{font-size:11px;color:#555;line-height:1.55}
+.tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:8px;margin-left:5px;vertical-align:middle}
+.tv{background:#dbeeff;color:#0d4e9e}
+.tr{background:#fce8c0;color:#7a4800}
+.th{background:#fdd4d4;color:#7a1a1a}
+.risk-box{background:#fff8e6;border-radius:8px;padding:10px 13px;margin-top:8px;border-left:3px solid #e0a800}
+.risk-box .rtitle{font-size:11px;font-weight:700;color:#7a4800;margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em}
+.risk-box p{font-size:12px;color:#5c3a00;line-height:1.6}
+.divider{height:1px;background:#ece9e3;margin:16px 0}
+.final-card{background:#fff;border-radius:12px;border:1px solid #ddd;padding:22px}
+.final-title{font-size:16px;font-weight:700;margin-bottom:16px;color:#111;border-bottom:2px solid #1a5fa8;padding-bottom:8px}
+.pick-row{display:flex;flex-direction:column;gap:10px}
+.pick-item{background:#f8f7f4;border-radius:10px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start}
+.stars{font-size:15px;color:#c07800;min-width:82px}
+.stars .off{color:#ccc}
+.pick-right .plbl{font-size:11px;color:#888;margin-bottom:2px}
+.pick-right .pmain{font-size:14px;font-weight:700;margin-bottom:4px}
+.pick-right .pdet{font-size:12px;color:#555;line-height:1.55}
+.alloc-row{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:12px 0}
+.abox{background:#f8f7f4;border-radius:8px;padding:8px 6px;text-align:center;border:1px solid #e8e5e0}
+.abox .al{font-size:9px;color:#888;margin-bottom:4px;line-height:1.3}
+.abox .av{font-size:15px;font-weight:800}
+.note{font-size:12px;color:#888;line-height:1.7;background:#f8f7f4;border-radius:8px;padding:11px 13px;margin-top:10px}
+.highlight{background:#e8f4ff;border-radius:8px;padding:10px 13px;margin-top:8px;font-size:12px;color:#0d4e9e;line-height:1.65;border-left:3px solid #1a5fa8}
+.decider{background:#fff0e6;color:#9a3a00;font-size:10px;padding:2px 8px;border-radius:8px;margin-left:6px}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>⚽ 2026世界杯32强淘汰赛 · 三场赛事投注参考方案</h1>
+<div class="subtitle">科特迪瓦vs挪威（7月1日北京01:00）· 法国vs瑞典（7月1日北京05:00）· 墨西哥vs厄瓜多尔（7月1日北京09:00）· 1/16决赛一锤定音</div>
+
+<div class="schedule-box">
+  <h2>📅 比赛信息（北京时间）</h2>
+  <div class="sched-row"><div class="sched-time">7.1</div><div>科特迪瓦 🆚 挪威 · 01:00 · 达拉斯AT&T体育场</div></div>
+  <div class="sched-row"><div class="sched-time">7.1</div><div>法国 🆚 瑞典 · 05:00 · 纽约/新泽西大都会人寿体育场</div></div>
+  <div class="sched-row"><div class="sched-time">7.1</div><div>墨西哥 🆚 厄瓜多尔 · 09:00 · 墨西哥城阿兹特克体育场</div></div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="show(0)">🇨🇮 科特迪瓦 vs 挪威</button>
+  <button class="tab" onclick="show(1)">🇫🇷 法国 vs 瑞典</button>
+  <button class="tab" onclick="show(2)">🇲🇽 墨西哥 vs 厄瓜多尔</button>
+  <button class="tab" onclick="show(3)">★ 三场精选方案</button>
+</div>
+
+<!-- ========== MATCH 1 科特迪瓦 vs 挪威 ========== -->
+<div class="card active" id="m0">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇨🇮 科特迪瓦 vs 挪威 🇳🇴</div>
+      <span class="grp">32强淘汰赛 · 1/16决赛</span>
+      <span class="decider">⚡世界杯历史首次正式交锋 · 双方均为队史首进淘汰赛</span>
+      <span class="status">恩迪卡确认伤缺 · 辛戈/凯西出战存疑</span>
+    </div>
+    <div class="mh-right">达拉斯 AT&T体育场</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇨🇮 科特迪瓦（近5场，小组赛）</div>
+        <div class="form-row"><span class="fw">W</span><span class="fl">L</span><span class="fw">W</span></div>
+        <div class="sub">第1轮：1-0胜厄瓜多尔（先拔头筹后稳守锁胜）<br>第2轮：1-2不敌德国（一度先进球，仍被实力更强的对手逆转）<br>第3轮：2-0胜库拉索（锁定出线，全民庆祝队史首进淘汰赛）<br>E组第二（2胜1负6分）出线，3场全部率先破门是本届最鲜明的标签，末轮2-0击败库拉索后阿比让街头万人空巷</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇳🇴 挪威（近5场，小组赛）</div>
+        <div class="form-row"><span class="fw">W</span><span class="fw">W</span><span class="fl">L</span></div>
+        <div class="sub">第1轮：4-1胜伊拉克（哈兰德梅开二度，世界杯首秀进球）<br>第2轮：3-2胜塞内加尔（哈兰德再入两球，两轮共4球）<br>第3轮：1-4不敌法国（已锁定出线，索尔巴肯轮换10人，哈兰德、厄德高全程未出场）<br>I组第二（2胜1负6分）时隔28年重返世界杯淘汰赛，队史首次，末轮大轮换为体能储备留足余量</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">科特迪瓦</div><div class="val">FIFA第31-33位</div><div class="sub">全队身价约5.2亿欧元，13人效力欧洲五大联赛，主帅法埃带队全欧班底<br>近10场战绩7胜1平2负，非洲区预选赛8胜2平且零失球，防守底子扎实，本届赛事排名因小组赛战绩稳健小幅上升</div></div>
+      <div class="stat-block"><div class="lbl">挪威</div><div class="val">FIFA第17-23位</div><div class="sub">全队身价约5.8亿欧元，哈兰德领衔锋线，厄德高坐镇组织核心，球星质量明显高出一档<br>不同机构口径存在差异（17位与23位），但均明确高于科特迪瓦，是本场纸面实力占优的一方</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">科特迪瓦</div><div class="val">进4球 / 失2球（小组赛3场）</div><div class="sub">3场小组赛仅丢2球（且全部来自实力更强的德国一战），防守韧性在非洲球队中属第一档<br>进攻端依赖扬·迪奥曼德、阿马德·迪亚洛的边路爆点，场均3.3次成功突破，3场全部率先破门体现"先发制人"特质</div></div>
+      <div class="stat-block"><div class="lbl">挪威</div><div class="val">进8球 / 失7球（小组赛3场）</div><div class="sub">场均近3球展现进攻火力，哈兰德前两场梅开二度，是"锋线猛"的代表；但防线场均失球超过2个，"后防漏"的标签同样鲜明<br>对塞内加尔一战曾两次被扳平，暴露重组后卫线对快速反击球队的抵抗力存在波动</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>两队此前从无正式交锋记录，本场是双方在国际A级赛事上的历史首次正式对决，达拉斯单场定生死</li>
+      <li>科特迪瓦队史此前三次参加世界杯（2006-2014）均小组未能出线，本届首次晋级淘汰赛已是历史性突破；挪威队史三次参赛（1938、1994、1998）同样全部止步小组赛，本场同样是挪威队史世界杯淘汰赛首战</li>
+      <li>双方近期热身赛战绩可作侧面参考：科特迪瓦曾在热身赛中击败法国、战平韩国、小负德国，硬仗韧性已有所验证；挪威预选赛阶段曾淘汰意大利，整体上升势头同样不容小觑</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>科特迪瓦⚠⚠：</strong>主力中卫埃万·恩迪卡确认伤缺，是防线核心，缺阵将使中路防空与协防默契大幅下降，对阵哈兰德这类禁区终结者是明显隐患；主力边卫威尔弗里德·辛戈腿筋伤势出战存疑，若缺阵后防线将被迫重组；中场核心弗兰克·凯西肌肉劳损同样存疑，他是中场攻防枢纽一旦缺席影响极大；预计首发（4-2-3-1）：Y·福法纳；杜埃、科苏努、O·迪奥曼德、奥佩里；桑加雷、凯西（伤疑）；阿马德·迪亚洛、佩佩、Y·迪奥曼德；博尼</li>
+      <li><strong>挪威：</strong>右后卫尤利安·吕尔松大腿伤势曾缺席对法国一战，但情况持续好转，预计仍可首发，若无法出战奥尔斯内斯将顶替右路；哈兰德、厄德高、努萨等核心末轮全程轮休，体能储备充沛，是挪威阵容层面最大的优势</li>
+      <li><strong>关键变量：</strong>科特迪瓦防线因恩迪卡伤缺+辛戈存疑而面临重组风险，恰好对上挪威边路传中+中路包抄的进攻套路；挪威若吕尔松最终缺阵，右路防守端可能给阿马德·迪亚洛、佩佩留出反击空间，双方的伤停隐患恰好都集中在对方最擅长进攻的位置</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>科特迪瓦4-2-3-1（中场绞杀+边路反击）：</strong>凯西+桑加雷双后腰专职拦截破坏，放弃控球依靠身体对抗打乱对手节奏，断球后由佩佩、阿马德·迪亚洛两大边路爆点高速推进，定位球头球是第二得分手段，对阵实力更强的对手时也曾切换为低位防守反击（对德国一役即是范例）</li>
+      <li><strong>挪威4-3-3（高位传控+边路传中轰炸）：</strong>厄德高负责中场组织调度，哈兰德禁区终结攻坚，索尔洛特做支点，努萨边路突击，边路传中+中路包抄是标准进攻套路</li>
+      <li><strong>关键对位：</strong>挪威边路传中冲吊 vs 科特迪瓦因恩迪卡伤缺而重组的防空体系——这是本场最大的攻防焦点；哈兰德本届前两场已入4球，若本场再下一城，将成为1954年以来首位个人世界杯前三场均破门的球员；科特迪瓦左路迪奥曼德的速度突破，对上挪威身材高大但转身偏慢的后卫线，是科特迪瓦反击破局的主要通道</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 淘汰赛战意分析</div>
+    <ul class="alist">
+      <li><strong>科特迪瓦无负担放手一搏：</strong>队史首次闯入世界杯淘汰赛，每往前走一步都是历史性突破，中场核心凯西赛前表示"我们创造了历史，现在要继续前进，不应该给自己设限"</li>
+      <li><strong>挪威志在延续历史性突破：</strong>时隔28年再入淘汰赛，索尔巴肯赛前明确表态全队会全力帮助哈兰德争夺金靴，末轮轮休换来的体能储备是本场的重要筹码</li>
+      <li><strong>容错率为零的考验：</strong>科特迪瓦后防重组后能否扛住挪威开局的传中冲击是第一道关卡；若科特迪瓦能将比赛拖入相持阶段，凭借更强的体能分配和反击效率制造麻烦的概率不低，这场"非洲新军"对"北欧黑马"的遭遇战被多家机构认为是淘汰赛首轮难度最高的对决之一</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">科特迪瓦独赢</div><div class="ov">3.85↑</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">3.45↓</div></div>
+      <div class="ob"><div class="ol">挪威独赢</div><div class="ov hot">1.97↑</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">挪威-0.5让球</div><div class="ov hot">2.09</div></div>
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov">1.89</div></div>
+      <div class="ob"><div class="ol">小球2.5</div><div class="ov">1.92</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">数据机构Opta超级计算机给出90分钟内挪威胜率56.1%、科特迪瓦21.6%、平局22.3%；另一数据平台Kalshi给出挪威63%的胜率预测，两家口径均明确看好挪威但留出相当的不确定性空间。让球盘挪威-0.5（让平半）赔率2.09，反映市场认为挪威虽占优但并非大热必胜，盘口深度明显低于法国、德国等强队对阵弱旅的让球盘</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>挪威独赢1.97的赔率吸引了大部分资金，但赔率本身处于中等水位，并非缺乏价值的极端低赔，仍具备一定参考意义</li>
+      <li>让球盘挪威-0.5（2.09）与科特迪瓦+0.5（1.83）赔率差距不大，体现盘口设计者对本场比赛走势的不确定性评估较高</li>
+      <li>大小球盘O2.5/U2.5赔率（1.89/1.92）几乎对等，反映市场对进球数预期处于胶着状态，未呈现单边倾斜</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：中等（科特迪瓦防守体系成熟+体能储备充足，具备制造冷门的现实基础）</div>
+      <p>挪威在球星质量、世界排名和数据机构预测上全面占优，是本场理所应当的热门。但需注意：①科特迪瓦3场小组赛仅丢2球的防守韧性是非洲球队中的第一档，双后腰凯西+桑加雷的拦截破坏能力对挪威的传控体系是实打实的考验；②挪威小组赛主力消耗明显大于科特迪瓦（科特迪瓦末轮已基本可控、挪威前两轮全主力血战），下半场体能下滑风险值得警惕；③挪威防线场均失球超过2个的隐患若被科特迪瓦的边路速度利用，存在制造冷门的现实路径；④科特迪瓦队史首进淘汰赛的"无负担效应"在大赛中往往能转化为超水平发挥。但科特迪瓦自身恩迪卡伤缺+辛戈、凯西伤疑的三重隐患同样不容忽视，若防线重组后默契不足，也可能被挪威的传中轰炸迅速打开局面，因此本场冷热双向的不确定性均高于一般强弱分明的对决。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">挪威 2-1 科特迪瓦（主选）</div>
+    <div class="pred-meta">概率约22% · 次选：1-0挪威（约18%） · 2-0挪威（约16%） · 1-1平（约14%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 6/10（球星质量与数据模型均支持挪威占优，但双方都有明显的防守隐患增添过程的不确定性）</div>
+    <div class="pred-body">
+      <strong>为什么预测2-1？</strong><br>
+      挪威的球星质量（哈兰德、厄德高）和末轮轮休换来的体能优势，理论上足以撕开科特迪瓦因恩迪卡伤缺而重组的防线；但科特迪瓦3场仅失2球的防守韧性+双后腰的拦截能力，决定了挪威很难轻松零封对手，且科特迪瓦3场全部率先破门的"先发制人"标签意味着挪威大概率需要先应对一次落后的局面再反超。2-1反映了"挪威球星个人能力解决比赛"与"科特迪瓦防守体系+反击效率至少抢得1球"两种现实因素的平衡，与Opta、Kalshi两家数据机构均看好挪威但留出相当不确定性的判断方向一致。<br><br>
+      <strong>数据支持：</strong>①Opta给出挪威90分钟胜率56.1%、科特迪瓦21.6%、平局22.3%，Kalshi给出挪威63%胜率，两组数据均指向挪威占优但留有空间 ②科特迪瓦3场全部率先破门+仅失2球的攻防数据，证明其具备至少破门一次的稳定能力 ③挪威场均失球超过2个的防守隐患，使其很难复刻对伊拉克、塞内加尔的大胜剧本<br><br>
+      <strong>风险因素：</strong>①若哈兰德延续小组赛梅开二度的状态，挪威可能复刻4-1、3-2式的大胜剧本，比分扩大至3-1或更大 ②若科特迪瓦防线重组后协防到位，凭借反击效率制造冷门并非没有可能，1-1甚至1-0小胜的剧本不能排除 ③吕尔松、辛戈、凯西三人的最终出战情况要到赛前才能确认，任何一方关键位置的伤停都可能直接改写比赛走向
+    </div>
+  </div>
+
+  <div class="htft-panel">
+    <div class="htft-title">⏱ 半全场胜平负预测</div>
+    <div class="htft-row">
+      <div class="htft-box"><div class="rank">第一选择</div><div class="combo">平/胜（挪威）</div><div class="prob">概率：24%</div></div>
+      <div class="htft-box"><div class="rank">第二选择</div><div class="combo">胜/胜（挪威）</div><div class="prob">概率：20%</div></div>
+      <div class="htft-box"><div class="rank">第三选择</div><div class="combo">平/平</div><div class="prob">概率：14%</div></div>
+    </div>
+    <div style="font-size:11px;color:#9a5a30;margin-bottom:8px">信心指数 5/10</div>
+    <div class="htft-body">
+      <strong>为什么预测"半场平/全场胜（挪威）"？</strong><br>
+      科特迪瓦对阵实力更强的对手时倾向采取更谨慎的低位防守策略（对德国一战即是范例），上半场大概率会优先确保防线不失，与挪威的传中轰炸形成对峙；挪威的进攻效率往往随比赛推进而提升（对伊拉克、塞内加尔两战均在中段及以后形成多点开花），加上哈兰德、厄德高末轮充沛的体能储备更利于下半场持续施压，"上半场胶着、下半场挪威逐渐打开局面"是概率最高的现实剧本。<br><br>
+      <strong>数据支持：①两队近10场上半场进球/失球：</strong>科特迪瓦对德国一战上半场曾一度先入一球，体现其前场具备一定的快速破门能力，但面对整体实力更强的对手时更倾向收缩；挪威对伊拉克、塞内加尔两战均在上半场就取得多球优势，但对法国一战因大轮换上半场即被压制，体能与阵容强度对其上半场效率影响明显。<br><br>
+      <strong>两队近10场半场领先/平/落后次数：</strong>挪威近3场2次半场即取得多球领先（伊拉克、塞内加尔，均为全主力出战），科特迪瓦近3场则更多呈现胶着至下半场才分出胜负的特征。<br><br>
+      <strong>下半场进球能力及逆转能力：</strong>挪威下半场效率同样不低，哈兰德的终结能力贯穿全场；科特迪瓦末轮对库拉索一战下半场扩大优势的能力同样得到验证，双方下半场进球能力都不弱，这也是"平/平"被列为第三选择的原因。<br><br>
+      <strong>历史交锋分布：</strong>两队无正式交锋记录，无法提供历史半全场分布参考，这也是本场半全场预测信心指数相对偏低的主要原因之一。<br><br>
+      <strong>伤停/首发/战意/轮换因素：</strong>科特迪瓦恩迪卡伤缺+辛戈、凯西存疑可能影响开局防守的稳定性；挪威吕尔松若能复出且核心球员体能充沛，更利于其下半场持续施压；双方均无轮换必要，预计全力以赴。<br><br>
+      <strong>风险因素：</strong>①若挪威上半场即凭借传中冲吊打开局面，"胜/胜"概率将明显上升 ②若科特迪瓦复制对德国一战率先破门的剧本，"胜/平"或"胜/胜（科特迪瓦）"的冷门走向不能完全排除 ③两队历史交锋数据空白，半全场预测的不确定性整体高于其他两场比赛
+    </div>
+    <div class="highlight">投注建议：半全场"平/胜（挪威）"@约3.60是本场性价比较高的核心价值盘，结合了科特迪瓦对强敌上半场偏谨慎+挪威下半场体能与终结效率占优的现实数据规律。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">亚洲让球 <span class="tag tv">首推价值</span></div><div class="bc-rec">科特迪瓦+0.5受让 @1.83</div><div class="bc-reason">三依据：①Opta给出科特迪瓦21.6%+平局22.3%合计近44%的不败概率，与+0.5盘口隐含概率基本匹配 ②科特迪瓦3场小组赛仅失2球的防守韧性是非洲球队第一档 ③挪威体能消耗明显大于科特迪瓦，体能差对让球盘的保护价值不容忽视</div></div>
+      <div class="bet-card"><div class="bc-type">胜平负</div><div class="bc-rec">挪威独赢 @1.97</div><div class="bc-reason">球星质量+数据机构预测均支持挪威，作为稳健方向的基础选择，但赔率不算极端低水，仍保留一定参考价值</div></div>
+      <div class="bet-card"><div class="bc-type">大小球</div><div class="bc-rec">大球2.5 @1.89</div><div class="bc-reason">挪威场均失球超2个+科特迪瓦3场全部率先破门，双方近期比赛进球数均不低，符合大球倾向</div></div>
+      <div class="bet-card val"><div class="bc-type">双方进球 <span class="tag tv">价值</span></div><div class="bc-rec">双方进球-是 @约1.92</div><div class="bc-reason">三依据：①科特迪瓦3场小组赛全部率先破门的硬数据 ②挪威近10场失7球暴露的防线漏洞 ③挪威自身锋线火力同样旺盛，双方均有较高概率破门</div></div>
+      <div class="bet-card risk"><div class="bc-type">半全场 <span class="tag tr">推荐</span></div><div class="bc-rec">半场平/全场胜（挪威）@约3.60</div><div class="bc-reason">科特迪瓦对强敌上半场偏谨慎+挪威下半场体能和终结效率占优的现实规律，是本场最贴合实际节奏的半全场组合</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 2 法国 vs 瑞典 ========== -->
+<div class="card" id="m1">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇫🇷 法国 vs 瑞典 🇸🇪</div>
+      <span class="grp">32强淘汰赛 · 1/16决赛</span>
+      <span class="decider">⚡法国国际大赛从未战胜过瑞典 · 世界杯历史首次交锋</span>
+      <span class="status">图拉姆缺阵 · 坎特/萨利巴存疑 · 瑞典双中卫伤缺</span>
+    </div>
+    <div class="mh-right">纽约/新泽西 大都会人寿体育场</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇫🇷 法国（近5场，小组赛）</div>
+        <div class="form-row"><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span></div>
+        <div class="sub">第1轮：3-1胜塞内加尔（上半场45分钟未能破门，下半场持续施压打开局面）<br>第2轮：3-0胜伊拉克（攻防两端均为I组最佳）<br>第3轮：4-1胜挪威（哈兰德、厄德高全程轮休，登贝莱半场内帽子戏法，姆巴佩两次助攻）<br>I组第一（9分，三战全胜）出线，进10球仅失2球，是32强中攻防数据最均衡的球队之一，近10场战绩8胜1平1负（唯一负仗是热身赛不敌科特迪瓦）</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇸🇪 瑞典（近5场，小组赛）</div>
+        <div class="form-row"><span class="fw">W</span><span class="fl">L</span><span class="fd">D</span></div>
+        <div class="sub">第1轮：5-1胜突尼斯（伊萨克、哲凯赖什联袂建功，双子星组合初现峥嵘）<br>第2轮：1-5惨败荷兰（防线漏洞集中暴露，主力中卫希恩第37分钟带伤下场）<br>第3轮：1-1平日本（埃兰加禁区外远射扳平，全场较为保守）<br>F组第三（1胜1平1负4分）凭最佳第三名晋级，进7球失7球，状态起伏明显，是32支晋级球队中赢球场次最少的队伍之一</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">法国</div><div class="val">FIFA第3位</div><div class="sub">全队身价超10亿欧元，姆巴佩、登贝莱、奥利塞领衔的前场三叉戟已臻于化境，是本届世界杯头号夺冠热门之一<br>淘汰赛目标明确：剑指八强乃至更远，德尚阵容深度极强，全员基本健康</div></div>
+      <div class="stat-block"><div class="lbl">瑞典</div><div class="val">FIFA第26位左右</div><div class="sub">不同机构口径在26-38位区间，全队身价约3.2-4.3亿欧元，伊萨克+哲凯赖什锋线组合身价合计超1.5亿欧元<br>波特2025年10月临危受命，将阵型从4-4-2切换为3-4-2-1，预选赛阶段一场未胜，全靠附加赛搭上末班车，本届赛事仍是"伪强队"标签待验证的阶段</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">法国</div><div class="val">进10球 / 失2球（小组赛3场）</div><div class="sub">攻防两端均为I组最佳，姆巴佩4球2助、登贝莱4球1助，两人场均合计完成9.6次成功过人<br>末轮对挪威一战全场控球率62%，完成18次射门，即便对手轮休核心仍展现统治级压制</div></div>
+      <div class="stat-block"><div class="lbl">瑞典</div><div class="val">进7球 / 失7球（小组赛3场）</div><div class="sub">"攻强守弱"特征明显：锋线豪华但防线漏洞巨大，对荷兰一战单场失5球暴露后防短板<br>定位球是球队进攻的重要补充手段，全队平均身高占优，林德洛夫、伊萨克、哲凯赖什均具备争顶能力</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>两队历史交手23次，法国12胜6负占优（其余为平局），整体战绩明显领先</li>
+      <li>但在国际大赛（欧洲杯/世界杯）层面，法国从未赢过瑞典：1992年欧洲杯1-1战平，2012年欧洲杯0-2告负，2017年世预赛瑞典更曾依靠反击2-1逆转法国——证明瑞典的防守反击战术历史上确实能限制法国的传控体系</li>
+      <li>本场是双方世界杯历史首次正式交锋，对法国而言是一场迟来的"正名之战"，对瑞典而言则是延续"大赛不憷法国"心理优势的机会</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>法国⚠：</strong>马库斯·图拉姆（前锋）小腿疼痛，连续缺席合练，预计不会出战；恩戈洛·坎特（中场）膝盖疼痛出战存疑，但身边人士透露伤情不严重；威廉·萨利巴（中卫）背部有伤被列为出战存疑，但预计仍将首发；其余主力均可出战，德尚已结束因母亲去世短暂缺席的状态、回归场边指挥；预计首发（4-2-3-1）：迈尼昂；孔德、于帕梅卡诺、萨利巴、迪涅；科内、楚阿梅尼；登贝莱、奥利塞、杜埃（或巴尔科拉）；姆巴佩</li>
+      <li><strong>瑞典⚠⚠：</strong>主力中卫伊萨克·希恩确认因伤缺阵，且已确定告别本届世界杯，对阵法国姆巴佩、登贝莱的边路冲击是重大隐患；后卫埃米尔·霍尔姆同样确认因伤缺阵；中场库卢塞夫斯基因膝伤未能入选大名单，中场创造力和持球推进能力进一步削弱；预计首发（3-4-3）：泽特斯特伦；拉格比耶尔克、斯塔费尔特、林德洛夫；伯恩哈德松、阿亚里、斯特劳德、古德蒙松；埃兰加、哲凯赖什、伊萨克</li>
+      <li><strong>关键变量：</strong>瑞典双主力中卫伤缺后被迫启用替补组合，面对姆巴佩、登贝莱的速度冲击恐难抵挡；法国图拉姆缺阵+坎特状态不确定，但阵容深度足以弥补，全队整体健康度仍明显占优</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>法国4-2-3-1（控球压制+边路爆破）：</strong>德尚以高效攻防转换为核心，姆巴佩持球冲击+登贝莱内切两大边路爆点轮番冲击，奥利塞负责前场组织串联，楚阿梅尼+科内的双后腰提供中场屏障</li>
+      <li><strong>瑞典3-4-3（放弃控球+收缩反击）：</strong>波特体系下全队主动让出场面、三条线回收压缩空间，进攻端完全依赖伊萨克、哲凯赖什的速度冲击和埃兰加的边路突破，定位球是重要的得分补充</li>
+      <li><strong>关键对位：</strong>法国边后卫前插后留下的身后空当 vs 瑞典埃兰加+伊萨克的反击速度——这正是2017年世预赛瑞典逆转法国时验证过的破局手段，萨利巴需在防守端限制阿森纳俱乐部队友哲凯赖什的发挥；瑞典双中卫伤缺后的替补组合在面对姆巴佩、登贝莱反复冲击下能否守住防线，是本场比赛走势的最大悬念</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 淘汰赛战意分析</div>
+    <ul class="alist">
+      <li><strong>法国志在正名：</strong>剑指八强乃至更远，德尚回归指挥后全队信心十足，打破"国际大赛从未赢过瑞典"魔咒是球队额外的动力来源</li>
+      <li><strong>瑞典以挑战者姿态出战：</strong>全队无包袱，哲凯赖什赛前直言"相信有机会爆冷"，中场核心阿亚里强调"没什么可输的"，锋线三人组均效力英超，对法国防线足够熟悉</li>
+      <li><strong>容错率为零：</strong>法国若不能快速打开局面（对塞内加尔上半场曾沉闷45分钟），瑞典的反击窗口会随之增多；草皮场地条件不佳也可能限制法国细腻的短传体系发挥</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">法国独赢</div><div class="ov hot">1.28↑</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">6.10↓</div></div>
+      <div class="ob"><div class="ol">瑞典独赢</div><div class="ov">12.0↑</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">法国-1.5让球</div><div class="ov hot">1.76</div></div>
+      <div class="ob"><div class="ol">大球2.5</div><div class="ov">1.61</div></div>
+      <div class="ob"><div class="ol">小球2.5</div><div class="ov">2.35</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">法国独赢资金高度集中且赔率持续走低（1.28↑实为水位上调，盘面进一步看好），瑞典客胜赔率走高至12.0，反映市场对实力差距的认可程度很高；但让球盘"法国-1.5"赔率1.76仍属合理水位，未被打到极端深盘，说明博彩公司也为瑞典双中卫伤缺后可能出现的"硬仗韧性"留出空间</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>法国独赢1.28的低赔率本身缺乏太大价值空间，资金高度集中但更适合作为稳胆而非价值投注</li>
+      <li>法国-1.5让球盘（1.76）被认为是更具性价比的角度，理由是法国进攻火力、瑞典双中卫伤缺、近10场8胜1平1负的稳定性三重因素叠加</li>
+      <li>大小球盘明显偏向大球（1.61 vs 2.35），机构判断双方至少合力打入3球的概率不低，与瑞典近10场比赛进球数据（对荷兰单场失5球、对突尼斯单场进5球）相互印证</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：低（法国全面占优，但"国际大赛从未赢过瑞典"的心理魔咒+历史先例值得警惕）</div>
+      <p>法国在排名、身价、阵容深度和大赛经验上全面占优，是本场理所应当的热门。但仍需注意：①法国国际大赛（欧洲杯/世界杯）历史上从未战胜瑞典，1992年和2012年两届欧洲杯均未能取胜，2017年世预赛更曾被瑞典利用边路反击逆转，这一心理因素不可完全忽视；②瑞典锋线伊萨克+哲凯赖什+埃兰加三人组质量不输法国，三人均效力英超且彼此熟悉法国后防线的特点；③大都会人寿体育场场地状况不佳，可能对法国细腻的技术型打法形成一定限制；④法国图拉姆缺阵+坎特、萨利巴伤情若赛前恶化，将进一步压缩阵容深度优势。但瑞典双主力中卫伤缺后防线被迫启用替补组合，面对姆巴佩、登贝莱反复冲击恐难全场抵挡，整体爆冷难度依然不小，法国仍是本场最具确定性的一方。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">法国 2-0 瑞典（主选）</div>
+    <div class="pred-meta">概率约22% · 次选：3-1法国（约18%） · 2-1法国（约16%） · 1-1平（约12%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 7/10（实力差距全面且明确，但历史心魔与瑞典锋线质量增添了少量不确定性）</div>
+    <div class="pred-body">
+      <strong>为什么预测2-0？</strong><br>
+      法国进攻火力（10球失2球）、阵容深度和球员个人能力全面碾压瑞典，姆巴佩+登贝莱的边路爆破理论上足以惩罚瑞典双中卫伤缺后的替补组合；但瑞典并非毫无还手之力，伊萨克+哲凯赖什+埃兰加的反击速度具备至少制造一次威胁的能力，且法国历史上从未在国际大赛中击败瑞典的心理因素+对塞内加尔上半场曾沉闷45分钟的先例，意味着法国未必能轻松零封对手或大比分横扫。2-0反映了"法国整体实力解决比赛"与"瑞典反击体系至少能限制比分扩大节奏"两种现实因素的平衡。<br><br>
+      <strong>数据支持：</strong>①法国小组赛进10球仅失2球的攻防数据，远超瑞典进7球失7球的起伏表现 ②瑞典双主力中卫（希恩、霍尔姆）确认伤缺，后防线被迫启用经验不足的替补组合 ③法国近10场8胜1平1负的稳定性，本场全队基本健康，仅图拉姆确认缺阵<br><br>
+      <strong>风险因素：</strong>①若姆巴佩、登贝莱延续小组赛的爆发状态，比分可能扩大至3-0或更大，"3-1"次选比分正是为此留出空间 ②若瑞典复制2017年世预赛反击逆转的剧本，结合法国"国际大赛不胜瑞典"的历史心魔，不能完全排除1-1战平甚至爆冷的可能 ③法国坎特、萨利巴的最终出战情况存疑，若两人均缺阵，中场屏障和后防组织能力会受到一定影响
+    </div>
+  </div>
+
+  <div class="htft-panel">
+    <div class="htft-title">⏱ 半全场胜平负预测</div>
+    <div class="htft-row">
+      <div class="htft-box"><div class="rank">第一选择</div><div class="combo">胜/胜（法国）</div><div class="prob">概率：28%</div></div>
+      <div class="htft-box"><div class="rank">第二选择</div><div class="combo">平/胜（法国）</div><div class="prob">概率：22%</div></div>
+      <div class="htft-box"><div class="rank">第三选择</div><div class="combo">平/平</div><div class="prob">概率：10%</div></div>
+    </div>
+    <div style="font-size:11px;color:#9a5a30;margin-bottom:8px">信心指数 6/10</div>
+    <div class="htft-body">
+      <strong>为什么预测"半场胜/全场胜（法国）"？</strong><br>
+      法国末轮对挪威一战展现出极强的开局攻击力（开场7分钟、20分钟连续由登贝莱破门），瑞典双中卫伤缺后的替补组合在比赛初期适应不足的风险最高，法国很可能利用这一窗口在上半场就建立优势；但法国对塞内加尔一战上半场曾沉闷45分钟的先例同样存在，因此"平/胜（法国）"作为第二选择同样具备相当概率，反映两种现实剧本并存。<br><br>
+      <strong>数据支持：①两队近10场上半场进球/失球：</strong>法国对挪威一战上半场已连入两球（7分钟、20分钟），开局效率本届赛事最佳；瑞典对荷兰一战上半场即丢2球（5分钟、17分钟），替补中卫组合在开局阶段的防守稳定性存疑。<br><br>
+      <strong>两队近10场半场领先/平/落后次数：</strong>法国近3场2次半场即取得领先（对塞内加尔半场战平、对伊拉克及挪威均半场领先），整体开局节奏正在加快；瑞典近3场多次半场落后（对荷兰半场0-2），鲜少能在上半场建立优势。<br><br>
+      <strong>下半场进球能力及逆转能力：</strong>法国下半场效率同样不低，对塞内加尔一战正是依靠下半场持续施压打开局面；瑞典下半场反击效率尚可（对日本一战61分钟扳平），但尚无世界杯正赛逆转强队的先例。<br><br>
+      <strong>历史交锋分布：</strong>本场为两队世界杯历史首次交锋，1992年、2012年两届欧洲杯均为1球小分（1-1平、0-2负），参考价值有限但说明历史交锋整体进球数不算多。<br><br>
+      <strong>伤停/首发/战意/轮换因素：</strong>瑞典双中卫伤缺对开局阶段防守稳定性影响最大；法国坎特、萨利巴若能正常出战，中场屏障和后防组织将更加稳固，全队无轮换必要，预计全力以赴争取尽早确立优势。<br><br>
+      <strong>风险因素：</strong>①若法国延续对塞内加尔的慢热模式，"平/胜"概率将进一步上升，超过"胜/胜" ②若瑞典凭借定位球或反击在上半场制造冷门进球，"平/平"甚至"胜/平"的特殊走向不能完全排除 ③法国历史心魔+瑞典锋线质量，使本场半全场预测仍需保留一定不确定性空间
+    </div>
+    <div class="highlight">投注建议：半全场"胜/胜（法国）"@约2.10和"平/胜（法国）"@约2.90可搭配布局，分别覆盖法国快速建立优势和慢热打开局面两种最具数据支撑的现实剧本。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card val"><div class="bc-type">亚洲让球 <span class="tag tv">首推价值</span></div><div class="bc-rec">法国-1.5让球 @1.76</div><div class="bc-reason">三依据：①法国独赢1.28赔率本身缺乏价值空间 ②法国进10球失2球vs瑞典进7球失7球的攻防数据鸿沟 ③瑞典双主力中卫确认伤缺，后防替补组合面对姆巴佩登贝莱难以全场抵挡</div></div>
+      <div class="bet-card"><div class="bc-type">胜平负</div><div class="bc-rec">法国独赢 @1.28</div><div class="bc-reason">历史交锋、阵容实力和健康度全面占优的稳健选择，确定性高但赔率价值有限，适合作为低风险压舱石</div></div>
+      <div class="bet-card val"><div class="bc-type">大小球 <span class="tag tv">价值</span></div><div class="bc-rec">大球2.5 @1.61</div><div class="bc-reason">三依据：①法国小组赛场均3.3球的进攻效率 ②瑞典近10场失7球（含对荷兰单场失5球）的防守漏洞 ③双方近期比赛进球数据均支持大球倾向</div></div>
+      <div class="bet-card"><div class="bc-type">双方进球</div><div class="bc-rec">双方进球-是 @约1.95</div><div class="bc-reason">瑞典锋线伊萨克+哲凯赖什+埃兰加质量不输法国，且法国偶有慢热先例（对塞内加尔上半场未破门），双方均有较高概率破门</div></div>
+      <div class="bet-card risk"><div class="bc-type">半全场 <span class="tag tr">推荐</span></div><div class="bc-rec">半场胜/全场胜（法国）@约2.10</div><div class="bc-reason">法国末轮对挪威开局连入两球的爆发力+瑞典双中卫伤缺后开局适应不足的风险，是本场最贴合实际节奏的半全场组合</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 3 墨西哥 vs 厄瓜多尔 ========== -->
+<div class="card" id="m2">
+  <div class="mh">
+    <div class="mh-left">
+      <div class="teams">🇲🇽 墨西哥 vs 厄瓜多尔 🇪🇨</div>
+      <span class="grp">32强淘汰赛 · 1/16决赛</span>
+      <span class="decider">⚡高原德比 · 海拔2240米 · 世界杯淘汰赛阶段首次交锋</span>
+      <span class="status">双方暂无重大伤停 · 墨西哥背负"十六郎"魔咒</span>
+    </div>
+    <div class="mh-right">墨西哥城 阿兹特克体育场</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">① 最近5场战绩</div>
+    <div class="two-col">
+      <div class="stat-block">
+        <div class="lbl">🇲🇽 墨西哥（近5场，小组赛）</div>
+        <div class="form-row"><span class="fw">W</span><span class="fw">W</span><span class="fw">W</span></div>
+        <div class="sub">第1轮：2-0胜南非（揭幕战，控球为主稳健开局）<br>第2轮：1-0胜韩国（5-4-1阵型限制孙兴慜，防守反击效率体现）<br>第3轮：3-0胜捷克（主力后卫巴斯克斯、加利亚多轮休，仍轻松取胜）<br>A组第一（9分，三战全胜）队史首次小组赛全胜出线，本届世界杯仅有的几支零失球球队之一，2026年以来保持8场6胜2平不败</div>
+      </div>
+      <div class="stat-block">
+        <div class="lbl">🇪🇨 厄瓜多尔（近5场，小组赛）</div>
+        <div class="form-row"><span class="fl">L</span><span class="fd">D</span><span class="fw">W</span></div>
+        <div class="sub">第1轮：0-1负科特迪瓦（进攻端颗粒无收，先丢球后未能扳平）<br>第2轮：0-0平库拉索（继续未能破门，出线形势一度告急）<br>第3轮：2-1胜德国（开场2分钟落后，安古洛世界波+普拉塔角球抢点完成逆转）<br>E组第三（4分，最佳第三名晋级）近22场仅输1场，末轮一战时隔13年再度掀翻欧洲球队，展现极强韧性</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">② 世界排名变化</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">墨西哥</div><div class="val">FIFA第15位左右</div><div class="sub">全队身价约1.9亿欧元，处在近20年来最具竞争力的阵容期，热身赛阶段曾战平葡萄牙、比利时，5-1大胜塞尔维亚<br>东道主身份+高原主场（阿兹特克体育场海拔超2200米）是本届赛事最大的加成因素</div></div>
+      <div class="stat-block"><div class="lbl">厄瓜多尔</div><div class="val">FIFA第23位左右</div><div class="sub">赛前排名第23位，小组赛前两轮战绩不佳一度滑落至第30位附近，末轮逆转德国后预计有所回升<br>南美区预选赛阶段曾因球员资格问题被扣3分，仍以南美区第2名直接晋级，外围赛战绩8胜8平2负含金量不低</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">③ 近10场进球数/失球数</div>
+    <div class="two-col">
+      <div class="stat-block"><div class="lbl">墨西哥</div><div class="val">进6球 / 失0球（小组赛3场）</div><div class="sub">本届世界杯唯一一支小组赛三战全胜且零失球的球队，整体防守端仅让对手创造1.25个预期进球的机会<br>进攻效率稳定但并不追求大比分，2-0、1-0、3-0的渐进式比分体现务实防反+地面传控的风格</div></div>
+      <div class="stat-block"><div class="lbl">厄瓜多尔</div><div class="val">进2球 / 失2球（小组赛3场）</div><div class="sub">进攻端前两轮颗粒无收，队长瓦伦西亚小组赛未能进球并错失几次绝佳机会，末轮才依靠安古洛+普拉塔打开局面<br>防守端表现相对稳固，仅失2球且对阵实力更强的德国一战也未崩盘，南美预选赛阶段18场仅丢5球的防守底子在世界杯赛场同样有所体现</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">④ 历史交锋记录</div>
+    <ul class="alist">
+      <li>两队世界杯历史交锋一次：2002年日韩世界杯小组赛，墨西哥2-1力克厄瓜多尔，这场失利间接导致厄瓜多尔当届小组出局；本场是双方世界杯淘汰赛阶段的历史首次交锋</li>
+      <li>两队在美洲杯赛场（墨西哥作为受邀参赛队）共交手6次，墨西哥3胜2平1负占优，其中淘汰赛阶段两次取胜，包括1997年厄瓜多尔作为东道主时的一役</li>
+      <li>墨西哥背负"十六郎"包袱：自1994年以来连续七届世界杯止步淘汰赛首轮（16强赛），2022年卡塔尔世界杯更是小组未能出线，本届坐拥主场作战，渴望打破这一延续三十余年的魔咒</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑤ 核心球员伤停情况</div>
+    <ul class="alist">
+      <li><strong>墨西哥：</strong>主力后卫霍安·巴斯克斯、赫苏斯·加利亚多在小组赛末轮主动轮休，体能储备充足，预计本场回归首发；门将劳尔·兰赫尔状态良好，经验丰富的吉列尔莫·奥乔亚（历史首位参加六届世界杯的球员）作为替补随时可登场；锋线劳尔·希门尼斯（富勒姆，国家队125场44球）、圣地亚哥·希门尼斯领衔；全队暂无新增重大伤停报告，是本场阵容健康度最完整的一方</li>
+      <li><strong>厄瓜多尔：</strong>前锋坎帕纳因伤落选最终大名单，但主力框架基本完好；中场核心莫伊塞斯·凯塞多（切尔西）此前的累积停赛已解除，可正常出战，他场均完成3.2次抢断、拦截成功率超过60%，是球队防守端的绝对屏障；后防帕乔（巴黎圣日耳曼）、因卡皮耶（阿森纳）等多名英超/法甲主力坐镇，全队多达13名旅欧球员，硬度十足；暂无新增重大伤停报告</li>
+      <li><strong>关键变量：</strong>双方目前公开口径均未列出新增重大缺阵，伤停层面整体利好双方按主力框架出战；轮换层面，墨西哥末轮已让部分主力轮休、体能储备更充足，厄瓜多尔末轮则全力以赴逆转德国，体能消耗相对更大，是本场需要重点关注的隐性变量</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑥ 战术风格对位分析</div>
+    <ul class="alist">
+      <li><strong>墨西哥4-3-3（高压逼抢+地面传控）：</strong>主帅阿吉雷第三次执掌国家队，战术安排灵活多变（对南非控球为主、对韩国切换5-4-1稳固防守），刻意利用海拔2240米的主场环境消耗客队体能，劳尔·希门尼斯回撤做支点，队长埃德松·阿尔瓦雷斯坐镇中场调度</li>
+      <li><strong>厄瓜多尔3-5-2（低位防守+由守转攻）：</strong>主帅贝卡切切的南美铁血流打法，凯塞多在防守端串联拦截，帕乔+因卡皮耶组成的中卫组合防空与卡位意识出色，进攻端依赖普拉塔的定位球嗅觉和瓦伦西亚的支点作用</li>
+      <li><strong>关键对位：</strong>墨西哥的高原主场+体能消耗战术 vs 厄瓜多尔的铁血防守体系和13名旅欧球员的身体硬度——这是本场最核心的攻防博弈；墨西哥若久攻不下，厄瓜多尔末轮逆转德国已验证的反击效率（开场2分钟落后仍能完成逆转）具备制造威胁的现实基础，凯塞多的中场拦截能力同样会限制墨西哥的传控节奏</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑦ 淘汰赛战意分析</div>
+    <ul class="alist">
+      <li><strong>墨西哥渴望打破历史魔咒：</strong>背负"十六郎"包袱（连续七届世界杯止步16强首轮），本届坐拥主场和近20年最强阵容期，全队对突破这一历史瓶颈的渴望空前强烈</li>
+      <li><strong>厄瓜多尔展现大心脏底色：</strong>近22场仅输1场的战绩展现极强韧性，末轮绝境逆转德国证明球队具备顶级抗压能力，目标是复刻乃至超越2006年闯入16强的队史最佳战绩</li>
+      <li><strong>容错率为零的考验：</strong>墨西哥若不能在常规时间利用主场高原优势解决战斗，被拖入加时甚至点球大战将使"十六郎"魔咒的心理压力进一步放大；厄瓜多尔则需要顶住东道主主场氛围+高原环境的双重考验，能否扛住开局压力是第一道关卡</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑧ 博彩公司初盘 &amp; 即时盘变化</div>
+    <div class="odds-row">
+      <div class="ob"><div class="ol">墨西哥独赢</div><div class="ov hot">2.20-2.25</div></div>
+      <div class="ob"><div class="ol">平局</div><div class="ov">2.90-3.00</div></div>
+      <div class="ob"><div class="ol">厄瓜多尔独赢</div><div class="ov">3.60-4.10</div></div>
+    </div>
+    <div class="odds-row" style="margin-top:6px">
+      <div class="ob"><div class="ol">墨西哥让平半深盘</div><div class="ov hot">约1.85-2.13</div></div>
+      <div class="ob"><div class="ol">大球1.5/2</div><div class="ov">约1.60-1.79</div></div>
+      <div class="ob"><div class="ol">小球1.5/2</div><div class="ov">约2.06-2.35</div></div>
+    </div>
+    <div class="sub" style="margin-top:6px;padding:6px 4px">综合多平台口径，亚洲让分盘开出墨西哥让平半深盘，主客两侧赔率分布相对均衡（1.85/1.91附近），说明机构虽认可墨西哥的主场地位但并不认为会轻松大胜；胜平负三项赔率差距不算悬殊（2.20/2.90/3.60附近），反映这是一场"强弱分明却暗藏冷门风险"的对决；数据机构给出墨西哥晋级概率60.2%、厄瓜多尔39.8%的预测，与盘口设置方向基本吻合</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑨ 市场投注热度分析</div>
+    <ul class="alist">
+      <li>墨西哥独赢赔率2.20-2.25处于中等水位，并非毫无悬念的极端低赔，资金虽然集中但市场仍保留相当的不确定性评估</li>
+      <li>让球盘墨西哥让平半深盘水位均衡，独立分析建议关注受让方厄瓜多尔的抗压属性——这支以铁血防守立足的南美劲旅，客场作战的稳健属性叠加受让深盘的保护，具备一定价值挖掘空间</li>
+      <li>大小球盘口略微偏向大球方向，机构判断墨西哥锋线状态正佳+厄瓜多尔必须主动压上抢分的处境，会使双方合力打入两球以上的概率不低</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">⑩ 爆冷因素评估</div>
+    <div class="risk-box">
+      <div class="rtitle">⚠ 爆冷可能性：中等（厄瓜多尔近22场仅输1场的硬仗韧性是本场最大的变量）</div>
+      <p>墨西哥在防守稳固性、主场高原优势和东道主气氛上全面占优，是本场理所应当的热门。但需注意：①厄瓜多尔近22场比赛仅输1场，展现出顶级的硬仗韧性，末轮绝境逆转德国的大心脏战例足以说明其抗压能力；②厄瓜多尔全队13名旅欧球员、多人效力英超劲旅，身体硬度和防守组织能力具备限制东道主进攻的现实基础；③墨西哥"十六郎"魔咒的历史心理负担，一旦比赛进入胶着甚至被拖入加时，可能成为东道主自身的不利因素；④凯塞多领衔的中场拦截体系，对墨西哥地面传控打法是切实的考验。但厄瓜多尔自身进攻端效率低迷（小组赛仅进2球，前两轮颗粒无收）的问题同样突出，若不能复制末轮逆转德国的效率，要在墨西哥城的高原主场客场作战取胜，难度依然不小。</p>
+    </div>
+  </div>
+
+  <div class="pred-panel">
+    <div style="font-size:12px;color:#0d4e9e;margin-bottom:5px">⚡ 四大比分预测</div>
+    <div class="pred-score">墨西哥 2-1 厄瓜多尔（主选）</div>
+    <div class="pred-meta">概率约20% · 次选：2-0墨西哥（约18%） · 1-0墨西哥（约16%） · 1-1平/加时（约14%）</div>
+    <div class="conf-row"><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div><div class="cdot off"></div></div>
+    <div style="font-size:11px;color:#2a5fb0;margin-bottom:8px">信心指数 5/10（主场和防守数据支持墨西哥占优，但厄瓜多尔的硬仗韧性和让球盘深度均提示本场具备较高不确定性）</div>
+    <div class="pred-body">
+      <strong>为什么预测2-1？</strong><br>
+      墨西哥本届赛事3场零失球的防守韧性+高原主场的体能消耗战术，理论上具备解决战斗的实力基础；但厄瓜多尔近22场仅输1场的硬仗韧性+凯塞多领衔的中场拦截体系，决定了墨西哥很难轻松零封对手，且厄瓜多尔末轮逆转德国已证明球队具备在逆境中抢分的能力。2-1反映了"墨西哥主场+防守优势解决比赛"与"厄瓜多尔铁血防守体系至少能抢得1球"两种现实因素的平衡，与让球盘墨西哥让平半深盘、胜平负赔率差距不算悬殊的市场判断方向一致。<br><br>
+      <strong>数据支持：</strong>①墨西哥小组赛3战零失球+仅让对手创造1.25个预期进球的防守数据 ②厄瓜多尔近22场仅输1场+末轮逆转德国的硬仗韧性战例 ③数据机构给出墨西哥60.2%晋级概率，留出近4成的不确定性空间<br><br>
+      <strong>风险因素：</strong>①若墨西哥延续小组赛零封纪录，比分可能锁定在2-0或1-0，"零封"剧本同样具备相当概率 ②若厄瓜多尔复制末轮逆转德国的效率，结合墨西哥"十六郎"历史心魔，不能排除1-1战平甚至被拖入加时点球的可能 ③高原环境对双方体能分配的影响存在较大变数，常规时间难分高下的概率不容低估
+    </div>
+  </div>
+
+  <div class="htft-panel">
+    <div class="htft-title">⏱ 半全场胜平负预测</div>
+    <div class="htft-row">
+      <div class="htft-box"><div class="rank">第一选择</div><div class="combo">平/胜（墨西哥）</div><div class="prob">概率：26%</div></div>
+      <div class="htft-box"><div class="rank">第二选择</div><div class="combo">胜/胜（墨西哥）</div><div class="prob">概率：18%</div></div>
+      <div class="htft-box"><div class="rank">第三选择</div><div class="combo">平/平</div><div class="prob">概率：16%</div></div>
+    </div>
+    <div style="font-size:11px;color:#9a5a30;margin-bottom:8px">信心指数 5/10</div>
+    <div class="htft-body">
+      <strong>为什么预测"半场平/全场胜（墨西哥）"？</strong><br>
+      厄瓜多尔的低位防守体系在面对实力更强或主场作战的对手时往往能在比赛前期保持组织性（小组赛对科特迪瓦、德国两战均未在上半场迅速崩盘），凯塞多的中场拦截在体能充沛的开局阶段执行力最强；墨西哥则更倾向利用高原主场环境逐步消耗对手体能，进攻效率随比赛推进而提升（对韩国、捷克两战均在中段及以后打开局面），"上半场胶着、下半场墨西哥凭借体能和主场优势逐渐占据上风"是概率最高的现实剧本。<br><br>
+      <strong>数据支持：①两队近10场上半场进球/失球：</strong>墨西哥对捷克一战的多球优势更多体现在下半场（末轮轮换阵容仍能扩大比分），对南非、韩国两战均为渐进式取胜；厄瓜多尔末轮对德国一战上半场曾0-1落后，体现其开局阶段的进攻效率仍待提升，但防守端尚未出现大面积崩盘。<br><br>
+      <strong>两队近10场半场领先/平/落后次数：</strong>墨西哥近3场更多呈现半场胶着、下半场扩大优势的特征；厄瓜多尔近3场1次半场落后（对德国）最终下半场逆转，证明其下半场调整和抗压能力强于上半场抢分能力。<br><br>
+      <strong>下半场进球能力及逆转能力：</strong>厄瓜多尔下半场逆转能力已在对德国一战得到验证；墨西哥下半场同样具备稳定的扩大优势能力，整体进攻效率随高原环境对客队体能的消耗而提升。<br><br>
+      <strong>历史交锋分布：</strong>2002年世界杯小组赛墨西哥2-1胜厄瓜多尔的具体半场比分缺乏详细公开数据，参考价值有限，本场半全场预测更多基于双方近期战术风格特征。<br><br>
+      <strong>伤停/首发/战意/轮换因素：</strong>双方暂无重大伤停报告，墨西哥末轮轮休部分主力体能更充足，更利于其下半场持续施压；厄瓜多尔全队多名旅欧硬汉阵容齐整，预计不会有明显轮换，双方均将全力以赴。<br><br>
+      <strong>风险因素：</strong>①若墨西哥延续对南非揭幕战的控球压制打法，上半场即可能确立优势形成"胜/胜" ②若厄瓜多尔复制对德国一战的逆转效率，"负/胜（厄瓜多尔）"或"平/平"的特殊走向不能排除 ③高原环境和东道主主场氛围的额外变量，使本场半全场预测的不确定性高于一般强弱对决
+    </div>
+    <div class="highlight">投注建议：半全场"平/胜（墨西哥）"@约3.00和"平/平"@约4.80可搭配小注布局，分别覆盖"墨西哥下半场凭借主场和体能优势打开局面"与"双方胶着难解、全场低分"两种最具数据支撑的现实剧本。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">投注建议</div>
+    <div class="bets-grid">
+      <div class="bet-card"><div class="bc-type">胜平负</div><div class="bc-rec">墨西哥独赢 @约2.20</div><div class="bc-reason">主场高原优势+本届世界杯唯一零失球记录的防守韧性，是本场最直接的实力体现，赔率水位也未被过度打压</div></div>
+      <div class="bet-card val"><div class="bc-type">亚洲让球 <span class="tag tv">价值</span></div><div class="bc-rec">厄瓜多尔+0.5受让 @约1.91</div><div class="bc-reason">三依据：①厄瓜多尔近22场仅输1场的硬仗韧性 ②13名旅欧球员的身体硬度和凯塞多的中场拦截能力 ③让平半深盘水位均衡，体现机构认可受让方的抗压价值</div></div>
+      <div class="bet-card"><div class="bc-type">大小球</div><div class="bc-rec">大球1.5/2 @约1.79</div><div class="bc-reason">墨西哥锋线状态渐入佳境+厄瓜多尔必须主动压上抢分的处境，双方合力至少打入两球的概率不低</div></div>
+      <div class="bet-card val"><div class="bc-type">双方进球 <span class="tag tv">首推价值</span></div><div class="bc-rec">双方进球-否 @约1.85</div><div class="bc-reason">三依据：①墨西哥小组赛3场零失球、仅让对手创造1.25个预期进球的硬数据 ②厄瓜多尔进攻端前两轮颗粒无收、整届赛事仅进2球的低效表现 ③墨西哥防守体系成熟+主场高原优势叠加，厄瓜多尔本场破门难度不低于小组赛阶段</div></div>
+      <div class="bet-card risk"><div class="bc-type">半全场 <span class="tag tr">推荐</span></div><div class="bc-rec">半场平/全场胜（墨西哥）@约3.00</div><div class="bc-reason">厄瓜多尔低位防守体系开局阶段组织性较强+墨西哥下半场凭借主场和体能优势逐渐打开局面的现实规律，是本场最贴合实际节奏的半全场组合</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MATCH 4 三场精选方案 ========== -->
+<div class="card" id="m3">
+  <div class="final-card" style="border:none;padding:0">
+    <div class="final-title">★ 2026世界杯32强淘汰赛 · 三场赛事精选方案</div>
+
+    <div class="pick-row">
+      <div class="pick-item">
+        <div class="stars">★★★★☆<br><span style="font-size:10px;color:#888">稳胆</span></div>
+        <div class="pick-right">
+          <div class="plbl">法国 vs 瑞典</div>
+          <div class="pmain">法国-1.5亚洲让球 @1.76</div>
+          <div class="pdet">依据：①法国小组赛进10球仅失2球的攻防数据，对阵瑞典进7球失7球的起伏表现具备全面优势 ②瑞典双主力中卫希恩、霍尔姆确认伤缺，后防替补组合面对姆巴佩、登贝莱的反复冲击恐难全场抵挡 ③法国独赢1.28赔率本身缺乏价值空间，让球盘提供更合理的风险收益比，是三场中确定性相对最高的单项</div>
+        </div>
+      </div>
+
+      <div class="pick-item">
+        <div class="stars">★★★★☆<br><span style="font-size:10px;color:#888">稳胆</span></div>
+        <div class="pick-right">
+          <div class="plbl">墨西哥 vs 厄瓜多尔</div>
+          <div class="pmain">双方进球-否 @约1.85</div>
+          <div class="pdet">依据：①墨西哥本届世界杯唯一保持3场零失球纪录，整体防守仅让对手创造1.25个预期进球的硬数据 ②厄瓜多尔进攻端整届赛事仅进2球，前两轮小组赛颗粒无收，队长瓦伦西亚至今未能破门 ③墨西哥高原主场+成熟防守体系叠加，厄瓜多尔本场破门难度预计不低于小组赛阶段，是三场中性价比突出的反向价值选择</div>
+        </div>
+      </div>
+
+      <div class="pick-item">
+        <div class="stars">★★★☆☆<br><span style="font-size:10px;color:#888">博高赔</span></div>
+        <div class="pick-right">
+          <div class="plbl">科特迪瓦 vs 挪威</div>
+          <div class="pmain">半场平/全场挪威胜 @约3.60</div>
+          <div class="pdet">依据：①科特迪瓦对阵实力更强对手时上半场偏谨慎收缩的真实数据规律（对德国一战即是范例） ②挪威核心球员末轮全程轮休换来的体能优势，更利于下半场持续施压 ③哈兰德、厄德高的终结效率叠加科特迪瓦恩迪卡伤缺的防空隐患，下半场打开局面的概率较高，半全场组合比单纯压全场胜负更具赔率价值</div>
+        </div>
+      </div>
+
+      <div class="pick-item">
+        <div class="stars">★★★☆☆<br><span style="font-size:10px;color:#888">博高赔</span></div>
+        <div class="pick-right">
+          <div class="plbl">法国 vs 瑞典</div>
+          <div class="pmain">双方进球-是 @约1.95</div>
+          <div class="pdet">依据：①瑞典锋线伊萨克+哲凯赖什+埃兰加身价合计超1.5亿欧元，三人均效力英超且对法国后防线足够熟悉 ②法国对塞内加尔一战曾上半场45分钟未能破门的慢热先例，证明其并非每场都能轻松零封对手 ③瑞典近10场失7球的防线漏洞同样明确，双方均有较高概率破门，与让球盘"法国-1.5"形成互补的不同视角</div>
+        </div>
+      </div>
+
+      <div class="pick-item">
+        <div class="stars">★★☆☆☆<br><span style="font-size:10px;color:#888">冷门尝试</span></div>
+        <div class="pick-right">
+          <div class="plbl">科特迪瓦 vs 挪威</div>
+          <div class="pmain">科特迪瓦+0.5受让 @1.83</div>
+          <div class="pdet">依据：①Opta超级计算机给出科特迪瓦21.6%胜率+22.3%平局概率，合计近44%的不败概率与受让盘隐含概率基本匹配 ②科特迪瓦3场小组赛仅失2球的防守韧性是非洲球队第一档，双后腰凯西+桑加雷的拦截能力对挪威传控体系是实打实的考验 ③挪威小组赛主力消耗明显大于科特迪瓦，体能差对受让盘形成额外保护，本场被多家机构列为淘汰赛首轮难度最高的对决之一，建议适度参与而非重仓</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="sec-title" style="margin-top:4px">📊 综合预期与资金分配建议</div>
+    <div class="two-col" style="margin-bottom:10px">
+      <div class="stat-block"><div class="lbl">预计命中率</div><div class="val">稳胆类约62-68% · 高赔类约30-36% · 冷门类约38-42%</div><div class="sub">五项合计预期至少命中2-3项；两项稳胆若同时命中可大幅降低整体回撤风险；科特迪瓦vs挪威一役因数据机构与盘口均显示较高不确定性，建议单场总仓位适度控制</div></div>
+      <div class="stat-block"><div class="lbl">预期赔率区间</div><div class="val">1.76 ~ 3.60</div><div class="sub">稳胆类集中在1.76-1.85低赔区间，高赔类集中在1.95-3.60区间，本次三场赛事整体赔率分布较为分散，反映三场比赛强弱悬殊程度差异较大</div></div>
+    </div>
+
+    <div class="sec-title">💰 资金分配建议（以100单位资金为基准）</div>
+    <div class="alloc-row">
+      <div class="abox"><div class="al">法国-1.5让球<br>@1.76</div><div class="av">28</div></div>
+      <div class="abox"><div class="al">墨厄双方进球-否<br>@1.85</div><div class="av">24</div></div>
+      <div class="abox"><div class="al">科挪半全场<br>@3.60</div><div class="av">16</div></div>
+      <div class="abox"><div class="al">法瑞双方进球<br>@1.95</div><div class="av">14</div></div>
+      <div class="abox"><div class="al">科特迪瓦+0.5<br>@1.83</div><div class="av">10</div></div>
+      <div class="abox"><div class="al">现金储备<br>-</div><div class="av">8</div></div>
+    </div>
+    <div class="note">说明：以上分配合计92单位投入五项推荐项，剩余8单位建议保留作为现金储备。需特别提醒：法国vs瑞典一场同时出现了两项推荐（让球、双方进球），这两项存在一定程度的负相关——若法国以2-0、3-0等零封比分大胜，让球项命中但双方进球项落空；若比赛打成2-1、3-1等双方均有进球的比分，双方进球项命中但让球项需视具体比分判断。请将这两项视为同一场比赛的不同视角而非完全独立的两次机会，建议优先确认萨利巴、坎特的最终出战情况（赛前1小时官方公布）后再决定是否两项同时跟进，或择一加大权重。两项★★★★☆稳胆合计占比52%，是本次资金配置的核心压舱石。</div>
+
+    <div class="risk-box" style="margin-top:14px">
+      <div class="rtitle">⚠ 重要风险提示</div>
+      <p>本报告所有分析基于截至发稿前可获得的公开数据（近期战绩、伤停报告、博彩公司公开赔率、数据机构模型预测等），仅作为投注参考，不构成保证盈利的承诺。32强淘汰赛阶段为单场决胜制，若常规时间战平将进入加时赛及点球大战，这会显著影响大小球、半全场等盘口的最终判定方式（多数盘口仅计算90分钟常规时间），请投注前仔细核实平台具体规则。足球比赛存在高度不确定性，伤停名单（尤其萨利巴、坎特、辛戈、凯西、吕尔松的出战情况）、临场战术变化、高原环境对体能的影响、裁判判罚等因素均可能导致实际结果偏离预测。所有赔率请以投注平台临场实时显示为准，发稿后可能已发生变动。请理性投注、量力而行，将资金管理和长期纪律置于单场结果之上，切勿借贷投注或投入超出自身承受能力的资金。</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+function show(idx){
+  var cards = document.querySelectorAll('.card');
+  var tabs = document.querySelectorAll('.tab');
+  for (var i = 0; i < cards.length; i++) {
+    cards[i].classList.remove('active');
+  }
+  for (var j = 0; j < tabs.length; j++) {
+    tabs[j].classList.remove('active');
+  }
+  var targetCard = document.getElementById('m' + idx);
+  if (targetCard) { targetCard.classList.add('active'); }
+  if (tabs[idx]) { tabs[idx].classList.add('active'); }
+}
+</script>
+</body>
+</html>
